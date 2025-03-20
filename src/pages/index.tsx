@@ -3,6 +3,8 @@ import styles from '@/styles/home.module.css';
 import VideoBackground from "@/components/VideoBackground";
 import TopItem from "@/components/TopItem";
 import Avatar from "@/components/Avatar"
+import FloatingBubbles from "@/components/FloatingBubbles";
+
 export default function Home() {
   return (
     <>
@@ -16,7 +18,7 @@ export default function Home() {
         <TopItem imgUrl="./img/catfoot.svg" label="Days" number="5"></TopItem>
         <TopItem imgUrl="./img/gold.svg" label="Gold" number="23465"></TopItem>
         <TopItem imgUrl="./img/LostEnergy.svg" label="Crystal" number="243"></TopItem>
-
+        <FloatingBubbles></FloatingBubbles>
         <VideoBackground />
       </div>
 
