@@ -12,7 +12,7 @@ const config = {
       // },
       "postcss-px-to-viewport",
       {
-        viewportWidth: 430, // 设计稿宽度
+        viewportWidth: 1920, // 设计稿宽度
         // viewportHeight: 812, // 设计稿高度（可选）
         unitPrecision: 5, // 单位转换后保留的小数位数
         viewportUnit: "vw", // 转换成的视口单位

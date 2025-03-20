@@ -6,8 +6,7 @@ const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
 const videoList = [
   "/videos/video1.mp4",
-  "/videos/video2.mp4",
-  "/videos/video3.mp4",
+  "/videos/video4.mp4",
 ];
 
 export default function VideoBackground() {
@@ -35,12 +34,12 @@ export default function VideoBackground() {
         >
           切换视频 1
         </button>
-        <button
+        {/* <button
           className={styles.button}
           onClick={() => setVideoUrl(videoList[2])}
         >
           切换视频 2
-        </button>
+        </button> */}
         <button
           className={styles.button}
           onClick={() => setVideoUrl(videoList[0])}
