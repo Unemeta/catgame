@@ -1,31 +1,46 @@
+@import "tailwindcss";
+
 @media screen and (orientation: portrait) {
-    .rotate-screen {
-      display: flex;
-    }
-  }
-  
   .rotate-screen {
-    /* display: none; */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    font-size: 18px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    z-index: 9999;
+    display: flex;
   }
-  
-  .bubble {
+}
+
+.rotate-screen {
+  /* display: none; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 18px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 9999;
+}
+
+.bubble {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: rgba(173, 216, 230, 0.6);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(135, 206, 250, 0.4);
+  will-change: transform, opacity;
+}
+
+/* @media screen and (orientation: portrait) {
+  html {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    height: 100vw;
+    overflow-x: hidden;
     position: absolute;
-    width: 40px;
-    height: 40px;
-    background: rgba(173, 216, 230, 0.6);
-    border-radius: 50%;
-    box-shadow: 0 2px 8px rgba(135, 206, 250, 0.4);
-    will-change: transform, opacity;
+    top: 100%;
+    left: 0;
   }
+}  */

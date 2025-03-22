@@ -4,8 +4,18 @@ import VideoBackground from "@/components/VideoBackground";
 import TopItem from "@/components/TopItem";
 import Avatar from "@/components/Avatar"
 import FloatingBubbles from "@/components/FloatingBubbles";
+import BubbleStats from "@/components/BubbleStats";
+
+import React, { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
 
 export default function Home() {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const tl = gsap.timeline({ repeat: -1, yoyo: true });
+    tl.to({}, { duration: 3, onUpdate: () => setProgress((p) => (p >= 100 ? 0 : p + 1)) });
+  }, []);
   return (
     <>
       <Head>
@@ -18,14 +28,11 @@ export default function Home() {
         <TopItem imgUrl="./img/catfoot.svg" label="Days" number="5"></TopItem>
         <TopItem imgUrl="./img/gold.svg" label="Gold" number="23465"></TopItem>
         <TopItem imgUrl="./img/LostEnergy.svg" label="Crystal" number="243"></TopItem>
+
+        {/* <BubbleStats imageSrc="./img/love.svg" progress={progress}></BubbleStats> */}
         <FloatingBubbles></FloatingBubbles>
         <VideoBackground />
       </div>
-
-      {/* <div>
-        <h1>欢迎使用 Next.js + TypeScript</h1>
-        <p>这是一个支持移动端适配的 WebApp！</p>
-      </div> */}
     </>
   );
 }
