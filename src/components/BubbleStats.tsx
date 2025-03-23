@@ -72,19 +72,3 @@ const Bubble: React.FC<{ imageSrc: string; progress: number }> = ({
   );
 };
 export default Bubble;
-// const App = () => {
-//   const [progress, setProgress] = useState(0);
-
-//   useEffect(() => {
-//     const tl = gsap.timeline({ repeat: -1, yoyo: true });
-//     tl.to({}, { duration: 3, onUpdate: () => setProgress((p) => (p >= 100 ? 0 : p + 1)) });
-//   }, []);
-
-//   return (
-//     <div className="flex justify-center items-center h-screen bg-gray-100">
-//       <Bubble imageSrc="https://source.unsplash.com/100x100/?nature" progress={progress} />
-//     </div>
-//   );
-// };
-
-// export default App;

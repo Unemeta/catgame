@@ -9,7 +9,7 @@ const FloatingBubbles = () => {
     if (!containerRef.current) return;
 
     // 创建泡泡元素
-    const bubbles = Array.from({ length: bubblesCount }).map((_, i) => {
+    const bubbles = Array.from({ length: bubblesCount }).map(() => {
       const bubble = document.createElement("div");
       bubble.className = "bubble";
       containerRef.current?.appendChild(bubble);

@@ -8,8 +8,6 @@ import BubbleStats from "@/components/BubbleStats";
 import Loading from "@/components/Loading";
 import EntryItem from "@/components/EntryItem";
 
-
-
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
@@ -98,10 +96,13 @@ export default function Home() {
   }, []);
   return (
     <>
-      {/* <Head>
-        <title>My Next.js App</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head> */}
+      <Head>
+        <title>CatGame Next.js App</title>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover"
+        />
+      </Head>
       {loading ? (
         <Loading progress={progress} />
       ) : (

@@ -10,7 +10,13 @@ export default function VideoBackground() {
   const handleVideoChange = (newSrc: string) => {
     if (newSrc === videoUrl) return; // 避免重复切换
     // setNextVideoSrc(newSrc); // 预加载新视频
-    setVideoUrl(newSrc)
+    setVideoUrl(newSrc);
+    // if (videoRef.current) {
+    //   videoRef.current.pause(); // 先暂停当前视频
+    //   videoRef.current.src = newSrc; // 替换视频源
+    //   videoRef.current.load(); // 重新加载
+    //   videoRef.current.play(); // 重新播放
+    // }
   };
 
   const handleCanPlay = () => {
@@ -18,6 +24,19 @@ export default function VideoBackground() {
     setVideoUrl(nextVideoSrc); // 当新视频可以播放时，正式切换
     setNextVideoSrc(""); // 清除预加载视频
   };
+
+  const enterFullscreen = () => {
+    const elem = document.documentElement; // 选择整个网页
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    }
+    // adjustFullscreen();
+  };
+  function adjustFullscreen() {
+    document.body.style.width = window.innerWidth + "px";
+    document.body.style.height = window.innerHeight + "px";
+  }
+  window.addEventListener("resize", adjustFullscreen);
   return (
     <div className={styles.videoContainer}>
       {/* 背景视频 */}
@@ -50,6 +69,9 @@ export default function VideoBackground() {
       )} */}
       {/* 交互层 */}
       <div className={styles.overlay}>
+        <button className={styles.button} onClick={enterFullscreen}>
+          点击全屏
+        </button>
         <button
           className={styles.button}
           onClick={() => handleVideoChange(videoList[1])}
