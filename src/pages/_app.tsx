@@ -31,8 +31,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      {isPortrait && <div className="rotate-screen">请旋转设备至横屏模式</div>}
-      <Component {...pageProps} />
+      {isPortrait ? (
+        <div className="rotate-screen">请旋转设备至横屏模式</div>
+      ) : (
+        <Component {...pageProps} />
+      )}
     </>
   );
 }
