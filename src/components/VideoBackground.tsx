@@ -4,7 +4,7 @@ const videoList = ["/videos/video1.mp4", "/videos/video4.mp4"];
 
 export default function VideoBackground() {
   const [videoUrl, setVideoUrl] = useState(videoList[0]);
-  const [nextVideoSrc, setNextVideoSrc] = useState("");
+  // const [nextVideoSrc, setNextVideoSrc] = useState("");
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleVideoChange = (newSrc: string) => {
@@ -19,11 +19,11 @@ export default function VideoBackground() {
     // }
   };
 
-  const handleCanPlay = () => {
-    console.log("handleCanPlay");
-    setVideoUrl(nextVideoSrc); // 当新视频可以播放时，正式切换
-    setNextVideoSrc(""); // 清除预加载视频
-  };
+  // const handleCanPlay = () => {
+  //   console.log("handleCanPlay");
+  //   setVideoUrl(nextVideoSrc); // 当新视频可以播放时，正式切换
+  //   setNextVideoSrc(""); // 清除预加载视频
+  // };
 
   const enterFullscreen = () => {
     const elem = document.documentElement; // 选择整个网页

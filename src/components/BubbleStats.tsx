@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
 const Bubble: React.FC<{ imageSrc: string; progress: number }> = ({

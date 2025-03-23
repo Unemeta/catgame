@@ -4,11 +4,11 @@ import VideoBackground from "@/components/VideoBackground";
 import TopItem from "@/components/TopItem";
 import Avatar from "@/components/Avatar";
 import FloatingBubbles from "@/components/FloatingBubbles";
-import BubbleStats from "@/components/BubbleStats";
+// import BubbleStats from "@/components/BubbleStats";
 import Loading from "@/components/Loading";
 import EntryItem from "@/components/EntryItem";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { gsap } from "gsap";
 
 export default function Home() {
