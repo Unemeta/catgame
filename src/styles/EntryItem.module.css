@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.entryItem {
+  width: 116px;
+  height: 116px;
+  /* opacity: 0.4; */
+  background: url("/img/bubbleBack.png");
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.entryItemImg {
+  width: 79px;
+}
+.entryItemText {
+  display: flex;
+  padding: 7px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  align-self: stretch;
+  border-radius: 130px;
+  border: 2px solid rgba(87, 22, 22, 0.1);
+  background: rgba(41, 10, 68, 0.2);
+
+  color: #fff;
+  text-align: center;
+  font-family: "Lilita One";
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%; /* 22px */
+  font-family: 'SF Pro Rounded';
+}
