@@ -30,13 +30,7 @@ export default function VideoBackground() {
     if (elem.requestFullscreen) {
       elem.requestFullscreen();
     }
-    // adjustFullscreen();
   };
-  function adjustFullscreen() {
-    document.body.style.width = window.innerWidth + "px";
-    document.body.style.height = window.innerHeight + "px";
-  }
-  window.addEventListener("resize", adjustFullscreen);
   return (
     <div className={styles.videoContainer}>
       {/* 背景视频 */}
