@@ -84,16 +84,16 @@ export default function Home() {
     });
   }, []);
 
-  useEffect(() => {
-    const tl = gsap.timeline({ repeat: -1, yoyo: true });
-    tl.to(
-      {},
-      {
-        duration: 3,
-        onUpdate: () => setProgress((p) => (p >= 100 ? 0 : p + 1)),
-      }
-    );
-  }, []);
+  // useEffect(() => {
+  //   const tl = gsap.timeline({ repeat: -1, yoyo: true });
+  //   tl.to(
+  //     {},
+  //     {
+  //       duration: 3,
+  //       onUpdate: () => setProgress((p) => (p >= 100 ? 0 : p + 1)),
+  //     }
+  //   );
+  // }, []);
   return (
     <>
       <Head>
