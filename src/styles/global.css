@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
 
 @media screen and (orientation: portrait) {
   .rotate-screen {
@@ -55,3 +57,177 @@ body {
     left: 0;
   }
 }  */
+
+.bgFeeding {
+  background-image: url("/img/loadBg.png");
+  background-size: cover;
+}
+.dtest {
+  border: 1px solid red !important;
+}
+.dtest2 {
+  border: 1px solid green !important;
+}
+
+.gridArea1111 {
+  grid-area: 1/1/1/1;
+}
+
+.dtext18 {
+  font-size: 18px;
+}
+.dtext20 {
+  font-size: 20px;
+}
+.dtext22 {
+  font-size: 22px;
+}
+.dtext24 {
+  font-size: 24px;
+}
+.dtext26 {
+  font-size: 26px;
+}
+.dtext30 {
+  font-size: 30px;
+}
+.dtext40 {
+  font-size: 40px;
+}
+
+.dw24{
+  width: 24px;
+}
+.dw28{
+  width: 28px;
+}
+.dw30{
+  width: 30px;
+}
+.dw48{
+  width: 48px;
+}
+.dw116{
+  width: 116px;
+}
+.dw180{
+  width: 180px;
+}
+.dw224{
+  width: 224px;
+}
+.dw455{
+  width: 455px;
+}
+.dw1066{
+  width: 1066px;
+}
+
+.dh24 {
+  height: 24px;
+}
+.dh35 {
+  height: 35px;
+}
+.dh80 {
+  height: 80px;
+}
+.dh180{
+  height: 180px;
+}
+.dh200{
+  height: 200px;
+}
+.dh455{
+  height: 455px;
+}
+.dh560{
+  height: 560px;
+}
+.dh660 {
+  height: 660px;
+}
+
+
+
+
+.dpt12 {
+  padding-top: 12px;
+}
+.dpt14 {
+  padding-top: 14px;
+}
+.dpt50 {
+  padding-top: 50px;
+}
+.dpt60 {
+  padding-top: 60px;
+}
+.dpt80 {
+  padding-top: 80px;
+}
+.dpt100 {
+  padding-top: 100px;
+}
+
+.dpb12 {
+  padding-bottom: 12px;
+}
+.dpb30 {
+  padding-bottom: 30px;
+}
+.dpb50 {
+  padding-bottom: 50px;
+}
+
+.dpl15 {
+  padding-left: 15px;
+}
+.dpl20 {
+  padding-left: 20px;
+}
+.dpl30 {
+  padding-left: 30px;
+}
+.dpl34 {
+  padding-left: 34px;
+}
+.dpr10 {
+  padding-right: 10px;
+}
+.dpr15 {
+  padding-right: 15px;
+}
+.dpr20 {
+  padding-right: 20px;
+}
+.dpr30 {
+  padding-right: 30px;
+}
+
+
+
+.dml10 {
+  margin-left: 10px;
+}
+.dml20 {
+  margin-left: 20px;
+}
+
+.dmr5 {
+  margin-right: 5px;
+}
+.dmr10 {
+  margin-right: 10px;
+}
+.dmr20 {
+  margin-right: 20px;
+}
+
+
+.dmb10 {
+  margin-bottom: 10px;
+}
+.dmb15 {
+  margin-bottom: 15px;
+}

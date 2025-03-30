@@ -10,6 +10,7 @@ import EntryItem from "@/components/EntryItem";
 
 import React, { useEffect, useState } from "react";
 import { gsap } from "gsap";
+import NavRight from "@/components/navRight";
 
 export default function Home() {
   const [progress, setProgress] = useState(0);
@@ -131,6 +132,7 @@ export default function Home() {
           <div className={styles.right}>
             <EntryItem></EntryItem>
           </div>
+          <NavRight></NavRight>
         </div>
       )}
     </>
