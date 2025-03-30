@@ -9,7 +9,7 @@ import Loading from "@/components/Loading";
 import EntryItem from "@/components/EntryItem";
 
 import React, { useEffect, useState } from "react";
-import { gsap } from "gsap";
+// import { gsap } from "gsap";
 import NavRight from "@/components/navRight";
 
 export default function Home() {
