@@ -1,10 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { ReactNode } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-} from ".";
+import { ReactNode, useState } from "react";
+import { Dialog, DialogContent, DialogTrigger } from ".";
 import { cn } from "@/lib/utils";
 
 interface iDialogInterWorld {
@@ -17,6 +13,7 @@ const DialogInterWorld = ({
   navIndex,
   setNavIndex,
 }: iDialogInterWorld) => {
+  const [goodsIndex, setgoodsIndex] = useState(0);
   return (
     <Dialog>
       <DialogTrigger>{trigger}</DialogTrigger>
@@ -153,8 +150,14 @@ const DialogInterWorld = ({
               </div>
               <div className="foodList flex-2 overflow-y-scroll dpr30">
                 {[1, 1, 1]?.map((item, index) => (
-                  <div className="dpl34 dpr10 relative dmb10 dh200" key={index}>
-                    {index === 0 && (
+                  <div
+                    className="dpl34 dpr10 relative dmb10 dh200"
+                    key={index}
+                    onClick={() => {
+                      setgoodsIndex(index);
+                    }}
+                  >
+                    {index === goodsIndex && (
                       <div className="bg-[url(/img/svg/foodListItemSelect.svg)] bg-cover absolute right-0 top-0 dw224 dh200"></div>
                     )}
                     <div className="bg-[url(/img/avatarTest.png)] bg-cover absolute top-[0.5vw] right-[0.5vw] dw180 dh180 rounded-[10px]"></div>
