@@ -133,7 +133,7 @@ const DialogInterWorld = ({
                         </span>
                       </div>
                       <div
-                        className="dw180 dh80 flex justify-center items-center"
+                        className="dw180 dh80 flex justify-center items-center cursor-pointer select-none"
                         style={{
                           background:
                             "linear-gradient(254deg, #FFFDCB 0%, #FFF600 144.38%)",
