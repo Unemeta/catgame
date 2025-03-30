@@ -1,7 +1,12 @@
 import DialogInterWorld from "./dialog/innerWorld";
 
 /* eslint-disable @next/next/no-img-element */
-const NavRight = () => {
+
+interface iNavRight {
+  navIndex: number;
+  setNavIndex: (index: number) => void;
+}
+const NavRight = ({ navIndex, setNavIndex }: iNavRight) => {
   return (
     <div className="fixed top-[50%] right-[7.29vw] translate-y-[-50%] ">
       <div className="flex flex-col justify-center items-center">
@@ -32,6 +37,8 @@ const NavRight = () => {
               </div>
             </div>
           }
+          navIndex={navIndex}
+          setNavIndex={setNavIndex}
         ></DialogInterWorld>
         <DialogInterWorld
           trigger={

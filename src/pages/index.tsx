@@ -95,6 +95,8 @@ export default function Home() {
   //     }
   //   );
   // }, []);
+
+  const [shopNavIndex, setshopNavIndex] = useState(0)
   return (
     <>
       <Head>
@@ -132,7 +134,7 @@ export default function Home() {
           <div className={styles.right}>
             <EntryItem></EntryItem>
           </div>
-          <NavRight></NavRight>
+          <NavRight navIndex={shopNavIndex} setNavIndex={setshopNavIndex}></NavRight>
         </div>
       )}
     </>

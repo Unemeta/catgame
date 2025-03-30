@@ -3,17 +3,20 @@ import { ReactNode } from "react";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
   DialogTrigger,
 } from ".";
 import { cn } from "@/lib/utils";
 
 interface iDialogInterWorld {
   trigger?: ReactNode;
+  navIndex?: number;
+  setNavIndex?: (index: number) => void;
 }
-const DialogInterWorld = ({ trigger }: iDialogInterWorld) => {
+const DialogInterWorld = ({
+  trigger,
+  navIndex,
+  setNavIndex,
+}: iDialogInterWorld) => {
   return (
     <Dialog>
       <DialogTrigger>{trigger}</DialogTrigger>
@@ -29,21 +32,44 @@ const DialogInterWorld = ({ trigger }: iDialogInterWorld) => {
             </div>
           </div>
           <div className="flex w-full h-full">
-            <div className="leftNav w-[7vw] flex flex-col gap-2 text-[1vw] font-[800]">
+            <div className="leftNav w-[6vw] flex flex-col gap-2 text-[1vw] font-[800]">
               <div
                 className={cn(
                   "bg-[#3f24a1] flex-1 flex justify-center items-center text-[#FFFDCE] font-[800] rounded-tl-[8px] rounded-bl-[8px]",
                   {
-                    "bg-[#FFDAE4]": true,
+                    "bg-[#FFDAE4]": navIndex === 0,
                   }
                 )}
+                onClick={() => {
+                  setNavIndex?.(0);
+                }}
               >
                 Toys
               </div>
-              <div className="bg-[#3f24a1] flex-1 flex justify-center items-center text-[#FFFDCECC] font-[500] rounded-tl-[8px] rounded-bl-[8px]">
+              <div
+                className={cn(
+                  "bg-[#3f24a1] flex-1 flex justify-center items-center text-[#FFFDCECC] font-[500] rounded-tl-[8px] rounded-bl-[8px] cursor-pointer select-none",
+                  {
+                    "bg-[#FFDAE4]": navIndex === 1,
+                  }
+                )}
+                onClick={() => {
+                  setNavIndex?.(1);
+                }}
+              >
                 Furniture
               </div>
-              <div className="flex flex-col justify-center items-center bg-[#3f24a1] flex-1 text-[#FFFDCECC] font-[500] rounded-tl-[8px] rounded-bl-[8px]">
+              <div
+                className={cn(
+                  "flex flex-col justify-center items-center bg-[#3f24a1] flex-1 text-[#FFFDCECC] font-[500] rounded-tl-[8px] rounded-bl-[8px] mb-2 cursor-not-allowed",
+                  {
+                    "bg-[#FFDAE4]": navIndex === 2,
+                  }
+                )}
+                onClick={() => {
+                  // setNavIndex?.(2);
+                }}
+              >
                 <img
                   className="w-[24px] h-auto"
                   src="/img/svg/lock.svg"
