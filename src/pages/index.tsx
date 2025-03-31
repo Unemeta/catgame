@@ -6,7 +6,7 @@ import Avatar from "@/components/Avatar";
 import FloatingBubbles from "@/components/FloatingBubbles";
 // import BubbleStats from "@/components/BubbleStats";
 import Loading from "@/components/Loading";
-import EntryItem from "@/components/EntryItem";
+// import EntryItem from "@/components/EntryItem";
 
 import React, { useEffect, useState } from "react";
 // import { gsap } from "gsap";
@@ -131,9 +131,9 @@ export default function Home() {
           {/* <BubbleStats imageSrc="./img/love.svg" progress={progress}></BubbleStats> */}
           <FloatingBubbles></FloatingBubbles>
           <VideoBackground />
-          <div className={styles.right}>
+          {/* <div className={styles.right}>
             <EntryItem></EntryItem>
-          </div>
+          </div> */}
           <NavRight navIndex={shopNavIndex} setNavIndex={setshopNavIndex}></NavRight>
         </div>
       )}

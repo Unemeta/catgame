@@ -1,34 +1,34 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import styles from "@/styles/VideoBackground.module.css"; // 确保有对应的 CSS 文件
-const videoList = ["/videos/video1.mp4", "/videos/video4.mp4"];
+
+const videoUrl = "/videos/video.mp4";
+// const start = 0; // 循环起点
+// const end = 5; // 循环终点
+// let loopEnabled = false; // 是否启用循环播放
+
+// function toggleLoop() {
+//   loopEnabled = !loopEnabled;
+//   console.log("循环播放：" + (loopEnabled ? "开启" : "关闭"));
+// }
 
 export default function VideoBackground() {
-  const [videoUrl, setVideoUrl] = useState(videoList[0]);
-  // const [nextVideoSrc, setNextVideoSrc] = useState("");
   const videoRef = useRef<HTMLVideoElement>(null);
-
-  const handleVideoChange = (newSrc: string) => {
-    if (newSrc === videoUrl) return; // 避免重复切换
-    // setNextVideoSrc(newSrc); // 预加载新视频
-    setVideoUrl(newSrc);
-    // if (videoRef.current) {
-    //   videoRef.current.pause(); // 先暂停当前视频
-    //   videoRef.current.src = newSrc; // 替换视频源
-    //   videoRef.current.load(); // 重新加载
-    //   videoRef.current.play(); // 重新播放
-    // }
-  };
-
-  // const handleCanPlay = () => {
-  //   console.log("handleCanPlay");
-  //   setVideoUrl(nextVideoSrc); // 当新视频可以播放时，正式切换
-  //   setNextVideoSrc(""); // 清除预加载视频
-  // };
-
   const enterFullscreen = () => {
     const elem = document.documentElement; // 选择整个网页
     if (elem.requestFullscreen) {
       elem.requestFullscreen();
+    }
+  };
+  const videoJump = (time: number = 0) => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = time;
+      // 设置循环
+      // videoRef.current.addEventListener("timeupdate", () => {
+      //   if (loopEnabled && videoRef.current.currentTime >= end) {
+      //     videoRef.current.currentTime = start;
+      //     videoRef.current.play();
+      //   }
+      // });
     }
   };
   return (
@@ -46,36 +46,12 @@ export default function VideoBackground() {
       >
         {/* <source src={videoUrl} type="video/mp4"/> */}
       </video>
-
-      {/* 预加载的视频（不显示）*/}
-      {/* {nextVideoSrc && (
-        <video
-          muted
-          playsInline
-          style={{
-            visibility: "hidden",
-          }}
-          onLoadedData={handleCanPlay} // 当可以播放时，才切换
-          src={nextVideoSrc}
-        >
-          <source src={nextVideoSrc} type="video/mp4" key={nextVideoSrc} />
-        </video>
-      )} */}
       {/* 交互层 */}
       <div className={styles.overlay}>
         <button className={styles.button} onClick={enterFullscreen}>
           点击全屏
         </button>
-        <button
-          className={styles.button}
-          onClick={() => handleVideoChange(videoList[1])}
-        >
-          切换动画 1
-        </button>
-        <button
-          className={styles.button}
-          onClick={() => handleVideoChange(videoList[0])}
-        >
+        <button className={styles.button} onClick={() => videoJump(5)}>
           切换动画 0
         </button>
       </div>
