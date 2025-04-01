@@ -11,6 +11,7 @@ import Loading from "@/components/Loading";
 import React, { useEffect, useState } from "react";
 // import { gsap } from "gsap";
 import NavRight from "@/components/navRight";
+import LottieView from "@/components/lottie";
 
 export default function Home() {
   const [progress, setProgress] = useState(0);
@@ -131,6 +132,7 @@ export default function Home() {
           {/* <BubbleStats imageSrc="./img/love.svg" progress={progress}></BubbleStats> */}
           <FloatingBubbles></FloatingBubbles>
           <VideoBackground />
+          <LottieView src={'/lottie/lovingheart.json'} className="w-[100px]"></LottieView>
           {/* <div className={styles.right}>
             <EntryItem></EntryItem>
           </div> */}
