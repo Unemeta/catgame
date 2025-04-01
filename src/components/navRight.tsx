@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
+import DialogInterWorld from "./dialog/interWorld";
 import DialogShop from "./dialog/shop";
 
 interface iNavRight {
@@ -10,7 +11,7 @@ const NavRight = ({ navIndex, setNavIndex }: iNavRight) => {
   return (
     <div className="fixed top-[50%] right-[7.29vw] translate-y-[-50%] ">
       <div className="flex flex-col justify-center items-center">
-        <DialogShop
+        <DialogInterWorld
           trigger={
             <div className="flex flex-col justify-center items-center">
               <img
@@ -23,7 +24,7 @@ const NavRight = ({ navIndex, setNavIndex }: iNavRight) => {
               </div>
             </div>
           }
-        ></DialogShop>
+        ></DialogInterWorld>
         <DialogShop
           trigger={
             <div className="flex flex-col justify-center items-center my-10">
