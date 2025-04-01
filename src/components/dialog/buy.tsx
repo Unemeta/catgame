@@ -11,8 +11,8 @@ const DialogBuy = ({ trigger }: iDialogBuy) => {
   return (
     <Dialog>
       <DialogTrigger>{trigger}</DialogTrigger>
-      <DialogContent className="p-0 dw1066 h-auto max-w-[1000px]">
-        <div className="bgBuy dw750 dh730 relative">
+      <DialogContent className="p-0 h-auto flex justify-center">
+        <div className="bgBuy dw680 dh660 relative">
           <div className="flex justify-center items-cente dpt28 dpb42 dmb80">
             <img className="w-[1.1vw] h-auto" src="/img/svg/paw.svg" alt="" />
             <span className="dml20 dmr20 text-white dtext35 font-[800] leading-none">
