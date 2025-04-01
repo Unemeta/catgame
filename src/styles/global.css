@@ -62,6 +62,21 @@ body {
   background-image: url("/img/bg/shop.min.png");
   background-size: 100% 100%;
 }
+.bgShopCtt {
+  background-image: url("/img/bg/shopCtt.min.png");
+  background-size: 100% 100%;
+}
+.bgShopNavUnselected {
+  background-image: url("/img/bg/shopNavUnselected.min.png");
+  background-size: 100% 100%;
+}
+.bgShopNavselected {
+  background-image: url("/img/bg/shopCtt.min.png");
+  background-size: 100% 100%;
+}
+.bgShopNav {
+  fill: linear-gradient(90deg, #5E49BB 0%, #351E9C 100%);
+}
 .dtest {
   border: 1px solid red !important;
 }
@@ -150,7 +165,9 @@ body {
 
 
 
-
+.dpt10 {
+  padding-top: 10px;
+}
 .dpt12 {
   padding-top: 12px;
 }

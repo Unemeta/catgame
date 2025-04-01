@@ -19,7 +19,7 @@ const DialogInterWorld = ({
       <DialogTrigger>{trigger}</DialogTrigger>
       <DialogContent className="p-0 dw1066 h-auto overflow-hidden max-w-[1000px]">
         <div className="dw1066 dh660 bgFeeding relative dpt100 dpl30 dpr30 dpb30">
-          <div className="absolute top-0 right-0 w-full">
+          <div className="absolute top-0 right-0 w-full  dpt10">
             <div className="flex justify-center items-cente">
               <img className="w-[1.1vw] h-auto" src="/img/svg/paw.svg" alt="" />
               <span className="dml20 dmr20 text-white dtext40 font-[800] leading-none">
@@ -28,13 +28,13 @@ const DialogInterWorld = ({
               <img className="w-[1.1vw] h-auto" src="/img/svg/paw.svg" alt="" />
             </div>
           </div>
-          <div className="flex w-full h-full">
+          <div className="flex w-full h-full ">
             <div className="leftNav w-[6vw] flex flex-col gap-2 text-[1vw] font-[800]">
               <div
                 className={cn(
-                  "bg-[#3f24a1] flex-1 flex justify-center items-center text-[#FFFDCE] font-[800] rounded-tl-[8px] rounded-bl-[8px]",
+                  "bgShopNavUnselected flex-1 flex justify-center items-center text-[#FFFDCE] font-[800] rounded-tl-[8px] rounded-bl-[8px]",
                   {
-                    "bg-[#FFDAE4]": navIndex === 0,
+                    bgShopNavselected: navIndex === 0,
                   }
                 )}
                 onClick={() => {
@@ -45,9 +45,9 @@ const DialogInterWorld = ({
               </div>
               <div
                 className={cn(
-                  "bg-[#3f24a1] flex-1 flex justify-center items-center text-[#FFFDCECC] font-[500] rounded-tl-[8px] rounded-bl-[8px] cursor-pointer select-none",
+                  "bgShopNavUnselected flex-1 flex justify-center items-center text-[#FFFDCECC] font-[500] rounded-tl-[8px] rounded-bl-[8px] cursor-pointer select-none",
                   {
-                    "bg-[#FFDAE4]": navIndex === 1,
+                    bgShopNavselected: navIndex === 1,
                   }
                 )}
                 onClick={() => {
@@ -58,9 +58,9 @@ const DialogInterWorld = ({
               </div>
               <div
                 className={cn(
-                  "flex flex-col justify-center items-center bg-[#3f24a1] flex-1 text-[#FFFDCECC] font-[500] rounded-tl-[8px] rounded-bl-[8px] mb-2 cursor-not-allowed",
+                  "bgShopNavUnselected flex flex-col justify-center items-center bg-[#3f24a1] flex-1 text-[#FFFDCECC] font-[500] rounded-tl-[8px] rounded-bl-[8px] mb-2 cursor-not-allowed",
                   {
-                    "bg-[#FFDAE4]": navIndex === 2,
+                    bgShopNavselected: navIndex === 2,
                   }
                 )}
                 onClick={() => {
@@ -77,10 +77,8 @@ const DialogInterWorld = ({
             </div>
             <div
               className={cn(
-                "shopItem  flex-1 flex dpt50 dpb50 rounded-tr-[5px] rounded-br-[8px] rounded-bl-[8px]",
-                {
-                  "bg-[#FFDAE4]": true,
-                }
+                "shopItem bgShopCtt  flex-1 flex dpt50 dpb50 rounded-tr-[5px] rounded-br-[8px] rounded-bl-[8px]",
+                {}
               )}
             >
               <div className="w-[4vw]"></div>
