@@ -132,7 +132,7 @@ export default function Home() {
           {/* <BubbleStats imageSrc="./img/love.svg" progress={progress}></BubbleStats> */}
           <FloatingBubbles></FloatingBubbles>
           <VideoBackground />
-          <LottieView src={'/lottie/lovingheart.json'} className="w-[100px]"></LottieView>
+          {/* <LottieView src={'/lottie/lovingheart.json'} className="w-[100px]"></LottieView> */}
           {/* <div className={styles.right}>
             <EntryItem></EntryItem>
           </div> */}

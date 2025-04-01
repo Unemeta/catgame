@@ -2,6 +2,7 @@
 import { ReactNode, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from ".";
 import { cn } from "@/lib/utils";
+import DialogBuy from "./buy";
 
 interface iDialogInterWorld {
   trigger?: ReactNode;
@@ -140,7 +141,7 @@ const DialogInterWorld = ({
                           borderRadius: "1vw 0px 1.4vw 0px",
                         }}
                       >
-                        BUY
+                        <DialogBuy trigger={<>BUY</>}></DialogBuy>
                       </div>
                     </div>
                   </div>
