@@ -81,7 +81,7 @@ const DialogInterWorld = ({
                 {}
               )}
             >
-              <div className="w-[4vw]"></div>
+              <div className="w-[5vw]"></div>
               <div className="curFoodItem dw455">
                 <div className="grid border-[0.3vw] border-[#FF0] rounded-[1.7vw] overflow-hidden shadow-[0px_20px_30px_0px_rgba(132_72_131_0.46)]">
                   <img

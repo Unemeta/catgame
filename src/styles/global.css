@@ -71,11 +71,15 @@ body {
   background-size: 100% 100%;
 }
 .bgShopNavselected {
-  background-image: url("/img/bg/shopCtt.min.png");
+  background-image: url("/img/bg/shopNavLeft.min.png");
   background-size: 100% 100%;
 }
 .bgShopNav {
   fill: linear-gradient(90deg, #5E49BB 0%, #351E9C 100%);
+}
+.bgShopNavSelected {
+  background-image: url("/img/bg/shopNavLeft.min.png");
+  background-size: cover;
 }
 .dtest {
   border: 1px solid red !important;
