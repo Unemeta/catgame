@@ -18,7 +18,7 @@ const DialogInterWorld = ({
     <Dialog>
       <DialogTrigger>{trigger}</DialogTrigger>
       <DialogContent className="p-0 dw1066 h-auto overflow-hidden max-w-[1000px]">
-        <div className="dw1066 dh660 bgFeeding relative dpt80 dpl30 dpr30 dpb30">
+        <div className="dw1066 dh660 bgFeeding relative dpt100 dpl30 dpr30 dpb30">
           <div className="absolute top-0 right-0 w-full">
             <div className="flex justify-center items-cente">
               <img className="w-[1.1vw] h-auto" src="/img/svg/paw.svg" alt="" />
