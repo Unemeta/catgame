@@ -1,6 +1,6 @@
-import DialogInterWorld from "./dialog/innerWorld";
-
 /* eslint-disable @next/next/no-img-element */
+
+import DialogShop from "./dialog/shop";
 
 interface iNavRight {
   navIndex: number;
@@ -10,7 +10,7 @@ const NavRight = ({ navIndex, setNavIndex }: iNavRight) => {
   return (
     <div className="fixed top-[50%] right-[7.29vw] translate-y-[-50%] ">
       <div className="flex flex-col justify-center items-center">
-        <DialogInterWorld
+        <DialogShop
           trigger={
             <div className="flex flex-col justify-center items-center">
               <img
@@ -23,8 +23,8 @@ const NavRight = ({ navIndex, setNavIndex }: iNavRight) => {
               </div>
             </div>
           }
-        ></DialogInterWorld>
-        <DialogInterWorld
+        ></DialogShop>
+        <DialogShop
           trigger={
             <div className="flex flex-col justify-center items-center my-10">
               <img
@@ -39,8 +39,8 @@ const NavRight = ({ navIndex, setNavIndex }: iNavRight) => {
           }
           navIndex={navIndex}
           setNavIndex={setNavIndex}
-        ></DialogInterWorld>
-        <DialogInterWorld
+        ></DialogShop>
+        <DialogShop
           trigger={
             <div className="flex flex-col justify-center items-center">
               <img
@@ -53,7 +53,7 @@ const NavRight = ({ navIndex, setNavIndex }: iNavRight) => {
               </div>
             </div>
           }
-        ></DialogInterWorld>
+        ></DialogShop>
       </div>
     </div>
   );

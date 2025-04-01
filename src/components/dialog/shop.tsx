@@ -4,16 +4,16 @@ import { Dialog, DialogContent, DialogTrigger } from ".";
 import { cn } from "@/lib/utils";
 import DialogBuy from "./buy";
 
-interface iDialogInterWorld {
+interface iDialogShop {
   trigger?: ReactNode;
   navIndex?: number;
   setNavIndex?: (index: number) => void;
 }
-const DialogInterWorld = ({
+const DialogShop = ({
   trigger,
   navIndex,
   setNavIndex,
-}: iDialogInterWorld) => {
+}: iDialogShop) => {
   const [goodsIndex, setgoodsIndex] = useState(0);
   return (
     <Dialog>
@@ -177,4 +177,4 @@ const DialogInterWorld = ({
   );
 };
 
-export default DialogInterWorld;
+export default DialogShop;
