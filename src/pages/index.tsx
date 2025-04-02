@@ -12,11 +12,15 @@ import React, { useEffect, useState } from "react";
 // import { gsap } from "gsap";
 import NavRight from "@/components/navRight";
 import LottieView from "@/components/lottie";
-
+import { request } from "@/utils/request";
+import DialogFood from "@/components/dialog/food";
+import { Tabs } from "@/types";
 export default function Home() {
   const [progress, setProgress] = useState(0);
   const [loading, setIsLoading] = useState(true);
-
+  const [foodTabs, setFoodTabs] = useState<Tabs>({
+    food: { unlocked: false, goods: [] },
+  });
   // const [loadedResources, setLoadedResources] = useState(0);
   interface Resource {
     type: "image" | "video";
@@ -32,6 +36,14 @@ export default function Home() {
     // ... 添加更多资源
   ];
 
+  const feedingInfo = async () => {
+    const { data } = await request({
+      url: "/cat/v1/shop/feeding/info",
+      method: "get",
+    });
+    console.log(data);
+    setFoodTabs(data);
+  };
   useEffect(() => {
     let loaded = 0;
     const totalResources = resources.length;
@@ -84,20 +96,12 @@ export default function Home() {
       console.error("资源加载出错:", error);
       setIsLoading(false);
     });
+
+    feedingInfo();
   }, []);
 
-  // useEffect(() => {
-  //   const tl = gsap.timeline({ repeat: -1, yoyo: true });
-  //   tl.to(
-  //     {},
-  //     {
-  //       duration: 3,
-  //       onUpdate: () => setProgress((p) => (p >= 100 ? 0 : p + 1)),
-  //     }
-  //   );
-  // }, []);
+  const [shopNavIndex, setshopNavIndex] = useState(0);
 
-  const [shopNavIndex, setshopNavIndex] = useState(0)
   return (
     <>
       <Head>
@@ -133,10 +137,23 @@ export default function Home() {
           <FloatingBubbles></FloatingBubbles>
           <VideoBackground />
           {/* <LottieView src={'/lottie/lovingheart.json'} className="w-[100px]"></LottieView> */}
-          {/* <div className={styles.right}>
-            <EntryItem></EntryItem>
-          </div> */}
-          <NavRight navIndex={shopNavIndex} setNavIndex={setshopNavIndex}></NavRight>
+          <DialogFood
+            title="Food"
+            tabs={foodTabs}
+            trigger={
+              <div className="">
+                <img
+                  className="dw116 h-auto dmb10"
+                  src="/img/food.png"
+                  alt=""
+                />
+              </div>
+            }
+          ></DialogFood>
+          <NavRight
+            navIndex={shopNavIndex}
+            setNavIndex={setshopNavIndex}
+          ></NavRight>
         </div>
       )}
     </>

@@ -31,9 +31,7 @@ import { useRouter } from "next/router";
 /** 创建请求实例 */
 function createService() {
     // 创建一个 axios 实例
-    const service = axios.create({
-        baseURL: process.env.NEXT_PUBLIC_API_BASE_URL, // 从环境变量读取基础地址
-    })
+    const service = axios.create()
     // 请求拦截
     service.interceptors.request.use(
         (config) => config,
