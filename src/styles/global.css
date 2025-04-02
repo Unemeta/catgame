@@ -81,17 +81,17 @@ body {
   background-size: cover;
 }
 .bgBuy {
-  background-image: url("/img/bg/shopCtt.min.png");
+  background-image: url("/img/bg/buyConfirm.min.png");
   background-size: 100% 100%;
+}
+.bgConfirmBtn {
+  background-image: url("/img/bg/confirm.min.png");
+  background-size: cover;
 }
 .buyShopImg {
   border-radius: 20px;
   border: 4px solid #ff0;
   box-shadow: 0px 20px 30px 0px rgba(132, 72, 131, 0.46);
-}
-.buyButtonImg {
-  background-image: url("/img/bg/shopCtt.min.png");
-  background-size: 100% 100%;
 }
 .dtest {
   border: 1px solid red !important;
@@ -215,6 +215,9 @@ body {
 .dpt28 {
   padding-top: 28px;
 }
+.dpt40 {
+  padding-top: 40px;
+}
 .dpt50 {
   padding-top: 50px;
 }
@@ -295,8 +298,20 @@ body {
 .dmb20 {
   margin-bottom: 20px;
 }
+.dmb30 {
+  margin-bottom: 30px;
+}
 .dmb40 {
   margin-bottom: 40px;
+}
+.dmb50 {
+  margin-bottom: 50px;
+}
+.dmb60 {
+  margin-bottom: 60px;
+}
+.dmb70 {
+  margin-bottom: 70px;
 }
 .dmb80 {
   margin-bottom: 80px;
