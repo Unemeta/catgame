@@ -15,6 +15,7 @@ import LottieView from "@/components/lottie";
 import { request } from "@/utils/request";
 import DialogFood from "@/components/dialog/food";
 import Login from '@/components/Login'
+import LevelUp from "@/components/LevelUp";
 import { Tabs } from "@/types";
 export default function Home() {
   const [progress, setProgress] = useState(0);
@@ -154,7 +155,8 @@ export default function Home() {
             navIndex={shopNavIndex}
             setNavIndex={setshopNavIndex}
           ></NavRight>
-          <Login></Login>
+          {/* <Login></Login> */}
+          {/* <LevelUp></LevelUp> */}
         </div>
       )}
     </>
