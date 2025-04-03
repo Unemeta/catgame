@@ -9,11 +9,7 @@ interface iDialogShop {
   navIndex?: number;
   setNavIndex?: (index: number) => void;
 }
-const DialogShop = ({
-  trigger,
-  navIndex,
-  setNavIndex,
-}: iDialogShop) => {
+const DialogShop = ({ trigger, navIndex, setNavIndex }: iDialogShop) => {
   const [goodsIndex, setgoodsIndex] = useState(0);
   return (
     <Dialog>
@@ -141,7 +137,7 @@ const DialogShop = ({
                           borderRadius: "1vw 0px 1.4vw 0px",
                         }}
                       >
-                        <DialogBuy trigger={<>BUY</>}></DialogBuy>
+                        <DialogBuy trigger={<span className="cursor-pointer select-none">BUY</span>}></DialogBuy>
                       </div>
                     </div>
                   </div>
