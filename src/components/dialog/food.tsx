@@ -35,7 +35,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
     <Dialog>
       <DialogTrigger>{trigger}</DialogTrigger>
       <DialogContent className="p-0 dw1066 h-auto overflow-hidden max-w-[1000px]">
-        <div className="dw1066 dh660 bgFeeding relative dpt100 dpl30 dpr30 dpb30">
+        <div className="dw1066 dh690 bgFeeding relative dpt100 dpl30 dpr30 dpb30">
           <div className="absolute top-0 right-0 w-full  dpt10">
             <div className="flex justify-center items-cente">
               <img className="w-[1.1vw] h-auto" src="/img/svg/paw.svg" alt="" />
@@ -98,7 +98,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                       <div className="flex justify-between items-center ">
                         <div className="flex justify-start items-center">
                           <span className="text-[#FFFDCE] dtext26 font-[700]">
-                           {chosenItem.id}
+                            {chosenItem.id}
                           </span>
                           <div className="line w-[2px] dh24 bg-white/30 dml10 dmr10"></div>
                           <img
@@ -117,7 +117,9 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                             src="/img/love.svg"
                             alt=""
                           />
-                          <span className="text-white dtext20">+{chosenItem.affection}</span>
+                          <span className="text-white dtext20">
+                            +{chosenItem.affection}
+                          </span>
                         </div>
                       </div>
                       <div className="dtext18 font-[600] text-white">
@@ -143,9 +145,12 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                           boxShadow:
                             "-3.556px 3.556px 12.444px 0px rgba(0, 0, 0, 0.10)",
                           borderRadius: "1vw 0px 1.4vw 0px",
+                          color: "#8F1D00",
+                          fontFamily: "SF Pro Rounded",
+                          fontSize:'13px'
                         }}
                       >
-                        <DialogBuy trigger={<>BUY</>}></DialogBuy>
+                        <DialogBuy trigger={<>BUY</>} id={chosenItem.id}></DialogBuy>
                       </div>
                     </div>
                   </div>
@@ -159,7 +164,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                     key={index}
                     onClick={() => {
                       setgoodsIndex(index);
-                      setChosen(item)
+                      setChosen(item);
                     }}
                   >
                     {index === goodsIndex && (

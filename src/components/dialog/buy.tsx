@@ -1,13 +1,61 @@
 /* eslint-disable @next/next/no-img-element */
 import { ReactNode } from "react";
 import { Dialog, DialogContent, DialogTrigger } from ".";
+import { request } from "@/utils/request";
 
+// 1,2,3是kitty kibble, sashimi, dried fish
+// 4,5,6是shiny cat tree, mouse, ball
+
+const itemList = [
+  {
+    id: 1,
+    name: "Kitty Kibble",
+  },
+  {
+    id: 2,
+    name: "Sashimi",
+  },
+  {
+    id: 3,
+    name: "Dried Fish",
+  },
+  {
+    id: 4,
+    name: "Shiny Cat Tree",
+  },
+  {
+    id: 5,
+    name: "Mouse",
+  },
+  {
+    id: 6,
+    name: "Kitty Kibble",
+  },
+];
+
+const getItem = (id: number) => {
+  const item = itemList.find((item) => id === item.id);
+  return item;
+};
 interface iDialogBuy {
   trigger?: ReactNode;
   navIndex?: number;
   setNavIndex?: (index: number) => void;
+  id: number;
 }
-const DialogBuy = ({ trigger }: iDialogBuy) => {
+const DialogBuy = ({ trigger, id }: iDialogBuy) => {
+  const buyConfirm = async () => {
+    if (id) {
+      const { data } = await request({
+        url: "/cat/v1/shop/goods",
+        method: "post",
+        data: {
+          id,
+        },
+      });
+      console.log(data);
+    }
+  };
   return (
     <Dialog>
       <DialogTrigger>{trigger}</DialogTrigger>
@@ -16,7 +64,7 @@ const DialogBuy = ({ trigger }: iDialogBuy) => {
           <div className="flex justify-center items-cente dpt40 dmb70">
             <img className="w-[1.1vw] h-auto" src="/img/svg/paw.svg" alt="" />
             <span className="dml20 dmr20 text-white dtext35 font-[800] leading-none">
-              Buy Kitty Kibble
+              {getItem(id)?.name}
             </span>
             <img className="w-[1.1vw] h-auto" src="/img/svg/paw.svg" alt="" />
           </div>
@@ -32,7 +80,10 @@ const DialogBuy = ({ trigger }: iDialogBuy) => {
           </div>
           <div className="flex justify-center items-center">
             <DialogTrigger>
-              <div className="bgConfirmBtn cursor-pointer select-none dw266 dh80  flex justify-center items-center">
+              <div
+                className="bgConfirmBtn cursor-pointer select-none dw266 dh80  flex justify-center items-center"
+                onClick={buyConfirm}
+              >
                 {/* Confirm */}
               </div>
             </DialogTrigger>
