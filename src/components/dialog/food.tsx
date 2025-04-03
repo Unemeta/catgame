@@ -23,7 +23,14 @@ interface TabItem {
 const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
   const [goodsIndex, setgoodsIndex] = useState(0);
   const [navIndex, setNavIndex] = useState(0);
-
+  const [chosenItem, setChosen] = useState({
+    affection: 0,
+    coin: 0,
+    diamond: 0,
+    expire: 0,
+    id: 0,
+    unlocked: false,
+  });
   return (
     <Dialog>
       <DialogTrigger>{trigger}</DialogTrigger>
@@ -91,7 +98,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                       <div className="flex justify-between items-center ">
                         <div className="flex justify-start items-center">
                           <span className="text-[#FFFDCE] dtext26 font-[700]">
-                            Kitty Kibble
+                           {chosenItem.id}
                           </span>
                           <div className="line w-[2px] dh24 bg-white/30 dml10 dmr10"></div>
                           <img
@@ -100,7 +107,8 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                             alt=""
                           />
                           <span className="dtext24 text-white font-[500]">
-                            02h:00
+                            {/* 02h:00 */}
+                            {chosenItem.expire}
                           </span>
                         </div>
                         <div className="flex justify-end items-center">
@@ -109,7 +117,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                             src="/img/love.svg"
                             alt=""
                           />
-                          <span className="text-white dtext20">+1</span>
+                          <span className="text-white dtext20">+{chosenItem.affection}</span>
                         </div>
                       </div>
                       <div className="dtext18 font-[600] text-white">
@@ -124,7 +132,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                           alt=""
                         />
                         <span className="text-[#FFFDCE] dtext30 font-[700]">
-                          468
+                          {chosenItem.diamond}
                         </span>
                       </div>
                       <div
@@ -151,15 +159,20 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                     key={index}
                     onClick={() => {
                       setgoodsIndex(index);
+                      setChosen(item)
                     }}
                   >
                     {index === goodsIndex && (
                       <div className="bg-[url(/img/svg/foodListItemSelect.svg)] bg-cover absolute right-0 top-0 dw224 dh200"></div>
                     )}
                     <div className="bg-[url(/img/avatarTest.png)] bg-cover absolute top-[0.5vw] right-[0.5vw] dw180 dh180 rounded-[10px]">
-                      <div className="text-[#FFFDCE] bg-black/30 rounded inline-flex justify-center items-center gap-2.5">
-                        <img src="/img/gold.svg" alt="" className="w-[18px]"/>
-                        {item.coin}
+                      <div className="text-[#FFFDCE] bg-black/30 rounded-[20px] inline-flex justify-center items-center absolute left-[50%] bottom-0 translate-x-[-50%] w-[90%]">
+                        <img
+                          src="/img/gold.svg"
+                          alt=""
+                          className="w-[18px] font-['SF Pro Rounded']"
+                        />
+                        {item.coin.toLocaleString()}
                       </div>
                     </div>
                   </div>

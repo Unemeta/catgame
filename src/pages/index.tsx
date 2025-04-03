@@ -14,6 +14,7 @@ import NavRight from "@/components/navRight";
 import LottieView from "@/components/lottie";
 import { request } from "@/utils/request";
 import DialogFood from "@/components/dialog/food";
+import Login from '@/components/Login'
 import { Tabs } from "@/types";
 export default function Home() {
   const [progress, setProgress] = useState(0);
@@ -141,9 +142,8 @@ export default function Home() {
             title="Food"
             tabs={foodTabs}
             trigger={
-              <div className="">
+              <div className="dw116 h-auto dmb10 fixed bottom-[20px] left-[150px]">
                 <img
-                  className="dw116 h-auto dmb10"
                   src="/img/food.png"
                   alt=""
                 />
@@ -154,6 +154,7 @@ export default function Home() {
             navIndex={shopNavIndex}
             setNavIndex={setshopNavIndex}
           ></NavRight>
+          <Login></Login>
         </div>
       )}
     </>
