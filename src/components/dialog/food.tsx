@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { ReactNode, useState } from "react";
-import { Dialog, DialogContent, DialogTrigger } from ".";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from ".";
 import { cn } from "@/lib/utils";
 import DialogBuy from "./buy";
 
@@ -44,6 +44,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
     <Dialog>
       <DialogTrigger>{trigger}</DialogTrigger>
       <DialogContent className="p-0 dw1066 h-auto overflow-hidden max-w-[1000px]">
+        <DialogTitle></DialogTitle>
         <div className="dw1066 dh690 bgFeeding relative dpt100 dpl30 dpr30 dpb30">
           <div className="absolute top-0 right-0 w-full  dpt10">
             <div className="flex justify-center items-cente">
@@ -171,30 +172,32 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
               </div>
               <div className="foodList flex-2 overflow-y-scroll dpr30">
                 {/* {tabs[Object.keys(tabs)[navIndex]].goods} */}
-                {tabs[Object.keys(tabs)[navIndex]].goods?.map((item: goodsItem, index) => (
-                  <div
-                    className="dpl34 dpr10 relative dmb10 dh200"
-                    key={index}
-                    onClick={() => {
-                      setgoodsIndex(index);
-                      setChosen(item);
-                    }}
-                  >
-                    {index === goodsIndex && (
-                      <div className="bg-[url(/img/svg/foodListItemSelect.svg)] bg-cover absolute right-0 top-0 dw224 dh200"></div>
-                    )}
-                    <div className="bg-[url(/img/avatarTest.png)] bg-cover absolute top-[0.5vw] right-[0.5vw] dw180 dh180 rounded-[10px]">
-                      <div className="text-[#FFFDCE] bg-black/30 rounded-[20px] inline-flex justify-center items-center absolute left-[50%] bottom-0 translate-x-[-50%] w-[90%]">
-                        <img
-                          src="/img/gold.svg"
-                          alt=""
-                          className="w-[18px] font-['SF Pro Rounded']"
-                        />
-                        {item?.coin?.toLocaleString()}
+                {tabs[Object.keys(tabs)[navIndex]].goods?.map(
+                  (item: goodsItem, index) => (
+                    <div
+                      className="dpl34 dpr10 relative dmb10 dh200"
+                      key={index}
+                      onClick={() => {
+                        setgoodsIndex(index);
+                        setChosen(item);
+                      }}
+                    >
+                      {index === goodsIndex && (
+                        <div className="bg-[url(/img/svg/foodListItemSelect.svg)] bg-cover absolute right-0 top-0 dw224 dh200"></div>
+                      )}
+                      <div className="bg-[url(/img/avatarTest.png)] bg-cover absolute top-[0.5vw] right-[0.5vw] dw180 dh180 rounded-[10px]">
+                        <div className="text-[#FFFDCE] bg-black/30 rounded-[20px] inline-flex justify-center items-center absolute left-[50%] bottom-0 translate-x-[-50%] w-[90%]">
+                          <img
+                            src="/img/gold.svg"
+                            alt=""
+                            className="w-[18px] font-['SF Pro Rounded']"
+                          />
+                          {item?.coin?.toLocaleString()}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  )
+                )}
               </div>
               <div className="dw30"></div>
             </div>
