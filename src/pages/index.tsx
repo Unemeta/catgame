@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
 import styles from "@/styles/home.module.css";
 import VideoBackground from "@/components/VideoBackground";
@@ -11,11 +12,11 @@ import Loading from "@/components/Loading";
 import React, { useEffect, useState } from "react";
 // import { gsap } from "gsap";
 import NavRight from "@/components/navRight";
-import LottieView from "@/components/lottie";
+// import LottieView from "@/components/lottie";
 import { request } from "@/utils/request";
 import DialogFood from "@/components/dialog/food";
-import Login from "@/components/Login";
-import LevelUp from "@/components/LevelUp";
+// import Login from "@/components/Login";
+// import LevelUp from "@/components/LevelUp";
 import { Tabs } from "@/types";
 export default function Home() {
   const [progress, setProgress] = useState(0);

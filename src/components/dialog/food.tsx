@@ -14,21 +14,31 @@ interface iDialogShop {
   title: string;
   tabs: Tabs;
 }
+interface goodsItem {
+  affection: number;
+  coin: number;
+  diamond: number;
+  expire: number;
+  id: number;
+  unlocked: boolean;
+}
 interface TabItem {
   unlocked: boolean;
-  goods: [];
+  goods: goodsItem[];
   // 其他可能的属性...
 }
 
 const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
   const [goodsIndex, setgoodsIndex] = useState(0);
   const [navIndex, setNavIndex] = useState(0);
-  const nullChose = { affection: 0,
+  const nullChose = {
+    affection: 0,
     coin: 0,
     diamond: 0,
     expire: 0,
     id: 0,
-    unlocked: false,}
+    unlocked: false,
+  };
   const [chosenItem, setChosen] = useState(nullChose);
   return (
     <Dialog>
@@ -60,7 +70,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                         return;
                       }
                       setNavIndex?.(index);
-                      setChosen(nullChose)
+                      setChosen(nullChose);
                     }}
                     key={tab}
                   >
@@ -147,10 +157,13 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                           borderRadius: "1vw 0px 1.4vw 0px",
                           color: "#8F1D00",
                           fontFamily: "SF Pro Rounded",
-                          fontSize:'13px'
+                          fontSize: "13px",
                         }}
                       >
-                        <DialogBuy trigger={<>BUY</>} id={chosenItem.id}></DialogBuy>
+                        <DialogBuy
+                          trigger={<>BUY</>}
+                          id={chosenItem.id}
+                        ></DialogBuy>
                       </div>
                     </div>
                   </div>
@@ -158,7 +171,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
               </div>
               <div className="foodList flex-2 overflow-y-scroll dpr30">
                 {/* {tabs[Object.keys(tabs)[navIndex]].goods} */}
-                {tabs[Object.keys(tabs)[navIndex]].goods?.map((item, index) => (
+                {tabs[Object.keys(tabs)[navIndex]].goods?.map((item: goodsItem, index) => (
                   <div
                     className="dpl34 dpr10 relative dmb10 dh200"
                     key={index}
@@ -177,7 +190,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                           alt=""
                           className="w-[18px] font-['SF Pro Rounded']"
                         />
-                        {item.coin.toLocaleString()}
+                        {item?.coin?.toLocaleString()}
                       </div>
                     </div>
                   </div>
