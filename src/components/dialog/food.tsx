@@ -44,6 +44,15 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
       const item = tabs[Object.keys(tabs)[navIndex]].goods[0];
       setgoodsIndex(0);
       setChosen(item);
+    } else {
+      setChosen({
+        affection: 0,
+        coin: 0,
+        diamond: 0,
+        expire: 0,
+        id: 0,
+        unlocked: false,
+      });
     }
   }, [tabs, navIndex]);
   return (
@@ -106,7 +115,10 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                 <div className="grid border-[0.3vw] border-[#FF0] rounded-[1.7vw] overflow-hidden shadow-[0px_20px_30px_0px_rgba(132_72_131_0.46)]">
                   <img
                     className="gridArea1111 dw455 dh455"
-                    src={`/img/${tabs?.[Object.keys(tabs)[navIndex]]?.goods?.[goodsIndex]?.id}.jpg`}
+                    src={`/img/${
+                      tabs?.[Object.keys(tabs)[navIndex]]?.goods?.[goodsIndex]
+                        ?.id
+                    }.jpg`}
                     alt=""
                   />
                   <div className="gridArea1111 relative">
@@ -153,24 +165,26 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                           {chosenItem.diamond}
                         </span>
                       </div>
-                      <div
-                        className="dw180 dh80 flex justify-center items-center cursor-pointer select-none"
-                        style={{
-                          background:
-                            "linear-gradient(254deg, #FFFDCB 0%, #FFF600 144.38%)",
-                          boxShadow:
-                            "-3.556px 3.556px 12.444px 0px rgba(0, 0, 0, 0.10)",
-                          borderRadius: "1vw 0px 1.4vw 0px",
-                          color: "#8F1D00",
-                          fontFamily: "SF Pro Rounded",
-                          fontSize: "13px",
-                        }}
-                      >
-                        <DialogBuy
-                          trigger={<>BUY</>}
-                          id={chosenItem.id}
-                        ></DialogBuy>
-                      </div>
+                      {chosenItem?.id > 0 && (
+                        <div
+                          className="dw180 dh80 flex justify-center items-center cursor-pointer select-none"
+                          style={{
+                            background:
+                              "linear-gradient(254deg, #FFFDCB 0%, #FFF600 144.38%)",
+                            boxShadow:
+                              "-3.556px 3.556px 12.444px 0px rgba(0, 0, 0, 0.10)",
+                            borderRadius: "1vw 0px 1.4vw 0px",
+                            color: "#8F1D00",
+                            fontFamily: "SF Pro Rounded",
+                            fontSize: "13px",
+                          }}
+                        >
+                          <DialogBuy
+                            trigger={<>BUY</>}
+                            id={chosenItem.id}
+                          ></DialogBuy>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
