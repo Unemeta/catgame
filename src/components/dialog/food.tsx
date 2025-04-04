@@ -45,7 +45,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
             </div>
           </div>
           <div className="flex w-full h-full ">
-            <div className="leftNav w-[6vw] flex flex-col gap-2 text-[1vw] font-[800]">
+            <div className="leftNav w-[6vw] flex flex-col gap-2 text-[1vw] font-[800] mr-[-1px]">
               {tabs &&
                 Object.keys(tabs).map((tab, index) => (
                   <div
