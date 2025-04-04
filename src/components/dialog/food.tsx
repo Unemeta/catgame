@@ -23,14 +23,13 @@ interface TabItem {
 const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
   const [goodsIndex, setgoodsIndex] = useState(0);
   const [navIndex, setNavIndex] = useState(0);
-  const [chosenItem, setChosen] = useState({
-    affection: 0,
+  const nullChose = { affection: 0,
     coin: 0,
     diamond: 0,
     expire: 0,
     id: 0,
-    unlocked: false,
-  });
+    unlocked: false,}
+  const [chosenItem, setChosen] = useState(nullChose);
   return (
     <Dialog>
       <DialogTrigger>{trigger}</DialogTrigger>
@@ -61,6 +60,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                         return;
                       }
                       setNavIndex?.(index);
+                      setChosen(nullChose)
                     }}
                     key={tab}
                   >
