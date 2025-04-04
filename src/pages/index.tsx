@@ -14,7 +14,7 @@ import NavRight from "@/components/navRight";
 import LottieView from "@/components/lottie";
 import { request } from "@/utils/request";
 import DialogFood from "@/components/dialog/food";
-import Login from '@/components/Login'
+import Login from "@/components/Login";
 import LevelUp from "@/components/LevelUp";
 import { Tabs } from "@/types";
 export default function Home() {
@@ -101,9 +101,6 @@ export default function Home() {
 
     feedingInfo();
   }, []);
-
-  const [shopNavIndex, setshopNavIndex] = useState(0);
-
   return (
     <>
       <Head>
@@ -144,17 +141,11 @@ export default function Home() {
             tabs={foodTabs}
             trigger={
               <div className="dw116 h-auto dmb10 fixed bottom-[20px] left-[150px]">
-                <img
-                  src="/img/food.png"
-                  alt=""
-                />
+                <img src="/img/food.png" alt="" />
               </div>
             }
           ></DialogFood>
-          <NavRight
-            navIndex={shopNavIndex}
-            setNavIndex={setshopNavIndex}
-          ></NavRight>
+          <NavRight></NavRight>
           {/* <Login></Login> */}
           {/* <LevelUp></LevelUp> */}
         </div>

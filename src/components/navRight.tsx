@@ -3,7 +3,6 @@
 import DataBackpack from "./dialog/dataBackpack";
 import DataShop from "./dialog/dataShop";
 import DialogInterWorld from "./dialog/interWorld";
-import DialogShop from "./dialog/shop";
 
 const NavRight = () => {
   return (
