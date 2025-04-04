@@ -10,26 +10,32 @@ const itemList = [
   {
     id: 1,
     name: "Kitty Kibble",
+    img: "/img/1.jpg",
   },
   {
     id: 2,
     name: "Sashimi",
+    img: "/img/2.jpg",
   },
   {
     id: 3,
     name: "Dried Fish",
+    img: "/img/3.jpg",
   },
   {
     id: 4,
     name: "Shiny Cat Tree",
+    img: "/img/4.jpg",
   },
   {
     id: 5,
     name: "Mouse",
+    img: "/img/5.jpg",
   },
   {
     id: 6,
-    name: "Kitty Kibble",
+    name: "Ball",
+    img: "/img/6.jpg",
   },
 ];
 
@@ -71,7 +77,7 @@ const DialogBuy = ({ trigger, id }: iDialogBuy) => {
           <div className="flex justify-center items-center dmb20">
             <img
               className="dw278 dh278 buyShopImg"
-              src="/img/loadBg.png"
+              src={getItem(id)?.img}
               alt=""
             />
           </div>

@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogTrigger } from ".";
 import { cn } from "@/lib/utils";
 import DialogBuy from "./buy";
@@ -14,9 +14,17 @@ interface iDialogShop {
   title: string;
   tabs: Tabs;
 }
+interface good {
+  affection: number;
+  coin: number;
+  diamond: number;
+  expire: number;
+  id: number;
+  unlocked: boolean;
+}
 interface TabItem {
   unlocked: boolean;
-  goods: [];
+  goods: Array<good>;
   // 其他可能的属性...
 }
 
@@ -31,6 +39,13 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
     id: 0,
     unlocked: false,
   });
+  useEffect(() => {
+    if (tabs[Object.keys(tabs)[navIndex]].goods?.length > 0) {
+      const item = tabs[Object.keys(tabs)[navIndex]].goods[0];
+      setgoodsIndex(0);
+      setChosen(item);
+    }
+  }, [tabs, navIndex]);
   return (
     <Dialog>
       <DialogTrigger>{trigger}</DialogTrigger>
@@ -90,7 +105,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                 <div className="grid border-[0.3vw] border-[#FF0] rounded-[1.7vw] overflow-hidden shadow-[0px_20px_30px_0px_rgba(132_72_131_0.46)]">
                   <img
                     className="gridArea1111 dw455 dh455"
-                    src="/img/loadBg.png"
+                    src={`/img/${goodsIndex + 1}.jpg`}
                     alt=""
                   />
                   <div className="gridArea1111 relative">
@@ -147,10 +162,13 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                           borderRadius: "1vw 0px 1.4vw 0px",
                           color: "#8F1D00",
                           fontFamily: "SF Pro Rounded",
-                          fontSize:'13px'
+                          fontSize: "13px",
                         }}
                       >
-                        <DialogBuy trigger={<>BUY</>} id={chosenItem.id}></DialogBuy>
+                        <DialogBuy
+                          trigger={<>BUY</>}
+                          id={chosenItem.id}
+                        ></DialogBuy>
                       </div>
                     </div>
                   </div>
@@ -170,7 +188,15 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                     {index === goodsIndex && (
                       <div className="bg-[url(/img/svg/foodListItemSelect.svg)] bg-cover absolute right-0 top-0 dw224 dh200"></div>
                     )}
-                    <div className="bg-[url(/img/avatarTest.png)] bg-cover absolute top-[0.5vw] right-[0.5vw] dw180 dh180 rounded-[10px]">
+                    <div
+                      className={cn(
+                        "absolute top-[0.5vw] right-[0.5vw] dw180 dh180 rounded-[10px]"
+                      )}
+                      style={{
+                        background: `url(/img/${index + 1}.jpg)`,
+                        backgroundSize: "cover",
+                      }}
+                    >
                       <div className="text-[#FFFDCE] bg-black/30 rounded-[20px] inline-flex justify-center items-center absolute left-[50%] bottom-0 translate-x-[-50%] w-[90%]">
                         <img
                           src="/img/gold.svg"
