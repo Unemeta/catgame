@@ -106,7 +106,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                 <div className="grid border-[0.3vw] border-[#FF0] rounded-[1.7vw] overflow-hidden shadow-[0px_20px_30px_0px_rgba(132_72_131_0.46)]">
                   <img
                     className="gridArea1111 dw455 dh455"
-                    src={`/img/${goodsIndex + 1}.jpg`}
+                    src={`/img/${tabs?.[Object.keys(tabs)[navIndex]]?.goods?.[goodsIndex]?.id}.jpg`}
                     alt=""
                   />
                   <div className="gridArea1111 relative">
@@ -194,7 +194,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                         "absolute top-[0.5vw] right-[0.5vw] dw180 dh180 rounded-[10px]"
                       )}
                       style={{
-                        background: `url(/img/${index + 1}.jpg)`,
+                        background: `url(/img/${item?.id}.jpg)`,
                         backgroundSize: "cover",
                       }}
                     >
