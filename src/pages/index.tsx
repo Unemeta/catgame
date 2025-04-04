@@ -114,26 +114,34 @@ export default function Home() {
       {loading ? (
         <Loading progress={progress} />
       ) : (
-        <div className={styles.top}>
-          <Avatar></Avatar>
-          <TopItem
-            imgUrl="./img/love.svg"
-            label="Affection"
-            number="43"
-          ></TopItem>
-          <TopItem imgUrl="./img/catfoot.svg" label="Days" number="5"></TopItem>
-          <TopItem
-            imgUrl="./img/gold.svg"
-            label="Gold"
-            number="23465"
-          ></TopItem>
-          <TopItem
-            imgUrl="./img/LostEnergy.svg"
-            label="Crystal"
-            number="243"
-          ></TopItem>
-
-          <BubbleStats imageSrc="./img/love.svg" progress={progress}></BubbleStats>
+        <div>
+          <div className={styles.top}>
+            <Avatar></Avatar>
+            <TopItem
+              imgUrl="./img/love.svg"
+              label="Affection"
+              number="43"
+            ></TopItem>
+            <TopItem
+              imgUrl="./img/catfoot.svg"
+              label="Days"
+              number="5"
+            ></TopItem>
+            <TopItem
+              imgUrl="./img/gold.svg"
+              label="Gold"
+              number="23465"
+            ></TopItem>
+            <TopItem
+              imgUrl="./img/LostEnergy.svg"
+              label="Crystal"
+              number="243"
+            ></TopItem>
+          </div>
+          <BubbleStats
+            imageSrc="./img/love.svg"
+            progress={progress}
+          ></BubbleStats>
           <FloatingBubbles></FloatingBubbles>
           <VideoBackground />
           {/* <LottieView src={'/lottie/lovingheart.json'} className={styles.loveCollect}></LottieView> */}

@@ -1,8 +1,9 @@
 .top {
   display: flex;
   align-items: center;
-  margin-top: 25px;
-  margin-left: 25px;
+  position: fixed;
+  left: 50px;
+  top: 20px;
 }
 .right {
   position: absolute;
