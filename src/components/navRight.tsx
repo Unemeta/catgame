@@ -1,13 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 
+import DataBackpack from "./dialog/dataBackpack";
+import DataShop from "./dialog/dataShop";
 import DialogInterWorld from "./dialog/interWorld";
-import DialogShop from "./dialog/shop";
 
-interface iNavRight {
-  navIndex: number;
-  setNavIndex: (index: number) => void;
-}
-const NavRight = ({ navIndex, setNavIndex }: iNavRight) => {
+const NavRight = () => {
   return (
     <div className="fixed top-[50%] right-[7.29vw] translate-y-[-50%] ">
       <div className="flex flex-col justify-center items-center">
@@ -25,36 +22,8 @@ const NavRight = ({ navIndex, setNavIndex }: iNavRight) => {
             </div>
           }
         ></DialogInterWorld>
-        <DialogShop
-          trigger={
-            <div className="flex flex-col justify-center items-center my-10">
-              <img
-                className="dw116 h-auto dmb10"
-                src="/img/nav/rightShop.min.png"
-                alt=""
-              />
-              <div className="bg-[rgba(41,10,68,0.20)] px-5 py-2 rounded-[130px] text-white dtext22 font-[700] leading-none">
-                Shop
-              </div>
-            </div>
-          }
-          navIndex={navIndex}
-          setNavIndex={setNavIndex}
-        ></DialogShop>
-        <DialogShop
-          trigger={
-            <div className="flex flex-col justify-center items-center">
-              <img
-                className="dw116 h-auto dmb10"
-                src="/img/nav/rightBackpack.min.png"
-                alt=""
-              />
-              <div className="bg-[rgba(41,10,68,0.20)] px-5 py-2 rounded-[130px] text-white dtext22 font-[700] leading-none">
-                Backpack
-              </div>
-            </div>
-          }
-        ></DialogShop>
+        <DataShop></DataShop>
+        <DataBackpack></DataBackpack>
       </div>
     </div>
   );

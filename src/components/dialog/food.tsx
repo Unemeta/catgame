@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { ReactNode, useState, useEffect } from "react";
-import { Dialog, DialogContent, DialogTrigger } from ".";
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from ".";
 import { cn } from "@/lib/utils";
 import DialogBuy from "./buy";
 
@@ -50,6 +50,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
     <Dialog>
       <DialogTrigger>{trigger}</DialogTrigger>
       <DialogContent className="p-0 dw1066 h-auto overflow-hidden max-w-[1000px]">
+        <DialogTitle></DialogTitle>
         <div className="dw1066 dh690 bgFeeding relative dpt100 dpl30 dpr30 dpb30">
           <div className="absolute top-0 right-0 w-full  dpt10">
             <div className="flex justify-center items-cente">

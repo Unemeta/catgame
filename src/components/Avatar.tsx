@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import styles from "@/styles/Avatar.module.css"; // 确保有对应的 CSS 文件
 

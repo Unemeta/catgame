@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useRef } from "react";
 import styles from "@/styles/EntryItem.module.css"; // 确保有对应的 CSS 文件
 import { gsap } from "gsap";
