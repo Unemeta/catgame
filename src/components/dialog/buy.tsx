@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { ReactNode } from "react";
-import { Dialog, DialogContent, DialogTrigger } from ".";
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from ".";
 import { request } from "@/utils/request";
 
 // 1,2,3是kitty kibble, sashimi, dried fish
@@ -52,18 +52,23 @@ interface iDialogBuy {
 const DialogBuy = ({ trigger, id }: iDialogBuy) => {
   const buyConfirm = async () => {
     if (id) {
-      const { data } = await request({
-        url: "/cat/v1/shop/goods",
-        method: "post",
-        data: {
-          id,
-        },
-      });
-      console.log(data);
+      try {
+        const { data } = await request({
+          url: "/cat/v1/shop/goods",
+          method: "post",
+          data: {
+            id,
+          },
+        });
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
   return (
     <Dialog>
+      <DialogTitle></DialogTitle>
       <DialogTrigger>{trigger}</DialogTrigger>
       <DialogContent className="p-0 h-auto flex justify-center">
         <div className="bgBuy dw680 dh660 relative">

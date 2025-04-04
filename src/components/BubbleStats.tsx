@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-
+import { cn } from "@/lib/utils";
+import styles from "@/styles/BubbleStats.module.css";
 const Bubble: React.FC<{ imageSrc: string; progress: number }> = ({
   imageSrc,
   progress,
@@ -26,9 +27,12 @@ const Bubble: React.FC<{ imageSrc: string; progress: number }> = ({
   const offset = circumference * (1 - progress / 100);
 
   return (
-    <div className="relative flex items-center justify-center">
+    <div
+      className={cn("flex items-center justify-center", styles.container)}
+      ref={bubbleRef}
+    >
       {/* 进度条 */}
-      <svg width="120" height="120" viewBox="0 0 120 120" className="absolute">
+      <svg viewBox="0 0 120 120" className={styles.progressContainer}>
         <circle
           cx="60"
           cy="60"
@@ -44,7 +48,7 @@ const Bubble: React.FC<{ imageSrc: string; progress: number }> = ({
           cy="60"
           r={radius}
           fill="none"
-          stroke="#4fa3ff"
+          stroke="#FF00FB"
           strokeWidth="6"
           strokeDasharray={circumference}
           strokeDashoffset={offset}
@@ -55,19 +59,19 @@ const Bubble: React.FC<{ imageSrc: string; progress: number }> = ({
 
       {/* 泡泡主体 */}
       <div
-        ref={bubbleRef}
-        style={{
-          width: "100px",
-          height: "100px",
-        }}
-        className="rounded-full overflow-hidden bg-[url('/img/bubbleBack.png')] bg-no-repeat bg-cover shadow-lg flex items-center justify-center"
+        className={cn(
+          "rounded-full overflow-hidden bg-[url('/img/bubbleBack.png')] bg-no-repeat bg-cover shadow-lg flex items-center justify-center",
+          styles.paopao
+        )}
       >
-        <div className="bg-blue-500">123</div>
-        <img
-          src={imageSrc}
-          alt="Bubble"
-          className="w-full h-full object-cover"
-        />
+        <div className="flex flex-col items-center">
+          <img
+            src={imageSrc}
+            alt=""
+            className={cn("w-full h-full object-cover", styles.icon)}
+          />
+          <div className={styles.text}>{progress}%</div>
+        </div>
       </div>
     </div>
   );

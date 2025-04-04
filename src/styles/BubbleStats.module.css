@@ -1,0 +1,31 @@
+.container{
+    position: fixed;
+    bottom: 100px;
+    left: 800px;
+}
+.progressContainer {
+  width: 120px; /* 替代原内联 width="120" */
+  height: 120px; /* 替代原内联 height="120" */
+  position: absolute;
+}
+
+.paopao {
+  width: 100px;
+  height: 100px;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+}
+
+.text {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0px 3.21px 8.76px rgba(140, 38, 91, 0.55);
+  font-family: "SF Pro Rounded";
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 100%; /* 25px */
+}

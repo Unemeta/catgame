@@ -3,10 +3,16 @@
   align-items: center;
   margin-top: 25px;
   margin-left: 25px;
-
 }
 .right {
   position: absolute;
   right: 140px;
   top: 65px;
+}
+
+.loveCollect {
+  position: absolute;
+  left: 200px;
+  bottom: 100px;
+  width: 1200px;
 }

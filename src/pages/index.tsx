@@ -5,18 +5,18 @@ import VideoBackground from "@/components/VideoBackground";
 import TopItem from "@/components/TopItem";
 import Avatar from "@/components/Avatar";
 import FloatingBubbles from "@/components/FloatingBubbles";
-// import BubbleStats from "@/components/BubbleStats";
+import BubbleStats from "@/components/BubbleStats";
 import Loading from "@/components/Loading";
 // import EntryItem from "@/components/EntryItem";
 
 import React, { useEffect, useState } from "react";
 // import { gsap } from "gsap";
 import NavRight from "@/components/navRight";
-// import LottieView from "@/components/lottie";
+import LottieView from "@/components/lottie";
 import { request } from "@/utils/request";
 import DialogFood from "@/components/dialog/food";
 // import Login from "@/components/Login";
-// import LevelUp from "@/components/LevelUp";
+import LevelUp from "@/components/LevelUp";
 import { Tabs } from "@/types";
 export default function Home() {
   const [progress, setProgress] = useState(0);
@@ -133,10 +133,10 @@ export default function Home() {
             number="243"
           ></TopItem>
 
-          {/* <BubbleStats imageSrc="./img/love.svg" progress={progress}></BubbleStats> */}
+          <BubbleStats imageSrc="./img/love.svg" progress={progress}></BubbleStats>
           <FloatingBubbles></FloatingBubbles>
           <VideoBackground />
-          {/* <LottieView src={'/lottie/lovingheart.json'} className="w-[100px]"></LottieView> */}
+          {/* <LottieView src={'/lottie/lovingheart.json'} className={styles.loveCollect}></LottieView> */}
           <DialogFood
             title="Food"
             tabs={foodTabs}

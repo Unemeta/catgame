@@ -38,6 +38,9 @@ importers:
       gsap:
         specifier: ^3.12.7
         version: 3.12.7
+      jotai:
+        specifier: ^2.12.2
+        version: 2.12.2(@types/react@19.0.11)(react@19.0.0)
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
@@ -1476,6 +1479,18 @@ packages:
   jiti@2.4.2:
     resolution: {integrity: sha512-rg9zJN+G4n2nfJl5MW3BMygZX56zKPNVEYYqq7adpmMh4Jn2QNEwhvQlFy6jPVdcod7txZtKHWnyZiA3a0zP7A==, tarball: https://registry.npmmirror.com/jiti/-/jiti-2.4.2.tgz}
     hasBin: true
+
+  jotai@2.12.2:
+    resolution: {integrity: sha512-oN8715y7MkjXlSrpyjlR887TOuc/NLZMs9gvgtfWH/JP47ChwO0lR2ijSwBvPMYyXRAPT+liIAhuBavluKGgtA==, tarball: https://registry.npmmirror.com/jotai/-/jotai-2.12.2.tgz}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=17.0.0'
+      react: '>=17.0.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      react:
+        optional: true
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==, tarball: https://registry.npmmirror.com/js-tokens/-/js-tokens-4.0.0.tgz}
@@ -3583,6 +3598,11 @@ snapshots:
       set-function-name: 2.0.2
 
   jiti@2.4.2: {}
+
+  jotai@2.12.2(@types/react@19.0.11)(react@19.0.0):
+    optionalDependencies:
+      '@types/react': 19.0.11
+      react: 19.0.0
 
   js-tokens@4.0.0: {}
 
