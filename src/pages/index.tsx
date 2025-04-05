@@ -51,6 +51,8 @@ export default function Home() {
     setFoodTabs(data);
   };
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     let loaded = 0;
     const totalResources = resources.length;
 
@@ -125,7 +127,10 @@ export default function Home() {
           ></BubbleStats>
           <FloatingBubbles></FloatingBubbles>
           <VideoBackground />
-          <LottieView src={'/lottie/lovingheart.json'} className={styles.loveCollect}></LottieView>
+          <LottieView
+            src={"/lottie/lovingheart.json"}
+            className={styles.loveCollect}
+          ></LottieView>
           <DialogFood
             title="Food"
             tabs={foodTabs}

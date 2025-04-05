@@ -6,7 +6,9 @@ const FloatingBubbles = () => {
   const bubblesCount = 15; // 泡泡数量
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
     if (!containerRef.current) return;
+
 
     // 创建泡泡元素
     const bubbles = Array.from({ length: bubblesCount }).map(() => {

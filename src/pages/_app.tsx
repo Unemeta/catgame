@@ -19,6 +19,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const [isPortrait, setIsPortrait] = useState(false);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
     const handleOrientation = () => {
       setIsPortrait(window.innerHeight > window.innerWidth);
     };
