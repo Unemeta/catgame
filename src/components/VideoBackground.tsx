@@ -14,24 +14,24 @@ const videoUrl = "/videos/video.mp4";
 
 export default function VideoBackground() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const enterFullscreen = () => {
-    const elem = document.documentElement; // 选择整个网页
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-    }
-  };
-  const videoJump = (time: number = 0) => {
-    if (videoRef.current) {
-      videoRef.current.currentTime = time;
-      // 设置循环
-      // videoRef.current.addEventListener("timeupdate", () => {
-      //   if (loopEnabled && videoRef.current.currentTime >= end) {
-      //     videoRef.current.currentTime = start;
-      //     videoRef.current.play();
-      //   }
-      // });
-    }
-  };
+  // const enterFullscreen = () => {
+  //   const elem = document.documentElement; // 选择整个网页
+  //   if (elem.requestFullscreen) {
+  //     elem.requestFullscreen();
+  //   }
+  // };
+  // const videoJump = (time: number = 0) => {
+  //   if (videoRef.current) {
+  //     videoRef.current.currentTime = time;
+  //     // 设置循环
+  //     // videoRef.current.addEventListener("timeupdate", () => {
+  //     //   if (loopEnabled && videoRef.current.currentTime >= end) {
+  //     //     videoRef.current.currentTime = start;
+  //     //     videoRef.current.play();
+  //     //   }
+  //     // });
+  //   }
+  // };
   return (
     <div className={styles.videoContainer}>
       {/* 背景视频 */}
