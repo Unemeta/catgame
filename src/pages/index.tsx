@@ -37,6 +37,12 @@ export default function Home() {
     { type: "image", url: "/img/4.jpg" },
     { type: "image", url: "/img/5.jpg" },
     { type: "image", url: "/img/6.jpg" },
+
+    { type: "image", url: "/img/bg/shop.min.png" },
+    { type: "image", url: "/img/bg/shopCtt.min.png" },
+    { type: "image", url: "/img/bg/shopNavLeft.min.png" },
+    { type: "image", url: "/img/bg/shopNavUnselected.min.png" },
+
     { type: "video", url: "/videos/video.mp4" },
 
     // ... 添加更多资源
@@ -59,7 +65,7 @@ export default function Home() {
     const updateProgress = () => {
       loaded++;
       const newProgress = (loaded / totalResources) * 100;
-      setProgress(newProgress);
+      setProgress(Number(newProgress.toFixed(1)));
       // setLoadedResources(loaded);
 
       if (loaded === totalResources) {
