@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useRef } from "react";
 import styles from "@/styles/VideoBackground.module.css"; // 确保有对应的 CSS 文件
 
@@ -47,14 +48,14 @@ export default function VideoBackground() {
         {/* <source src={videoUrl} type="video/mp4"/> */}
       </video>
       {/* 交互层 */}
-      <div className={styles.overlay}>
+      {/* <div className={styles.overlay}>
         <button className={styles.button} onClick={enterFullscreen}>
           点击全屏
         </button>
         <button className={styles.button} onClick={() => videoJump(5)}>
           切换动画 0
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }

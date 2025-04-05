@@ -6,18 +6,34 @@ interface userInfo {
     uniqueId: string,
     avatar: string,
     nickname: string,
-    nowExpPercent: 0,
-    totalLevel: 0,
-    diamonds: 0,
-    gold: 0
+    nowExpPercent: number,
+    totalLevel: number,
+    diamonds: number,
+    gold: number
 }
 
-const userDataAtom = atom<userInfo | object>(
-    {},
+const userDataAtom = atom<userInfo>(
+    {
+        uniqueId: '',
+        avatar: '',
+        nickname: '',
+        nowExpPercent: 0,
+        totalLevel: 0,
+        diamonds: 0,
+        gold: 0
+    },
 );
 
 export const useUserData = () => {
-    useHydrateAtoms([[userDataAtom, {}]] as const);
+    useHydrateAtoms([[userDataAtom, {
+        uniqueId: '',
+        avatar: '',
+        nickname: '',
+        nowExpPercent: 0,
+        totalLevel: 0,
+        diamonds: 0,
+        gold: 0
+    }]] as const);
     return useAtom(userDataAtom);
 };
 

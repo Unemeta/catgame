@@ -3,20 +3,18 @@
 import Head from "next/head";
 import styles from "@/styles/home.module.css";
 import VideoBackground from "@/components/VideoBackground";
-import TopItem from "@/components/TopItem";
-import Avatar from "@/components/Avatar";
+import Top from "@/components/Top";
+
 import FloatingBubbles from "@/components/FloatingBubbles";
 import BubbleStats from "@/components/BubbleStats";
 import Loading from "@/components/Loading";
-// import EntryItem from "@/components/EntryItem";
 
 import React, { useEffect, useState } from "react";
-// import { gsap } from "gsap";
 import NavRight from "@/components/navRight";
 import LottieView from "@/components/lottie";
 import { request } from "@/utils/request";
 import DialogFood from "@/components/dialog/food";
-// import Login from "@/components/Login";
+import Login from "@/components/Login";
 import LevelUp from "@/components/LevelUp";
 import { Tabs } from "@/types";
 export default function Home() {
@@ -33,9 +31,13 @@ export default function Home() {
   // 示例资源列表
   const resources: Resource[] = [
     // { type: "image", url: "/path/to/image1.jpg" },
-    // { type: "image", url: "/path/to/image2.jpg" },
-    { type: "video", url: "/videos/video1.mp4" },
-    { type: "video", url: "/videos/video4.mp4" },
+    { type: "image", url: "/img/1.jpg" },
+    { type: "image", url: "/img/2.jpg" },
+    { type: "image", url: "/img/3.jpg" },
+    { type: "image", url: "/img/4.jpg" },
+    { type: "image", url: "/img/5.jpg" },
+    { type: "image", url: "/img/6.jpg" },
+    { type: "video", url: "/videos/video.mp4" },
 
     // ... 添加更多资源
   ];
@@ -116,36 +118,14 @@ export default function Home() {
         <Loading progress={progress} />
       ) : (
         <div>
-          <div className={styles.top}>
-            <Avatar></Avatar>
-            <TopItem
-              imgUrl="./img/love.svg"
-              label="Affection"
-              number="43"
-            ></TopItem>
-            <TopItem
-              imgUrl="./img/catfoot.svg"
-              label="Days"
-              number="5"
-            ></TopItem>
-            <TopItem
-              imgUrl="./img/gold.svg"
-              label="Gold"
-              number="23465"
-            ></TopItem>
-            <TopItem
-              imgUrl="./img/LostEnergy.svg"
-              label="Crystal"
-              number="243"
-            ></TopItem>
-          </div>
+          <Top></Top>
           <BubbleStats
             imageSrc="./img/love.svg"
             progress={progress}
           ></BubbleStats>
           <FloatingBubbles></FloatingBubbles>
           <VideoBackground />
-          {/* <LottieView src={'/lottie/lovingheart.json'} className={styles.loveCollect}></LottieView> */}
+          <LottieView src={'/lottie/lovingheart.json'} className={styles.loveCollect}></LottieView>
           <DialogFood
             title="Food"
             tabs={foodTabs}
@@ -156,7 +136,7 @@ export default function Home() {
             }
           ></DialogFood>
           <NavRight></NavRight>
-          {/* <Login></Login> */}
+          <Login></Login>
           {/* <LevelUp></LevelUp> */}
         </div>
       )}

@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { request } from "@/utils/request";
 import { jwtHelper } from "@/utils/jwt";
+import { useFetchUser } from "@/store";
 export default function Login() {
+  const { fetchUser } = useFetchUser();
   const login = async () => {
-    debugger
     if (jwtHelper.getToken()) {
-      debugger
+      fetchUser();
       return false;
     }
     const res = await request({
@@ -17,9 +18,9 @@ export default function Login() {
       },
     });
     await jwtHelper.setToken(res.data.accessToken, {
-      expires: new Date(res.data.accessExpire),
+      expires: new Date(res.data.accessExpire * 1000),
     });
-    debugger
+    fetchUser();
   };
   useEffect(() => {
     login();

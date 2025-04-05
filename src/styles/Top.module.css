@@ -1,0 +1,7 @@
+.top {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    left: 50px;
+    top: 20px;
+  }
