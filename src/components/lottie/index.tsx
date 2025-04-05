@@ -1,6 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-"use client"
-import { Player } from "@lottiefiles/react-lottie-player";
+"use client";
+import dynamic from "next/dynamic";
+
+const LottiePlayer = dynamic(
+  () => import("@lottiefiles/react-lottie-player").then((mod) => mod.Player),
+  { ssr: false } // 👈 禁用 SSR，只在客户端加载
+);
 import { cn } from "@/lib/utils";
 
 interface iLottieView {
@@ -9,7 +14,12 @@ interface iLottieView {
 }
 const LottieView = ({ src, className }: iLottieView) => {
   return (
-    <Player className={cn("", className)} autoplay loop src={src}></Player>
+    <LottiePlayer
+      className={cn("", className)}
+      autoplay
+      loop
+      src={src}
+    ></LottiePlayer>
   );
 };
 export default LottieView;
