@@ -16,14 +16,19 @@ const DialogBuy = ({ trigger, id, setFoodOpen }: iDialogBuy) => {
   const [, setShowLove] = useShowLoveCollect();
   const { fetchUser } = useFetchUser();
   const [isOpen, setIsOpen] = useState(false);
-  
 
   const buyConfirm = async () => {
     if (id) {
       try {
-        setIsOpen(false)
-        setFoodOpen(false)
-        return
+        setIsOpen(false);
+        setFoodOpen(false);
+        // 始终展示收集爱心
+        setShowLove(true);
+        // 升级 播放升级动画
+        setTimeout(() => {
+          setShowLevelUp(true);
+        }, 3100);
+        return;
         const { data } = await request({
           url: "/cat/v1/shop/goods",
           method: "post",

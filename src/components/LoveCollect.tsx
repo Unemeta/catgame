@@ -11,7 +11,7 @@ export default function LoveCollect() {
     if (showLove) {
       setTimeout(() => {
         setShowLove(false);
-      }, 2000);
+      }, 3000);
     }
   }, [showLove, setShowLove]);
   return (
