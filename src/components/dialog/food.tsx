@@ -40,6 +40,8 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
     id: 0,
     unlocked: false,
   });
+  const [isOpen, setIsOpen] = useState(false);
+
   useEffect(() => {
     if (tabs[Object.keys(tabs)[navIndex]].goods?.length > 0) {
       const item = tabs[Object.keys(tabs)[navIndex]].goods[0];
@@ -57,7 +59,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
     }
   }, [tabs, navIndex]);
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger>{trigger}</DialogTrigger>
       <DialogContent className="p-0 dw1066 h-auto overflow-hidden max-w-[1000px]">
         <DialogTitle></DialogTitle>
@@ -199,6 +201,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                           <DialogBuy
                             trigger={<>BUY</>}
                             id={chosenItem.id}
+                            setFoodOpen={setIsOpen}
                           ></DialogBuy>
                         </div>
                       )}

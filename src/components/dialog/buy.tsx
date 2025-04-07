@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from ".";
 import { request } from "@/utils/request";
 import { useShowLevelUp, useShowLoveCollect, useFetchUser } from "@/store";
@@ -9,15 +9,21 @@ interface iDialogBuy {
   navIndex?: number;
   setNavIndex?: (index: number) => void;
   id: number;
+  setFoodOpen: (open: boolean) => void;
 }
-const DialogBuy = ({ trigger, id }: iDialogBuy) => {
+const DialogBuy = ({ trigger, id, setFoodOpen }: iDialogBuy) => {
   const [, setShowLevelUp] = useShowLevelUp();
   const [, setShowLove] = useShowLoveCollect();
   const { fetchUser } = useFetchUser();
+  const [isOpen, setIsOpen] = useState(false);
+  
 
   const buyConfirm = async () => {
     if (id) {
       try {
+        setIsOpen(false)
+        setFoodOpen(false)
+        return
         const { data } = await request({
           url: "/cat/v1/shop/goods",
           method: "post",
@@ -49,7 +55,7 @@ const DialogBuy = ({ trigger, id }: iDialogBuy) => {
     }
   };
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTitle></DialogTitle>
       <DialogTrigger>{trigger}</DialogTrigger>
       <DialogContent className="p-0 h-auto flex justify-center">
