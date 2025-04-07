@@ -6,12 +6,9 @@ import VideoBackground from "@/components/VideoBackground";
 import Top from "@/components/Top";
 
 import FloatingBubbles from "@/components/FloatingBubbles";
-import BubbleStats from "@/components/BubbleStats";
 import Loading from "@/components/Loading";
-// import LoveCollect from "@/components/LoveCollect"
 import React, { useEffect, useState } from "react";
 import NavRight from "@/components/navRight";
-import LottieView from "@/components/lottie";
 import { request } from "@/utils/request";
 import DialogFood from "@/components/dialog/food";
 import Login from "@/components/Login";
