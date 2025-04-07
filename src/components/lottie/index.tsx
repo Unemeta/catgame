@@ -11,14 +11,16 @@ import { cn } from "@/lib/utils";
 interface iLottieView {
   src: any;
   className?: string;
+  keepLastFrame?: boolean;
+  loop?: boolean;
 }
-const LottieView = ({ src, className }: iLottieView) => {
+const LottieView = ({ src, className, ...props }: iLottieView) => {
   return (
     <LottiePlayer
       className={cn("", className)}
       autoplay
-      loop
       src={src}
+      {...props}
     ></LottiePlayer>
   );
 };

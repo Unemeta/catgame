@@ -2,47 +2,8 @@
 import { ReactNode } from "react";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from ".";
 import { request } from "@/utils/request";
-
-// 1,2,3是kitty kibble, sashimi, dried fish
-// 4,5,6是shiny cat tree, mouse, ball
-
-const itemList = [
-  {
-    id: 1,
-    name: "Kitty Kibble",
-    img: "/img/1.jpg",
-  },
-  {
-    id: 2,
-    name: "Sashimi",
-    img: "/img/2.jpg",
-  },
-  {
-    id: 3,
-    name: "Dried Fish",
-    img: "/img/3.jpg",
-  },
-  {
-    id: 4,
-    name: "Shiny Cat Tree",
-    img: "/img/4.jpg",
-  },
-  {
-    id: 5,
-    name: "Mouse",
-    img: "/img/5.jpg",
-  },
-  {
-    id: 6,
-    name: "Ball",
-    img: "/img/6.jpg",
-  },
-];
-
-const getItem = (id: number) => {
-  const item = itemList.find((item) => id === item.id);
-  return item;
-};
+import { useShowLevelUp, useShowLoveCollect, useFetchUser } from "@/store";
+import { getItem } from "@/utils/itemMap";
 interface iDialogBuy {
   trigger?: ReactNode;
   navIndex?: number;
@@ -50,6 +11,10 @@ interface iDialogBuy {
   id: number;
 }
 const DialogBuy = ({ trigger, id }: iDialogBuy) => {
+  const [, setShowLevelUp] = useShowLevelUp();
+  const [, setShowLove] = useShowLoveCollect();
+  const { fetchUser } = useFetchUser();
+
   const buyConfirm = async () => {
     if (id) {
       try {
@@ -61,9 +26,26 @@ const DialogBuy = ({ trigger, id }: iDialogBuy) => {
           },
         });
         console.log(data);
+        const { is_level_up } = data;
+        // 获取最新状态
+        await fetchUser();
+        // 始终展示收集爱心
+        setShowLove(true);
+        if (is_level_up) {
+          // 升级 播放升级动画
+          setTimeout(() => {
+            setShowLevelUp(true);
+          }, 2500);
+        }
       } catch (error) {
         console.log(error);
       }
+      // // 始终展示收集爱心
+      // setShowLove(true);
+      // // 升级 播放升级动画
+      // setTimeout(() => {
+      //   setShowLevelUp(true);
+      // }, 2500);
     }
   };
   return (

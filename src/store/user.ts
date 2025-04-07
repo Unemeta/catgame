@@ -8,8 +8,8 @@ interface userInfo {
     nickname: string,
     nowExpPercent: number,
     totalLevel: number,
-    diamonds: number,
-    gold: number
+    diamond: number,
+    coin: number
 }
 
 const userDataAtom = atom<userInfo>(
@@ -19,8 +19,8 @@ const userDataAtom = atom<userInfo>(
         nickname: '',
         nowExpPercent: 0,
         totalLevel: 0,
-        diamonds: 0,
-        gold: 0
+        diamond: 0,
+        coin: 0
     },
 );
 
@@ -31,8 +31,8 @@ export const useUserData = () => {
         nickname: '',
         nowExpPercent: 0,
         totalLevel: 0,
-        diamonds: 0,
-        gold: 0
+        diamond: 0,
+        coin: 0
     }]] as const);
     return useAtom(userDataAtom);
 };

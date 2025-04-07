@@ -2,26 +2,38 @@ import React from "react";
 import LottieView from "@/components/lottie";
 import styles from "@/styles/LevelUp.module.css"; // 确保有对应的 CSS 文件
 import { cn } from "@/lib/utils";
+import { useFetchUser, useShowLevelUp } from "@/store";
 
-export default function LevelUp() {
-  return (
+const LevelUp = () => {
+  const { userData } = useFetchUser();
+  const [showLevelUp, setShowLevelUp] = useShowLevelUp();
+  const btnClick = () => {
+    setShowLevelUp(false);
+  };
+  return showLevelUp ? (
     <div className={styles.container}>
       <div className={styles.title}>🎉Congratulations</div>
-      {/* <div className={styles.level}>LV.10</div> */}
       <LottieView
         src={"/lottie/update.json"}
         className={styles.animate}
+        loop={true}
       ></LottieView>
-      <div className={styles.content}>Affection Level up to Lv. 10</div>
-
+      <div className={cn("flex flex-col items-center", styles.levelArr)}>
+        <img src="/img/levelArrow.svg" alt="" className={styles.levelImg} />
+        <div className={styles.levelContent}>Lv. {userData.totalLevel}</div>
+      </div>
       <div
         className={cn(
-          "bgConfirmBtn cursor-pointer select-none dw266 dh80  flex justify-center items-center",
+          "bgConfirmBtn cursor-pointer select-none dw266 dh80  flex justify-center items-center z-100",
           styles.btn
         )}
+        onClick={btnClick}
       >
         {/* Confirm */}
       </div>
     </div>
+  ) : (
+    <></>
   );
-}
+};
+export default LevelUp;

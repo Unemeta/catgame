@@ -10,7 +10,7 @@ export default function Login() {
       return false;
     }
     const res = await request({
-      url: "/cat/v1/user/user/login",
+      url: "/cat/v1/user/login",
       method: "post",
       data: {
         username: "test",

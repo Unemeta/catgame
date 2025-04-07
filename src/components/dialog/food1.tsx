@@ -3,7 +3,6 @@ import { ReactNode, useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from ".";
 import { cn } from "@/lib/utils";
 import DialogBuy from "./buy";
-import { getItem } from "@/utils/itemMap";
 
 interface Tabs {
   [key: string]: TabItem; // 声明索引签名
@@ -72,7 +71,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
             </div>
           </div>
           <div className="flex w-full h-full ">
-            <div className="leftNav w-[6vw] flex flex-col gap-2 text-[1vw] font-[800] mr-[-1px]">
+            <div className="leftNav w-[6vw] flex flex-col gap-2 text-[1vw] font-[800]">
               {tabs &&
                 Object.keys(tabs).map((tab, index) => (
                   <div
@@ -127,7 +126,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                       <div className="flex justify-between items-center ">
                         <div className="flex justify-start items-center">
                           <span className="text-[#FFFDCE] dtext26 font-[700]">
-                            {getItem(chosenItem.id)?.name}
+                            {chosenItem.id}
                           </span>
                           <div className="line w-[2px] dh24 bg-white/30 dml10 dmr10"></div>
                           <img
@@ -152,34 +151,33 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                         </div>
                       </div>
                       <div className="dtext18 font-[600] text-white">
-                        {getItem(chosenItem.id)?.des}
+                        Crunchy bites for happy!
                       </div>
                     </div>
                     <div className="absolute bottom-0 left-0 w-full flex justify-between items-center dpl15">
                       <div className="flex justify-center items-center bg-black/40 rounded-[4vw] dpl15 dpr15 dmb15">
-                        {chosenItem.diamond ? (
-                          <>
-                            <img
-                              className="dw24 dh35 mr-2"
-                              src="/img/LostEnergy.svg"
-                              alt=""
-                            />
-                            <span className="text-[#FFFDCE] dtext30 font-[700]">
-                              {chosenItem.diamond.toLocaleString()}
-                            </span>
-                          </>
-                        ) : (
-                          <>
-                            <img
-                              className="dw24 dh35 mr-2"
-                              src="/img/gold.svg"
-                              alt=""
-                            />
-                            <span className="text-[#FFFDCE] dtext30 font-[700]">
-                              {chosenItem.coin.toLocaleString()}
-                            </span>
-                          </>
-                        )}
+                        {chosenItem.diamond?(<>
+                          <img
+                            className="dw24 dh35 mr-2"
+                            src="/img/LostEnergy.svg"
+                            alt=""
+                          />
+                          <span className="text-[#FFFDCE] dtext30 font-[700]">
+                            {chosenItem.diamond}
+                          </span>
+                        </>):(    <>
+                          <img
+                            className="dw24 dh35 mr-2"
+                            src="/img/gold.svg"
+                            alt=""
+                          />
+                          <span className="text-[#FFFDCE] dtext30 font-[700]">
+                            {chosenItem.coin}
+                          </span>
+                        </>)}
+                        
+
+                    
                       </div>
                       {chosenItem?.id > 0 && (
                         <div
@@ -229,36 +227,12 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                       }}
                     >
                       <div className="text-[#FFFDCE] bg-black/30 rounded-[20px] inline-flex justify-center items-center absolute left-[50%] bottom-0 translate-x-[-50%] w-[90%]">
-                        {/* <img
+                        <img
                           src="/img/gold.svg"
                           alt=""
-                          className="w-[18px]"
+                          className="w-[18px] font-['SF Pro Rounded']"
                         />
-                        {item.coin.toLocaleString()} */}
-
-                        {item.diamond ? (
-                          <>
-                            <img
-                              className="w-[18px]"
-                              src="/img/LostEnergy.svg"
-                              alt=""
-                            />
-                            <span className="text-[#FFFDCE] dtext30 font-[700]">
-                              {item.diamond.toLocaleString()}
-                            </span>
-                          </>
-                        ) : (
-                          <>
-                            <img
-                              className="w-[18px]"
-                              src="/img/gold.svg"
-                              alt=""
-                            />
-                            <span className="text-[#FFFDCE] dtext30 font-[700]">
-                              {item.coin.toLocaleString()}
-                            </span>
-                          </>
-                        )}
+                        {item.coin.toLocaleString()}
                       </div>
                     </div>
                   </div>

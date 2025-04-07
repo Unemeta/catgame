@@ -40,9 +40,32 @@
   font-style: normal;
   font-weight: 800;
   line-height: 100%; /* 36px */
+  position: absolute;
+  bottom: 300px;
+}
+
+.levelArr{
+  position: absolute;
+  top: 300px;
+}
+
+.levelImg{
+  width: 30px;
+  height: 23.5px;;
+}
+
+.levelContent {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0px 4px 14px rgba(20, 20, 171, 0.25);
+  font-family: "SF Pro Rounded";
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 100%; /* 36px */
 }
 .btn {
   position: absolute;
-  bottom: 300px;
+  bottom: 200px;
   width: 270px;
 }

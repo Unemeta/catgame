@@ -10,17 +10,21 @@ export default function Top() {
   return (
     <div className={styles.top}>
       <Avatar avatar={userData.avatar} nickname={userData.nickname}></Avatar>
-      <TopItem imgUrl="./img/love.svg" label="Affection" number="43"></TopItem>
-      <TopItem imgUrl="./img/catfoot.svg" label="Days" number="5"></TopItem>
+      <TopItem
+        imgUrl="./img/love.svg"
+        label="Affection"
+        number={userData.nowExpPercent * 100}
+      ></TopItem>
+      {/* <TopItem imgUrl="./img/catfoot.svg" label="Days" number="5"></TopItem> */}
       <TopItem
         imgUrl="./img/gold.svg"
         label="Gold"
-        number={userData.gold}
+        number={userData.coin}
       ></TopItem>
       <TopItem
         imgUrl="./img/LostEnergy.svg"
         label="Crystal"
-        number={userData.diamonds}
+        number={userData.diamond}
       ></TopItem>
     </div>
   );

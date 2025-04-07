@@ -8,7 +8,7 @@ import Top from "@/components/Top";
 import FloatingBubbles from "@/components/FloatingBubbles";
 import BubbleStats from "@/components/BubbleStats";
 import Loading from "@/components/Loading";
-
+// import LoveCollect from "@/components/LoveCollect"
 import React, { useEffect, useState } from "react";
 import NavRight from "@/components/navRight";
 import LottieView from "@/components/lottie";
@@ -17,7 +17,10 @@ import DialogFood from "@/components/dialog/food";
 import Login from "@/components/Login";
 import LevelUp from "@/components/LevelUp";
 import { Tabs } from "@/types";
+import { useShowLevelUp } from "@/store";
+import LoveCollect from "@/components/LoveCollect";
 export default function Home() {
+  const [showLevelUp,] = useShowLevelUp()
   const [progress, setProgress] = useState(0);
   const [loading, setIsLoading] = useState(true);
   const [foodTabs, setFoodTabs] = useState<Tabs>({
@@ -127,28 +130,21 @@ export default function Home() {
       ) : (
         <div>
           <Top></Top>
-          <BubbleStats
-            imageSrc="./img/love.svg"
-            progress={progress}
-          ></BubbleStats>
           <FloatingBubbles></FloatingBubbles>
           <VideoBackground />
-          <LottieView
-            src={"/lottie/lovingheart.json"}
-            className={styles.loveCollect}
-          ></LottieView>
+          <LevelUp></LevelUp>
+          <LoveCollect></LoveCollect>
           <DialogFood
             title="Food"
             tabs={foodTabs}
             trigger={
-              <div className="dw116 h-auto dmb10 fixed bottom-[20px] left-[150px]">
+              <div className="dw116 h-auto dmb10 fixed bottom-[20px] left-[150px] z-1000">
                 <img src="/img/food.png" alt="" />
               </div>
             }
           ></DialogFood>
           <NavRight></NavRight>
           <Login></Login>
-          {/* <LevelUp></LevelUp> */}
         </div>
       )}
     </>
