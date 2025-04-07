@@ -13,7 +13,7 @@ export default function Top() {
       <TopItem
         imgUrl="./img/love.svg"
         label="Affection"
-        number={userData.nowExpPercent * 100}
+        number={Number((userData.nowExpPercent * 100).toFixed())}
       ></TopItem>
       {/* <TopItem imgUrl="./img/catfoot.svg" label="Days" number="5"></TopItem> */}
       <TopItem

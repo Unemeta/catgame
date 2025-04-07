@@ -18,7 +18,7 @@ export default function LoveCollect() {
     <>
       <BubbleStats
         imageSrc="./img/love.svg"
-        progress={userData.nowExpPercent * 100}
+        progress={Number((userData.nowExpPercent * 100).toFixed())}
       ></BubbleStats>
       {showLove ? (
         <LottieView
