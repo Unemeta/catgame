@@ -4,7 +4,7 @@ import { Dialog, DialogContent, DialogTrigger, DialogTitle } from ".";
 import { cn } from "@/lib/utils";
 import DialogBuy from "./buy";
 import { getItem } from "@/utils/itemMap";
-
+import { formatSecondsToTime } from "@/utils/formatTime";
 interface Tabs {
   [key: string]: TabItem; // 声明索引签名
 }
@@ -137,7 +137,8 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                           />
                           <span className="dtext24 text-white font-[500]">
                             {/* 02h:00 */}
-                            {chosenItem.expire}
+                            {formatSecondsToTime(chosenItem.expire)}
+                            {/* {chosenItem.expire} */}
                           </span>
                         </div>
                         <div className="flex justify-end items-center">
