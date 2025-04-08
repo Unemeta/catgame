@@ -9,7 +9,7 @@ export default function Top() {
 
   return (
     <div className={styles.top}>
-      <Avatar avatar={userData.avatar} nickname={userData.nickname}></Avatar>
+      <Avatar avatar={userData.avatar} nickname={userData.nickname} level={userData.totalLevel}></Avatar>
       <TopItem
         imgUrl="./img/love.svg"
         label="Affection"
