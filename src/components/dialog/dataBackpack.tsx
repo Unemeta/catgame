@@ -2,36 +2,35 @@
 import { Tabs } from "@/types";
 import { useEffect, useState } from "react";
 import { request } from "@/utils/request";
-import DialogFood from "./food";
+import DialogBackpack from "./backpack";
 
 const DataBackpack = () => {
-  const [foodTabs, setFoodTabs] = useState<Tabs>({
-    food: { unlocked: false, goods: [] },
-  });
+  // const [foodTabs, setFoodTabs] = useState<Tabs>({
+  //   food: { unlocked: false, goods: [] },
+  // });
 
-  const shopInfo = async () => {
-    const { data } = await request({
-      url: "/cat/v1/shop/shop/info",
-      method: "get",
-    });
+  // const shopInfo = async () => {
+  //   const { data } = await request({
+  //     url: "/cat/v1/shop/shop/info",
+  //     method: "get",
+  //   });
 
-    console.log(data);
-    setFoodTabs(data);
-  };
-  useEffect(() => {
-    (async () => {
-      try {
-        shopInfo();
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, []);
+  //   console.log(data);
+  //   setFoodTabs(data);
+  // };
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       shopInfo();
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   })();
+  // }, []);
 
   return (
-    <DialogFood
-      title="Shop"
-      tabs={foodTabs}
+    <DialogBackpack
+      // tabs={foodTabs}
       trigger={
         <div className="flex flex-col justify-center items-center">
           <img
@@ -44,7 +43,7 @@ const DataBackpack = () => {
           </div>
         </div>
       }
-    ></DialogFood>
+    ></DialogBackpack>
   );
 };
 export default DataBackpack;

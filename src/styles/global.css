@@ -88,6 +88,10 @@ body {
   background-image: url("/img/bg/confirm.min.png");
   background-size: cover;
 }
+.bgNavBackpackTop {
+  background-image: url("/img/bg/navBackpackTop.min.png");
+  background-size: cover;
+}
 .buyShopImg {
   border-radius: 20px;
   border: 4px solid #ff0;
@@ -129,6 +133,9 @@ body {
   font-size: 40px;
 }
 
+.dw20 {
+  width: 20px;
+}
 .dw24 {
   width: 24px;
 }
@@ -137,6 +144,12 @@ body {
 }
 .dw30 {
   width: 30px;
+}
+.dw32 {
+  width: 32px;
+}
+.dw34 {
+  width: 34px;
 }
 .dw48 {
   width: 48px;
@@ -152,6 +165,9 @@ body {
 }
 .dw224 {
   width: 224px;
+}
+.dw260 {
+  width: 260px;
 }
 .dw266 {
   width: 266px;
@@ -172,14 +188,29 @@ body {
   width: 1066px;
 }
 
+.dhauto {
+  height: auto;
+}
 .dh24 {
   height: 24px;
 }
 .dh35 {
   height: 35px;
 }
+.dh45 {
+  height: 45px;
+}
+.dh70 {
+  height: 70px;
+}
 .dh80 {
   height: 80px;
+}
+.dh90 {
+  height: 90px;
+}
+.dh150 {
+  height: 150px;
 }
 .dh180 {
   height: 180px;
@@ -189,6 +220,12 @@ body {
 }
 .dh278 {
   height: 278px;
+}
+.dh280 {
+  height: 280px;
+}
+.dh340 {
+  height: 340px;
 }
 .dh455 {
   height: 455px;
@@ -206,6 +243,10 @@ body {
   height: 730px;
 }
 
+.dp40 {
+  padding: 40px;
+}
+
 .dpt10 {
   padding-top: 10px;
 }
@@ -215,8 +256,17 @@ body {
 .dpt14 {
   padding-top: 14px;
 }
+.dpt18 {
+  padding-top: 18px;
+}
+.dpt25 {
+  padding-top: 25px;
+}
 .dpt28 {
   padding-top: 28px;
+}
+.dpt30 {
+  padding-top: 30px;
 }
 .dpt40 {
   padding-top: 40px;
@@ -240,8 +290,17 @@ body {
 .dpb12 {
   padding-bottom: 12px;
 }
+.dpb18 {
+  padding-bottom: 18px;
+}
+.dpb28 {
+  padding-bottom: 28px;
+}
 .dpb30 {
   padding-bottom: 30px;
+}
+.dpb34 {
+  padding-bottom: 34px;
 }
 .dpb42 {
   padding-bottom: 42px;
@@ -253,14 +312,23 @@ body {
 .dpl15 {
   padding-left: 15px;
 }
+.dpl18 {
+  padding-left: 18px;
+}
 .dpl20 {
   padding-left: 20px;
+}
+.dpl25 {
+  padding-left: 25px;
 }
 .dpl30 {
   padding-left: 30px;
 }
 .dpl34 {
   padding-left: 34px;
+}
+.dpl36 {
+  padding-left: 36px;
 }
 .dpr10 {
   padding-right: 10px;
@@ -274,12 +342,21 @@ body {
 .dpr30 {
   padding-right: 30px;
 }
+.dpr36 {
+  padding-right: 36px;
+}
+.dpr110 {
+  padding-right: 110px;
+}
 
 .dml10 {
   margin-left: 10px;
 }
 .dml20 {
   margin-left: 20px;
+}
+.dml45 {
+  margin-left: 45px;
 }
 
 .dmr5 {
@@ -290,6 +367,12 @@ body {
 }
 .dmr20 {
   margin-right: 20px;
+}
+.dmr45 {
+  margin-right: 45px;
+}
+.dmr100 {
+  margin-right: 100px;
 }
 
 .dmb10 {
@@ -318,4 +401,13 @@ body {
 }
 .dmb80 {
   margin-bottom: 80px;
+}
+
+.contentBackpack {
+  height: calc(100vh - 90px)
+}
+
+
+.dgap40 {
+  gap: 40px;
 }
