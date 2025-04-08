@@ -4,7 +4,7 @@ import {
     jwtHelper,
     JWT_HEADER_KEY,
 } from './jwt';
-import { useRouter } from "next/router";
+import Router from 'next/router'; // 注意不是 useRouter
 
 
 
@@ -75,9 +75,9 @@ function createService() {
                     break
                 case 401:
                     error.message = "未授权，请登录"
+                    debugger
                     jwtHelper.clearToken()
-                    const router = useRouter();
-                    router.replace('/')
+                    Router.replace('/login')
                     // useUserStoreHook().logout()
                     break
                 case 403:
