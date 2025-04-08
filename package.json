@@ -28,6 +28,7 @@
     "postcss-px-to-viewport": "^1.1.1",
     "postcss-pxtorem": "^6.1.0",
     "react": "^19.0.0",
+    "react-countup": "^6.5.3",
     "react-dom": "^19.0.0",
     "react-player": "^2.16.0",
     "tailwind-merge": "^3.0.2",
