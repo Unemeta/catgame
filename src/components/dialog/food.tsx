@@ -116,12 +116,22 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
               <div className="w-[5vw]"></div>
               <div className="curFoodItem dw455">
                 <div className="grid border-[0.3vw] border-[#FF0] rounded-[1.7vw] overflow-hidden shadow-[0px_20px_30px_0px_rgba(132_72_131_0.46)]">
-                  <img
+                  {/* <img
                     className="gridArea1111 dw455 dh455"
                     src={`/img/${
                       tabs?.[Object.keys(tabs)[navIndex]]?.goods?.[goodsIndex]
                         ?.id
                     }.jpg`}
+                    alt=""
+                  /> */}
+                  <img
+                    className="gridArea1111 dw455 dh455"
+                    src={`${
+                      getItem(
+                        tabs?.[Object.keys(tabs)[navIndex]]?.goods?.[goodsIndex]
+                          ?.id
+                      )?.img
+                    }`}
                     alt=""
                   />
                   <div className="gridArea1111 relative">
@@ -228,8 +238,8 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                         "absolute top-[0.5vw] right-[0.5vw] dw180 dh180 rounded-[10px]"
                       )}
                       style={{
-                        background: `url(/img/${item?.id}.jpg)`,
                         backgroundSize: "cover",
+                        backgroundImage: `url(${getItem(item.id)?.img})`,
                       }}
                     >
                       <div className="text-[#FFFDCE] bg-black/30 rounded-[20px] inline-flex justify-center items-center absolute left-[50%] bottom-0 translate-x-[-50%] w-[90%]">
