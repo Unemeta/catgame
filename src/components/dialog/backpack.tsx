@@ -235,7 +235,7 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
                 )
               )}
             </div>
-            <div className="toyDetail flex-[3] rounded-[10px] overflow-hidden">
+            <div className="bgToysDetail flex-[3] rounded-[10px] overflow-hidden">
               <div className="bg-[#7766ED]/60 flex justify-start items-center dpl25 dh90">
                 <img
                   className="dw32 dhauto dmr20"
@@ -293,6 +293,9 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
                       "linear-gradient(254deg, #FFFDCB 0%, #FFF600 144.38%)",
                     boxShadow:
                       "-3.556px 3.556px 12.444px 0px rgba(0, 0, 0, 0.10)",
+                  }}
+                  onClick={() => {
+                    setIsOpen(false);
                   }}
                 >
                   Play
