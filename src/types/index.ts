@@ -15,4 +15,11 @@ export interface TabItem {
     goods: [];
     // 其他可能的属性...
 }
-
+export interface good {
+    affection: number;
+    coin: number;
+    diamond: number;
+    expire: number;
+    id: number;
+    unlocked: boolean;
+  }

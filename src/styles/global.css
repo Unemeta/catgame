@@ -92,10 +92,6 @@ body {
   background-image: url("/img/bg/navBackpackTop.min.png");
   background-size: 100% 100%;
 }
-.bgToysDetail {
-  /* background-image: url("/img/bg/toyDetailBg.min.png");
-  background-size: 100% 100%; */
-}
 .buyShopImg {
   border-radius: 20px;
   border: 4px solid #ff0;
@@ -406,15 +402,6 @@ body {
 .dmb80 {
   margin-bottom: 80px;
 }
-
-.contentBackpack {
-  height: calc(100vh - 90px);
-}
-.backpackBg {
-  background-image: url("/img/bg/backpackCttBg.min.png");
-  background-size: 100% 100%;
-}
-
 .dgap40 {
   gap: 40px;
 }

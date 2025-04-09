@@ -25,7 +25,7 @@ const itemList = [
         id: 4,
         name: "Ballon",
         img: "/img/4.jpg",
-        des: '"The kitty loves ballon'
+        des: 'The kitty loves ballon'
     },
     {
         id: 5,

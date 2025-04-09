@@ -133,7 +133,7 @@ export default function Home() {
             title="Food"
             tabs={foodTabs}
             trigger={
-              <div className="dw116 h-auto dmb10 fixed bottom-[20px] left-[150px] z-1000">
+              <div className="dw116 h-auto dmb10 fixed bottom-[20px] left-[150px] z-1">
                 <img src="/img/food.png" alt="" />
               </div>
             }
