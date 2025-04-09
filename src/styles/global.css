@@ -90,7 +90,7 @@ body {
 }
 .bgNavBackpackTop {
   background-image: url("/img/bg/navBackpackTop.min.png");
-  background-size: cover;
+  background-size: 100% 100%;
 }
 .buyShopImg {
   border-radius: 20px;
@@ -404,9 +404,12 @@ body {
 }
 
 .contentBackpack {
-  height: calc(100vh - 90px)
+  height: calc(100vh - 90px);
 }
-
+.backpackBg {
+  background-image: url("/img/bg/backpackCttBg.min.png");
+  background-size: 100% 100%;
+}
 
 .dgap40 {
   gap: 40px;
