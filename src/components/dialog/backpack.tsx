@@ -624,11 +624,6 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
             </svg>
           </div>
         </div>
-        {/* <DialogTrigger>
-          <div className="flex justify-center items-center cursor-pointer select-none">
-            <img className="dw48 h-auto" src="/img/close.min.png" alt="" />
-          </div>
-        </DialogTrigger> */}
       </DialogContent>
     </Dialog>
   );

@@ -1,7 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import { Tabs } from "@/types";
-import { useEffect, useState } from "react";
-import { request } from "@/utils/request";
 import DialogBackpack from "./backpack";
 
 const DataBackpack = () => {
