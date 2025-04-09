@@ -1,3 +1,5 @@
+import DialogPlay from "./play";
+
 /* eslint-disable @next/next/no-img-element */
 interface iBackpackToys {
   setIsOpen: (val: boolean) => void;
@@ -101,20 +103,28 @@ const BackpackToys = ({ setIsOpen, setnavIndex, navIndex }: iBackpackToys) => {
             Climb, scratch, and play freely!
           </div>
           <div className="grow"></div>
-          <div
-            className="dpt28 dpb28 text-center text-[#8F1D00] dtext26 font-[800] cursor-pointer select-none"
-            style={{
-              borderRadius: "10px",
-              background:
-                "linear-gradient(254deg, #FFFDCB 0%, #FFF600 144.38%)",
-              boxShadow: "-3.556px 3.556px 12.444px 0px rgba(0, 0, 0, 0.10)",
+          <DialogPlay
+            playEnd={()=>{
+              setIsOpen(false)
             }}
-            onClick={() => {
-              setIsOpen(false);
-            }}
-          >
-            Play
-          </div>
+            trigger={
+              <div
+                className="dpt28 dpb28 text-center text-[#8F1D00] dtext26 font-[800] cursor-pointer select-none"
+                style={{
+                  borderRadius: "10px",
+                  background:
+                    "linear-gradient(254deg, #FFFDCB 0%, #FFF600 144.38%)",
+                  boxShadow:
+                    "-3.556px 3.556px 12.444px 0px rgba(0, 0, 0, 0.10)",
+                }}
+                onClick={() => {
+                  // setIsOpen(false);
+                }}
+              >
+                Play
+              </div>
+            }
+          ></DialogPlay>
         </div>
       </div>
       <svg

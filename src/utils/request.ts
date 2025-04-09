@@ -75,7 +75,6 @@ function createService() {
                     break
                 case 401:
                     error.message = "未授权，请登录"
-                    debugger
                     jwtHelper.clearToken()
                     Router.replace('/login')
                     // useUserStoreHook().logout()
