@@ -41,7 +41,10 @@ body {
 @font-face {
   font-family: "SF Pro Rounded";
   font-weight: 400;
-  src: url("/font/SF-Pro-Rounded-Black.otf") format("truetype");
+  /* src: url("/font/SF-Pro-Rounded-Black.otf") format("truetype"); */
+  src: url("/font/SF-Pro-Rounded-Bold.otf") format("truetype");
+
+  
 }
 
 /* @media screen and (orientation: portrait) {
@@ -150,6 +153,9 @@ body {
 }
 .dw34 {
   width: 34px;
+}
+.dw35 {
+  width: 35px;
 }
 .dw48 {
   width: 48px;
