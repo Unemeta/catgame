@@ -1,0 +1,53 @@
+.countDownBack {
+  height: calc(100vh - 90px);
+  padding: 40px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  position: absolute;
+  width: 100vw;
+  top: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 45px;
+}
+.countDownTitle {
+  color: #fff;
+  font-family: "SF Pro Rounded";
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 100%; /* 64px */
+  margin-top: 160px;
+}
+.countDownTimeContainer {
+  display: flex;
+  align-items: top;
+  gap: 80px;
+}
+.countDownTime {
+  font-family: "SF Pro Rounded";
+  font-size: 175px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 100%;
+  background: linear-gradient(270deg, #fff 0%, #ffcccd 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.countDownMid {
+  font-size: 160px;
+  color: rgba(255, 255, 255, 0.3);
+  line-height: 100%;
+}
+.timeDes {
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  font-family: "SF Pro Rounded";
+  font-size: 34px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%; /* 34px */
+  text-transform: uppercase;
+}

@@ -213,6 +213,7 @@ import { good } from "@/types/index";
 import { getItem } from "@/utils/itemMap";
 import { formatSecondsToTime, formatHourTime } from "@/utils/formatTime";
 import CooldownCircle from "@/components/CooldownCircle";
+import CountDownFull from "@/components/CountDownFull";
 interface iDialogBackpack {
   trigger?: ReactNode;
 }
@@ -397,13 +398,14 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
   useEffect(() => {
     if (isOpen) {
       getBack();
+      startTimeRef.current = Date.now();
     }
   }, [isOpen]);
 
   // 当前物品的cd冷却时间
   useEffect(() => {
     if (chosenItem.countdown) {
-      startTimeRef.current = Date.now();
+      // startTimeRef.current = Date.now();
       const update = () => {
         const elapsed = (Date.now() - startTimeRef.current) / 1000;
         const newProgress = Math.max(0, 1 - elapsed / chosenItem.countdown);
@@ -430,7 +432,7 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
             <div
               className="flex justify-start items-center cursor-pointer select-none"
               onClick={() => {
-                reset()
+                reset();
                 setIsOpen(false);
               }}
             >
@@ -647,8 +649,7 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
                         "-3.556px 3.556px 12.444px 0px rgba(0, 0, 0, 0.10)",
                     }}
                   >
-                    {/* Play({formatHourTime(remainingTime)}) */}
-                    Play
+                    Play({formatHourTime(remainingTime)}){/* Play */}
                   </div>
                 ) : (
                   <div
@@ -688,6 +689,7 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
               />
             </svg>
           </div>
+          <CountDownFull duration={1000}></CountDownFull>
         </div>
       </DialogContent>
     </Dialog>
