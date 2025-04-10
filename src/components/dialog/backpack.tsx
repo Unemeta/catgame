@@ -202,8 +202,7 @@
 
 // export default DialogBackpack;
 
-
-import { ReactNode, useState, useEffect } from "react";
+import { ReactNode, useState, useEffect, useRef } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from ".";
 import TopItem from "../TopItem";
 import { useFetchUser, useShowLevelUp, useShowLoveCollect } from "@/store";
@@ -212,8 +211,8 @@ import { request } from "@/utils/request";
 import styles from "@/styles/Backpack.module.css";
 import { good } from "@/types/index";
 import { getItem } from "@/utils/itemMap";
-import { formatSecondsToTime } from "@/utils/formatTime";
-
+import { formatSecondsToTime, formatHourTime } from "@/utils/formatTime";
+import CooldownCircle from "@/components/CooldownCircle";
 interface iDialogBackpack {
   trigger?: ReactNode;
 }
@@ -328,6 +327,8 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
   ];
   const [dataMap, setDataMap] = useState(new Map());
   const [goodsIndex, setgoodsIndex] = useState(1);
+  const startTimeRef = useRef<number>(0);
+
   const [chosenItem, setChosen] = useState({
     affection: 0,
     coin: 0,
@@ -335,7 +336,27 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
     expire: 0,
     id: 0,
     unlocked: false,
+    countdown: 0,
   });
+  const [remainingTime, setRemainingTime] = useState(0); // 剩余时间
+  const animationRef = useRef<number | undefined>(undefined);
+  const reset = () => {
+    setChosen({
+      affection: 0,
+      coin: 0,
+      diamond: 0,
+      expire: 0,
+      id: 0,
+      unlocked: false,
+      countdown: 0,
+    });
+
+    const map = new Map();
+    // 对应navIndex
+    map.set(0, []);
+    map.set(1, []);
+    setDataMap(map);
+  };
   const getBack = async () => {
     const res = await request({
       url: "/cat/v1/user/backpack",
@@ -360,11 +381,11 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
         },
       });
       const { is_level_up } = data;
-      // 获取最新状态
-      await fetchUser();
       // 始终展示收集爱心
       setIsOpen(false);
       setShowLove(true);
+      // 获取最新状态
+      await fetchUser();
       if (is_level_up) {
         // 升级 播放升级动画
         setTimeout(() => {
@@ -379,6 +400,26 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
     }
   }, [isOpen]);
 
+  // 当前物品的cd冷却时间
+  useEffect(() => {
+    if (chosenItem.countdown) {
+      startTimeRef.current = Date.now();
+      const update = () => {
+        const elapsed = (Date.now() - startTimeRef.current) / 1000;
+        const newProgress = Math.max(0, 1 - elapsed / chosenItem.countdown);
+        setRemainingTime(
+          Math.max(0, chosenItem.countdown - Math.floor(elapsed))
+        );
+        if (newProgress > 0) {
+          animationRef.current = requestAnimationFrame(update);
+        }
+      };
+      animationRef.current = requestAnimationFrame(update);
+      return () => {
+        if (animationRef.current) cancelAnimationFrame(animationRef.current);
+      };
+    }
+  }, [chosenItem]);
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTitle></DialogTitle>
@@ -389,6 +430,7 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
             <div
               className="flex justify-start items-center cursor-pointer select-none"
               onClick={() => {
+                reset()
                 setIsOpen(false);
               }}
             >
@@ -469,14 +511,14 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
                 fill="white"
               />
             </svg>
-            <div className="toylist flex-[4] dmr100 grid grid-cols-5 dgap40">
+            <div className="toylist flex-[4] dmr100 grid grid-cols-5 dgap40 relative">
               {dataMap
                 .get(navIndex)
                 ?.items?.map((item: good, index: number) => (
                   <div
                     className={cn(
                       "rounded-[10px] overflow-hidden box-border",
-                      goodsIndex === index ? styles.cardActive : ""
+                      goodsIndex === index ? styles.cardActive : styles.card
                     )}
                     key={index}
                     style={{
@@ -493,6 +535,14 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
                       src={getItem(item.id)?.img}
                       alt=""
                     />
+                    {/* 显示倒计时 */}
+                    {item.countdown ? (
+                      <CooldownCircle
+                        duration={item.countdown}
+                      ></CooldownCircle>
+                    ) : (
+                      <></>
+                    )}
                     <div
                       className="flex justify-center items-center dh45"
                       style={{
@@ -587,19 +637,34 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
                   {getItem(chosenItem.id)?.des}
                 </div>
                 <div className="grow"></div>
-                <div
-                  className="dpt28 dpb28 text-center text-[#8F1D00] dtext26 font-[800] cursor-pointer select-none mt-8"
-                  style={{
-                    borderRadius: "10px",
-                    background:
-                      "linear-gradient(254deg, #FFFDCB 0%, #FFF600 144.38%)",
-                    boxShadow:
-                      "-3.556px 3.556px 12.444px 0px rgba(0, 0, 0, 0.10)",
-                  }}
-                  onClick={play}
-                >
-                  Play
-                </div>
+                {chosenItem.countdown ? (
+                  <div
+                    className="dpt28 dpb28 text-center text-[#fff] dtext26 font-[800] cursor-pointer select-none mt-8"
+                    style={{
+                      borderRadius: "10px",
+                      background: "#BD9CB1",
+                      boxShadow:
+                        "-3.556px 3.556px 12.444px 0px rgba(0, 0, 0, 0.10)",
+                    }}
+                  >
+                    {/* Play({formatHourTime(remainingTime)}) */}
+                    Play
+                  </div>
+                ) : (
+                  <div
+                    className="dpt28 dpb28 text-center text-[#8F1D00] dtext26 font-[800] cursor-pointer select-none mt-8"
+                    style={{
+                      borderRadius: "10px",
+                      background:
+                        "linear-gradient(254deg, #FFFDCB 0%, #FFF600 144.38%)",
+                      boxShadow:
+                        "-3.556px 3.556px 12.444px 0px rgba(0, 0, 0, 0.10)",
+                    }}
+                    onClick={play}
+                  >
+                    Play
+                  </div>
+                )}
               </div>
             </div>
             <svg

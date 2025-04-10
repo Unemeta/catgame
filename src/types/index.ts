@@ -22,4 +22,5 @@ export interface good {
     expire: number;
     id: number;
     unlocked: boolean;
-  }
+    countdown: number
+}
