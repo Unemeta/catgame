@@ -7,7 +7,7 @@ type CountdownProps = {
 export default function CountDownFull({ duration }: CountdownProps) {
   return (
     <div className={styles.countDownBack}>
-      <div className={styles.countDownTitle}>CD Countddown</div>
+      <div className={styles.countDownTitle}>CD Countdown</div>
       <div className={styles.countDownTimeContainer}>
         <div>
           <div className={styles.countDownTime}>{getHours(duration)}</div>

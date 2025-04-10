@@ -24,3 +24,8 @@ export interface good {
     unlocked: boolean;
     countdown: number
 }
+export interface backpackInfo {
+    can_play: boolean;
+    countdown: number;
+    items: Array<good>
+}
