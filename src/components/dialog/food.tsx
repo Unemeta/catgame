@@ -195,25 +195,27 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                         )}
                       </div>
                       {chosenItem?.id > 0 && (
-                        <div
-                          className="dw180 dh80 flex justify-center items-center cursor-pointer select-none"
-                          style={{
-                            background:
-                              "linear-gradient(254deg, #FFFDCB 0%, #FFF600 144.38%)",
-                            boxShadow:
-                              "-3.556px 3.556px 12.444px 0px rgba(0, 0, 0, 0.10)",
-                            borderRadius: "1vw 0px 1.4vw 0px",
-                            color: "#8F1D00",
-                            fontFamily: "SF Pro Rounded",
-                            fontSize: "13px",
-                          }}
-                        >
-                          <DialogBuy
-                            trigger={<>BUY</>}
-                            id={chosenItem.id}
-                            setFoodOpen={setIsOpen}
-                          ></DialogBuy>
-                        </div>
+                        <DialogBuy
+                          trigger={
+                            <div
+                              className="dw180 dh80 flex justify-center items-center cursor-pointer select-none"
+                              style={{
+                                background:
+                                  "linear-gradient(254deg, #FFFDCB 0%, #FFF600 144.38%)",
+                                boxShadow:
+                                  "-3.556px 3.556px 12.444px 0px rgba(0, 0, 0, 0.10)",
+                                borderRadius: "1vw 0px 1.4vw 0px",
+                                color: "#8F1D00",
+                                fontFamily: "SF Pro Rounded",
+                                fontSize: "13px",
+                              }}
+                            >
+                              BUY
+                            </div>
+                          }
+                          id={chosenItem.id}
+                          setFoodOpen={setIsOpen}
+                        ></DialogBuy>
                       )}
                     </div>
                   </div>
