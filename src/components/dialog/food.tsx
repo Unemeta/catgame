@@ -61,7 +61,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger>{trigger}</DialogTrigger>
-      <DialogContent className="p-0 dw1066 h-auto overflow-hidden max-w-[1000px]">
+      <DialogContent className="p-0 dw1066 h-auto max-w-[1000px]">
         <DialogTitle></DialogTitle>
         <div className="dw1066 dh690 bgFeeding relative dpt100 dpl30 dpr30 dpb30">
           <div className="absolute top-0 right-0 w-full  dpt10">
@@ -283,12 +283,12 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
               <div className="dw30"></div>
             </div>
           </div>
+          <DialogTrigger>
+            <div className="dtop45 drightF10 absolute flex  justify-center items-center cursor-pointer select-none">
+              <img className="dw48 h-auto" src="/img/close.min.png" alt="" />
+            </div>
+          </DialogTrigger>
         </div>
-        <DialogTrigger>
-          <div className="flex justify-center items-center cursor-pointer select-none">
-            <img className="dw48 h-auto" src="/img/close.min.png" alt="" />
-          </div>
-        </DialogTrigger>
       </DialogContent>
     </Dialog>
   );
