@@ -173,7 +173,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                         {chosenItem.diamond ? (
                           <>
                             <img
-                              className="dw24 dh35 mr-2"
+                              className="dw28 dh35 mr-2"
                               src="/img/LostEnergy.svg"
                               alt=""
                             />
@@ -184,7 +184,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                         ) : (
                           <>
                             <img
-                              className="dw24 dh35 mr-2"
+                              className="dw35 dh35 mr-2"
                               src="/img/gold.svg"
                               alt=""
                             />
@@ -253,7 +253,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                         {item.diamond ? (
                           <>
                             <img
-                              className="w-[18px]"
+                              className="dw28 dh35 mr-1"
                               src="/img/LostEnergy.svg"
                               alt=""
                             />
@@ -264,7 +264,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                         ) : (
                           <>
                             <img
-                              className="w-[18px]"
+                              className="dw35 dh35 mr-1"
                               src="/img/gold.svg"
                               alt=""
                             />
