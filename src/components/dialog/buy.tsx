@@ -10,26 +10,36 @@ interface iDialogBuy {
   setNavIndex?: (index: number) => void;
   id: number;
   setFoodOpen: (open: boolean) => void;
+  setTipsOpen: (open: boolean) => void;
+  itemcoin: number;
+  itemdiamond: number;
 }
-const DialogBuy = ({ trigger, id, setFoodOpen }: iDialogBuy) => {
+const DialogBuy = ({
+  trigger,
+  id,
+  setFoodOpen,
+  setTipsOpen,
+  itemcoin,
+  itemdiamond,
+}: iDialogBuy) => {
   const [, setShowLevelUp] = useShowLevelUp();
   const [, setShowLove] = useShowLoveCollect();
-  const { fetchUser } = useFetchUser();
+  const { userData, fetchUser } = useFetchUser();
   const [isOpen, setIsOpen] = useState(false);
 
   const buyConfirm = async () => {
     if (id) {
       try {
-        // setIsOpen(false);
-        // setFoodOpen(false);
-        // // 始终展示收集爱心
-        // setShowLove(true);
-        // // 升级 播放升级动画
-        // setTimeout(() => {
-        //   setShowLevelUp(true);
-        // }, 3100);
-        // return;
-
+        const { coin, diamond } = userData;
+        debugger;
+        if (itemcoin && itemcoin > coin) {
+          setTipsOpen(true);
+          return false;
+        }
+        if (itemdiamond && itemdiamond > diamond) {
+          setTipsOpen(true);
+          return false;
+        }
         const { data } = await request({
           url: "/cat/v1/shop/goods",
           method: "post",

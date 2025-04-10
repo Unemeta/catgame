@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import DialogBuy from "./buy";
 import { getItem } from "@/utils/itemMap";
 import { formatSecondsToTime } from "@/utils/formatTime";
+import Tips from "../Tips";
 interface Tabs {
   [key: string]: TabItem; // 声明索引签名
 }
@@ -41,6 +42,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
     unlocked: false,
   });
   const [isOpen, setIsOpen] = useState(false);
+  const [tipsOpen, setTipsOpen] = useState(false);
 
   useEffect(() => {
     if (tabs[Object.keys(tabs)[navIndex]].goods?.length > 0) {
@@ -215,6 +217,9 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                           }
                           id={chosenItem.id}
                           setFoodOpen={setIsOpen}
+                          setTipsOpen={setTipsOpen}
+                          itemcoin={chosenItem.coin}
+                          itemdiamond={chosenItem.diamond}
                         ></DialogBuy>
                       )}
                     </div>
@@ -289,6 +294,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
             </div>
           </DialogTrigger>
         </div>
+        {tipsOpen ? <Tips confirm={setTipsOpen}></Tips> : <></>}
       </DialogContent>
     </Dialog>
   );
