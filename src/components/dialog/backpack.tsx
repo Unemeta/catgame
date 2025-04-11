@@ -206,7 +206,7 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
                   {item?.svg}
                   <span
                     className={cn(
-                      "dtext26  font-[500] shadow-[0px_4px_13px_rgba(98,_28,_84,_0.25)]"
+                      "dtext26  font-[500]"
                     )}
                   >
                     {item?.title}
