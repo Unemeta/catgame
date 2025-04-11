@@ -175,7 +175,7 @@ const BackpackToys = ({
   tabData,
 }: iBackpackToys) => {
   const { fetchUser } = useFetchUser();
-  const [goodsIndex, setgoodsIndex] = useState(1);
+  const [goodsIndex, setgoodsIndex] = useState(0);
   const startTimeRef = useRef<number>(0);
   const [, setShowLevelUp] = useShowLevelUp();
   const [, setShowLove] = useShowLoveCollect();
@@ -238,6 +238,13 @@ const BackpackToys = ({
   useEffect(() => {
     startTimeRef.current = Date.now();
   }, []);
+  // 默认选中第一个元素
+  useEffect(()=>{
+    if(tabData?.items?.length>0){
+      setChosen(tabData.items[0]);
+      setgoodsIndex(0);
+    }
+  },[tabData])
   return (
     <>
       <div

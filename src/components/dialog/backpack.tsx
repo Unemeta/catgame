@@ -123,8 +123,22 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
   const reset = () => {
     const map = new Map();
     // 对应navIndex
-    map.set(0, []);
-    map.set(1, []);
+
+    map.set(0, {
+      can_play: true,
+      countdown: 0,
+      items: [],
+    });
+    map.set(1, {
+      can_play: true,
+      countdown: 0,
+      items: [],
+    });
+    map.set(2, {
+      can_play: true,
+      countdown: 0,
+      items: [],
+    });
     setDataMap(map);
   };
   const getBack = async () => {
@@ -138,6 +152,12 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
     // 对应navIndex
     map.set(0, toys);
     map.set(1, furniture);
+    // 后端暂未返回该字段
+    map.set(2, {
+      can_play: true,
+      countdown: 0,
+      items: [],
+    });
     setDataMap(map);
   };
 
@@ -215,8 +235,22 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
               tabData={dataMap.get(navIndex)}
             ></BackpackToys>
           )}
-          {navIndex === 1 && <div className="">Furniture</div>}
-          {navIndex === 2 && <div className="">Tools</div>}
+          {navIndex === 1 && dataMap.get(navIndex) && (
+            <BackpackToys
+              setIsOpen={setIsOpen}
+              setnavIndex={setnavIndex}
+              navIndex={navIndex}
+              tabData={dataMap.get(navIndex)}
+            ></BackpackToys>
+          )}
+          {navIndex === 2 && dataMap.get(navIndex) && (
+            <BackpackToys
+              setIsOpen={setIsOpen}
+              setnavIndex={setnavIndex}
+              navIndex={navIndex}
+              tabData={dataMap.get(navIndex)}
+            ></BackpackToys>
+          )}
         </div>
       </DialogContent>
     </Dialog>
