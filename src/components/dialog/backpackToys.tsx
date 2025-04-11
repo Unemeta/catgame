@@ -259,7 +259,7 @@ const BackpackToys = ({
           height="34"
           viewBox="0 0 24 34"
           fill="none"
-          className="dmr45 dw24 dhauto"
+          className="dmr45 dw24 dhauto cursor-pointer select-none"
           onClick={() => {
             if (navIndex >= 1) {
               setnavIndex(navIndex - 1);
@@ -439,7 +439,7 @@ const BackpackToys = ({
           height="34"
           viewBox="0 0 24 34"
           fill="none"
-          className="dml45 dw24 dhauto"
+          className="dml45 dw24 dhauto cursor-pointer select-none"
           onClick={() => {
             if (navIndex < 2) {
               setnavIndex(navIndex + 1);
