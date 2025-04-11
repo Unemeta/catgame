@@ -36,7 +36,6 @@ export default function VideoBackground() {
     <div className={styles.videoContainer}>
       {/* 背景视频 */}
       <video
-        autoPlay
         loop
         muted
         playsInline
