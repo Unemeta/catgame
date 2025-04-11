@@ -1,5 +1,5 @@
 import React from "react";
-import TopItem from "@/components/TopItem";
+import { TopItem, TopEx } from "@/components/TopItem";
 import Avatar from "@/components/Avatar";
 import styles from "@/styles/Top.module.css";
 import { useFetchUser } from "@/store";
@@ -9,13 +9,17 @@ export default function Top() {
 
   return (
     <div className={styles.top}>
-      <Avatar avatar={userData.avatar} nickname={userData.nickname} level={userData.totalLevel}></Avatar>
-      <TopItem
+      <Avatar
+        avatar={userData.avatar}
+        nickname={userData.nickname}
+        level={userData.totalLevel}
+      ></Avatar>
+      <TopEx
         imgUrl="./img/love.svg"
-        label="Affection"
-        number={Number((userData.nowExpPercent * 100).toFixed())}
-      ></TopItem>
-      {/* <TopItem imgUrl="./img/catfoot.svg" label="Days" number="5"></TopItem> */}
+        label="Ex"
+        number={userData.nowExp}
+        totalNumber={userData.totalLevelTotalExp}
+      ></TopEx>
       <TopItem
         imgUrl="./img/gold.svg"
         label="Gold"

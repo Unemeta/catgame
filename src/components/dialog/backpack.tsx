@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { ReactNode, useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from ".";
-import TopItem from "../TopItem";
+import {TopItem} from "../TopItem";
 import { useFetchUser } from "@/store";
 import { cn } from "@/lib/utils";
 import { request } from "@/utils/request";
@@ -219,11 +219,13 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
                 imgUrl="./img/gold.svg"
                 label="Gold"
                 number={userData.coin}
+                duration={0}
               ></TopItem>
               <TopItem
                 imgUrl="./img/LostEnergy.svg"
                 label="Crystal"
                 number={userData.diamond}
+                duration={0}
               ></TopItem>
             </div>
           </div>
