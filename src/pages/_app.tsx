@@ -1,6 +1,7 @@
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import "@/styles/global.css";
+import { ToastContainer } from 'react-toastify';
 // import Router from "next/router";
 // import NProgress from "nprogress";
 // import "nprogress/nprogress.css";
@@ -35,7 +36,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       {isPortrait ? (
         <div className="rotate-screen">请旋转设备至横屏模式</div>
       ) : (
-        <Component {...pageProps} />
+        <>
+          <Component {...pageProps} />
+          <ToastContainer />
+        </>
       )}
     </>
   );
