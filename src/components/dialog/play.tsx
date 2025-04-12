@@ -1,16 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-img-element */
-import { ReactNode, useEffect, useRef, useState } from "react";
-import { Dialog, DialogContent, DialogTrigger } from ".";
+import { ReactNode, useEffect, useRef } from "react";
+import { Dialog, DialogContent, DialogTitle } from ".";
 
 const videoUrl = "/videos/video.mp4";
 
 interface iDialogShop {
   trigger?: ReactNode;
   playEnd: () => void;
+  isOpen: boolean;
+  setIsOpen: (bool: boolean) => void;
 }
-const DialogPlay = ({ trigger, playEnd }: iDialogShop) => {
-  const [isOpen, setIsOpen] = useState(false);
+const DialogPlay = ({ isOpen, playEnd, setIsOpen }: iDialogShop) => {
   const refVideo = useRef(null);
 
   useEffect(() => {
@@ -39,7 +40,7 @@ const DialogPlay = ({ trigger, playEnd }: iDialogShop) => {
   }, [isOpen, refVideo]);
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger>{trigger}</DialogTrigger>
+      <DialogTitle></DialogTitle>
       <DialogContent className="p-0 w-[100vw] h-[100vh] overflow-hidden max-w-[100vw]">
         <div className="w-full h-full relative">
           <video
