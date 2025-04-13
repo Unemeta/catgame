@@ -25,7 +25,12 @@ const Bubble: React.FC<{ imageSrc: string; progress: number }> = ({
   const radius = 50;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference * (1 - progress / 100);
-
+  useEffect(() => {
+    if (circleRef.current) {
+      circleRef.current.style.transition = "stroke-dashoffset 0.5s ease";
+      circleRef.current.style.strokeDashoffset = `${offset}`;
+    }
+  }, [offset]);
   return (
     <div
       className={cn("flex items-center justify-center", styles.container)}
