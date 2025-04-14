@@ -1,4 +1,3 @@
-import type { NextConfig } from "next";
 import pwa from 'next-pwa'
 
 const withPwa = pwa({
@@ -9,7 +8,7 @@ const withPwa = pwa({
 });
 const url = process.env.NEXT_PUBLIC_API_URL
 
-const nextConfig: NextConfig = withPwa({
+const nextConfig = withPwa({
   /* config options here */
   async rewrites() {
     return [
