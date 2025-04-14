@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { ReactNode, useEffect, useRef } from "react";
 import { Dialog, DialogContent, DialogTitle } from ".";
+import DialogTitleView from "./dialogTitle";
 
 const videoUrl = "/videos/video.mp4";
 
@@ -40,9 +41,10 @@ const DialogPlay = ({ isOpen, playEnd, setIsOpen }: iDialogShop) => {
   }, [isOpen, refVideo]);
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTitle></DialogTitle>
-      <DialogContent className="p-0 w-[100vw] h-[100vh] overflow-hidden max-w-[100vw]">
-        <div className="w-full h-full relative">
+      <DialogContent className="p-0 dw1066 h-auto max-w-[100vw]">
+        <DialogTitle></DialogTitle>
+        <div className="dw1066 dh660 bgFeeding relative dpt100 dpl30 dpr30 dpb30">
+          <DialogTitleView title="Play"></DialogTitleView>
           <video
             ref={refVideo}
             autoPlay
