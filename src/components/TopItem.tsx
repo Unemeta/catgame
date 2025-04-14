@@ -4,18 +4,20 @@ import styles from "@/styles/TopItem.module.css"; // 确保有对应的 CSS 文�
 import CountUp from "react-countup";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function TopItem({ imgUrl, number, label, ...props }: any) {
+export function TopItem({ imgUrl, number, label, showCountUp = true, ...props }: any) {
   return (
     <div className={styles.itemContainer}>
       <img src={imgUrl} alt="" className={styles.itemImage} />
       <div>
+        {showCountUp ? 
         <CountUp
           end={number}
           decimal=","
           className={styles.itemNumber}
           preserveValue
           {...props}
-        />
+        /> : <span className={styles.itemNumber}>{Number(number)?.toLocaleString()}</span>
+      }
         <div className={styles.itemLabel}>{label}</div>
       </div>
     </div>

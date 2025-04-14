@@ -220,12 +220,13 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
                 label="Gold"
                 number={userData.coin}
                 duration={0}
+                showCountUp={false}
               ></TopItem>
               <TopItem
                 imgUrl="./img/LostEnergy.svg"
                 label="Crystal"
                 number={userData.diamond}
-                duration={0}
+                showCountUp={false}
               ></TopItem>
             </div>
           </div>
