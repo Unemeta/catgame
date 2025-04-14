@@ -263,7 +263,7 @@ const BackpackToys = ({
                         "-3.556px 3.556px 12.444px 0px rgba(0, 0, 0, 0.10)",
                     }}
                   >
-                    Play({formatHourTime(remainingTime)}){/* Play */}
+                    Play <span className="dtext22 font-[500]">(CD countdown {formatHourTime(remainingTime)})</span>
                   </div>
                 ) : (
                   <div
