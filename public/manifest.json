@@ -4,7 +4,7 @@
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
-    "theme_color": "#ff0000",
+    "theme_color": "rgba(0, 0, 0, 0.8)",
     "description": "Your app description here",
     "icons": [
       {

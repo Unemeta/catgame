@@ -133,7 +133,7 @@ export default function Home() {
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover"
         />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#ff0000" />
+        <meta name="theme-color" content="rgba(0, 0, 0, 0.8)" />
         <link rel="icon" href="/img/hi.png" />
         <link rel="apple-touch-icon" href="/img/hi.png" />
       </Head>
