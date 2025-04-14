@@ -238,7 +238,7 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
               tabData={dataMap.get(navIndex)}
             ></BackpackToys>
           )}
-          {navIndex === 1 && dataMap.get(navIndex) && (
+          {/* {navIndex === 1 && dataMap.get(navIndex) && (
             <BackpackToys
               setIsOpen={setIsOpen}
               setnavIndex={setnavIndex}
@@ -253,7 +253,7 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
               navIndex={navIndex}
               tabData={dataMap.get(navIndex)}
             ></BackpackToys>
-          )}
+          )} */}
         </div>
       </DialogContent>
     </Dialog>
