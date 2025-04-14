@@ -121,6 +121,7 @@ const BackpackToys = ({
             fill="white"
           />
         </svg>
+        {tabData?.items?.length > 0 && 
         <div className="toylist flex-[4] dmr100 grid grid-cols-5 dgap40 relative bgToysPaws">
           {tabData?.items?.map((item: good, index: number) => (
             <div
@@ -182,6 +183,14 @@ const BackpackToys = ({
             </div>
           ))}
         </div>
+        }
+        {tabData?.items?.length > 0  ? <></> : <div className="w-full flex justify-center items-center"> 
+            <div className="flex flex-col justify-center items-center">
+              <img className="dw300 dhauto dmb40" src="/img/nullDataToys.min.png" alt="" />
+              <div className="text-white dtext35 font-[700]">You don't have toys for now.</div>
+            </div>
+          </div>
+          }
         {/* detail */}
         {chosenItem.id ? (
           <div
