@@ -17,7 +17,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
     console.log("login", account);
     if (account) {
       const res = await request({
-        url: "/cat/v1/user/login",
+        url: "/api/cat/v1/user/login",
         method: "post",
         data: {
           username: account,

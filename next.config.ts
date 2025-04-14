@@ -13,7 +13,7 @@ const nextConfig = withPwa({
   async rewrites() {
     return [
       {
-        source: "/:path*",
+        source: "/api/:path*",
         destination: `${url}/:path*`,
       },
     ];

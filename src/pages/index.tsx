@@ -48,7 +48,7 @@ export default function Home() {
 
   const feedingInfo = async () => {
     const { data } = await request({
-      url: "/cat/v1/shop/feeding/info",
+      url: "/api/cat/v1/shop/feeding/info",
       method: "get",
     });
     console.log(data);
