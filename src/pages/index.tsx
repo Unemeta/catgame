@@ -132,6 +132,10 @@ export default function Home() {
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover"
         />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#ff0000" />
+        <link rel="icon" href="/img/hi.png" />
+        <link rel="apple-touch-icon" href="/img/hi.png" />
       </Head>
       {loading ? (
         <Loading progress={progress} />
