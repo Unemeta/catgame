@@ -121,7 +121,7 @@ const BackpackToys = ({
             fill="white"
           />
         </svg>
-        <div className="toylist flex-[4] dmr100 grid grid-cols-5 dgap40 relative">
+        <div className="toylist flex-[4] dmr100 grid grid-cols-5 dgap40 relative bgToysPaws">
           {tabData?.items?.map((item: good, index: number) => (
             <div
               className={cn(
