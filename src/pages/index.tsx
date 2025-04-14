@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
@@ -110,6 +111,18 @@ export default function Home() {
 
     feedingInfo();
     fetchUser();
+
+    let deferredPrompt: any;
+
+    const handler = (e: any) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      // 你可以存储这个变量并在按钮点击时调用 deferredPrompt.prompt()
+    };
+
+    window.addEventListener("beforeinstallprompt", handler);
+
+    return () => window.removeEventListener("beforeinstallprompt", handler);
   }, []);
   return (
     <>

@@ -1,7 +1,15 @@
 import type { NextConfig } from "next";
+import pwa from 'next-pwa'
+
+const withPwa = pwa({
+  dest: 'public',
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === 'development', // 开发环境禁用 PWA
+});
 const url = process.env.NEXT_PUBLIC_API_URL
 
-const nextConfig: NextConfig = {
+const nextConfig: NextConfig = withPwa({
   /* config options here */
   async rewrites() {
     return [
@@ -11,6 +19,6 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-};
+});
 
 export default nextConfig;
