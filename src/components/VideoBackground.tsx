@@ -1,60 +1,81 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import styles from "@/styles/VideoBackground.module.css"; // 确保有对应的 CSS 文件
 
 const videoUrl = "/videos/video.mp4";
-// const start = 0; // 循环起点
-// const end = 5; // 循环终点
-// let loopEnabled = false; // 是否启用循环播放
-
-// function toggleLoop() {
-//   loopEnabled = !loopEnabled;
-//   console.log("循环播放：" + (loopEnabled ? "开启" : "关闭"));
-// }
-
 export default function VideoBackground() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  // const enterFullscreen = () => {
-  //   const elem = document.documentElement; // 选择整个网页
-  //   if (elem.requestFullscreen) {
-  //     elem.requestFullscreen();
-  //   }
-  // };
-  // const videoJump = (time: number = 0) => {
-  //   if (videoRef.current) {
-  //     videoRef.current.currentTime = time;
-  //     // 设置循环
-  //     // videoRef.current.addEventListener("timeupdate", () => {
-  //     //   if (loopEnabled && videoRef.current.currentTime >= end) {
-  //     //     videoRef.current.currentTime = start;
-  //     //     videoRef.current.play();
-  //     //   }
-  //     // });
-  //   }
-  // };
+  const [isPlayingSpecial, setIsPlayingSpecial] = useState(false);
+  const [isSpecialCompleted, setIsSpecialCompleted] = useState(false);
+
+  const DEFAULT_LOOP = [0, 12] as const;
+  const SPECIAL_CLIP = [13, 17.5] as const;
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleTimeUpdate = () => {
+      if (isPlayingSpecial) {
+        // console.log(video.currentTime,'video.currentTime')
+        if (video.currentTime >= SPECIAL_CLIP[1]) {
+          video.pause();
+          setIsPlayingSpecial(false);
+          setIsSpecialCompleted(true);
+          video.currentTime = DEFAULT_LOOP[0];
+          video.play();
+        }
+      } else {
+        // console.log(video.currentTime,'video.DEFAULT_LOOP')
+        if (video.currentTime >= DEFAULT_LOOP[1]) {
+          video.currentTime = DEFAULT_LOOP[0];
+          video.play();
+        }
+      }
+    };
+    video.play();
+    video.addEventListener("timeupdate", handleTimeUpdate);
+    return () => video.removeEventListener("timeupdate", handleTimeUpdate);
+  }, [isPlayingSpecial]);
+
+  useEffect(() => {
+    if (isSpecialCompleted) {
+      setIsSpecialCompleted(false);
+    }
+  }, [isSpecialCompleted]);
+
+  const playSpecialAnimation = () => {
+    const video = videoRef.current;
+    if (!video || isPlayingSpecial) return;
+
+    video.pause();
+    setIsPlayingSpecial(true);
+    video.currentTime = SPECIAL_CLIP[0];
+    video.play();
+  };
+
   return (
     <div className={styles.videoContainer}>
       {/* 背景视频 */}
       <video
-        loop
         muted
         playsInline
         ref={videoRef}
         src={videoUrl}
+        loop={!isPlayingSpecial}
         preload="auto"
         className="absolute top-0 left-0 w-full h-full object-cover"
       >
         {/* <source src={videoUrl} type="video/mp4"/> */}
       </video>
       {/* 交互层 */}
-      {/* <div className={styles.overlay}>
-        <button className={styles.button} onClick={enterFullscreen}>
-          点击全屏
-        </button>
-        <button className={styles.button} onClick={() => videoJump(5)}>
-          切换动画 0
-        </button>
-      </div> */}
+      <button
+        className={styles.active}
+        onClick={playSpecialAnimation}
+        disabled={isPlayingSpecial}
+      >
+        {/* {isPlayingSpecial ? "Playing..." : "Play Special Animation"} */}
+      </button>
     </div>
   );
 }

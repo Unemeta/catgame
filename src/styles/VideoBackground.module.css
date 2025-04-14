@@ -5,12 +5,13 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  z-index: -1; /* 保持在背景 */
+  z-index: -1;
 }
 .videoContainer video {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important; /* 强制填充 */
+  z-index: -2;
 }
 
 .overlay {
@@ -39,4 +40,14 @@
 
 .button:hover {
   background: rgba(0, 0, 0, 0.8);
+}
+
+.active{
+  width: 200px;
+  height: 200px;
+  /* background: red; */
+  z-index: 1;
+  position: absolute;
+  left: 500px;
+  bottom: 300px;
 }
