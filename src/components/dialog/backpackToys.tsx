@@ -122,8 +122,8 @@ const BackpackToys = ({
           />
         </svg>
         {tabData?.items?.length > 0 && 
-        <div className={cn("toylist flex-[4] dmr100 grid grid-cols-5 dgap40 relative bgToysPaws overflow-y-scroll h-full ",{
-          "!bg-none": tabData?.items?.length > 25
+        <div className={cn("toylist flex-[4] dmr100 grid grid-cols-5 dgap40 relative bgToysPaws",{
+          "!bg-none h-full overflow-y-scroll ": tabData?.items?.length > 25
         })}>
           {tabData?.items?.map((item: good, index: number) => (
             <div
