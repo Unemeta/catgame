@@ -13,8 +13,10 @@ import { request } from "@/utils/request";
 import DialogFood from "@/components/dialog/food";
 import LevelUp from "@/components/LevelUp";
 import { Tabs } from "@/types";
-import { useShowLevelUp, useFetchUser } from "@/store";
+import { useShowLevelUp, useFetchUser, usePlayItemId } from "@/store";
 import LoveCollect from "@/components/LoveCollect";
+import Rewards from "@/components/dialog/rewards";
+
 export default function Home() {
   const { fetchUser } = useFetchUser();
   const [showLevelUp] = useShowLevelUp();
@@ -23,6 +25,7 @@ export default function Home() {
   const [foodTabs, setFoodTabs] = useState<Tabs>({
     food: { unlocked: false, goods: [] },
   });
+  const [playItemId] = usePlayItemId();
   // const [loadedResources, setLoadedResources] = useState(0);
   interface Resource {
     type: "image" | "video";
@@ -156,6 +159,7 @@ export default function Home() {
           ></DialogFood>
           <NavRight></NavRight>
           <VideoBackground />
+          {playItemId ? <Rewards id={playItemId}></Rewards> : <></>}
         </div>
       )}
     </>

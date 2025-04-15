@@ -2,12 +2,24 @@ import React from "react";
 import LottieView from "@/components/lottie";
 import styles from "@/styles/LevelUp.module.css"; // 确保有对应的 CSS 文件
 import { cn } from "@/lib/utils";
-import { useFetchUser, useShowLevelUp } from "@/store";
+import {
+  useFetchUser,
+  useShowLevelUp,
+  useRewardDiaOpenByLevelup,
+  useRewardsDia,
+} from "@/store";
 
 const LevelUp = () => {
   const { userData } = useFetchUser();
   const [showLevelUp, setShowLevelUp] = useShowLevelUp();
+  const [, setRewardsDia] = useRewardsDia();
+  const [rewardDiaOpenByLevelup, setRewardDiaOpenByLevelup] =
+    useRewardDiaOpenByLevelup();
   const btnClick = () => {
+    if (rewardDiaOpenByLevelup) {
+      setRewardsDia(true);
+      setRewardDiaOpenByLevelup(false);
+    }
     setShowLevelUp(false);
   };
   return showLevelUp ? (

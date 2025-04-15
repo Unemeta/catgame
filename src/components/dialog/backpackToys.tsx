@@ -8,7 +8,15 @@ import { getItem } from "@/utils/itemMap";
 import { formatSecondsToTime, formatHourTime } from "@/utils/formatTime";
 import CooldownCircle from "@/components/CooldownCircle";
 import CountDownFull from "@/components/CountDownFull";
-import { useFetchUser, useShowLevelUp, useShowLoveCollect } from "@/store";
+import {
+  useFetchUser,
+  useShowLevelUp,
+  useShowLoveCollect,
+  usePlayItemId,
+  useRewardsDia,
+  useRewardDiaOpenByLevelup,
+} from "@/store";
+// import Rewards from "@/components/dialog/rewards";
 
 /* eslint-disable @next/next/no-img-element */
 interface iBackpackToys {
@@ -28,6 +36,9 @@ const BackpackToys = ({
   const startTimeRef = useRef<number>(0);
   const [, setShowLevelUp] = useShowLevelUp();
   const [, setShowLove] = useShowLoveCollect();
+  const [, setPlayItemId] = usePlayItemId();
+  const [, setShowRewards] = useRewardsDia();
+  const [, setRewardDiaOpenByLevelup] = useRewardDiaOpenByLevelup();
   const [chosenItem, setChosen] = useState({
     affection: 0,
     coin: 0,
@@ -77,6 +88,10 @@ const BackpackToys = ({
         if (animationRef.current) cancelAnimationFrame(animationRef.current);
       };
     }
+    // 设置playid
+    if (chosenItem.id) {
+      setPlayItemId(chosenItem.id);
+    }
   }, [chosenItem]);
   useEffect(() => {
     startTimeRef.current = Date.now();
@@ -121,78 +136,94 @@ const BackpackToys = ({
             fill="white"
           />
         </svg>
-        {tabData?.items?.length > 0 && 
-        <div className={cn("toylist flex-[4] dmr100 grid grid-cols-5 dgap40 relative bgToysPaws",{
-          "!bg-none h-full overflow-y-scroll ": tabData?.items?.length > 25
-        })}>
-          {tabData?.items?.map((item: good, index: number) => (
-            <div
-              className={cn(
-                "rounded-[10px] overflow-hidden box-border",
-                goodsIndex === index ? styles.cardActive : styles.card
-              )}
-              key={index}
-              style={{
-                background: "linear-gradient(270deg, #FFCCED 0%, #EDD8E5 100%)",
-              }}
-              onClick={() => {
-                setChosen(item);
-                setgoodsIndex(index);
-              }}
-            >
-              <img
-                className="dh150 rounded-br-[20px]"
-                src={getItem(item.id)?.img}
-                alt=""
-              />
-              {/* 显示倒计时 */}
-              {item.countdown ? (
-                <CooldownCircle duration={item.countdown}></CooldownCircle>
-              ) : (
-                <></>
-              )}
+        {tabData?.items?.length > 0 && (
+          <div
+            className={cn(
+              "toylist flex-[4] dmr100 grid grid-cols-5 dgap40 relative bgToysPaws",
+              {
+                "!bg-none h-full overflow-y-scroll ":
+                  tabData?.items?.length > 25,
+              }
+            )}
+          >
+            {tabData?.items?.map((item: good, index: number) => (
               <div
-                className="flex justify-center items-center dh45"
+                className={cn(
+                  "rounded-[10px] overflow-hidden box-border",
+                  goodsIndex === index ? styles.cardActive : styles.card
+                )}
+                key={index}
                 style={{
                   background:
                     "linear-gradient(270deg, #FFCCED 0%, #EDD8E5 100%)",
                 }}
+                onClick={() => {
+                  setChosen(item);
+                  setgoodsIndex(index);
+                }}
               >
-                {item.diamond ? (
-                  <>
-                    <img
-                      className="dw20 h-auto dmr5"
-                      src="/img/LostEnergy.svg"
-                      alt=""
-                    />
-                    <span className="dtext22 font-[700] text-[#383158]">
-                      {item.diamond.toLocaleString()}
-                    </span>
-                  </>
+                <img
+                  className="dh150 rounded-br-[20px]"
+                  src={getItem(item.id)?.img}
+                  alt=""
+                />
+                {/* 显示倒计时 */}
+                {item.countdown ? (
+                  <CooldownCircle duration={item.countdown}></CooldownCircle>
                 ) : (
-                  <>
-                    <img
-                      className="dw20 h-auto dmr5"
-                      src="/img/gold.svg"
-                      alt=""
-                    />
-                    <span className="dtext22 font-[700] text-[#383158]">
-                      {item.coin.toLocaleString()}
-                    </span>
-                  </>
+                  <></>
                 )}
+                <div
+                  className="flex justify-center items-center dh45"
+                  style={{
+                    background:
+                      "linear-gradient(270deg, #FFCCED 0%, #EDD8E5 100%)",
+                  }}
+                >
+                  {item.diamond ? (
+                    <>
+                      <img
+                        className="dw20 h-auto dmr5"
+                        src="/img/LostEnergy.svg"
+                        alt=""
+                      />
+                      <span className="dtext22 font-[700] text-[#383158]">
+                        {item.diamond.toLocaleString()}
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <img
+                        className="dw20 h-auto dmr5"
+                        src="/img/gold.svg"
+                        alt=""
+                      />
+                      <span className="dtext22 font-[700] text-[#383158]">
+                        {item.coin.toLocaleString()}
+                      </span>
+                    </>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+        {tabData?.items?.length > 0 ? (
+          <></>
+        ) : (
+          <div className="w-full flex justify-center items-center">
+            <div className="flex flex-col justify-center items-center">
+              <img
+                className="dw300 dhauto dmb40"
+                src="/img/nullDataToys.min.png"
+                alt=""
+              />
+              <div className="text-white dtext35 font-[700]">
+                You don&apos;t have toys for now.
               </div>
             </div>
-          ))}
-        </div>
-        }
-        {tabData?.items?.length > 0  ? <></> : <div className="w-full flex justify-center items-center"> 
-            <div className="flex flex-col justify-center items-center">
-              <img className="dw300 dhauto dmb40" src="/img/nullDataToys.min.png" alt="" />
-              <div className="text-white dtext35 font-[700]">You don&apos;t have toys for now.</div>
-            </div>
           </div>
-          }
+        )}
         {/* detail */}
         {chosenItem.id ? (
           <div
@@ -265,7 +296,10 @@ const BackpackToys = ({
                         "-3.556px 3.556px 12.444px 0px rgba(0, 0, 0, 0.10)",
                     }}
                   >
-                    Play <span className="dtext22 font-[500]">(CD countdown {formatHourTime(remainingTime)})</span>
+                    Play{" "}
+                    <span className="dtext22 font-[500]">
+                      (CD countdown {formatHourTime(remainingTime)})
+                    </span>
                   </div>
                 ) : (
                   <div
@@ -292,9 +326,14 @@ const BackpackToys = ({
                   await fetchUser();
                   if (isLevelup) {
                     // 升级 播放升级动画
+                    // 还需要展示奖励弹窗
                     setTimeout(() => {
                       setShowLevelUp(true);
+                      setRewardDiaOpenByLevelup(true);
                     }, 3100);
+                  } else {
+                    // 直接展示奖励弹窗
+                    setShowRewards(true);
                   }
                 }}
                 isOpen={playOpen}
@@ -337,6 +376,7 @@ const BackpackToys = ({
       ) : (
         <></>
       )}
+      {/* {chosenItem.id ? <Rewards id={chosenItem.id}></Rewards> : <></>} */}
     </>
   );
 };

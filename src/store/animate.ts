@@ -25,3 +25,26 @@ export const useShowLoveCollect = () => {
 };
 
 
+const showRewardsDia = atom<boolean>(false) // 是否显示奖励弹框
+
+export const useRewardsDia = () => {
+    useHydrateAtoms([[showRewardsDia, false]] as const);
+    return useAtom(showRewardsDia);
+};
+
+
+const playItemId = atom<number>(0) // 存放执行play道具的id
+
+export const usePlayItemId = () => {
+    useHydrateAtoms([[playItemId, 0]] as const);
+    return useAtom(playItemId);
+};
+
+
+
+const rewardDiaOpenByLevelup = atom<boolean>(false) // 是否通过levelup的确认键去显示奖励
+
+export const useRewardDiaOpenByLevelup = () => {
+    useHydrateAtoms([[rewardDiaOpenByLevelup, false]] as const);
+    return useAtom(rewardDiaOpenByLevelup);
+};
