@@ -143,7 +143,7 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
   };
   const getBack = async () => {
     const res = await request({
-      url: "/cat/v1/user/backpack",
+      url: "/api/cat/v1/user/backpack",
       method: "get",
     });
 

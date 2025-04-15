@@ -45,7 +45,7 @@ const BackpackToys = ({
   const play = async () => {
     if (chosenItem.id) {
       const { data } = await request({
-        url: "/cat/v1/user/backpack/play",
+        url: "/api/cat/v1/user/backpack/play",
         method: "post",
         data: {
           id: chosenItem.id,

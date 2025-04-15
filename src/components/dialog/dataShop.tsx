@@ -11,7 +11,7 @@ const DataShop = () => {
 
   const shopInfo = async () => {
     const { data } = await request({
-      url: "/cat/v1/shop/shop/info",
+      url: "/api/cat/v1/shop/shop/info",
       method: "get",
     });
     

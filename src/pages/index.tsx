@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
@@ -47,7 +48,7 @@ export default function Home() {
 
   const feedingInfo = async () => {
     const { data } = await request({
-      url: "/cat/v1/shop/feeding/info",
+      url: "/api/cat/v1/shop/feeding/info",
       method: "get",
     });
     console.log(data);
@@ -110,6 +111,18 @@ export default function Home() {
 
     feedingInfo();
     fetchUser();
+
+    let deferredPrompt: any;
+
+    const handler = (e: any) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      // 你可以存储这个变量并在按钮点击时调用 deferredPrompt.prompt()
+    };
+
+    window.addEventListener("beforeinstallprompt", handler);
+
+    return () => window.removeEventListener("beforeinstallprompt", handler);
   }, []);
   return (
     <>
@@ -119,6 +132,10 @@ export default function Home() {
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover"
         />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="rgba(0, 0, 0, 0.8)" />
+        <link rel="icon" href="/img/hi.png" />
+        <link rel="apple-touch-icon" href="/img/hi.png" />
       </Head>
       {loading ? (
         <Loading progress={progress} />

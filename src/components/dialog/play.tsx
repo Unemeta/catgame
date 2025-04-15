@@ -4,7 +4,7 @@ import { ReactNode, useEffect, useRef } from "react";
 import { Dialog, DialogContent, DialogTitle } from ".";
 import DialogTitleView from "./dialogTitle";
 
-const videoUrl = "/videos/video.mp4";
+const videoUrl = "/videos/playball.mp4";
 
 interface iDialogShop {
   trigger?: ReactNode;
