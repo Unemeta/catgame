@@ -31,7 +31,6 @@ const DialogBuy = ({
     if (id) {
       try {
         const { coin, diamond } = userData;
-        debugger;
         if (itemcoin && itemcoin > coin) {
           setTipsOpen(true);
           return false;
