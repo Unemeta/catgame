@@ -40,7 +40,10 @@ const DialogPlay = ({ isOpen, playEnd, setIsOpen }: iDialogShop) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, refVideo]);
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog open={isOpen} onOpenChange={(val)=>{
+      playEnd()
+      setIsOpen(val)
+    }}>
       <DialogContent className="p-0 dw1066 h-auto max-w-[100vw]">
         <DialogTitle></DialogTitle>
         <div className="dw1066 dh660 bgFeeding relative dpt100 dpl30 dpr30 dpb30">
