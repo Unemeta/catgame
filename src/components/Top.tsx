@@ -16,7 +16,7 @@ export default function Top() {
       ></Avatar>
       <TopEx
         imgUrl="./img/love.svg"
-        label="Ex"
+        label="Affection"
         number={userData.nowExp}
         totalNumber={userData.totalLevelTotalExp}
       ></TopEx>
