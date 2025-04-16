@@ -1,5 +1,6 @@
 const config = {
   plugins: {
+    autoprefixer:{},
     "@tailwindcss/postcss": {},
     "postcss-px-to-viewport": {
       viewportWidth: 1920, // 设计稿宽度
