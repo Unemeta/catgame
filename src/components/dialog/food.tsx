@@ -23,6 +23,7 @@ interface good {
   expire: number;
   id: number;
   unlocked: boolean;
+  already_bought?: boolean;
 }
 interface TabItem {
   unlocked: boolean;
@@ -226,15 +227,21 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                   </div>
                 </div>
               </div>
-              <div className="foodList flex-2 overflow-y-scroll dpr30">
+              <div className="foodList flex-2 overflow-y-scroll dpl34 dpr30">
                 {/* {tabs[Object.keys(tabs)[navIndex]].goods} */}
                 {tabs[Object.keys(tabs)[navIndex]].goods?.map((item, index) => (
                   <div
-                    className="dpl34 dpr10 relative dmb10 dh200"
+                    className={cn("dpr10 relative dmb10 dh200 cursor-pointer",{
+                      "!cursor-not-allowed": item?.already_bought
+                    })}
                     key={index}
                     onClick={() => {
-                      setgoodsIndex(index);
-                      setChosen(item);
+                      if(item?.already_bought){
+                        // 
+                      }else{
+                        setgoodsIndex(index);
+                        setChosen(item);
+                      }
                     }}
                   >
                     {index === goodsIndex && (
@@ -249,6 +256,14 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                         backgroundImage: `url(${getItem(item.id)?.img})`,
                       }}
                     >
+                      {item?.already_bought === true && (
+                        <div
+                          className="dw86 dh40 flex justify-center items-center bg-[#21212f4d] text-white dtext18 font-[700] drounded50 absolute left-[50%] top-[50%] select-none"
+                          style={{ translate: "-50% -50%" }}
+                        >
+                          Bought
+                        </div>
+                      )}
                       <div className="text-[#FFFDCE] bg-black/30 rounded-[20px] inline-flex justify-center items-center absolute left-[50%] bottom-0 translate-x-[-50%] w-[90%]">
                         {/* <img
                           src="/img/gold.svg"

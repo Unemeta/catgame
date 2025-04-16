@@ -179,6 +179,9 @@ body {
 .dw55 {
   width: 55px;
 }
+.dw86 {
+  width: 86px;
+}
 .dw116 {
   width: 116px;
 }
@@ -221,6 +224,9 @@ body {
 }
 .dh35 {
   height: 35px;
+}
+.dh40 {
+  height: 40px;
 }
 .dh45 {
   height: 45px;
@@ -312,6 +318,9 @@ body {
   padding-top: 100px;
 }
 
+.dpb10 {
+  padding-bottom: 10px;
+}
 .dpb12 {
   padding-bottom: 12px;
 }
@@ -334,6 +343,9 @@ body {
   padding-bottom: 50px;
 }
 
+.dpl10 {
+  padding-left: 10px;
+}
 .dpl15 {
   padding-left: 15px;
 }
@@ -440,4 +452,8 @@ body {
 }
 .drightF10 {
   right: -10px;
+}
+
+.drounded50 {
+  border-radius: 50px;
 }
