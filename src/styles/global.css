@@ -454,6 +454,15 @@ body {
   right: -10px;
 }
 
+.drounded3 {
+  border-radius: 3px ;
+}
+.drounded5 {
+  border-radius: 5px;
+}
+.drounded10 {
+  border-radius: 10px;
+}
 .drounded50 {
   border-radius: 50px;
 }

@@ -149,7 +149,7 @@ const BackpackToys = ({
             {tabData?.items?.map((item: good, index: number) => (
               <div
                 className={cn(
-                  "rounded-[10px] overflow-hidden box-border",
+                  "overflow-hidden box-border",
                   goodsIndex === index ? styles.cardActive : styles.card
                 )}
                 key={index}
