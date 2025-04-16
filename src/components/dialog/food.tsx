@@ -46,9 +46,11 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
   const [tipsOpen, setTipsOpen] = useState(false);
 
   useEffect(() => {
-    if (tabs[Object.keys(tabs)[navIndex]].goods?.length > 0) {
-      const item = tabs[Object.keys(tabs)[navIndex]].goods[0];
-      setgoodsIndex(0);
+    const goodsList = tabs[Object.keys(tabs)[navIndex]]?.goods;
+    const noBuyIndex = goodsList.findIndex((item) => item.hasOwnProperty('already_bought') && item.already_bought === false);
+    if (goodsList?.length > 0 && noBuyIndex !== -1) {
+      const item = goodsList[noBuyIndex];
+      setgoodsIndex(noBuyIndex);
       setChosen(item);
     } else {
       setChosen({
@@ -231,14 +233,14 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                 {/* {tabs[Object.keys(tabs)[navIndex]].goods} */}
                 {tabs[Object.keys(tabs)[navIndex]].goods?.map((item, index) => (
                   <div
-                    className={cn("dpr10 relative dmb10 dh200 cursor-pointer",{
-                      "!cursor-not-allowed": item?.already_bought
+                    className={cn("dpr10 relative dmb10 dh200 cursor-pointer", {
+                      "!cursor-not-allowed": item?.already_bought,
                     })}
                     key={index}
                     onClick={() => {
-                      if(item?.already_bought){
-                        // 
-                      }else{
+                      if (item?.already_bought) {
+                        //
+                      } else {
                         setgoodsIndex(index);
                         setChosen(item);
                       }
