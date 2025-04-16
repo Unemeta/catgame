@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@tailwind utilities;
+
 @media screen and (orientation: portrait) {
   .rotate-screen {
     display: flex;

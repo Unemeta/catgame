@@ -1,6 +1,6 @@
 const config = {
   plugins: {
-    autoprefixer:{},
+    "autoprefixer":{},
     "@tailwindcss/postcss": {},
     "postcss-px-to-viewport": {
       viewportWidth: 1920, // 设计稿宽度
@@ -12,6 +12,7 @@ const config = {
       minPixelValue: 1, // 小于或等于1px不转换为视口单位
       mediaQuery: false, // 允许在媒体查询中转换px
     },
+    autoprefixer: {},
   },
 };
 
