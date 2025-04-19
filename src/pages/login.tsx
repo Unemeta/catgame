@@ -50,7 +50,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
           onChange={(e) => setAccount(e.target.value)}
         />
         <div
-          className={cn("bg-[url('/img/bg/btnbg.jpg')] bg-cover", styles.btn)}
+          className={cn("bg-[url('/img/bg/btnbg.jpg')] bg-cover cursor-pointer select-none", styles.btn)}
           onClick={login}
         >
           Log in
