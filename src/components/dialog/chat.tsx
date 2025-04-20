@@ -43,8 +43,8 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
               <span className="text-white dtext26 font-[500]">Back</span>
             </div>
           </div>
-          <div className="flex justify-end items-start dtest dmb40">
-            <div className="chatCtt grid grid-cols-1 dgap20 dh730 overflow-y-scroll dpr36 dtest">
+          <div className="flex justify-end items-start dmb40">
+            <div className="chatCtt grid grid-cols-1 dgap20 dh730 overflow-y-scroll dpr36">
               {[1, 1, 1, 1, 1, 1]?.map((item, index: number) => {
                 if (index % 2 === 0) {
                   return (
