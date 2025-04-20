@@ -16,6 +16,7 @@ import { Tabs } from "@/types";
 import { useShowLevelUp, useFetchUser, usePlayItemId } from "@/store";
 import LoveCollect from "@/components/LoveCollect";
 import Rewards from "@/components/dialog/rewards";
+import DialogChatView from "@/components/dialog/chat";
 
 export default function Home() {
   const { fetchUser } = useFetchUser();
@@ -157,6 +158,17 @@ export default function Home() {
               </div>
             }
           ></DialogFood>
+          <DialogChatView
+            trigger={
+              <div className="fixed top-[50%] left-[600px] dtranslateYF50 z-1">
+                <img
+                  className="dw116 h-auto dmb10"
+                  src="/img/nav/rightBackpack.min.png"
+                  alt=""
+                />
+              </div>
+            }
+          ></DialogChatView>
           <NavRight></NavRight>
           <VideoBackground />
           {playItemId ? <Rewards id={playItemId}></Rewards> : <></>}
