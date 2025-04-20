@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { ReactNode, useState, useEffect } from "react";
+import { ReactNode, useState } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from ".";
 import styles from "@/styles/Backpack.module.css";
 
