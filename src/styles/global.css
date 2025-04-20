@@ -45,8 +45,6 @@ body {
   font-weight: 400;
   /* src: url("/font/SF-Pro-Rounded-Black.otf") format("truetype"); */
   src: url("/font/SF-Pro-Rounded-Bold.otf") format("truetype");
-
-  
 }
 
 /* @media screen and (orientation: portrait) {
@@ -101,7 +99,7 @@ body {
   background-image: url("/img/bg/toysPawBg.min.png");
   /* background-size: 100%; */
   background-repeat: space;
-  background-size: 100%; 
+  background-size: 100%;
 }
 .buyShopImg {
   border-radius: 20px;
@@ -179,11 +177,17 @@ body {
 .dw55 {
   width: 55px;
 }
+.dw65 {
+  width: 65px;
+}
 .dw86 {
   width: 86px;
 }
 .dw116 {
   width: 116px;
+}
+.dw120 {
+  width: 120px;
 }
 .dw180 {
   width: 180px;
@@ -205,6 +209,9 @@ body {
 }
 .dw455 {
   width: 455px;
+}
+.dw410 {
+  width: 410px;
 }
 .dw680 {
   width: 680px;
@@ -231,6 +238,9 @@ body {
 .dh45 {
   height: 45px;
 }
+.dh65 {
+  height: 65px;
+}
 .dh70 {
   height: 70px;
 }
@@ -239,6 +249,12 @@ body {
 }
 .dh90 {
   height: 90px;
+}
+.dh100 {
+  height: 100px;
+}
+.dh120 {
+  height: 120px;
 }
 .dh150 {
   height: 150px;
@@ -274,6 +290,9 @@ body {
   height: 730px;
 }
 
+.dp24 {
+  padding: 24px;
+}
 .dp40 {
   padding: 40px;
 }
@@ -405,6 +424,12 @@ body {
 .dmr20 {
   margin-right: 20px;
 }
+.dmr25 {
+  margin-right: 25px;
+}
+.dmr30 {
+  margin-right: 30px;
+}
 .dmr45 {
   margin-right: 45px;
 }
@@ -412,6 +437,9 @@ body {
   margin-right: 100px;
 }
 
+.dmb8 {
+  margin-bottom: 8px;
+}
 .dmb10 {
   margin-bottom: 10px;
 }
@@ -439,10 +467,13 @@ body {
 .dmb80 {
   margin-bottom: 80px;
 }
+
+.dgap20 {
+  gap: 20px;
+}
 .dgap40 {
   gap: 40px;
 }
-
 
 .dtop35 {
   top: 35px;
@@ -455,7 +486,7 @@ body {
 }
 
 .drounded3 {
-  border-radius: 3px ;
+  border-radius: 3px;
 }
 .drounded5 {
   border-radius: 5px;
@@ -463,6 +494,29 @@ body {
 .drounded10 {
   border-radius: 10px;
 }
+.drounded30 {
+  border-radius: 30px;
+}
 .drounded50 {
   border-radius: 50px;
+}
+.drounded160 {
+  border-radius: 160px;
+}
+
+.dtranslateYF50 {
+  transform: translate(0, -70%);
+}
+
+
+
+.dmaxW460 {
+  max-width: 460px;
+}
+
+
+
+
+.dborderW4 {
+  border-width: 4px;
 }
