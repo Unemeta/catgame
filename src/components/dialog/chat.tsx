@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from ".";
 import styles from "@/styles/Backpack.module.css";
+import { jwtHelper } from "@/utils/jwt";
 
 interface iDialogChatView {
   trigger?: ReactNode;
@@ -9,6 +10,46 @@ interface iDialogChatView {
 const DialogChatView = ({ trigger }: iDialogChatView) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const [socket, setSocket] = useState<WebSocket | null>(null);
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    const socket = new WebSocket(`${process.env.NEXT_PUBLIC_WS_URL}`);
+    // const socket = new WebSocket(`${process.env.NEXT_PUBLIC_WS_URL}`, {
+    //   headers: {
+    //     Authorization: `Bearer ${jwtHelper.getToken()}`,
+    //   },
+    // });
+    // socket.addEventListener("open", (event) => {
+    //   socket.send("Authorization: Bearer " + jwtHelper.getToken());
+    // });
+    socket.onopen = () => {
+      console.log("Connected to the server");
+      socket.send("Authorization: Bearer " + jwtHelper.getToken());
+    };
+    socket.onmessage = (event) => {
+      // setMessages((prevMessages) => [...prevMessages, event.data]);
+    };
+    socket.onclose = () => {
+      console.log("Disconnected from the server");
+    };
+    setSocket(socket);
+    return () => {
+      socket.close();
+    };
+  }, []);
+
+  const sendMessage = () => {
+    if (socket && message) {
+      socket?.send(message);
+      setMessage("");
+    }
+  };
+  const handleKeyDown = (event: any) => {
+    if (event?.key === "Enter") {
+      sendMessage();
+    }
+  };
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTitle></DialogTitle>
@@ -97,13 +138,23 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
             </div>
           </div>
           <div className="textInput flex justify-center items-center">
-            <input className="drounded160 dborderW4 border-[#FFF] dw410 dh100 bg-white/70 dmr30 dtext30 dpl15 dpr15" type="text" />
+            <div className="relative">
+              <input
+                className="drounded160 dborderW4 border-[#FFF] dw780 dh100 bg-white/70 dmr30  dpl15 dpr155 outline-none text-[#522192] dtest24 font-[800]"
+                type="text"
+                onChange={(e) => setMessage(e.target.value)}
+                onKeyDown={handleKeyDown}
+              />
+              <div className="absolute dright80 top-[50%] dtranslateYF50 bg-[linear-gradient(0deg,_#BE6FFF_0%,_#6C8AFF_100%)] drounded20 dpx30 dpy20 text-white dtext24 font-[800]">
+                Send
+              </div>
+            </div>
             <img className="dw120 dh120" src="/img/speak.min.png" alt="" />
           </div>
         </div>
       </DialogContent>
     </Dialog>
-  ); 
+  );
 };
 
 export default DialogChatView;
