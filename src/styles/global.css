@@ -213,6 +213,9 @@ body {
 .dw300 {
   width: 300px;
 }
+.dw360 {
+  width: 360px;
+}
 .dw455 {
   width: 455px;
 }
@@ -285,6 +288,9 @@ body {
 }
 .dh340 {
   height: 340px;
+}
+.dh360 {
+  height: 360px;
 }
 .dh455 {
   height: 455px;
@@ -556,13 +562,9 @@ body {
   transform: translate(-50%, -50%);
 }
 
-
-
 .dmaxW460 {
   max-width: 460px;
 }
-
-
 
 .dborderW2 {
   border-width: 2px;

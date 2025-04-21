@@ -11,6 +11,8 @@ import { toast } from "react-toastify";
 import moment from "moment";
 import { TopItem } from "../TopItem";
 import { ChatEnergy } from "../chatEnergy";
+import SpeechRecognition from "@/components/SpeechRecognition";
+
 interface iDialogChatView {
   trigger?: ReactNode;
 }
@@ -133,7 +135,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
         url: `/api/cat/v1/chat/info`,
         method: "get",
       });
-      console.log(data)
+      console.log(data);
     } catch (error: any) {
       toast.error(error?.msg || JSON.stringify(error));
     }
@@ -255,7 +257,11 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                     Send
                   </div>
                 </div>
-                <img className="dw120 dh120" src="/img/speak.min.png" alt="" />
+                <SpeechRecognition
+                  language="zh-CN"
+                  onResult={(text) => console.log("识别结果:", text)}
+                  onError={(error) => console.error("发生错误:", error)}
+                />
               </div>
             </div>
             <div className="flex absolute left-[13%] top-[3%]">

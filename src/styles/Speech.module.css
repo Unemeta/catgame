@@ -1,0 +1,110 @@
+.text {
+  color: #fff;
+  text-align: center;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: rgba(0, 0, 0, 0.4);
+  font-family: "SF Pro Rounded";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%; /* 41.6px */
+  width: 270px;
+}
+
+.contain {
+  width: 400px;
+  height: 400px;
+  background: url("/img/vback.svg");
+  background-size: cover;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.v {
+  width: 180px;
+  height: 180px;
+}
+
+.textback {
+  display: flex;
+  width: 516px;
+  padding: 30px 30px 20px 30px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  border-radius: 30px;
+  background: #fff;
+  box-shadow: 0px 10px 43px 0px rgba(0, 0, 0, 0.45);
+  position: absolute;
+  bottom: 250px;
+}
+.vtext {
+  color: #522192;
+  font-family: "SF Pro Rounded";
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%; /* 39.2px */
+  letter-spacing: 2.8px;
+  height: 200px;
+  overflow: auto;
+}
+.cancel {
+  display: flex;
+  padding: 20px 30px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  background: #aba3bb;
+  color: #fff;
+  font-family: "SF Pro Rounded";
+  font-size: 23.992px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 100%; /* 23.992px */
+}
+.send {
+  display: flex;
+  width: 140px;
+  padding: 20px 30px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  background: linear-gradient(0deg, #be6fff 0%, #6c8aff 100%);
+  color: #fff;
+  font-family: "SF Pro Rounded";
+  font-size: 23.992px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 100%; /* 23.992px */
+}
+.countdown {
+  color: #e21c0a;
+  font-family: "SF Pro Rounded";
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 140%; /* 35px */
+  letter-spacing: 2.5px;
+}
+
+.textbackfoot {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.btncontain {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
