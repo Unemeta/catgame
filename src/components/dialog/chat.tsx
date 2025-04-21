@@ -10,6 +10,7 @@ import { useFetchUser } from "@/store";
 import { toast } from "react-toastify";
 import moment from "moment";
 import { TopItem } from "../TopItem";
+import { ChatEnergy } from "../chatEnergy";
 interface iDialogChatView {
   trigger?: ReactNode;
 }
@@ -32,6 +33,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
       }
       timerHistory = setTimeout(async () => {
         getHistory();
+        // getChatInfo()
       }, 3000);
     })();
   }, []);
@@ -121,6 +123,17 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
       if (data?.msgList) {
         setmessageList([...data.msgList.reverse()]);
       }
+    } catch (error: any) {
+      toast.error(error?.msg || JSON.stringify(error));
+    }
+  };
+  const getChatInfo = async () => {
+    try {
+      const { data } = await request({
+        url: `/api/cat/v1/chat/info`,
+        method: "get",
+      });
+      console.log(data)
     } catch (error: any) {
       toast.error(error?.msg || JSON.stringify(error));
     }
@@ -246,11 +259,11 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
               </div>
             </div>
             <div className="flex absolute left-[13%] top-[3%]">
-              <TopItem
+              <ChatEnergy
                 imgUrl="./img/chatPaw.min.png"
                 label="Communication Energy"
-                number={10}
-              ></TopItem>
+                number={20}
+              ></ChatEnergy>
             </div>
           </div>
         </div>
