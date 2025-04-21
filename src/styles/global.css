@@ -564,7 +564,9 @@ body {
 
 
 
-
+.dborderW2 {
+  border-width: 2px;
+}
 .dborderW4 {
   border-width: 4px;
 }

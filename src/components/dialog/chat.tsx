@@ -241,7 +241,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
               <div className="textInput flex justify-center items-center h-[100px] dpb80">
                 <div className="relative">
                   <input
-                    className="drounded160 dborderW4 border-[#FFF] dw780 dh100 bg-white/70 dmr30  dpl15 dpr155 outline-none text-[#522192] dtest24 font-[800]"
+                    className="drounded160 dborderW2 border-[#FFF] dw780 dh100 bg-white/70 dmr30  dpl15 dpr155 outline-none text-[#522192] dtest24 font-[800]"
                     type="text"
                     onChange={(e) => setinputMsg(e.target.value)}
                     onKeyDown={handleKeyDown}
