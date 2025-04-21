@@ -372,6 +372,9 @@ body {
 .dpb50 {
   padding-bottom: 50px;
 }
+.dpb80 {
+  padding-bottom: 80px;
+}
 
 .dpl10 {
   padding-left: 10px;
@@ -544,4 +547,8 @@ body {
 
 .dborderW4 {
   border-width: 4px;
+}
+
+.chatCttH {
+  height: calc(100vh - 90px);
 }
