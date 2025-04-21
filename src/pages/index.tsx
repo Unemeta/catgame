@@ -160,7 +160,7 @@ export default function Home() {
           ></DialogFood>
           <DialogChatView
             trigger={
-              <div className="fixed top-[50%] left-[600px] dtranslateYF50 z-1">
+              <div className="fixed top-[50%] left-[45%] translate-[-50%] z-1">
                 <img
                   className="dw116 h-auto dmb10"
                   src="/img/nav/rightBackpack.min.png"

@@ -219,6 +219,9 @@ body {
 .dw750 {
   width: 750px;
 }
+.dw780 {
+  width: 780px;
+}
 .dw1066 {
   width: 1066px;
 }
@@ -297,6 +300,14 @@ body {
   padding: 40px;
 }
 
+.dpx30 {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.dpy20 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
 .dpt10 {
   padding-top: 10px;
 }
@@ -404,6 +415,9 @@ body {
 .dpr110 {
   padding-right: 110px;
 }
+.dpr155 {
+  padding-right: 155px;
+}
 
 .dml10 {
   margin-left: 10px;
@@ -481,8 +495,13 @@ body {
 .dtop45 {
   top: 45px;
 }
+
 .drightF10 {
   right: -10px;
+}
+
+.dright80 {
+  right: 80px;
 }
 
 .drounded3 {
@@ -493,6 +512,9 @@ body {
 }
 .drounded10 {
   border-radius: 10px;
+}
+.drounded20 {
+  border-radius: 20px;
 }
 .drounded30 {
   border-radius: 30px;
@@ -505,7 +527,10 @@ body {
 }
 
 .dtranslateYF50 {
-  transform: translate(0, -70%);
+  transform: translate(0, -50%);
+}
+.dtranslateXYF50 {
+  transform: translate(-50%, -50%);
 }
 
 
