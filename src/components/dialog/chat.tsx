@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from ".";
 import styles from "@/styles/Backpack.module.css";
 import { jwtHelper } from "@/utils/jwt";
 import { request } from "@/utils/request";
 import { useFetchUser } from "@/store";
-
+import { toast } from "react-toastify";
+import moment from 'moment'
 interface iDialogChatView {
   trigger?: ReactNode;
 }
@@ -20,6 +21,8 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
   const [messageList, setmessageList] = useState<
     { chatId: string; msg: string; role: string; time: number }[]
   >([]);
+  const chatEndRef = useRef(null);
+
   useEffect(() => {
     (() => {
       if (timerHistory) {
@@ -42,16 +45,18 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
       console.log("Connected to the server22");
     };
     socketTemp.onmessage = (event) => {
-      if (event?.type === "message") {
-        setmessageList([
-          ...messageList,
-          {
-            chatId: userData?.nickname,
-            msg: event?.data,
-            role: "cat",
-            time: Math.floor(new Date().getTime() / 1000),
-          },
-        ]);
+      if (event?.type === "message" && event?.data !== "pong") {
+        setmessageList((pre) => {
+          return [
+            ...pre,
+            {
+              chatId: userData?.nickname,
+              msg: event?.data,
+              role: "cat",
+              time: Math.floor(new Date().getTime() / 1000),
+            },
+          ];
+        });
       }
       // setMessages((prevMessages) => [...prevMessages, event.data]);
     };
@@ -59,30 +64,43 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
       console.log("Disconnected from the server");
       setSocket(null);
     };
+    const heartbeatInterval = setInterval(() => {
+      if (socketTemp.readyState === WebSocket.OPEN) {
+        socketTemp.send("ping");
+      }
+    }, 30000);
     setSocket(socketTemp);
     return () => {
+      clearInterval(heartbeatInterval);
       socketTemp.close();
       setSocket(null);
     };
   }, []);
 
+  useEffect(() => {
+    scrollToBottom();
+
+    new Intl.DateTimeFormat('en-US',{ year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(new Date())
+  }, [messageList]);
+
   const sendMessage = () => {
     if (socket) {
       if (inputMsg?.length > 0) {
-        debugger;
-        setmessageList([
-          ...messageList,
-          {
-            chatId: userData?.nickname,
-            msg: inputMsg,
-            role: "user",
-            time: Math.floor(new Date().getTime() / 1000),
-          },
-        ]);
+        setmessageList((preMsgList) => {
+          return [
+            ...preMsgList,
+            {
+              chatId: userData?.nickname,
+              msg: inputMsg,
+              role: "user",
+              time: Math.floor(new Date().getTime() / 1000),
+            },
+          ];
+        });
         socket?.send(inputMsg);
         setinputMsg("");
       } else {
-        alert("Please input msg");
+        toast.info("Please enter");
       }
     }
   };
@@ -100,8 +118,16 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
       if (data?.msgList) {
         setmessageList([...data.msgList.reverse()]);
       }
-    } catch (error) {
-      debugger;
+    } catch (error: any) {
+      toast.error(error?.msg || JSON.stringify(error));
+    }
+  };
+  const scrollToBottom = () => {
+    if (chatEndRef.current) {
+      (chatEndRef.current as any)?.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+      });
     }
   };
   return (
@@ -140,7 +166,10 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
           </div>
           <div className="flex flex-col chatCttH">
             <div className="flex justify-end items-start dmb40 grow overflow-y-scroll">
-              <div className="chatCtt flex flex-col dgap20 overflow-y-scroll dpr36">
+              <div
+                className="chatCtt flex flex-col dgap20 overflow-y-scroll dpr36"
+                ref={chatEndRef}
+              >
                 {messageList?.map((item, index: number) => {
                   if (item?.role === "user") {
                     return (
@@ -150,7 +179,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                       >
                         <div className="dmaxW460 lmd:max-w-[400px] dmr25 w-full">
                           <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 text-right">
-                            2024/1/23 23:34
+                            {moment(item.time * 1000).format('YYYY/MM/DD hh:mm')}
                           </div>
                           <div className="dtext28 font-[500] text-[#F5F2FF]  text-wrap">
                             {item?.msg}
@@ -176,7 +205,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                         />
                         <div className="dmaxW460 lmd:max-w-[400px]">
                           <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8">
-                            2024/1/23 23:34
+                            {moment(item.time * 1000).format('YYYY/MM/DD hh:mm')}
                           </div>
                           <div className="dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal">
                             {item?.msg}
