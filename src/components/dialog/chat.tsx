@@ -9,6 +9,7 @@ import { request } from "@/utils/request";
 import { useFetchUser } from "@/store";
 import { toast } from "react-toastify";
 import moment from "moment";
+import { TopItem } from "../TopItem";
 interface iDialogChatView {
   trigger?: ReactNode;
 }
@@ -102,7 +103,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
         toast.info("Please enter msg");
       }
     } else {
-      console.log('sk null')
+      console.log("sk null");
       settoConnect((pre) => !pre);
     }
   };
@@ -138,109 +139,118 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
       <DialogTrigger>{trigger}</DialogTrigger>
       <DialogContent className="p-0 w-full  h-full overflow-hidden max-w-[100%] max-h-[100%]">
         <div className={styles.backpackBg}>
-          <div className="headerBackpack flex dpl25 dpt18 dpb18 dpr110 dh90">
-            <div
-              className="flex justify-start items-center cursor-pointer select-none"
-              onClick={() => {
-                setIsOpen(false);
-              }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="48"
-                height="48"
-                viewBox="0 0 48 48"
-                fill="none"
-                className="dw48 dhauto dmr10"
-              >
-                <circle opacity="0.3" cx="24" cy="24" r="24" fill="#D9D9D9" />
-                <circle cx="24" cy="24" r="20" fill="white" />
-                <path
-                  d="M27.5 15L18.5 24L27.5 33"
-                  stroke="#E239EE"
-                  stroke-width="4.15385"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-              <span className="text-white dtext26 font-[500]">Back</span>
-            </div>
-          </div>
-          <div className="flex flex-col chatCttH">
-            <div className="flex justify-end items-start dmb40 grow overflow-y-scroll">
+          <div className="relative">
+            <div className="headerBackpack flex dpl25 dpt18 dpb18 dpr110 dh90">
               <div
-                className="chatCtt flex flex-col dgap20 overflow-y-scroll dpr36"
-                ref={chatEndRef}
+                className="flex justify-start items-center cursor-pointer select-none"
+                onClick={() => {
+                  setIsOpen(false);
+                }}
               >
-                {messageList?.map((item, index: number) => {
-                  if (item?.role === "user") {
-                    return (
-                      <div
-                        key={index}
-                        className="send dp24 drounded30 bg-[rgba(90,_35,_92,_0.30)] flex justify-between items-start overflow-hidden"
-                      >
-                        <div className="dmaxW460 lmd:max-w-[400px] dmr25 w-full">
-                          <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 text-right">
-                            {moment(item.time * 1000).format(
-                              "YYYY/MM/DD hh:mm"
-                            )}
-                          </div>
-                          <div className="dtext28 font-[500] text-[#F5F2FF]  text-wrap">
-                            {item?.msg}
-                          </div>
-                        </div>
-                        <img
-                          className="dw65 dh65 rounded-full "
-                          src="/img/1.jpg"
-                          alt=""
-                        />
-                      </div>
-                    );
-                  } else {
-                    return (
-                      <div
-                        key={index}
-                        className="receive dp24 drounded30 bg-[rgba(90,_35,_92,_0.30)] flex justify-start items-start overflow-hidden"
-                      >
-                        <img
-                          className="dw65 dh65 rounded-full dmr25"
-                          src="/img/1.jpg"
-                          alt=""
-                        />
-                        <div className="dmaxW460 lmd:max-w-[400px]">
-                          <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8">
-                            {moment(item.time * 1000).format(
-                              "YYYY/MM/DD hh:mm"
-                            )}
-                          </div>
-                          <div className="dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal">
-                            {item?.msg}
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  }
-                })}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="48"
+                  height="48"
+                  viewBox="0 0 48 48"
+                  fill="none"
+                  className="dw48 dhauto dmr10"
+                >
+                  <circle opacity="0.3" cx="24" cy="24" r="24" fill="#D9D9D9" />
+                  <circle cx="24" cy="24" r="20" fill="white" />
+                  <path
+                    d="M27.5 15L18.5 24L27.5 33"
+                    stroke="#E239EE"
+                    stroke-width="4.15385"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <span className="text-white dtext26 font-[500]">Back</span>
               </div>
             </div>
-            <div className="textInput flex justify-center items-center h-[100px] dpb80">
-              <div className="relative">
-                <input
-                  className="drounded160 dborderW4 border-[#FFF] dw780 dh100 bg-white/70 dmr30  dpl15 dpr155 outline-none text-[#522192] dtest24 font-[800]"
-                  type="text"
-                  onChange={(e) => setinputMsg(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  value={inputMsg}
-                />
+            <div className="flex flex-col chatCttH">
+              <div className="flex justify-end items-start dmb40 grow overflow-y-scroll">
                 <div
-                  className="absolute dright80 top-[50%] dtranslateYF50 bg-[linear-gradient(0deg,_#BE6FFF_0%,_#6C8AFF_100%)] drounded20 dpx30 dpy20 text-white dtext24 font-[800] cursor-pointer select-none"
-                  onClick={sendMessage}
-                  onKeyDown={handleKeyDown}
+                  className="chatCtt flex flex-col dgap20 overflow-y-scroll dpr36"
+                  ref={chatEndRef}
                 >
-                  Send
+                  {messageList?.map((item, index: number) => {
+                    if (item?.role === "user") {
+                      return (
+                        <div
+                          key={index}
+                          className="send dp24 drounded30 bg-[rgba(90,_35,_92,_0.30)] flex justify-between items-start overflow-hidden"
+                        >
+                          <div className="dmaxW460 lmd:max-w-[400px] dmr25 w-full">
+                            <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 text-right">
+                              {moment(item.time * 1000).format(
+                                "YYYY/MM/DD hh:mm"
+                              )}
+                            </div>
+                            <div className="dtext28 font-[500] text-[#F5F2FF]  text-wrap">
+                              {item?.msg}
+                            </div>
+                          </div>
+                          <img
+                            className="dw65 dh65 rounded-full "
+                            src="/img/1.jpg"
+                            alt=""
+                          />
+                        </div>
+                      );
+                    } else {
+                      return (
+                        <div
+                          key={index}
+                          className="receive dp24 drounded30 bg-[rgba(90,_35,_92,_0.30)] flex justify-start items-start overflow-hidden"
+                        >
+                          <img
+                            className="dw65 dh65 rounded-full dmr25"
+                            src="/img/1.jpg"
+                            alt=""
+                          />
+                          <div className="dmaxW460 lmd:max-w-[400px]">
+                            <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8">
+                              {moment(item.time * 1000).format(
+                                "YYYY/MM/DD hh:mm"
+                              )}
+                            </div>
+                            <div className="dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal">
+                              {item?.msg}
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    }
+                  })}
                 </div>
               </div>
-              <img className="dw120 dh120" src="/img/speak.min.png" alt="" />
+              <div className="textInput flex justify-center items-center h-[100px] dpb80">
+                <div className="relative">
+                  <input
+                    className="drounded160 dborderW4 border-[#FFF] dw780 dh100 bg-white/70 dmr30  dpl15 dpr155 outline-none text-[#522192] dtest24 font-[800]"
+                    type="text"
+                    onChange={(e) => setinputMsg(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    value={inputMsg}
+                  />
+                  <div
+                    className="absolute dright80 top-[50%] dtranslateYF50 bg-[linear-gradient(0deg,_#BE6FFF_0%,_#6C8AFF_100%)] drounded20 dpx30 dpy20 text-white dtext24 font-[800] cursor-pointer select-none"
+                    onClick={sendMessage}
+                    onKeyDown={handleKeyDown}
+                  >
+                    Send
+                  </div>
+                </div>
+                <img className="dw120 dh120" src="/img/speak.min.png" alt="" />
+              </div>
+            </div>
+            <div className="flex absolute left-[13%] top-[3%]">
+              <TopItem
+                imgUrl="./img/chatPaw.min.png"
+                label="Communication Energy"
+                number={10}
+              ></TopItem>
             </div>
           </div>
         </div>
