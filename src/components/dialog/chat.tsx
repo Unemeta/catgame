@@ -8,7 +8,7 @@ import { jwtHelper } from "@/utils/jwt";
 import { request } from "@/utils/request";
 import { useFetchUser } from "@/store";
 import { toast } from "react-toastify";
-import moment from 'moment'
+import moment from "moment";
 interface iDialogChatView {
   trigger?: ReactNode;
 }
@@ -22,6 +22,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
     { chatId: string; msg: string; role: string; time: number }[]
   >([]);
   const chatEndRef = useRef(null);
+  const [toConnect, settoConnect] = useState(false);
 
   useEffect(() => {
     (() => {
@@ -75,12 +76,10 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
       socketTemp.close();
       setSocket(null);
     };
-  }, []);
+  }, [toConnect]);
 
   useEffect(() => {
     scrollToBottom();
-
-    new Intl.DateTimeFormat('en-US',{ year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(new Date())
   }, [messageList]);
 
   const sendMessage = () => {
@@ -100,8 +99,11 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
         socket?.send(inputMsg);
         setinputMsg("");
       } else {
-        toast.info("Please enter");
+        toast.info("Please enter msg");
       }
+    } else {
+      console.log('sk null')
+      settoConnect((pre) => !pre);
     }
   };
   const handleKeyDown = (event: any) => {
@@ -179,7 +181,9 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                       >
                         <div className="dmaxW460 lmd:max-w-[400px] dmr25 w-full">
                           <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 text-right">
-                            {moment(item.time * 1000).format('YYYY/MM/DD hh:mm')}
+                            {moment(item.time * 1000).format(
+                              "YYYY/MM/DD hh:mm"
+                            )}
                           </div>
                           <div className="dtext28 font-[500] text-[#F5F2FF]  text-wrap">
                             {item?.msg}
@@ -205,7 +209,9 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                         />
                         <div className="dmaxW460 lmd:max-w-[400px]">
                           <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8">
-                            {moment(item.time * 1000).format('YYYY/MM/DD hh:mm')}
+                            {moment(item.time * 1000).format(
+                              "YYYY/MM/DD hh:mm"
+                            )}
                           </div>
                           <div className="dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal">
                             {item?.msg}
