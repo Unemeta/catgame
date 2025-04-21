@@ -13,7 +13,7 @@ export function ChatEnergy({
 }: any) {
   return (
     <div
-      className="flex justify-start items-center dpx20 dpy10 shadow-[0px_0px_30px_0px_rgba(255,_255,_255,_0.40)_inset] bg-[#ffffff1a] border-[2px] border-[#fdfbff26) drounded75 select-none"
+      className="flex justify-start items-center dpx20 dpy10 shadow-[0px_0px_30px_0px_rgba(255,_255,_255,_0.40)_inset] bg-[#ffffff1a] border-[1px] border-[#fdfbff26] drounded75 select-none"
     >
       <img src={imgUrl} alt="" className="dw38 dh38 dmr10" />
       <div>
