@@ -163,7 +163,7 @@ export default function Home() {
               <div className="fixed top-[50%] left-[45%] translate-[-50%] z-1">
                 <img
                   className="dw116 h-auto dmb10"
-                  src="/img/nav/rightBackpack.min.png"
+                  src="/img/chat.min.png"
                   alt=""
                 />
               </div>
