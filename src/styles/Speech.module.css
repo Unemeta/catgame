@@ -69,6 +69,8 @@
   font-style: normal;
   font-weight: 800;
   line-height: 100%; /* 23.992px */
+  cursor: pointer;
+
 }
 .send {
   display: flex;
@@ -85,6 +87,7 @@
   font-style: normal;
   font-weight: 800;
   line-height: 100%; /* 23.992px */
+  cursor: pointer;
 }
 .countdown {
   color: #e21c0a;

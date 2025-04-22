@@ -6,28 +6,53 @@ import styles from "@/styles/Speech.module.css"; // 确保有对应的 CSS 文�
 // 类型定义
 interface SpeechRecognitionProps {
   language?: "zh-CN" | "en-US" | "ja-JP";
-  buttonStyle?: React.CSSProperties;
   onResult?: (text: string) => void;
   onError?: (error: string) => void;
+  onCancel?: () => void;
 }
+
+type RecordingState = "idle" | "recording" | "cancelled";
 
 const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   language = "zh-CN",
   onResult,
   onError,
+  onCancel,
 }) => {
   // 状态管理
-  const [isRecording, setIsRecording] = useState(false);
+  //   const [isRecording, setIsRecording] = useState(false);
+
+  const [recordingState, setRecordingState] = useState<RecordingState>("idle");
   const [transcripts, setTranscripts] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [voiceVolume, setVoiceVolume] = useState(0);
-  const [vb, setVb] = useState(1);
-  const recognitionRef = useRef(null);
+  const recognitionRef = useRef<any | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
   const microphoneRef = useRef<MediaStreamAudioSourceNode | null>(null);
   const animationFrameId = useRef<number>(0);
 
+  const [touchStartY, setTouchStartY] = useState<number>(0);
+  //   const [currentY, setCurrentY] = useState<number>(0);
+
+  const [voiceVolume, setVoiceVolume] = useState(0);
+  const [vb, setVb] = useState(1);
+  const [showTextModel, SetShowTextModel] = useState(false);
+  const [countdown, setCountDown] = useState(15);
+  let timer: any = null;
+  const handleCount = () => {
+    if (timer) {
+      clearInterval(timer);
+    }
+    setCountDown(15);
+    timer = setInterval(() => {
+      setCountDown((pre) => pre - 1);
+    }, 1000);
+  };
+  useEffect(() => {
+    if (countdown === 0) {
+      cancelText();
+    }
+  }, [countdown]);
   // 初始化语音识别
   const initializeRecognition = useCallback(() => {
     // 获取浏览器支持的 SpeechRecognition 对象（兼容不同浏览器的前缀）
@@ -45,35 +70,62 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
 
     // 配置识别模式
     recognition.continuous = true; // 持续监听，直到手动停止
-    recognition.interimResults = false; // 不返回中间结果（只返回最终识别结果）
+    recognition.interimResults = true; // 不返回中间结果（只返回最终识别结果）
     recognition.lang = language; // 设置识别语言（如 'zh-CN', 'en-US'）
+    recognition.maxAlternatives = 3; // 提高容错率
 
     // 语音识别开始时的回调
     recognition.onstart = () => {
-      console.log("onstartonstartonstartonstart");
-      setIsRecording(true); // 设置录音状态为 true
+      console.log("onstart");
+      setRecordingState("recording");
     };
+    // 在初始化时添加 soundstart/speechstart 检测
+    recognition.addEventListener("soundstart", () => {
+      console.log("检测到声音输入");
+    });
+
+    recognition.addEventListener("speechstart", () => {
+      console.log("检测到有效语音");
+    });
 
     // 语音识别结果的回调
     recognition.onresult = (event: any) => {
       // 提取所有识别结果并合并为字符串
+      console.log(event, "onresult");
       const transcript = Array.from(event.results)
         .map((result: any) => result[0].transcript)
         .join("");
-      setTranscripts((prev) => [...prev, transcript]); // 更新识别结果列表
+      //   setTranscripts((prev) => [...prev, transcript]); // 更新识别结果列表
+      setTranscripts(() => [transcript]); // 更新识别结果列表
       onResult?.(transcript); // 调用外部传入的 onResult 回调（如果有）
-      console.log(transcript, "transcripttranscripttranscripttranscript");
+      console.log(transcript, "onresult");
     };
 
     // 识别错误的回调
     recognition.onerror = (event: Event) => {
       const error = (event as any).error;
+      // 根据错误类型处理
+      switch (error) {
+        case "no-speech":
+          console.log("未检测到语音输入");
+          break;
+        case "network":
+          console.log("网络连接失败");
+          break;
+        case "not-allowed":
+          console.log("请允许麦克风权限");
+          break;
+      }
       setError(`识别错误: ${error}`); // 设置错误信息
       onError?.(error); // 调用外部传入的 onError 回调（如果有）
     };
 
     // 识别结束的回调
-    recognition.onend = () => setIsRecording(false);
+    recognition.onend = () => {
+      setRecordingState("idle");
+      console.log("onend");
+      handleCount();
+    };
 
     // 将 recognition 实例保存到 React ref 中，以便后续控制（如启动/停止）
     recognitionRef.current = recognition;
@@ -116,51 +168,56 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
     }
   };
 
-  //   // 音量波动动画
-  //   const startVisualization = () => {
-  //     const bars = Array.from(document.getElementsByClassName('bar'));
-  //     const analyser = analyserRef.current;
-  //     const dataArray = new Uint8Array(analyser?.frequencyBinCount || 0);
+  // 控制录音
+  const startRecording = useCallback(() => {
+    if (!recognitionRef.current) return;
+    try {
+      initializeAudioAnalyser();
+      recognitionRef.current.start();
+    } catch (error) {
+      console.error("麦克风访问失败:", error);
+      cleanupResources();
+    }
+  }, []);
 
-  //     const updateBars = () => {
-  //       if (!isRecording || !analyser) {
-  //         cancelAnimationFrame(animationFrameId.current);
-  //         return;
-  //       }
+  useEffect(() => {
+    if (recordingState === "idle" && transcripts.length > 0) {
+      SetShowTextModel(true);
+    } else {
+      SetShowTextModel(false);
+    }
+  }, [transcripts, recordingState]);
+  // 处理触摸开始
+  const handleStart = useCallback(
+    (clientY: number) => {
+      setTouchStartY(clientY);
+      //   setCurrentY(clientY);
+      startRecording();
+    },
+    [startRecording]
+  );
+  // 处理移动
+  const handleMove = useCallback(
+    (clientY: number) => {
+      //   setCurrentY(clientY);
+      const deltaY = touchStartY - clientY;
 
-  //       analyser.getByteFrequencyData(dataArray);
-
-  //       bars.forEach((bar, index) => {
-  //         const height = (dataArray[index] / 255) * 50 + 5;
-  //         (bar as HTMLElement).style.height = `${height}px`;
-  //       });
-
-  //       animationFrameId.current = requestAnimationFrame(updateBars);
-  //     };
-
-  //     updateBars();
-  //   };
-
+      if (deltaY > 50 && recordingState === "recording") {
+        setRecordingState("cancelled");
+        onCancel?.();
+      } else if (recordingState === "cancelled" && deltaY <= 50) {
+        setRecordingState("recording");
+      }
+    },
+    [touchStartY, recordingState, onCancel]
+  );
   // 清理资源
-  const cleanupResources = () => {
+  const cleanupResources = useCallback(() => {
     microphoneRef.current?.disconnect();
     analyserRef.current?.disconnect();
     audioContextRef.current?.close();
     cancelAnimationFrame(animationFrameId.current);
-  };
-
-  // 控制录音
-  const toggleRecording = () => {
-    if (!recognitionRef.current) return;
-
-    if (!isRecording) {
-      initializeAudioAnalyser();
-      recognitionRef.current.start();
-    } else {
-      recognitionRef.current.stop();
-      cleanupResources();
-    }
-  };
+  }, []);
 
   // 组件挂载时初始化
   useEffect(() => {
@@ -169,7 +226,7 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
       recognitionRef.current?.stop();
       cleanupResources();
     };
-  }, [initializeRecognition]);
+  }, [initializeRecognition, cleanupResources]);
 
   useEffect(() => {
     const res = voiceVolume / 255;
@@ -185,132 +242,92 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
       setVb(5);
     }
   }, [voiceVolume]);
+
+  // 事件处理器
+  const handleTouchStart = (e: React.TouchEvent) => {
+    handleStart(e.touches[0].clientY);
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    handleStart(e.clientY);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    handleMove(e.touches[0].clientY);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (e.buttons !== 1) return; // 确保左键按下
+    handleMove(e.clientY);
+  };
+
+  const cancelText = () => {
+    setTranscripts([]);
+  };
+  // 处理结束
+  const handleEnd = useCallback(() => {
+    if (recordingState === "cancelled") {
+      recognitionRef.current?.stop();
+      cleanupResources();
+      setRecordingState("idle");
+      return;
+    }
+
+    if (recordingState === "recording") {
+      recognitionRef.current?.stop();
+      setRecordingState("idle");
+    }
+  }, [recordingState, cleanupResources]);
+  // 通用结束处理
+  const handleEndEvent = () => {
+    handleEnd();
+  };
   // 渲染UI
   return (
-    // <div style={styles.container}>
-    //   {/* 错误提示 */}
-    //   {error && <div style={styles.error}>{error}</div>}
-
-    //   {/* 录音状态显示 */}
-    //   <div style={styles.voiceBox}>
-    //     <span style={styles.status}>
-    //       状态: {isRecording ? "录音中..." : "未录音"}
-    //     </span>
-    //     <div style={styles.wave}>
-    //       {Array.from({ length: 20 }).map((_, i) => (
-    //         <div key={i} className="bar" style={styles.bar as BarStyle} />
-    //       ))}
-    //     </div>
-    //   </div>
-
-    //   {/* 控制按钮 */}
-    //   <button
-    //     onClick={toggleRecording}
-    //     style={{ ...styles.button, ...buttonStyle }}
-    //   >
-    //     {isRecording ? "停止录音" : "开始录音"}
-    //   </button>
-
-    //   {/* 识别结果 */}
-    //   <div style={styles.results}>
-    //     {transcripts.map((text, i) => (
-    //       <p key={i} style={styles.resultText}>
-    //         {text}
-    //       </p>
-    //     ))}
-    //   </div>
-    // </div>
-    <>
-      <div>
-        {isRecording ? (
-          <div className={styles.contain}>
-            <img className={styles.v} alt="" src={`/img/v${vb}.svg`} />
-            <div className={styles.text}>
-              Release to send swipe up to cancel
-            </div>
-          </div>
-        ) : (
-            <div>{error}</div>
-        )}
+    <div>
+      {recordingState === "recording" ? (
+        <div className={styles.contain}>
+          <img className={styles.v} alt="" src={`/img/v${vb}.svg`} />
+          <div className={styles.text}>Release to send swipe up to cancel</div>
+        </div>
+      ) : recordingState === "cancelled" ? (
+        <div className={styles.contain}>
+          <img className={styles.v} alt="" src={`/img/vcancel.svg`} />
+          <div className={styles.text}>Release to send swipe up to cancel</div>
+        </div>
+      ) : (
+        <div>{error}</div>
+      )}
+      {showTextModel ? (
         <div className={styles.textback}>
           <div className={styles.vtext}> {transcripts} </div>
           <div className={styles.textbackfoot}>
-            <div className={styles.countdown}>15s</div>
+            <div className={styles.countdown}>{countdown}s</div>
             <div className={styles.btncontain}>
-              <div className={styles.cancel}>Cancel</div>
+              <div className={styles.cancel} onClick={cancelText}>
+                Cancel
+              </div>
               <div className={styles.send}>Send</div>
             </div>
           </div>
         </div>
-        <img
-          className="dw120 dh120"
-          src="/img/speak.min.png"
-          alt=""
-          onClick={toggleRecording}
-        />
-      </div>
-    </>
+      ) : (
+        <></>
+      )}
+
+      <img
+        className="dw120 dh120"
+        src="/img/speak.min.png"
+        alt=""
+        onTouchStart={handleTouchStart}
+        onMouseDown={handleMouseDown}
+        onTouchMove={handleTouchMove}
+        onMouseMove={handleMouseMove}
+        onTouchEnd={handleEndEvent}
+        onMouseUp={handleEndEvent}
+        onMouseLeave={handleEndEvent}
+      />
+    </div>
   );
 };
-
-// // 样式对象
-// const styles = {
-//   container: {
-//     maxWidth: "400px",
-//     margin: "20px auto",
-//     fontFamily: "Arial, sans-serif",
-//   },
-//   voiceBox: {
-//     position: "relative",
-//     border: "2px solid #ddd",
-//     borderRadius: "8px",
-//     padding: "20px",
-//     margin: "20px 0",
-//   } as React.CSSProperties,
-//   status: {
-//     position: "absolute" as const,
-//     top: "5px",
-//     left: "10px",
-//     color: "#666",
-//     fontSize: "12px",
-//   },
-//   wave: {
-//     display: "flex",
-//     gap: "3px",
-//     alignItems: "center",
-//     height: "50px",
-//   },
-//   bar: {
-//     width: "4px",
-//     background: "#4CAF50",
-//     borderRadius: "2px",
-//     transition: "height 0.1s",
-//     height: "5px", // 初始高度
-//   },
-//   button: {
-//     padding: "10px 20px",
-//     background: "#4CAF50",
-//     color: "white",
-//     border: "none",
-//     borderRadius: "4px",
-//     cursor: "pointer",
-//     fontSize: "16px",
-//   } as React.CSSProperties,
-//   results: {
-//     marginTop: "20px",
-//     padding: "10px",
-//     border: "1px solid #eee",
-//   },
-//   resultText: {
-//     margin: "8px 0",
-//   },
-//   error: {
-//     color: "red",
-//     padding: "10px",
-//     border: "1px solid red",
-//     borderRadius: "4px",
-//     marginBottom: "20px",
-//   },
-// };
-
 export default SpeechRecognition;
