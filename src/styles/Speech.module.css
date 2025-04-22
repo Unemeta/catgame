@@ -70,7 +70,6 @@
   font-weight: 800;
   line-height: 100%; /* 23.992px */
   cursor: pointer;
-
 }
 .send {
   display: flex;
@@ -110,4 +109,17 @@
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.icon {
+  -webkit-user-select: none; /* Safari/iOS */
+  user-select: none; /* 标准语法 */
+
+  /* 禁用长按菜单（iOS 图片/链接长按弹出菜单） */
+  -webkit-touch-callout: none;
+
+  /* 禁用双击缩放（可选） */
+  touch-action: manipulation;
+  width: 120px;
+  height: 120px;
 }

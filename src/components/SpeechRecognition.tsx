@@ -324,7 +324,7 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
       )}
 
       <img
-        className="dw120 dh120"
+        className={styles.icon}
         src="/img/speak.min.png"
         alt=""
         onTouchStart={handleTouchStart}
