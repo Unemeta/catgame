@@ -9,6 +9,7 @@ interface SpeechRecognitionProps {
   onResult?: (text: string) => void;
   onError?: (error: string) => void;
   onCancel?: () => void;
+  onSend?: (text: string) => void;
 }
 
 type RecordingState = "idle" | "recording" | "cancelled";
@@ -18,13 +19,15 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   onResult,
   onError,
   onCancel,
+  onSend,
 }) => {
   // 状态管理
   //   const [isRecording, setIsRecording] = useState(false);
 
   const [recordingState, setRecordingState] = useState<RecordingState>("idle");
   const [transcripts, setTranscripts] = useState<string[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  //   const [error, setError] = useState<string | null>(null);
+  const [, setError] = useState<string | null>(null);
   const recognitionRef = useRef<any | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
@@ -264,6 +267,9 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   const cancelText = () => {
     setTranscripts([]);
   };
+  const sendText = () => {
+    onSend?.(transcripts.join("")); // 调用外部传入的 onResult 回调（如果有）
+  };
   // 处理结束
   const handleEnd = useCallback(() => {
     if (recordingState === "cancelled") {
@@ -296,7 +302,7 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
           <div className={styles.text}>Release to send swipe up to cancel</div>
         </div>
       ) : (
-        <div>{error}</div>
+        <></>
       )}
       {showTextModel ? (
         <div className={styles.textback}>
@@ -307,7 +313,9 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
               <div className={styles.cancel} onClick={cancelText}>
                 Cancel
               </div>
-              <div className={styles.send}>Send</div>
+              <div className={styles.send} onClick={sendText}>
+                Send
+              </div>
             </div>
           </div>
         </div>
