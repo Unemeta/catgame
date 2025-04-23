@@ -288,6 +288,9 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
     setTranscripts([]);
   };
   const sendText = () => {
+    setTimeout(() => {
+      cancelText();
+    }, 500);
     onSend?.(transcripts.join("")); // 调用外部传入的 onResult 回调（如果有）
   };
   // 处理结束
@@ -306,7 +309,7 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   }, [recordingState, cleanupResources]);
   // 通用结束处理
   const handleEndEvent = () => {
-    console.log(isLongPress)
+    console.log(isLongPress);
     cancelLongPress();
     handleEnd();
   };
@@ -345,10 +348,8 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
         <></>
       )}
 
-      <img
+      <div
         className={styles.icon}
-        src="/img/speak.min.png"
-        alt=""
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleEndEvent}
