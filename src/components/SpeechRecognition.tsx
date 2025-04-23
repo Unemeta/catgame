@@ -34,6 +34,9 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   const microphoneRef = useRef<MediaStreamAudioSourceNode | null>(null);
   const animationFrameId = useRef<number>(0);
 
+  const longPressTimer = useRef<any>(null);
+  const [isLongPress, setIsLongPress] = useState(false);
+
   const [touchStartY, setTouchStartY] = useState<number>(0);
   //   const [currentY, setCurrentY] = useState<number>(0);
 
@@ -42,6 +45,18 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   const [showTextModel, SetShowTextModel] = useState(false);
   const [countdown, setCountDown] = useState(15);
   let timer: any = null;
+  // 常量配置
+  const LONG_PRESS_DURATION = 700; // 长按判定时间
+
+  // 清理定时器和状态
+  const cancelLongPress = () => {
+    if (longPressTimer.current) {
+      clearTimeout(longPressTimer.current);
+      longPressTimer.current = undefined;
+    }
+    setIsLongPress(false);
+  };
+
   const handleCount = () => {
     if (timer) {
       clearInterval(timer);
@@ -195,7 +210,11 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
     (clientY: number) => {
       setTouchStartY(clientY);
       //   setCurrentY(clientY);
-      startRecording();
+      longPressTimer.current = window.setTimeout(() => {
+        setIsLongPress(true);
+        // executeLongPressAction();
+        startRecording();
+      }, LONG_PRESS_DURATION);
     },
     [startRecording]
   );
@@ -207,6 +226,7 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
 
       if (deltaY > 50 && recordingState === "recording") {
         setRecordingState("cancelled");
+        cancelLongPress();
         onCancel?.();
       } else if (recordingState === "cancelled" && deltaY <= 50) {
         setRecordingState("recording");
@@ -286,6 +306,7 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   }, [recordingState, cleanupResources]);
   // 通用结束处理
   const handleEndEvent = () => {
+    cancelLongPress();
     handleEnd();
   };
   // 渲染UI
@@ -328,10 +349,11 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
         src="/img/speak.min.png"
         alt=""
         onTouchStart={handleTouchStart}
-        onMouseDown={handleMouseDown}
         onTouchMove={handleTouchMove}
-        onMouseMove={handleMouseMove}
         onTouchEnd={handleEndEvent}
+        onTouchCancel={handleEndEvent}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
         onMouseUp={handleEndEvent}
         onMouseLeave={handleEndEvent}
       />
