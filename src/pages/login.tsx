@@ -30,6 +30,11 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
       router.push("/");
     }
   };
+  const handleKeyDown = (event: { key: string; }) => {
+    if (event?.key === "Enter") {
+      login();
+    }
+  };
   return (
     <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-[url('/img/loadBg.png')] bg-cover">
       <div
@@ -47,6 +52,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
           type="text"
           className={styles.input}
           placeholder="Enter the account"
+          onKeyDown={handleKeyDown}
           onChange={(e) => setAccount(e.target.value)}
         />
         <div
