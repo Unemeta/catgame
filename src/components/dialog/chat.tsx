@@ -111,6 +111,30 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
       settoConnect((pre) => !pre);
     }
   };
+
+  const sendMessageByVoice = (text: string) => {
+    if (socket) {
+      if (text?.length > 0) {
+        setmessageList((preMsgList) => {
+          return [
+            ...preMsgList,
+            {
+              chatId: userData?.nickname,
+              msg: text,
+              role: "user",
+              time: Math.floor(new Date().getTime() / 1000),
+            },
+          ];
+        });
+        socket?.send(text);
+      } else {
+        toast.info("Please enter msg");
+      }
+    } else {
+      console.log("sk null");
+      settoConnect((pre) => !pre);
+    }
+  };
   const handleKeyDown = (event: any) => {
     if (event?.key === "Enter") {
       sendMessage();
@@ -259,8 +283,9 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                 </div>
                 <SpeechRecognition
                   language="zh-CN"
-                  onResult={(text) => console.log("识别结果:", text)}
-                  onError={(error) => console.error("发生错误:", error)}
+                  // onResult={(text) => console.log("识别结果:", text)}
+                  // onError={(error) => console.error("发生错误:", error)}
+                  onSend={(text) => sendMessageByVoice(text)}
                 />
               </div>
             </div>
