@@ -4,10 +4,9 @@
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: rgba(0, 0, 0, 0.4);
   font-family: "SF Pro Rounded";
-  font-size: 28px;
+  font-size: 24px;
   font-style: normal;
-  font-weight: 700;
-  line-height: 130%; /* 41.6px */
+  font-weight: 500;
   width: 270px;
 }
 
