@@ -4,7 +4,7 @@
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: rgba(0, 0, 0, 0.4);
   font-family: "SF Pro Rounded";
-  font-size: 32px;
+  font-size: 28px;
   font-style: normal;
   font-weight: 700;
   line-height: 130%; /* 41.6px */
@@ -47,7 +47,7 @@
 .vtext {
   color: #522192;
   font-family: "SF Pro Rounded";
-  font-size: 24px;
+  font-size: 28px;
   font-style: normal;
   font-weight: 600;
   line-height: 140%; /* 39.2px */
