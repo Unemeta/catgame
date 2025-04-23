@@ -17,6 +17,7 @@ import { useShowLevelUp, useFetchUser, usePlayItemId } from "@/store";
 import LoveCollect from "@/components/LoveCollect";
 import Rewards from "@/components/dialog/rewards";
 import DialogChatView from "@/components/dialog/chat";
+import TalkSelect from "@/components/dialog/talkselect";
 
 export default function Home() {
   const { fetchUser } = useFetchUser();
@@ -172,6 +173,7 @@ export default function Home() {
           <NavRight></NavRight>
           <VideoBackground />
           {playItemId ? <Rewards id={playItemId}></Rewards> : <></>}
+          <TalkSelect></TalkSelect>
         </div>
       )}
     </>

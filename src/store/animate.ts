@@ -48,3 +48,11 @@ export const useRewardDiaOpenByLevelup = () => {
     useHydrateAtoms([[rewardDiaOpenByLevelup, false]] as const);
     return useAtom(rewardDiaOpenByLevelup);
 };
+
+
+const showTalkSelcetDia = atom<boolean>(false) // 是否显示talk技能选择
+
+export const useTalkSelcetDia = () => {
+    useHydrateAtoms([[showTalkSelcetDia, false]] as const);
+    return useAtom(showTalkSelcetDia);
+};

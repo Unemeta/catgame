@@ -87,6 +87,11 @@ body {
   background-image: url("/img/bg/buyConfirm.min.png");
   background-size: 100% 100%;
 }
+.bgModel {
+  background-image: url("/img/bg/modelBg.jpg");
+  background-size: 100% 100%;
+}
+
 .bgConfirmBtn {
   background-image: url("/img/bg/confirm.min.png");
   background-size: cover;
@@ -472,6 +477,9 @@ body {
 }
 .dmr45 {
   margin-right: 45px;
+}
+.dmr75 {
+  margin-right: 75px;
 }
 .dmr100 {
   margin-right: 100px;

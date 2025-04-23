@@ -23,7 +23,7 @@ const DialogInterWorld = ({ trigger }: iDialogShop) => {
             playsInline
             src={videoUrl}
             preload="auto"
-            className="w-full h-full object-none"
+            className="w-full h-full object-fill"
           >
             {/* <source src={videoUrl} type="video/mp4"/> */}
           </video>
