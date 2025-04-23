@@ -306,6 +306,7 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   }, [recordingState, cleanupResources]);
   // 通用结束处理
   const handleEndEvent = () => {
+    console.log(isLongPress)
     cancelLongPress();
     handleEnd();
   };
