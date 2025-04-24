@@ -369,6 +369,9 @@ body {
 .dpt80 {
   padding-top: 80px;
 }
+.dpt85 {
+  padding-top: 85px;
+}
 .dpt90 {
   padding-top: 90px;
 }
@@ -384,6 +387,12 @@ body {
 }
 .dpb18 {
   padding-bottom: 18px;
+}
+.dpb20 {
+  padding-bottom: 20px;
+}
+.dpb25 {
+  padding-bottom: 25px;
 }
 .dpb28 {
   padding-bottom: 28px;
@@ -436,6 +445,9 @@ body {
 }
 .dpr20 {
   padding-right: 20px;
+}
+.dpr25 {
+  padding-right: 25px;
 }
 .dpr30 {
   padding-right: 30px;

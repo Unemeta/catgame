@@ -14,7 +14,7 @@ const DialogInterWorld = ({ trigger }: iDialogShop) => {
       <DialogTrigger>{trigger}</DialogTrigger>
       <DialogContent className="p-0 dw1066 h-auto  max-w-[1000px]">
         <DialogTitle></DialogTitle>
-        <div className="dw1066 dh660 bgFeeding relative dpt100 dpl30 dpr30 dpb30">
+        <div className="dw1066 dh660 bgFeeding relative dpt85 dpl25 dpr25 dpb20 ">
           <DialogTitleView title="Inner World"></DialogTitleView>
           <video
             autoPlay
@@ -23,7 +23,7 @@ const DialogInterWorld = ({ trigger }: iDialogShop) => {
             playsInline
             src={videoUrl}
             preload="auto"
-            className="w-full h-full object-fill"
+            className="w-full h-full object-cover rounded-[10px]"
           >
             {/* <source src={videoUrl} type="video/mp4"/> */}
           </video>
