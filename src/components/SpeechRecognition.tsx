@@ -318,7 +318,7 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
     <div>
       {recordingState === "recording" ? (
         <div className={styles.contain}>
-          <img className={styles.v} alt="" src={`/img/v${vb}.svg`} />
+          <img className={styles.v} alt="" src={`/img/v${vb}.png`} />
           <div className={styles.text}>Release to send swipe up to cancel</div>
         </div>
       ) : recordingState === "cancelled" ? (
