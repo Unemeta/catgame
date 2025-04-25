@@ -12,6 +12,7 @@ import moment from "moment";
 import { TopItem } from "../TopItem";
 import { ChatEnergy } from "../chatEnergy";
 import SpeechRecognition from "@/components/SpeechRecognition";
+import VideoBackground from "../VideoBackground";
 
 interface iDialogChatView {
   trigger?: ReactNode;
@@ -177,7 +178,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
       <DialogTitle></DialogTitle>
       <DialogTrigger>{trigger}</DialogTrigger>
       <DialogContent className="p-0 w-full  h-full overflow-hidden max-w-[100%] max-h-[100%]">
-        <div className={styles.backpackBg}>
+        <div className="">
           <div className="relative">
             <div className="headerBackpack flex dpl25 dpt18 dpb18 dpr110 dh90">
               <div
@@ -297,6 +298,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
               ></ChatEnergy>
             </div>
           </div>
+          <VideoBackground />
         </div>
       </DialogContent>
     </Dialog>
