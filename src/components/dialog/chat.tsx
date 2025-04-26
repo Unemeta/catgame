@@ -178,9 +178,9 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
       <DialogTitle></DialogTitle>
       <DialogTrigger>{trigger}</DialogTrigger>
       <DialogContent className="p-0 w-full  h-full overflow-hidden max-w-[100%] max-h-[100%]">
-        <div className="">
+        <div className={styles.backpackBg}>
           <div className="relative">
-            <div className="headerBackpack flex dpl25 dpt18 dpb18 dpr110 dh90">
+            <div className="headerBackpack flex justify-between dpl25 dpt18 dpb18 dpr110 dh90">
               <div
                 className="flex justify-start items-center cursor-pointer select-none"
                 onClick={() => {
@@ -193,7 +193,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                   height="48"
                   viewBox="0 0 48 48"
                   fill="none"
-                  className="dw48 dhauto dmr10"
+                  className="dw48 dhauto dmr10 backIcon"
                 >
                   <circle opacity="0.3" cx="24" cy="24" r="24" fill="#D9D9D9" />
                   <circle cx="24" cy="24" r="20" fill="white" />
@@ -205,58 +205,100 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                     stroke-linejoin="round"
                   />
                 </svg>
-                <span className="text-white dtext26 font-[500]">Back</span>
+                <span className="text-white dtext26 font-[500] backText">
+                  Back
+                </span>
+              </div>
+              <div className="px-[10px] py-[4px] text-white font-[500] text-[14px] flex justify-end items-center bg-white/10 rounded-[20px]">
+                <img
+                  className="w-[24px] h-[24px] mr-[5px]"
+                  src="/img/iconSpeak.min.png"
+                  alt=""
+                />
+                <span className="">5/</span>
+                <span className="text-white70 mr-[5px]">10</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                >
+                  <g clip-path="url(#clip0_2028_5852)">
+                    <path
+                      d="M6.05967 6C6.21641 5.55445 6.52578 5.17874 6.93298 4.93942C7.34018 4.70011 7.81894 4.61263 8.28446 4.69248C8.74998 4.77233 9.17222 5.01435 9.47639 5.37569C9.78057 5.73702 9.94705 6.19435 9.94634 6.66667C9.94634 8 7.94634 8.66667 7.94634 8.66667M7.99967 11.3333H8.00634M14.6663 8C14.6663 11.6819 11.6816 14.6667 7.99967 14.6667C4.31778 14.6667 1.33301 11.6819 1.33301 8C1.33301 4.3181 4.31778 1.33334 7.99967 1.33334C11.6816 1.33334 14.6663 4.3181 14.6663 8Z"
+                      stroke="#FFF41A"
+                      stroke-opacity="0.7"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_2028_5852">
+                      <rect width="16" height="16" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
               </div>
             </div>
-            <div className="flex flex-col chatCttH">
+            <div className="flex flex-col chatCttH lmdWfull">
               <div className="flex justify-end items-start dmb40 grow overflow-y-scroll">
                 <div
-                  className="chatCtt flex flex-col dgap20 overflow-y-scroll dpr36"
+                  className="chatCtt lmdWfull flex flex-col dgap20 overflow-y-scroll dpr36"
                   ref={chatEndRef}
                 >
                   {messageList?.map((item, index: number) => {
                     if (item?.role === "user") {
                       return (
-                        <div
-                          key={index}
-                          className="send dp24 drounded30 bg-[rgba(90,_35,_92,_0.30)] flex justify-between items-start overflow-hidden"
-                        >
-                          <div className="dmaxW460 lmd:max-w-[400px] dmr25 w-full">
-                            <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 text-right">
-                              {moment(item.time * 1000).format(
-                                "YYYY/MM/DD hh:mm"
-                              )}
+                        <div className="relative" key={index}>
+                          <div className="send dp24 drounded30 bg-[rgba(90,_35,_92,_0.30)] flex justify-between items-start overflow-hidden relative msgWrap">
+                            <div className="dmaxW460 dmr25 msgTimeWrap">
+                              <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 text-right">
+                                {moment(item.time * 1000).format(
+                                  "YYYY/MM/DD hh:mm"
+                                )}
+                              </div>
+                              <div className="dtext28 font-[500] text-[#F5F2FF]  text-wrap">
+                                {item?.msg}
+                              </div>
                             </div>
-                            <div className="dtext28 font-[500] text-[#F5F2FF]  text-wrap">
-                              {item?.msg}
-                            </div>
+                            <img
+                              className="dw65 dh65 rounded-full userIcon"
+                              src="/img/avataUser.min.png"
+                              alt=""
+                            />
                           </div>
                           <img
-                            className="dw65 dh65 rounded-full "
-                            src="/img/1.jpg"
+                            className="dw65 dh65 rounded-full lmdUserIcon hidden"
+                            src="/img/avataUser.min.png"
                             alt=""
                           />
                         </div>
                       );
                     } else {
                       return (
-                        <div
-                          key={index}
-                          className="receive dp24 drounded30 bg-[rgba(90,_35,_92,_0.30)] flex justify-start items-start overflow-hidden"
-                        >
+                        <div className="relative" key={index}>
                           <img
-                            className="dw65 dh65 rounded-full dmr25"
-                            src="/img/1.jpg"
+                            className="dw65 dh65 rounded-full dmr25 robotAvator lmdRobotAvator hidden"
+                            src="/img/avataCat.min.png"
                             alt=""
                           />
-                          <div className="dmaxW460 lmd:max-w-[400px]">
-                            <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8">
-                              {moment(item.time * 1000).format(
-                                "YYYY/MM/DD hh:mm"
-                              )}
-                            </div>
-                            <div className="dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal">
-                              {item?.msg}
+                          <div className="receive dp24 drounded30 bg-[rgba(90,_35,_92,_0.30)] flex justify-start items-start overflow-hidden msgWrap">
+                            <img
+                              className="dw65 dh65 rounded-full dmr25 robotAvator"
+                              src="/img/avataCat.min.png"
+                              alt=""
+                            />
+                            <div className="dmaxW460 lmdWfull">
+                              <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8">
+                                {moment(item.time * 1000).format(
+                                  "YYYY/MM/DD hh:mm"
+                                )}
+                              </div>
+                              <div className="dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal">
+                                {item?.msg}
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -265,17 +307,17 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                   })}
                 </div>
               </div>
-              <div className="textInput flex justify-center items-center h-[100px] dpb80">
-                <div className="relative">
+              <div className="textInput flex justify-center items-center h-[100px] dpb80 sendSpeakerWrap">
+                <div className="relative sendInputWrap">
                   <input
-                    className="drounded160 dborderW2 border-[#FFF] dw780 dh100 bg-white/70 dmr30  dpl15 dpr155 outline-none text-[#522192] dtest24 font-[800]"
+                    className="lmdInput drounded160 dborderW2 border-[#FFF] dw780 dh100 bg-white/70 dmr30  dpl15 dpr155 outline-none text-[#522192] dtext24 font-[800]"
                     type="text"
                     onChange={(e) => setinputMsg(e.target.value)}
                     onKeyDown={handleKeyDown}
                     value={inputMsg}
                   />
                   <div
-                    className="absolute dright80 top-[50%] dtranslateYF50 bg-[linear-gradient(0deg,_#BE6FFF_0%,_#6C8AFF_100%)] drounded20 dpx30 dpy20 text-white dtext24 font-[800] cursor-pointer select-none"
+                    className="lmdSend absolute dright80 top-[50%] dtranslateYF50 bg-[linear-gradient(0deg,_#BE6FFF_0%,_#6C8AFF_100%)] drounded20 dpx30 dpy20 text-white dtext24 font-[800] cursor-pointer select-none"
                     onClick={sendMessage}
                     onKeyDown={handleKeyDown}
                   >
@@ -290,7 +332,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                 />
               </div>
             </div>
-            <div className="flex absolute left-[13%] top-[3%]">
+            <div className="flex absolute left-[13%] top-[3%] chatEnegy">
               <ChatEnergy
                 imgUrl="./img/chatPaw.min.png"
                 label="Communication Energy"
@@ -298,7 +340,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
               ></ChatEnergy>
             </div>
           </div>
-          <VideoBackground />
+          {/* <VideoBackground /> */}
         </div>
       </DialogContent>
     </Dialog>

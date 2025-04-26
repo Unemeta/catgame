@@ -33,7 +33,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      {isPortrait ? (
+      {isPortrait && false ? (
         <div className="rotate-screen">请旋转设备至横屏模式</div>
       ) : (
         <>

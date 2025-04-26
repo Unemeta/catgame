@@ -596,3 +596,120 @@ body {
 .chatCttH {
   height: calc(100vh - 90px);
 }
+
+@media screen and (max-width: 768px) {
+  .chatCttH {
+    height: calc(100vh - 90px);
+  }
+  .headerBackpack {
+    padding-top: 15px;
+    height: 65px;
+    padding-bottom: 15px;
+  }
+  .backIcon {
+    width: 25px;
+    height: 25px;
+  }
+  .backText {
+    margin-left: 5px;
+    font-size: 14px;
+  }
+  .chatEnegy {
+    display: none;
+  }
+  .chatCtt {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+  .lmdWfull {
+    width: 100%;
+    max-width: 100%;
+  }
+  .msgWrap {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding: 15px;
+  }
+  .chatMsg {
+    width: 100% !important;
+  }
+  .msgTimeWrap {
+    width: 100%;
+    max-width: 100%;
+  }
+  .userIcon {
+    width: 40px;
+    height: 40px;
+    display: none;
+  }
+  .lmdUserIcon {
+    width: 40px;
+    height: 40px;
+    display: block;
+    position: absolute;
+    right: -45px;
+    top: 10px;
+  }
+  .robotAvator {
+    width: 40px;
+    height: 40px;
+    display: none;
+  }
+  .lmdRobotAvator {
+    width: 40px;
+    height: 40px;
+    display: block;
+    position: absolute;
+    left: -45px;
+    top: 10px;
+  }
+  .sendSpeakerWrap {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 0;
+  }
+  .sendInputWrap {
+    width: 100%;
+    margin-right: 5px;
+  }
+  .lmdInput {
+    padding: 14px;
+    height: 44px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+
+    border-radius: 22px;
+    background: rgba(15, 4, 15, 0.51);
+    position: relative;
+    --borderWidth: 3px;
+    border: none;
+  }
+  .lmdInput:after {
+    content: "";
+    position: absolute;
+    top: calc(-1 * var(--borderWidth));
+    left: calc(-1 * var(--borderWidth));
+    height: calc(100% + var(--borderWidth) * 2);
+    width: calc(100% + var(--borderWidth) * 2);
+    background: linear-gradient(
+      60deg,
+      #f79533,
+      #f37055,
+      #ef4e7b,
+      #a166ab,
+      #5073b8,
+      #1098ad,
+      #07b39b,
+      #6fba82
+    );
+    border-radius: calc(2 * var(--borderWidth));
+    z-index: -1;
+    /* animation: animatedgradient 3s ease alternate infinite; */
+    background-size: 300% 300%;
+  }
+  .lmdSend {
+    display: none;
+  }
+}

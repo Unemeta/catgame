@@ -122,6 +122,12 @@
   width: 120px;
   height: 120px;
   cursor: pointer;
-  background: url('/img/speak.min.png');
+  background: url("/img/speak.min.png");
   background-size: cover;
+}
+@media screen and (max-width: 768px) {
+  .icon {
+    width: 44px;
+    height: 44px;
+  }
 }
