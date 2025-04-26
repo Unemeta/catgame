@@ -36,7 +36,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
       }
       timerHistory = setTimeout(async () => {
         getHistory();
-        // getChatInfo()
+        getChatInfo()
       }, 3000);
     })();
   }, []);
@@ -53,6 +53,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
     };
     socketTemp.onmessage = (event) => {
       if (event?.type === "message" && event?.data !== "pong") {
+        getChatInfo();
         setmessageList((pre) => {
           return [
             ...pre,
@@ -154,6 +155,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
       toast.error(error?.msg || JSON.stringify(error));
     }
   };
+  const [chatCount, setchatCount] = useState("")
   const getChatInfo = async () => {
     try {
       const { data } = await request({
@@ -161,6 +163,9 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
         method: "get",
       });
       console.log(data);
+      if(data.hasOwnProperty("chatCount")){
+        setchatCount(String(data.chatCount))
+      }
     } catch (error: any) {
       toast.error(error?.msg || JSON.stringify(error));
     }
@@ -216,8 +221,8 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                     src="/img/iconSpeak.min.png"
                     alt=""
                   />
-                  <span className="">5/</span>
-                  <span className="text-white70 mr-[5px]">10</span>
+                  <span className="">{chatCount}/</span>
+                  <span className="text-white70 mr-[5px]">20</span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
