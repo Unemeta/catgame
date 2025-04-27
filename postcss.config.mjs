@@ -10,7 +10,7 @@ const config = {
       propList: ["*", "!border*"], // ✅ 确保包含 width
       selectorBlackList: [".ignore", ".hairlines"], // 指定不需要转换的类
       minPixelValue: 1, // 小于或等于1px不转换为视口单位
-      mediaQuery: false, // 允许在媒体查询中转换px
+      mediaQuery: true, // 允许在媒体查询中转换px
     },
     autoprefixer: {},
   },
