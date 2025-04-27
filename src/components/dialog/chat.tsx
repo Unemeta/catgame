@@ -3,7 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from ".";
-import styles from "@/styles/Backpack.module.css";
+// import styles from "@/styles/Backpack.module.css";
 import { jwtHelper } from "@/utils/jwt";
 import { request } from "@/utils/request";
 import { useFetchUser } from "@/store";
@@ -13,6 +13,7 @@ import { TopItem } from "../TopItem";
 import { ChatEnergy } from "../chatEnergy";
 import SpeechRecognition from "@/components/SpeechRecognition";
 import VideoBackground from "../VideoBackground";
+import styles from "@/styles/Chat.module.css";
 
 interface iDialogChatView {
   trigger?: ReactNode;
@@ -32,7 +33,6 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
 
   useEffect(() => {
     (() => {
-     
       if (timerHistory) {
         clearTimeout(timerHistory);
       }
@@ -190,7 +190,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
       <DialogTitle></DialogTitle>
       <DialogTrigger>{trigger}</DialogTrigger>
       <DialogContent className="p-0 w-full  h-full overflow-hidden max-w-[100%] max-h-[100%]">
-        <div className={styles.backpackBg}>
+        <div className={styles.contentBg}>
           <div className="relative">
             <div className="headerBackpack flex justify-between dpl25 dpt18 dpb18 dpr110 dh90">
               <div
@@ -199,27 +199,8 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                   setIsOpen(false);
                 }}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="48"
-                  height="48"
-                  viewBox="0 0 48 48"
-                  fill="none"
-                  className="dw48 dhauto dmr10 backIcon"
-                >
-                  <circle opacity="0.3" cx="24" cy="24" r="24" fill="#D9D9D9" />
-                  <circle cx="24" cy="24" r="20" fill="white" />
-                  <path
-                    d="M27.5 15L18.5 24L27.5 33"
-                    stroke="#E239EE"
-                    stroke-width="4.15385"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                <span className="text-white dtext26 font-[500] backText">
-                  Back
-                </span>
+                <img src="/img/back.svg" alt="" className={styles.back} />
+                <span className={styles.backText}>Back</span>
               </div>
               <div className="hidden h5ChatNum">
                 <div className="px-[10px] py-[4px] text-white font-[500] text-[14px] flex justify-end items-center bg-white/10 rounded-[20px]">
@@ -228,7 +209,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                     src="/img/iconSpeak.min.png"
                     alt=""
                   />
-                  <span className="">{20-(Number(chatCount) || 0)}/</span>
+                  <span className="">{20 - (Number(chatCount) || 0)}/</span>
                   <span className="text-white70 mr-[5px]">20</span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
