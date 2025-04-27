@@ -192,20 +192,20 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
       <DialogContent className="p-0 w-full  h-full overflow-hidden max-w-[100%] max-h-[100%]">
         <div className={styles.contentBg}>
           <div className="relative">
-            <div className="headerBackpack flex justify-between dpl25 dpt18 dpb18 dpr110 dh90">
+            <div className="headerBackpack flex justify-between items-center dpl25 dpt18 dpb18 dpr110 dh90">
               <div
                 className="flex justify-start items-center cursor-pointer select-none"
                 onClick={() => {
                   setIsOpen(false);
                 }}
               >
-                <img src="/img/back.svg" alt="" className={styles.back} />
-                <span className={styles.backText}>Back</span>
+                <img src="/img/back.svg" alt="" className="backIcon dw25 dh25" />
+                <span className="text-white dtext14 font-[500] dml10 backText" >Back</span>
               </div>
               <div className="hidden h5ChatNum">
-                <div className="px-[10px] py-[4px] text-white font-[500] text-[14px] flex justify-end items-center bg-white/10 rounded-[20px]">
+                <div className="chatNumWrap text-white font-[500] flex justify-end items-center bg-white/10">
                   <img
-                    className="w-[24px] h-[24px] mr-[5px]"
+                    className="chatNumLeft"
                     src="/img/iconSpeak.min.png"
                     alt=""
                   />
@@ -217,6 +217,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                     height="16"
                     viewBox="0 0 16 16"
                     fill="none"
+                    className="chatNumRight"
                   >
                     <g clip-path="url(#clip0_2028_5852)">
                       <path
@@ -249,12 +250,12 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                         <div className="relative" key={index}>
                           <div className="send dp24 drounded30 bg-[rgba(90,_35,_92,_0.30)] flex justify-between items-start overflow-hidden relative msgWrap">
                             <div className="dmaxW460 dmr25 msgTimeWrap">
-                              <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 text-right">
+                              <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 text-right msgTime">
                                 {moment(item.time * 1000).format(
                                   "YYYY/MM/DD hh:mm"
                                 )}
                               </div>
-                              <div className="dtext28 font-[500] text-[#F5F2FF]  text-wrap">
+                              <div className="dtext28 font-[500] text-[#F5F2FF]  text-wrap lmdMsgSpan">
                                 {item?.msg}
                               </div>
                             </div>
@@ -286,12 +287,12 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                               alt=""
                             />
                             <div className="dmaxW460 lmdWfull">
-                              <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8">
+                              <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 msgTime">
                                 {moment(item.time * 1000).format(
                                   "YYYY/MM/DD hh:mm"
                                 )}
                               </div>
-                              <div className="dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal">
+                              <div className="dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan">
                                 {item?.msg}
                               </div>
                             </div>

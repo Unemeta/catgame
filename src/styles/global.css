@@ -597,41 +597,67 @@ body {
   height: calc(100vh - 90px);
 }
 
-@media screen and (max-width: 900px) {
+.chatNumLeft {
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+}
+.chatNumWrap {
+  padding: 10px 4px 10px 4px;
+  font-size: 14px;
+  border-radius: 20px;
+   
+}
+@media screen and (max-width: 768px) {
   .h5ChatNum {
     display: block;
   }
   .chatCttH {
-    height: calc(100vh - 90px);
+    height: calc(100vh - 670px);
   }
   .headerBackpack {
-    padding-top: 15px;
-    height: 65px;
-    padding-bottom: 15px;
+    /* padding-top:45px; */
+    height: 230px;
+    /* padding-bottom: 45px; */
   }
   .backIcon {
-    width: 25px;
-    height: 25px;
+    width: 120px;
+    height: 120px;
   }
   .backText {
-    margin-left: 5px;
-    font-size: 14px;
+    margin-left: 30px;
+    font-size: 4%;
+  }
+  .chatNumLeft {
+    width: 72px;
+    height: 72px;
+    margin-right: 15px;
+  }
+  .chatNumRight {
+    width: 58px;
+    height: 58px;
+  }
+  .chatNumWrap {
+    padding:  8px 30px 8px 30px;
+    font-size: 42px;
+    border-radius: 20px;
   }
   .chatEnegy {
     display: none;
   }
   .chatCtt {
-    padding-left: 60px;
-    padding-right: 60px;
+    padding-left: 200px;
+    padding-right: 200px;
   }
   .lmdWfull {
     width: 100%;
     max-width: 100%;
   }
   .msgWrap {
-    padding-left: 15px;
-    padding-right: 15px;
-    padding: 15px;
+    padding-left: 45px;
+    padding-right: 45px;
+    padding: 45px;
+    border-radius: 15px;
   }
   .chatMsg {
     width: 100% !important;
@@ -646,12 +672,12 @@ body {
     display: none;
   }
   .lmdUserIcon {
-    width: 40px;
-    height: 40px;
+    width: 120px;
+    height: 120px;
     display: block;
     position: absolute;
-    right: -45px;
-    top: 10px;
+    right: -138px;
+    top: 30px;
   }
   .robotAvator {
     width: 40px;
@@ -659,30 +685,29 @@ body {
     display: none;
   }
   .lmdRobotAvator {
-    width: 40px;
-    height: 40px;
+    width: 120px;
+    height: 120px;
     display: block;
     position: absolute;
-    left: -45px;
-    top: 10px;
+    left: -140px;
+    top: 30px;
   }
   .sendSpeakerWrap {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 60px;
+    padding-right: 60px;
     padding-bottom: 0;
   }
   .sendInputWrap {
     width: 100%;
-    margin-right: 5px;
+    margin-right: 30px;
   }
   .lmdInput {
-    padding: 14px;
-    height: 44px;
+    padding: 42px;
+    height: 180px;
     width: 100%;
-    font-size: 16px;
+    font-size: 48px;
     font-weight: 500;
     color: white;
-
     border-radius: 22px;
     background: rgba(15, 4, 15, 0.51);
     position: relative;
@@ -691,28 +716,35 @@ body {
   .lmdSend {
     display: none;
   }
+  .lmdMsgSpan {
+    font-size: 72px;
+  }
+  .msgTime {
+    font-size: 52px;
+    margin-bottom: 24px;
+  }
 }
 
 
 
 
 /* .sendInputWrap {
-  --borderWidth: 1px;
+  --borderWidth: 30px;
   position: relative;
   border-radius: 22px;
   background: #0f040f82;
   z-index: 1;
-  height: 10px;
+  height: 100px;
 }
-.sendInputWrapAfter {
+.sendInputWrap:after {
   position: absolute;
   top: -1px;
   left:-1px;
-  height: 46px;
-  width: calc(100% + 2px);
+  height: 150px;
+  width: calc(100% + 6px);
   background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
   border-radius: 22px;
-  z-index: -1;
+  z-index: 0;
 } */
   /* animation: animatedgradient 3s ease alternate infinite; */
 @keyframes animatedgradient {

@@ -1,21 +1,22 @@
 .back {
-  width: 200px;
-  height: 200px;
+  width: 48px;
+  height: 48px;
 }
-@media screen and (max-width: 400px) {
-    .contentBg {
-      background-image: url("/img/bg/bgChat.min.png");
-      border: 20px solid red;
-    }
-  }
+
 .backText {
-  font-size: 28px;
+  font-size: 26px;
   color: #fff;
   font-weight: 500;
+  margin-left: 10px;
 }
 .contentBg {
   /* background-image: url("/img/bg/backpackCttBg.min.png"); */
   background-image: url("/img/bg/bgChatPc.min.png");
   background-size: cover;
+}
 
+@media screen and (max-width: 900px) {
+  .contentBg {
+    background-image: url("/img/bg/bgChat.min.png");
+  }
 }
