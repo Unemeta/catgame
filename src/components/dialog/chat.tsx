@@ -28,16 +28,23 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
   >([]);
   const chatEndRef = useRef(null);
   const [toConnect, settoConnect] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     (() => {
+     
       if (timerHistory) {
         clearTimeout(timerHistory);
       }
       timerHistory = setTimeout(async () => {
         getHistory();
-        getChatInfo()
+        getChatInfo();
       }, 3000);
+      setTimeout(() => {
+        if (inputRef?.current) {
+          inputRef.current.tabIndex = 0;
+        }
+      }, 2000);
     })();
   }, []);
 
@@ -155,7 +162,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
       toast.error(error?.msg || JSON.stringify(error));
     }
   };
-  const [chatCount, setchatCount] = useState("")
+  const [chatCount, setchatCount] = useState("");
   const getChatInfo = async () => {
     try {
       const { data } = await request({
@@ -163,8 +170,8 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
         method: "get",
       });
       console.log(data);
-      if(data.hasOwnProperty("chatCount")){
-        setchatCount(String(data.chatCount))
+      if (data.hasOwnProperty("chatCount")) {
+        setchatCount(String(data.chatCount));
       }
     } catch (error: any) {
       toast.error(error?.msg || JSON.stringify(error));
@@ -221,7 +228,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                     src="/img/iconSpeak.min.png"
                     alt=""
                   />
-                  <span className="">{chatCount}/</span>
+                  <span className="">{20-(Number(chatCount) || 0)}/</span>
                   <span className="text-white70 mr-[5px]">20</span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -317,6 +324,8 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
               <div className="textInput flex justify-center items-center h-[100px] dpb80 sendSpeakerWrap">
                 <div className="relative sendInputWrap">
                   <input
+                    tabIndex={-1}
+                    ref={inputRef}
                     className="lmdInput drounded160 dborderW2 border-[#FFF] dw780 dh100 bg-white/70 dmr30  dpl15 dpr155 outline-none text-[#522192] dtext24 font-[800]"
                     type="text"
                     onChange={(e) => setinputMsg(e.target.value)}
