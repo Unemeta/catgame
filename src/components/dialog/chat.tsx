@@ -14,6 +14,7 @@ import { ChatEnergy } from "../chatEnergy";
 import SpeechRecognition from "@/components/SpeechRecognition";
 import VideoBackground from "../VideoBackground";
 import styles from "@/styles/Chat.module.css";
+import { cn } from "@/lib/utils";
 
 interface iDialogChatView {
   trigger?: ReactNode;
@@ -159,7 +160,8 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
         setmessageList([...data.msgList.reverse()]);
       }
     } catch (error: any) {
-      toast.error(error?.msg || JSON.stringify(error));
+      console.error(error)
+      // toast.error(error?.msg || JSON.stringify(error));
     }
   };
   const [chatCount, setchatCount] = useState("");
@@ -174,7 +176,8 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
         setchatCount(String(data.chatCount));
       }
     } catch (error: any) {
-      toast.error(error?.msg || JSON.stringify(error));
+      console.error(error)
+      // toast.error(error?.msg || JSON.stringify(error));
     }
   };
   const scrollToBottom = () => {
@@ -191,7 +194,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
       <DialogTrigger>{trigger}</DialogTrigger>
       <DialogContent className={styles.DialogContent}>
         <div className={styles.contentBgChat}>
-          <div className="relative">
+          <div className="relative h-[100vh]">
             <div className="headerBackpack flex justify-between items-center dpl25 dpt18 dpb18 dpr110 dh90">
               <div
                 className="flex justify-start items-center cursor-pointer select-none"
@@ -238,7 +241,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col chatCttH lmdWfull">
+            <div className="flex flex-col chatCttH lmdWfull z-1 relative">
               <div className="flex justify-end items-start dmb40 grow overflow-y-scroll">
                 <div
                   className="chatCtt lmdWfull flex flex-col dgap20 overflow-y-scroll dpr36"
@@ -339,6 +342,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                 number={20}
               ></ChatEnergy>
             </div>
+            <div className={cn(styles.mask,'w-[100vw] absolute bottom-0')}></div>
           </div>
           {/* <VideoBackground /> */}
         </div>

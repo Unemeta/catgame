@@ -28,3 +28,12 @@
     background-image: url("/img/bg/bgChat.min.png");
   }
 }
+.mask {
+  height: 57vh;
+  flex-shrink: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(51, 43, 71, 0) 21.45%,
+    #422b47 79.47%
+  );
+}
