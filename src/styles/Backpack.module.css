@@ -2,8 +2,7 @@
   height: calc(100vh - 90px);
 }
 .backpackBg {
-  /* background-image: url("/img/bg/backpackCttBg.min.png"); */
-  background-image: url("/img/bg/bgChatPc.min.png");
+  background-image: url("/img/bg/backpackCttBg.min.png");
   background-size: cover;
 }
 @media screen and (max-width: 768px) {
