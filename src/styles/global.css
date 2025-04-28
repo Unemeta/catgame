@@ -723,6 +723,19 @@ body {
     font-size: 52px;
     margin-bottom: 24px;
   }
+  .lmdSizebox {
+    display: block;
+    height: 80px;
+  }
+
+
+
+
+
+
+  .drm5 {
+    margin-right: 20px;
+  }
 }
 
 

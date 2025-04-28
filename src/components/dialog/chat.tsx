@@ -189,8 +189,8 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTitle></DialogTitle>
       <DialogTrigger>{trigger}</DialogTrigger>
-      <DialogContent className="p-0 w-full  h-full overflow-hidden max-w-[100%] max-h-[100%]">
-        <div className={styles.contentBg}>
+      <DialogContent className={styles.DialogContent}>
+        <div className={styles.contentBgChat}>
           <div className="relative">
             <div className="headerBackpack flex justify-between items-center dpl25 dpt18 dpb18 dpr110 dh90">
               <div
@@ -210,7 +210,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                     alt=""
                   />
                   <span className="">{20 - (Number(chatCount) || 0)}/</span>
-                  <span className="text-white70 mr-[5px]">20</span>
+                  <span className="text-white/70 drm5">20</span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -303,6 +303,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                   })}
                 </div>
               </div>
+              <div className="lmdSizebox hidden"></div>
               <div className="textInput flex justify-center items-center h-[100px] dpb80 sendSpeakerWrap">
                 <div className="relative sendInputWrap">
                   <input
@@ -329,6 +330,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                   onSend={(text) => sendMessageByVoice(text)}
                 />
               </div>
+              <div className="lmdSizebox hidden"></div>
             </div>
             <div className="flex absolute left-[13%] top-[3%] chatEnegy">
               <ChatEnergy
