@@ -200,6 +200,9 @@ body {
 .dw120 {
   width: 120px;
 }
+.dw150 {
+  width: 150px;
+}
 .dw180 {
   width: 180px;
 }
@@ -625,16 +628,17 @@ body {
   }
   .backText {
     margin-left: 30px;
-    font-size: 4%;
+    font-size: 64px;
+    font-family: "SF Pro Rounded";
   }
   .chatNumLeft {
-    width: 72px;
-    height: 72px;
-    margin-right: 15px;
+    width: 110px;
+    height: 110px;
+    margin-right: 20px;
   }
   .chatNumRight {
-    width: 58px;
-    height: 58px;
+    width: 70px;
+    height: 70px;
   }
   .chatNumWrap {
     padding: 8px 30px 8px 30px;
@@ -645,8 +649,8 @@ body {
     display: none;
   }
   .chatCtt {
-    padding-left: 200px;
-    padding-right: 200px;
+    padding-left: 300px;
+    padding-right: 300px;
   }
   .lmdWfull {
     width: 100%;
@@ -657,6 +661,32 @@ body {
     padding-right: 45px;
     padding: 45px;
     border-radius: 15px;
+    position: relative;
+  }
+  .receive::after {
+    content: "";
+    position: absolute;
+    left: -25px; /* 定位到左侧外部 */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 4px 6px 4px 0; /* 上、右、下、左 */
+    border-color: transparent #5a235c4d transparent transparent;
+  }
+
+  .send::after {
+    content: "";
+    position: absolute;
+    right: -25px; /* 向右超出父元素 10px */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 4px 0 4px 6px; /* 上、右、下、左 */
+    border-color: transparent transparent transparent #24e137e6;
   }
   .chatMsg {
     width: 100% !important;
@@ -671,11 +701,11 @@ body {
     display: none;
   }
   .lmdUserIcon {
-    width: 120px;
-    height: 120px;
+    width: 180px;
+    height: 180px;
     display: block;
     position: absolute;
-    right: -138px;
+    right: -200px;
     top: 30px;
   }
   .robotAvator {
@@ -684,11 +714,11 @@ body {
     display: none;
   }
   .lmdRobotAvator {
-    width: 120px;
-    height: 120px;
+    width: 180px;
+    height: 180px;
     display: block;
     position: absolute;
-    left: -140px;
+    left: -200px;
     top: 30px;
   }
   .sendSpeakerWrap {
@@ -697,17 +727,20 @@ body {
     padding-bottom: 0;
   }
   .sendInputWrap {
-    width: 100%;
-    margin-right: 30px;
+    /* width: 100%; */
+    /* margin-right: 30px; */
   }
   .lmdInput {
-    padding: 42px;
-    height: 200px;
-    width: 100%;
+    /* padding: 42px;
+    height: 200px; */
+    height: 220px;
+    width: 73vw;
+    border-radius: 100px;
+    /* width: 100%; */
     font-size: 48px;
     font-weight: 500;
     color: white;
-    border-radius: 22px;
+    /* border-radius: 22px; */
     background: rgba(15, 4, 15, 0.51);
     position: relative;
     border: none;
