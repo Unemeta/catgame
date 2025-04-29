@@ -317,6 +317,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                     onChange={(e) => setinputMsg(e.target.value)}
                     onKeyDown={handleKeyDown}
                     value={inputMsg}
+                    placeholder="What are you talking about?"
                   />
                   <div
                     className="lmdSend absolute dright80 top-[50%] dtranslateYF50 bg-[linear-gradient(0deg,_#BE6FFF_0%,_#6C8AFF_100%)] drounded20 dpx30 dpy20 text-white dtext24 font-[800] cursor-pointer select-none"

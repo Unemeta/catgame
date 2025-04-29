@@ -12,7 +12,7 @@
 .contentBgChat {
   /* background-image: url("/img/bg/backpackCttBg.min.png"); */
   background-image: url("/img/bg/bgChatPc.min.png");
-  background-size: cover;
+  background-size: 100% 100%;
 }
 .DialogContent {
   padding: 0 !important;
@@ -23,7 +23,7 @@
   max-height: 100%;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 768px) {
   .contentBgChat {
     background-image: url("/img/bg/bgChat.min.png");
   }
