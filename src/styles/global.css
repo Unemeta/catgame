@@ -613,7 +613,7 @@ body {
     display: block;
   }
   .chatCttH {
-    height: calc(100vh - 670px);
+    height: calc(100vh - 800px);
   }
   .headerBackpack {
     /* padding-top:45px; */
@@ -703,7 +703,7 @@ body {
   }
   .lmdInput {
     padding: 42px;
-    height: 180px;
+    height: 200px;
     width: 100%;
     font-size: 48px;
     font-weight: 500;
