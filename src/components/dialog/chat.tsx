@@ -123,26 +123,30 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
   };
 
   const sendMessageByVoice = (text: string) => {
-    if (socket) {
-      if (text?.length > 0) {
-        setmessageList((preMsgList) => {
-          return [
-            ...preMsgList,
-            {
-              chatId: userData?.nickname,
-              msg: text,
-              role: "user",
-              time: Math.floor(new Date().getTime() / 1000),
-            },
-          ];
-        });
-        socket?.send(text);
+    try {
+      if (socket) {
+        if (text?.length > 0) {
+          setmessageList((preMsgList) => {
+            return [
+              ...preMsgList,
+              {
+                chatId: userData?.nickname,
+                msg: text,
+                role: "user",
+                time: Math.floor(new Date().getTime() / 1000),
+              },
+            ];
+          });
+          socket?.send(text);
+        } else {
+          toast.info("Please enter msg");
+        }
       } else {
-        toast.info("Please enter msg");
+        console.log("sk null");
+        settoConnect((pre) => !pre);
       }
-    } else {
-      console.log("sk null");
-      settoConnect((pre) => !pre);
+    } catch (error) {
+      console.log(error);
     }
   };
   const handleKeyDown = (event: any) => {
@@ -160,7 +164,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
         setmessageList([...data.msgList.reverse()]);
       }
     } catch (error: any) {
-      console.error(error)
+      console.error(error);
       // toast.error(error?.msg || JSON.stringify(error));
     }
   };
@@ -176,7 +180,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
         setchatCount(String(data.chatCount));
       }
     } catch (error: any) {
-      console.error(error)
+      console.error(error);
       // toast.error(error?.msg || JSON.stringify(error));
     }
   };
@@ -202,8 +206,14 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                   setIsOpen(false);
                 }}
               >
-                <img src="/img/back.svg" alt="" className="backIcon dw25 dh25" />
-                <span className="text-white dtext14 font-[500] dml10 backText" >Back</span>
+                <img
+                  src="/img/back.svg"
+                  alt=""
+                  className="backIcon dw25 dh25"
+                />
+                <span className="text-white dtext14 font-[500] dml10 backText">
+                  Back
+                </span>
               </div>
               <div className="hidden h5ChatNum">
                 <div className="chatNumWrap text-white font-[500] flex justify-end items-center bg-white/10">
@@ -307,7 +317,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                 </div>
               </div>
               <div className="lmdSizebox hidden"></div>
-              <div className="textInput flex justify-center items-center h-[100px] sendSpeakerWrap">
+              {/* <div className="textInput flex justify-center items-center h-[100px] sendSpeakerWrap">
                 <div className="relative sendInputWrap">
                   <input
                     tabIndex={-1}
@@ -333,7 +343,11 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                   // onError={(error) => console.error("发生错误:", error)}
                   onSend={(text) => sendMessageByVoice(text)}
                 />
-              </div>
+              </div> */}
+              <SpeechRecognition
+                language="zh-CN"
+                onSend={(text) => sendMessageByVoice(text)}
+              ></SpeechRecognition>
               <div className="lmdSizebox hidden"></div>
             </div>
             <div className="flex absolute left-[13%] top-[3%] chatEnegy">
@@ -343,7 +357,9 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                 number={20}
               ></ChatEnergy>
             </div>
-            <div className={cn(styles.mask,'w-[100vw] absolute bottom-0')}></div>
+            <div
+              className={cn(styles.mask, "w-[100vw] absolute bottom-0")}
+            ></div>
           </div>
           {/* <VideoBackground /> */}
         </div>

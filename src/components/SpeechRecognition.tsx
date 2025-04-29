@@ -2,6 +2,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import styles from "@/styles/Speech.module.css"; // 确保有对应的 CSS 文件
+import LottieView from "@/components/lottie";
+import { cn } from "@/lib/utils";
 
 // 类型定义
 interface SpeechRecognitionProps {
@@ -41,9 +43,10 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   //   const [currentY, setCurrentY] = useState<number>(0);
 
   const [voiceVolume, setVoiceVolume] = useState(0);
-  const [vb, setVb] = useState(1);
-  const [showTextModel, SetShowTextModel] = useState(false);
+  // const [vb, setVb] = useState(1);
   const [countdown, setCountDown] = useState(15);
+  const vanimateRef = useRef<any | null>(null);
+  const [showFast, setShowFast] = useState(false);
   let timer: any = null;
   // 常量配置
   const LONG_PRESS_DURATION = 700; // 长按判定时间
@@ -61,14 +64,15 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
     if (timer) {
       clearInterval(timer);
     }
-    setCountDown(15);
+    setCountDown(30);
     timer = setInterval(() => {
       setCountDown((pre) => pre - 1);
     }, 1000);
   };
   useEffect(() => {
     if (countdown === 0) {
-      cancelText();
+      // cancelText();
+      handleEnd();
     }
   }, [countdown]);
   // 初始化语音识别
@@ -96,6 +100,7 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
     recognition.onstart = () => {
       console.log("onstart");
       setRecordingState("recording");
+      handleCount();
     };
     // 在初始化时添加 soundstart/speechstart 检测
     recognition.addEventListener("soundstart", () => {
@@ -142,7 +147,6 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
     recognition.onend = () => {
       setRecordingState("idle");
       console.log("onend");
-      handleCount();
     };
 
     // 将 recognition 实例保存到 React ref 中，以便后续控制（如启动/停止）
@@ -199,12 +203,16 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   }, []);
 
   useEffect(() => {
-    if (recordingState === "idle" && transcripts.length > 0) {
-      SetShowTextModel(true);
+    if (recordingState === "idle" && transcripts.length) {
+      sendText();
+      // SetShowTextModel(true);
+      // sendText();
+      // console.log(transcripts,'transcripts')
+      // console.log("发送", transcripts);
     } else {
-      SetShowTextModel(false);
+      // SetShowTextModel(false);
     }
-  }, [transcripts, recordingState]);
+  }, [recordingState]);
   // 处理触摸开始
   const handleStart = useCallback(
     (clientY: number) => {
@@ -253,16 +261,35 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
 
   useEffect(() => {
     const res = voiceVolume / 255;
-    if (res < 0.2) {
-      setVb(1);
-    } else if (res < 0.4) {
-      setVb(2);
-    } else if (res < 0.6) {
-      setVb(3);
-    } else if (res < 0.8) {
-      setVb(4);
+    // if (res < 0.2) {
+    //   setVb(1);
+    // } else if (res < 0.4) {
+    //   setVb(2);
+    // } else if (res < 0.6) {
+    //   setVb(3);
+    // } else if (res < 0.8) {
+    //   setVb(4);
+    // } else {
+    //   setVb(5);
+    // }
+    // if (res < 0.2) {
+    //   vanimateRef.current?.speed(1);
+    // } else if (res < 0.4) {
+    //   vanimateRef.current?.speed(5);
+    // } else if (res < 0.6) {
+    //   vanimateRef.current?.speed(10);
+    // } else if (res < 0.8) {
+    //   vanimateRef.current?.speed(20);
+    // } else {
+    //   vanimateRef.current?.speed(30);
+    // }
+    if (res > 0.6) {
+      setShowFast(true);
+      console.log(showFast)
+      vanimateRef.current?.speed(10);
     } else {
-      setVb(5);
+      setShowFast(false);
+      vanimateRef.current?.speed(1);
     }
   }, [voiceVolume]);
 
@@ -317,48 +344,97 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   return (
     <div>
       {recordingState === "recording" ? (
-        <div className={styles.contain}>
-          <img className={styles.v} alt="" src={`/img/v${vb}.png`} />
-          <div className={styles.text}>Release to send swipe up to cancel</div>
-        </div>
-      ) : recordingState === "cancelled" ? (
-        <div className={styles.contain}>
-          <img className={styles.v} alt="" src={`/img/vcancel.svg`} />
-          <div className={styles.text}>Release to send swipe up to cancel</div>
-        </div>
-      ) : (
-        <></>
-      )}
-      {showTextModel ? (
-        <div className={styles.textback}>
-          <div className={styles.vtext}> {transcripts} </div>
-          <div className={styles.textbackfoot}>
-            <div className={styles.countdown}>{countdown}s</div>
-            <div className={styles.btncontain}>
-              <div className={styles.cancel} onClick={cancelText}>
-                Cancel
-              </div>
-              <div className={styles.send} onClick={sendText}>
-                Send
-              </div>
-            </div>
-          </div>
-        </div>
-      ) : (
-        <></>
-      )}
+        <>
+          {/* {showFast ? (
+            <LottieView
+              src={"/lottie/vfast.json"}
+              className={styles.vanimate}
+              loop={true}
+            ></LottieView>
+          ) : (
+            <LottieView
+              src={"/lottie/vnormal.json"}
+              className={styles.vanimate}
+              loop={true}
+              ref={vanimateRef}
+            ></LottieView>
+          )} */}
+          <LottieView
+            src={"/lottie/vnormal.json"}
+            className={styles.vanimate}
+            loop={true}
+            ref={vanimateRef}
+          ></LottieView>
 
-      <div
-        className={styles.icon}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleEndEvent}
-        onTouchCancel={handleEndEvent}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleEndEvent}
-        onMouseLeave={handleEndEvent}
-      />
+          <div className={styles.vanimateText}>
+            Recording ends in {countdown} seconds.
+          </div>
+          <div className={styles.status}>
+            <img className={styles.statusIcon} alt="" src={`/img/sendv.svg`} />
+            <div className={styles.statusText}>Release to send</div>
+          </div>
+        </>
+      ) : recordingState === "cancelled" ? (
+        <div className={styles.status}>
+          <img className={styles.statusIcon} alt="" src={`/img/cancelv.svg`} />
+          <div className={styles.statusText}>Swipe up to cancel</div>
+        </div>
+      ) : (
+        <></>
+      )}
+      <div className={styles.container}>
+        <div
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleEndEvent}
+          onTouchCancel={handleEndEvent}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleEndEvent}
+          onMouseLeave={handleEndEvent}
+        >
+          {recordingState === "recording" ? (
+            <div className={cn(styles.input, styles.inputActive)}>
+              <img
+                src="/img/recording.png"
+                alt=""
+                className={styles.recording}
+              />
+            </div>
+          ) : recordingState === "cancelled" ? (
+            <div className={cn(styles.input, styles.inputCancel)}>
+              <img
+                src="/img/recording.png"
+                alt=""
+                className={styles.recording}
+              />
+            </div>
+          ) : (
+            <div className={styles.sendInputWrap}>
+              <div className={styles.recordText}>Press and hold to speak</div>
+            </div>
+          )}
+        </div>
+
+        {/* <LottieView
+        src={"/lottie/v1.json"}
+        className={styles.newIcon}
+        loop={true}
+      ></LottieView> */}
+        {/* <LottieView
+        src={"/lottie/v2.json"}
+        className={styles.newIcon}
+        loop={true}
+      ></LottieView>
+        <LottieView
+        src={"/lottie/v3.json"}
+        className={styles.newIcon}
+        loop={true}
+      ></LottieView> */}
+        <div className={styles.newIcon}>
+          <LottieView src={"/lottie/v4.json"} loop={true}></LottieView>
+        </div>
+      </div>
     </div>
   );
 };

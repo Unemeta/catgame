@@ -125,9 +125,183 @@
   background: url("/img/speak.min.png");
   background-size: cover;
 }
+
 @media screen and (max-width: 768px) {
   .icon {
     width: 130px;
     height: 130px;
+  }
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 100px;
+  -webkit-user-select: none; /* Safari/iOS */
+  user-select: none; /* 标准语法 */
+  /* 禁用长按菜单（iOS 图片/链接长按弹出菜单） */
+  -webkit-touch-callout: none;
+  /* 禁用双击缩放（可选） */
+  touch-action: manipulation;
+}
+.status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  bottom: 20%;
+  transform: translateX(-50%);
+}
+
+.statusIcon {
+  width: 200px;
+  height: 200px;
+}
+.statusText {
+  color: #fff;
+  text-align: center;
+  font-family: "SF Pro Rounded";
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%; /* 20.8px */
+  font-size: 64px;
+  margin-top: 20px;
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 220px;
+  width: 73vw;
+  border-radius: 100px;
+}
+.inputActive {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.inputCancel {
+  background-color: rgba(15, 4, 15, 0.5);
+}
+.recordText {
+  color: #e3e3e3;
+  text-align: center;
+  font-family: "SF Pro Rounded";
+  font-style: normal;
+  font-weight: 500;
+  background-color: rgba(15, 4, 15);
+  border-radius: calc(10 * var(--borderWidth));
+
+  line-height: 220px; /* 16px */
+  height: 220px;
+  font-size: 60px;
+  width: 73vw;
+}
+.recording {
+  width: 100px;
+  height: 100px;
+}
+.newIcon {
+  -webkit-user-select: none; /* Safari/iOS */
+  user-select: none; /* 标准语法 */
+  /* 禁用长按菜单（iOS 图片/链接长按弹出菜单） */
+  -webkit-touch-callout: none;
+  /* 禁用双击缩放（可选） */
+  touch-action: manipulation;
+  cursor: pointer;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+}
+
+.vanimate {
+  width: 600px;
+  height: 600px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 80px;
+}
+
+.vanimateText {
+  position: absolute;
+  color: #fff;
+  text-align: center;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgba(0, 0, 0, 0.5);
+  font-family: "SF Pro Rounded";
+  font-size: 65px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%; /* 20.8px */
+  left: 50%;
+  transform: translateX(-50%);
+  top: 700px;
+  width: 100vw;
+}
+
+.sendInputWrap {
+  --borderWidth: 10px;
+  position: relative;
+  background: #0f040f82;
+  border-radius: calc(10 * var(--borderWidth));
+}
+.sendInputWrap:after {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--borderWidth));
+  left: calc(-1 * var(--borderWidth));
+  height: calc(100% + var(--borderWidth) * 2);
+  width: calc(100% + var(--borderWidth) * 2);
+  background: linear-gradient(
+    60deg,
+    #f79533,
+    #f37055,
+    #ef4e7b,
+    #a166ab,
+    #5073b8,
+    #1098ad,
+    #07b39b,
+    #6fba82
+  );
+  border-radius: calc(10 * var(--borderWidth));
+  z-index: -1;
+  animation: animatedgradient 3s ease alternate infinite;
+  background-size: 300% 300%;
+}
+
+@media screen and (min-width: 600px) {
+  .vanimate {
+    width: 280px;
+    height: 280px;
+    top: -100px;
+  }
+  .newIcon {
+    width: 150px;
+    height: 150px;
+  }
+  .recordText {
+    line-height: 110px; /* 16px */
+    height: 100px;
+    font-size: 30px;
+    width: 40vw;
+  }
+  .statusIcon {
+    width: 100px;
+    height: 100px;
+  }
+  .input {
+    height: 110px;
+    width: 40vw;
+    border-radius: 50px;
+  }
+  .statusText {
+    font-size: 32px;
+  }
+
+  .vanimateText {
+    font-size: 32px;
+    top: 150px;
   }
 }
