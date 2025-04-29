@@ -12,7 +12,7 @@
 .contentBgChat {
   /* background-image: url("/img/bg/backpackCttBg.min.png"); */
   background-image: url("/img/bg/bgChatPc.min.png");
-  background-size: 100% 100%;
+  background-size: cover;
 }
 .DialogContent {
   padding: 0 !important;
