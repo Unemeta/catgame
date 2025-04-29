@@ -6,7 +6,7 @@ import { Dialog, DialogContent, DialogTitle, DialogTrigger } from ".";
 // import styles from "@/styles/Backpack.module.css";
 import { jwtHelper } from "@/utils/jwt";
 import { request } from "@/utils/request";
-import { useFetchUser } from "@/store";
+import { useFetchUser, useShowVocie } from "@/store";
 import { toast } from "react-toastify";
 import moment from "moment";
 import { TopItem } from "../TopItem";
@@ -15,6 +15,7 @@ import SpeechRecognition from "@/components/SpeechRecognition";
 import VideoBackground from "../VideoBackground";
 import styles from "@/styles/Chat.module.css";
 import { cn } from "@/lib/utils";
+import LottieView from "@/components/lottie";
 
 interface iDialogChatView {
   trigger?: ReactNode;
@@ -23,6 +24,8 @@ let timerHistory: NodeJS.Timeout | null | undefined = null;
 const DialogChatView = ({ trigger }: iDialogChatView) => {
   const [isOpen, setIsOpen] = useState(false);
   const { userData } = useFetchUser();
+  const [showVoice, setShowVoice] = useShowVocie();
+
   const [socket, setSocket] = useState<WebSocket | null>(null);
   const [inputMsg, setinputMsg] = useState("");
   const [messageList, setmessageList] = useState<
@@ -317,37 +320,42 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                 </div>
               </div>
               <div className="lmdSizebox hidden"></div>
-              {/* <div className="textInput flex justify-center items-center h-[100px] sendSpeakerWrap">
-                <div className="relative sendInputWrap">
-                  <input
-                    tabIndex={-1}
-                    ref={inputRef}
-                    className="lmdInput drounded160 dborderW2 border-[#FFF] dw780 dh100 bg-white/70 dmr30  dpl15 dpr155 outline-none text-[#522192] dtext24 font-[800]"
-                    type="text"
-                    onChange={(e) => setinputMsg(e.target.value)}
-                    onKeyDown={handleKeyDown}
-                    value={inputMsg}
-                    placeholder="What are you talking about?"
-                  />
-                  <div
-                    className="lmdSend absolute dright80 top-[50%] dtranslateYF50 bg-[linear-gradient(0deg,_#BE6FFF_0%,_#6C8AFF_100%)] drounded20 dpx30 dpy20 text-white dtext24 font-[800] cursor-pointer select-none"
-                    onClick={sendMessage}
-                    onKeyDown={handleKeyDown}
-                  >
-                    Send
-                  </div>
-                </div>
+              {showVoice ? (
                 <SpeechRecognition
                   language="zh-CN"
-                  // onResult={(text) => console.log("识别结果:", text)}
-                  // onError={(error) => console.error("发生错误:", error)}
                   onSend={(text) => sendMessageByVoice(text)}
-                />
-              </div> */}
-              <SpeechRecognition
-                language="zh-CN"
-                onSend={(text) => sendMessageByVoice(text)}
-              ></SpeechRecognition>
+                ></SpeechRecognition>
+              ) : (
+                <div className="textInput flex justify-center items-center h-[100px] sendSpeakerWrap">
+                  <div className="relative sendInputWrap">
+                    <input
+                      tabIndex={-1}
+                      ref={inputRef}
+                      className="lmdInput drounded160 dborderW2 border-[#FFF] dw780 dh100 bg-white/70 dmr30  dpl15 dpr155 outline-none text-[#522192] dtext24 font-[800]"
+                      type="text"
+                      onChange={(e) => setinputMsg(e.target.value)}
+                      onKeyDown={handleKeyDown}
+                      value={inputMsg}
+                      placeholder="What are you talking about?"
+                    />
+                    <div
+                      className="lmdSend absolute dright80 top-[50%] dtranslateYF50 bg-[linear-gradient(0deg,_#BE6FFF_0%,_#6C8AFF_100%)] drounded20 dpx30 dpy20 text-white dtext24 font-[800] cursor-pointer select-none"
+                      onClick={sendMessage}
+                      onKeyDown={handleKeyDown}
+                    >
+                      Send
+                    </div>
+                  </div>
+                  <div onClick={() => setShowVoice(true)}>
+                    <LottieView
+                      src={"/lottie/v1.json"}
+                      className={styles.newIcon}
+                      loop={true}
+                    ></LottieView>
+                  </div>
+                </div>
+              )}
+
               <div className="lmdSizebox hidden"></div>
             </div>
             <div className="flex absolute left-[13%] top-[3%] chatEnegy">

@@ -37,3 +37,22 @@
     #422b47 79.47%
   );
 }
+
+.newIcon {
+  -webkit-user-select: none; /* Safari/iOS */
+  user-select: none; /* 标准语法 */
+  /* 禁用长按菜单（iOS 图片/链接长按弹出菜单） */
+  -webkit-touch-callout: none;
+  /* 禁用双击缩放（可选） */
+  touch-action: manipulation;
+  cursor: pointer;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+}
+@media screen and (min-width: 600px) {
+  .newIcon {
+    width: 150px;
+    height: 150px;
+  }
+}

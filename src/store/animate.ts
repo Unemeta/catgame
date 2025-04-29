@@ -56,3 +56,13 @@ export const useTalkSelcetDia = () => {
     useHydrateAtoms([[showTalkSelcetDia, false]] as const);
     return useAtom(showTalkSelcetDia);
 };
+
+
+
+
+const showVocie = atom<boolean>(false) // 是否显示talk技能选择
+
+export const useShowVocie = () => {
+    useHydrateAtoms([[showVocie, false]] as const);
+    return useAtom(showVocie);
+};

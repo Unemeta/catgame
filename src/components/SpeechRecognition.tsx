@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import styles from "@/styles/Speech.module.css"; // 确保有对应的 CSS 文件
 import LottieView from "@/components/lottie";
 import { cn } from "@/lib/utils";
+import { useShowVocie } from "@/store";
 
 // 类型定义
 interface SpeechRecognitionProps {
@@ -25,6 +26,7 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
 }) => {
   // 状态管理
   //   const [isRecording, setIsRecording] = useState(false);
+  const [, setShowVoice] = useShowVocie();
 
   const [recordingState, setRecordingState] = useState<RecordingState>("idle");
   const [transcripts, setTranscripts] = useState<string[]>([]);
@@ -46,8 +48,10 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   // const [vb, setVb] = useState(1);
   const [countdown, setCountDown] = useState(15);
   const vanimateRef = useRef<any | null>(null);
-  const [showFast, setShowFast] = useState(false);
+  // const [showFast, setShowFast] = useState(false);
+  const voicetimer = useRef<any>(null);
   let timer: any = null;
+  // let voicetimer: any = null;
   // 常量配置
   const LONG_PRESS_DURATION = 700; // 长按判定时间
 
@@ -177,10 +181,10 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
 
       // 实时音量检测逻辑
       const dataArray = new Uint8Array(analyser.frequencyBinCount); // 创建用于存储频率数据的数组
-      setInterval(() => {
+      clearInterval(voicetimer.current);
+      voicetimer.current = setInterval(() => {
         analyser.getByteFrequencyData(dataArray); // 获取当前频率数据（0-255）
         const volume = Math.max(...dataArray); // 计算当前音量（取最大值）
-        // console.log("音量:", volume);
         setVoiceVolume(volume);
       }, 100); // 每 100ms 检测一次音量
     } catch (err: any) {
@@ -195,6 +199,9 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
     if (!recognitionRef.current) return;
     try {
       initializeAudioAnalyser();
+      if (recordingState === "recording") {
+        return;
+      }
       recognitionRef.current.start();
     } catch (error) {
       console.error("麦克风访问失败:", error);
@@ -205,12 +212,6 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   useEffect(() => {
     if (recordingState === "idle" && transcripts.length) {
       sendText();
-      // SetShowTextModel(true);
-      // sendText();
-      // console.log(transcripts,'transcripts')
-      // console.log("发送", transcripts);
-    } else {
-      // SetShowTextModel(false);
     }
   }, [recordingState]);
   // 处理触摸开始
@@ -231,7 +232,6 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
     (clientY: number) => {
       //   setCurrentY(clientY);
       const deltaY = touchStartY - clientY;
-
       if (deltaY > 50 && recordingState === "recording") {
         setRecordingState("cancelled");
         cancelLongPress();
@@ -248,6 +248,10 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
     analyserRef.current?.disconnect();
     audioContextRef.current?.close();
     cancelAnimationFrame(animationFrameId.current);
+    if (voicetimer.current) {
+      clearInterval(voicetimer.current);
+      voicetimer.current = null;
+    }
   }, []);
 
   // 组件挂载时初始化
@@ -262,17 +266,6 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   useEffect(() => {
     const res = voiceVolume / 255;
     // if (res < 0.2) {
-    //   setVb(1);
-    // } else if (res < 0.4) {
-    //   setVb(2);
-    // } else if (res < 0.6) {
-    //   setVb(3);
-    // } else if (res < 0.8) {
-    //   setVb(4);
-    // } else {
-    //   setVb(5);
-    // }
-    // if (res < 0.2) {
     //   vanimateRef.current?.speed(1);
     // } else if (res < 0.4) {
     //   vanimateRef.current?.speed(5);
@@ -284,11 +277,11 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
     //   vanimateRef.current?.speed(30);
     // }
     if (res > 0.6) {
-      setShowFast(true);
-      console.log(showFast)
+      // setShowFast(true);
+      // console.log(showFast);
       vanimateRef.current?.speed(10);
     } else {
-      setShowFast(false);
+      // setShowFast(false);
       vanimateRef.current?.speed(1);
     }
   }, [voiceVolume]);
@@ -318,7 +311,10 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
     setTimeout(() => {
       cancelText();
     }, 500);
-    onSend?.(transcripts.join("")); // 调用外部传入的 onResult 回调（如果有）
+    const message = transcripts.join("");
+    if (message) {
+      onSend?.(message); // 调用外部传入的 onResult 回调（如果有）
+    }
   };
   // 处理结束
   const handleEnd = useCallback(() => {
@@ -431,7 +427,7 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
         className={styles.newIcon}
         loop={true}
       ></LottieView> */}
-        <div className={styles.newIcon}>
+        <div className={styles.newIcon} onClick={() => setShowVoice(false)}>
           <LottieView src={"/lottie/v4.json"} loop={true}></LottieView>
         </div>
       </div>
