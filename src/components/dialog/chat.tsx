@@ -194,7 +194,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
       <DialogTrigger>{trigger}</DialogTrigger>
       <DialogContent className={styles.DialogContent}>
         <div className={styles.contentBgChat}>
-          <div className="relative h-[100vh]">
+          <div className="relative h-[100vh] w-[100vw]">
             <div className="headerBackpack flex justify-between items-center dpl25 dpt18 dpb18 dpr110 dh90">
               <div
                 className="flex justify-start items-center cursor-pointer select-none"
