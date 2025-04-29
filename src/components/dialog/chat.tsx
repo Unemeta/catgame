@@ -307,7 +307,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                 </div>
               </div>
               <div className="lmdSizebox hidden"></div>
-              <div className="textInput flex justify-center items-center h-[100px] dpb80 sendSpeakerWrap">
+              <div className="textInput flex justify-center items-center h-[100px] sendSpeakerWrap">
                 <div className="relative sendInputWrap">
                   <input
                     tabIndex={-1}

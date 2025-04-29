@@ -594,7 +594,7 @@ body {
 }
 
 .chatCttH {
-  height: calc(100vh - 90px);
+  height: calc(100vh - 140px);
 }
 
 .chatNumLeft {
