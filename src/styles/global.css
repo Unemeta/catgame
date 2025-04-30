@@ -615,7 +615,7 @@ body {
     display: block;
   }
   .chatCttH {
-    height: calc(100vh - 600px);
+    height: calc(100vh - 13vh);
   }
   .headerBackpack {
     /* padding-top:45px; */
