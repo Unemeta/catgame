@@ -47,6 +47,7 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   const [voiceVolume, setVoiceVolume] = useState(0);
   // const [vb, setVb] = useState(1);
   const [countdown, setCountDown] = useState(15);
+  const [speed, SetSpeed] = useState(1);
   const vanimateRef = useRef<any | null>(null);
   // const [showFast, setShowFast] = useState(false);
   const voicetimer = useRef<any>(null);
@@ -198,6 +199,7 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   const startRecording = useCallback(() => {
     if (!recognitionRef.current) return;
     try {
+      // SetSpeed(1);
       initializeAudioAnalyser();
       if (recordingState === "recording") {
         return;
@@ -265,24 +267,17 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
 
   useEffect(() => {
     const res = voiceVolume / 255;
-    // if (res < 0.2) {
-    //   vanimateRef.current?.speed(1);
-    // } else if (res < 0.4) {
-    //   vanimateRef.current?.speed(5);
-    // } else if (res < 0.6) {
-    //   vanimateRef.current?.speed(10);
-    // } else if (res < 0.8) {
-    //   vanimateRef.current?.speed(20);
-    // } else {
-    //   vanimateRef.current?.speed(30);
-    // }
-    if (res > 0.6) {
-      // setShowFast(true);
-      // console.log(showFast);
-      vanimateRef.current?.speed(10);
+    console.log(res);
+    if (res < 0.2) {
+      SetSpeed(2);
+    } else if (res < 0.4) {
+      SetSpeed(4);
+    } else if (res < 0.6) {
+      SetSpeed(5);
+    } else if (res < 0.8) {
+      SetSpeed(8);
     } else {
-      // setShowFast(false);
-      vanimateRef.current?.speed(1);
+      SetSpeed(10);
     }
   }, [voiceVolume]);
 
@@ -334,6 +329,10 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   const handleEndEvent = () => {
     console.log(isLongPress);
     cancelLongPress();
+    if (voicetimer.current) {
+      clearInterval(voicetimer.current);
+      voicetimer.current = null;
+    }
     handleEnd();
   };
   // 渲染UI
@@ -360,6 +359,7 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
             className={styles.vanimate}
             loop={true}
             ref={vanimateRef}
+            speed={speed}
           ></LottieView>
 
           <div className={styles.vanimateText}>
