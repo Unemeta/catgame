@@ -173,7 +173,7 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
       <DialogTrigger>{trigger}</DialogTrigger>
       <DialogContent className="p-0 w-full  h-full overflow-hidden max-w-[100%] max-h-[100%]">
         <div className={styles.backpackBg}>
-          <div className="headerBackpack bgNavBackpackTop bg-white/20 flex dpl25 dpt18 dpb18 dpr110 dh90">
+          <div className="headerBackpack bgNavBackpackTop bg-white/20 flex dpl110 dpt18 dpb18 dpr110 dh90">
             <div
               className="flex justify-start items-center cursor-pointer select-none"
               onClick={() => {
