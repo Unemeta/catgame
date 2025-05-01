@@ -202,7 +202,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
       <DialogContent className={styles.DialogContent}>
         <div className={styles.contentBgChat}>
           <div className="relative h-[100vh] w-[100vw]">
-            <div className="headerBackpack flex justify-between items-center dpl25 dpt18 dpb18 dpr110 dh90">
+            <div className="headerBackpack flex justify-between items-center dpl50 dpt18 dpb18 dpr110 dh90">
               <div
                 className="flex justify-start items-center cursor-pointer select-none"
                 onClick={() => {
@@ -214,29 +214,31 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                   alt=""
                   className="backIcon dw25 dh25"
                 />
-                <span className="text-white dtext18 font-[500] dml10 backText">
+                <span className="text-white dtext25 font-[500] dml15 backText">
                   Back
                 </span>
               </div>
-              <div className="hidden h5ChatNum">
+              <div className="h5ChatNum">
                 <div className="chatNumWrap text-white font-[500] flex justify-end items-center bg-white/10">
                   <img
                     className="chatNumLeft"
                     src="/img/iconSpeak.min.png"
                     alt=""
                   />
-                  <span
-                    className="dtext40"
-                    style={{ fontFamily: "SF Pro Rounded" }}
-                  >
-                    {20 - (Number(chatCount) || 0)}/
-                  </span>
-                  <span
-                    className="text-white/70 drm5 dtext40"
-                    style={{ fontFamily: "SF Pro Rounded" }}
-                  >
-                    20
-                  </span>
+                  <div className="dpl10 dpr10">
+                    <span
+                      className=""
+                      style={{ fontFamily: "SF Pro Rounded" }}
+                    >
+                      {20 - (Number(chatCount) || 0)}/
+                    </span>
+                    <span
+                      className="text-white/70 drm5"
+                      style={{ fontFamily: "SF Pro Rounded" }}
+                    >
+                      20
+                    </span>
+                  </div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -337,24 +339,24 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                 ></SpeechRecognition>
               ) : (
                 <div className="textInput flex justify-center items-center sendSpeakerWrap">
-                  <div className="relative sendInputWrap">
+                  <div className="relative sendInputWrap flex ">
                     <input
                       tabIndex={-1}
                       ref={inputRef}
-                      className="lmdInput drounded160 dborderW2 border-[#FFF] dw780 dh100 bg-white/70 dpl15 outline-none text-[#522192] dtext24 font-[800]"
+                      className="sendInput drounded160 dw780 bg-[#0f040f82] dpl15 outline-none dtext24 font-[800]"
                       type="text"
                       onChange={(e) => setinputMsg(e.target.value)}
                       onKeyDown={handleKeyDown}
                       value={inputMsg}
                       placeholder="What are you talking about?"
                     />
-                    <div
+                    {/* <div
                       className="lmdSend absolute dright80 top-[50%] dtranslateYF50 bg-[linear-gradient(0deg,_#BE6FFF_0%,_#6C8AFF_100%)] drounded20 dpx30 dpy20 text-white dtext24 font-[800] cursor-pointer select-none"
                       onClick={sendMessage}
                       onKeyDown={handleKeyDown}
                     >
                       Send
-                    </div>
+                    </div> */}
                   </div>
                   <div onClick={() => setShowVoice(true)}>
                     <LottieView
@@ -368,13 +370,13 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
 
               <div className="lmdSizebox hidden"></div>
             </div>
-            <div className="flex absolute left-[13%] top-[3%] chatEnegy">
+            {/* <div className="flex absolute left-[13%] top-[3%] chatEnegy">
               <ChatEnergy
                 imgUrl="./img/chatPaw.min.png"
                 label="Communication Energy"
                 number={20}
               ></ChatEnergy>
-            </div>
+            </div> */}
             <div
               className={cn(styles.mask, "w-[100vw] absolute bottom-0")}
             ></div>
