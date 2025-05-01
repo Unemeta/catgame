@@ -97,7 +97,7 @@ const DialogBuy = ({
               </div>
             </DialogTrigger>
           </div>
-          <div className="flex absolute top-0 right-0 translate-x-[100%] translate-y-[-80%]">
+          <div className="flex absolute top-0 right-0 translate-x-[50%] translate-y-[-45%]">
             <DialogTrigger>
               <div className="flex justify-center items-center cursor-pointer select-none">
                 <img className="dw55 h-auto" src="/img/close.min.png" alt="" />
