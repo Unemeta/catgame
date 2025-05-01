@@ -1,7 +1,7 @@
 .container{
     position: fixed;
     bottom: 100px;
-    left: 800px;
+    left: 39%;
 }
 .progressContainer {
   width: 120px; /* 替代原内联 width="120" */
