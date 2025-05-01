@@ -6,7 +6,7 @@ import DialogInterWorld from "./dialog/interWorld";
 
 const NavRight = () => {
   return (
-    <div className="fixed top-[50%] right-[7.29vw]" style={{
+    <div className="fixed top-[50%] right-[7.3vw]" style={{
       translate: "0 -50%"
     }}>
       <div className="flex flex-col justify-center items-center">
