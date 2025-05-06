@@ -5,8 +5,13 @@ import styles from "@/styles/Speech.module.css"; // 确保有对应的 CSS 文�
 import LottieView from "@/components/lottie";
 import { cn } from "@/lib/utils";
 import { useShowVocie } from "@/store";
-import { Player } from "@lottiefiles/react-lottie-player";
+import dynamic from "next/dynamic";
 
+// 动态导入禁用 SSR
+const Player = dynamic(
+  () => import("@lottiefiles/react-lottie-player").then((mod) => mod.Player),
+  { ssr: false }
+);
 // 类型定义
 interface SpeechRecognitionProps {
   language?: "zh-CN" | "en-US" | "ja-JP";
@@ -48,7 +53,9 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   const [voiceVolume, setVoiceVolume] = useState(0);
   // const [vb, setVb] = useState(1);
   const [countdown, setCountDown] = useState(15);
-  const vanimateRef = useRef<any | null>(null);
+  const lottieInstance = useRef<any>(null);
+  // const [speed, setSpeed] = useState(1);
+  // const vanimateRef = useRef<any | null>(null);
   // const [showFast, setShowFast] = useState(false);
   const voicetimer = useRef<any>(null);
   let timer: any = null;
@@ -199,11 +206,10 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   const startRecording = useCallback(() => {
     if (!recognitionRef.current) return;
     try {
-      // SetSpeed(1);
-      initializeAudioAnalyser();
       if (recordingState === "recording") {
         return;
       }
+      initializeAudioAnalyser();
       recognitionRef.current.start();
     } catch (error) {
       console.error("麦克风访问失败:", error);
@@ -268,16 +274,24 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   useEffect(() => {
     const res = voiceVolume / 255;
     console.log(res);
-    if (res < 0.2) {
-      vanimateRef.current?.setPlayerSpeed(1);
-    } else if (res < 0.4) {
-      vanimateRef.current?.setPlayerSpeed(2);
-    } else if (res < 0.6) {
-      vanimateRef.current?.setPlayerSpeed(3);
-    } else if (res < 0.8) {
-      vanimateRef.current?.setPlayerSpeed(4);
-    } else {
-      vanimateRef.current?.setPlayerSpeed(5);
+
+    if (lottieInstance.current) {
+      if (res < 0.2) {
+        // vanimateRef.current?.setPlayerSpeed(1);
+        lottieInstance.current.setSpeed(1);
+      } else if (res < 0.4) {
+        // vanimateRef.current?.setPlayerSpeed(2);
+        lottieInstance.current.setSpeed(2);
+      } else if (res < 0.6) {
+        // vanimateRef.current?.setPlayerSpeed(3);
+        lottieInstance.current.setSpeed(3);
+      } else if (res < 0.8) {
+        // vanimateRef.current?.setPlayerSpeed(4);
+        lottieInstance.current.setSpeed(4);
+      } else {
+        // vanimateRef.current?.setPlayerSpeed(5);
+        lottieInstance.current.setSpeed(5);
+      }
     }
   }, [voiceVolume]);
 
@@ -351,7 +365,9 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
             src={"/lottie/vnormal.json"}
             className={styles.vanimate}
             loop={true}
-            ref={vanimateRef}
+            lottieRef={(instance) => {
+              lottieInstance.current = instance;
+            }}
             autoplay={true}
           ></Player>
 
@@ -371,6 +387,7 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
       ) : (
         <></>
       )}
+
       <div className={styles.container}>
         <div
           onTouchStart={handleTouchStart}
