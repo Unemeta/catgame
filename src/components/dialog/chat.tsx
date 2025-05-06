@@ -225,18 +225,20 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                     src="/img/iconSpeak.min.png"
                     alt=""
                   />
-                  <div className="dpl10 dpr10">
+                  <div className="dpl10 dpr10 ">
                     <span
-                      className=""
+                      className={cn("", {
+                        "text-[#FF2549]": 20 - (Number(chatCount) || 0) === 0
+                      })}
                       style={{ fontFamily: "SF Pro Rounded" }}
                     >
-                      {20 - (Number(chatCount) || 0)}/
+                      {20 - (Number(chatCount) || 0)}
                     </span>
                     <span
                       className="text-white/70 drm5"
                       style={{ fontFamily: "SF Pro Rounded" }}
                     >
-                      20
+                      /20
                     </span>
                   </div>
                   <svg

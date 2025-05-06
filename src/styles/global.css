@@ -721,7 +721,8 @@ body {
     background: url('/img/chatBg.min.png') no-repeat center/cover;
   }
   .chatBoxSizeHeight {
-    height: 40000px;
+    height: 1200rem;
+    max-height: 1000px;
     display: block;
   }
   .headerBackpack {
@@ -812,7 +813,7 @@ body {
     height: 180px;
     display: block;
     position: absolute;
-    right: -200px;
+    right: -220px;
     top: 30px;
   }
   .robotAvator {
