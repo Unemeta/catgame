@@ -1,7 +1,9 @@
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import "@/styles/global.css";
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from "react-toastify";
+import Head from "next/head";
+
 // import Router from "next/router";
 // import NProgress from "nprogress";
 // import "nprogress/nprogress.css";
@@ -23,6 +25,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     if (typeof window === "undefined") return;
     const handleOrientation = () => {
       setIsPortrait(window.innerHeight > window.innerWidth);
+      const top = getComputedStyle(document.documentElement).getPropertyValue(
+        "--safe-area-inset-top"
+      );
+      document.body.style.paddingTop = top;
     };
 
     handleOrientation(); // 初始检查
@@ -33,6 +39,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
+      </Head>
       {isPortrait && false ? (
         <div className="rotate-screen">请旋转设备至横屏模式</div>
       ) : (
