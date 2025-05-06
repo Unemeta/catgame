@@ -672,7 +672,7 @@ body {
     height: calc(100vh - 16vh);
   }
   .chatBoxSizeHeight {
-    height: 50000px;
+    height: 40000px;
     display: block;
   }
   .headerBackpack {
