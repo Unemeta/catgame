@@ -174,7 +174,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 220px;
+  height: 180px;
   width: 73vw;
   border-radius: 100px;
 }
@@ -190,11 +190,10 @@
   font-family: "SF Pro Rounded";
   font-style: normal;
   font-weight: 500;
-  background-color: rgba(15, 4, 15);
+  background-color: #0f040f82;
   border-radius: calc(10 * var(--borderWidth));
-
-  line-height: 220px; /* 16px */
-  height: 220px;
+  line-height: 180px; /* 16px */
+  height: 180px;
   font-size: 60px;
   width: 73vw;
 }
@@ -230,7 +229,7 @@
   text-align: center;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: rgba(0, 0, 0, 0.5);
-  font-family: "SF Pro Rounded";
+  /* font-family: "SF Pro Rounded"; */
   font-size: 65px;
   font-style: normal;
   font-weight: 700;
@@ -239,36 +238,6 @@
   transform: translateX(-50%);
   top: 700px;
   width: 100vw;
-}
-
-.sendInputWrap {
-  --borderWidth: 10px;
-  position: relative;
-  background: #0f040f82;
-  border-radius: calc(10 * var(--borderWidth));
-}
-.sendInputWrap:after {
-  content: "";
-  position: absolute;
-  top: calc(-1 * var(--borderWidth));
-  left: calc(-1 * var(--borderWidth));
-  height: calc(100% + var(--borderWidth) * 2);
-  width: calc(100% + var(--borderWidth) * 2);
-  background: linear-gradient(
-    60deg,
-    #f79533,
-    #f37055,
-    #ef4e7b,
-    #a166ab,
-    #5073b8,
-    #1098ad,
-    #07b39b,
-    #6fba82
-  );
-  border-radius: calc(10 * var(--borderWidth));
-  z-index: -1;
-  animation: animatedgradient 3s ease alternate infinite;
-  background-size: 300% 300%;
 }
 
 @media screen and (min-width: 600px) {

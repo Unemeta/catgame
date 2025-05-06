@@ -406,7 +406,7 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
               />
             </div>
           ) : (
-            <div className={styles.sendInputWrap}>
+            <div className={'sendInputWrap'}>
               <div className={styles.recordText}>Press and hold to speak</div>
             </div>
           )}
