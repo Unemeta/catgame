@@ -666,6 +666,7 @@ body {
 .sendInput {
   height: 80px;
   color: white;
+  font-size: 24px;
 }
 .userAvator {
   width: 90px;
@@ -717,6 +718,7 @@ body {
   }
   .chatCttH {
     height: calc(100vh - 16vh);
+    background: url('/img/chatBg.min.png') no-repeat center/cover;
   }
   .chatBoxSizeHeight {
     height: 40000px;
@@ -832,7 +834,7 @@ body {
     width: 73vw;
     border-radius: 100px;
     /* width: 100%; */
-    font-size: 40px;
+    font-size: 60px;
     font-weight: 500;
     color: white;
     /* border-radius: 22px; */

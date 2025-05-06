@@ -344,7 +344,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                     <input
                       tabIndex={-1}
                       ref={inputRef}
-                      className="sendInput drounded160 dw780 bg-[#0f040f82] dpl15 outline-none dtext24 font-[800]"
+                      className="sendInput drounded160 dw780 bg-[#0f040f82] dpl15 outline-none  font-[800]"
                       type="text"
                       onChange={(e) => setinputMsg(e.target.value)}
                       onKeyDown={handleKeyDown}
