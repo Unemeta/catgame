@@ -277,25 +277,25 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                     if (item?.role === "user") {
                       return (
                         <div className="relative" key={index}>
-                          <div className="send dp24 drounded30 bg-[rgba(36,225,55,.9)] flex justify-between items-start relative msgWrap">
+                          <div className="send bg-[rgba(36,225,55,.9)] flex justify-between items-start relative msgWrap">
                             <div className="dmaxW460 dmr25 msgTimeWrap">
                               <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 text-right msgTime">
                                 {moment(item.time * 1000).format(
                                   "YYYY/MM/DD hh:mm"
                                 )}
                               </div>
-                              <div className="dtext28 font-[500] text-[#F5F2FF]  text-wrap lmdMsgSpan">
+                              <div className="dtext28 font-[500] text-[#F5F2FF]  text-wrap lmdMsgSpan overflow-hidden">
                                 {item?.msg}
                               </div>
                             </div>
-                            <img
+                            {/* <img
                               className=" rounded-full userIcon"
                               src="/img/avataUser.min.png"
                               alt=""
-                            />
+                            /> */}
                           </div>
                           <img
-                            className=" rounded-full lmdUserIcon hidden"
+                            className=" rounded-full  userAvator"
                             src="/img/avataUser.min.png"
                             alt=""
                           />
@@ -305,16 +305,16 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                       return (
                         <div className="relative" key={index}>
                           <img
-                            className=" rounded-full dmr25 robotAvator lmdRobotAvator hidden"
+                            className=" rounded-full dmr25 robotAvator"
                             src="/img/avataCat.min.png"
                             alt=""
                           />
-                          <div className="receive dp24 drounded30 bg-[rgba(90,_35,_92,_0.30)] flex justify-start items-start msgWrap">
-                            <img
+                          <div className="receive bg-[rgba(90,_35,_92,_0.30)] flex justify-start items-start msgWrap">
+                            {/* <img
                               className=" rounded-full dmr25 robotAvator"
                               src="/img/avataCat.min.png"
                               alt=""
-                            />
+                            /> */}
                             <div className="dmaxW460 lmdWfull">
                               <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 msgTime">
                                 {moment(item.time * 1000).format(

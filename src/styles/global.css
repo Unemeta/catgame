@@ -450,7 +450,6 @@ body {
   padding-left: 110px;
 }
 
-
 .dpr10 {
   padding-right: 10px;
 }
@@ -614,6 +613,11 @@ body {
   height: calc(100vh - 140px);
 }
 
+.chatCtt {
+  padding-left: 160px;
+  padding-right: 160px;
+}
+
 .chatNumLeft {
   width: 60px;
   height: 60px;
@@ -644,9 +648,9 @@ body {
   width: calc(100% + var(--borderWidth) * 2);
   background: linear-gradient(
     60deg,
-    #1579FB,
-    #FB15AC,
-    #FFE500,
+    #1579fb,
+    #fb15ac,
+    #ffe500,
     #a166ab,
     #5073b8,
     #1098ad,
@@ -663,8 +667,51 @@ body {
   height: 80px;
   color: white;
 }
+.userAvator {
+  width: 90px;
+  height: 90px;
+  display: block;
+  position: absolute;
+  right: -110px;
+  top: 20px;
+}
+.robotAvator {
+  width: 90px;
+  height: 90px;
+  display: block;
+  position: absolute;
+  left: -110px;
+  top: 20px;
+}
+.msgWrap {
+  padding: 22px 33px 22px 33px;
+  border-radius: 18px;
+}
+.send::after {
+  content: "";
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translate(100%, -50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 0 6px 8px;
+  border-color: transparent transparent transparent #24e137e6;
+}
+.receive::after {
+  content: "";
+  position: absolute;
+  left: -0px;
+  top: 50%;
+  transform: translate(-100%, -50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 8px 6px 0; /* 上、右、下、左 */
+  border-color: transparent #5a235c4d transparent transparent;
+}
 @media screen and (max-width: 768px) {
- 
   .h5ChatNum {
     display: block;
   }
@@ -758,7 +805,7 @@ body {
     height: 40px;
     display: none;
   }
-  .lmdUserIcon {
+  .userAvator {
     width: 180px;
     height: 180px;
     display: block;
@@ -767,11 +814,6 @@ body {
     top: 30px;
   }
   .robotAvator {
-    width: 40px;
-    height: 40px;
-    display: none;
-  }
-  .lmdRobotAvator {
     width: 180px;
     height: 180px;
     display: block;
