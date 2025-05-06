@@ -161,7 +161,7 @@ const DialogFood = ({ trigger, title, tabs }: iDialogShop) => {
                         <div className="flex justify-end items-center">
                           <img
                             className="dw28 h-auto dmr10 relative mt-[2px]"
-                            src="/img/love.svg"
+                            src="/img/love.png"
                             alt=""
                           />
                           <span className="text-white dtext20">

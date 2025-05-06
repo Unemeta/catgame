@@ -24,7 +24,7 @@ export default function LoveCollect() {
   return (
     <>
       <BubbleStats
-        imageSrc="./img/love.svg"
+        imageSrc="./img/love.png"
         progress={Number((progress * 100).toFixed())}
       ></BubbleStats>
       {showLove ? (

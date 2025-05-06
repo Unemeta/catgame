@@ -261,7 +261,7 @@ const BackpackToys = ({
                   <img
                     className="dw34 h-auto dmr10"
                     style={{ marginLeft: "-2px" }}
-                    src="/img/love.svg"
+                    src="/img/love.png"
                     alt=""
                   />
                   <span className="text-white dtext26 font-[500]">
