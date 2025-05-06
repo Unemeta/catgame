@@ -58,7 +58,9 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   // const vanimateRef = useRef<any | null>(null);
   // const [showFast, setShowFast] = useState(false);
   const voicetimer = useRef<any>(null);
-  let timer: any = null;
+  const countDownTimer = useRef<any>(null);
+
+  // let timer: any = null;
   // let voicetimer: any = null;
   // 常量配置
   const LONG_PRESS_DURATION = 700; // 长按判定时间
@@ -73,11 +75,9 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   };
 
   const handleCount = () => {
-    if (timer) {
-      clearInterval(timer);
-    }
+    clearInterval(countDownTimer.current);
     setCountDown(30);
-    timer = setInterval(() => {
+    countDownTimer.current = setInterval(() => {
       setCountDown((pre) => pre - 1);
     }, 1000);
   };
@@ -126,14 +126,13 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
     // 语音识别结果的回调
     recognition.onresult = (event: any) => {
       // 提取所有识别结果并合并为字符串
-      console.log(event, "onresult");
-      const transcript = Array.from(event.results)
-        .map((result: any) => result[0].transcript)
-        .join("");
-      //   setTranscripts((prev) => [...prev, transcript]); // 更新识别结果列表
-      setTranscripts(() => [transcript]); // 更新识别结果列表
-      onResult?.(transcript); // 调用外部传入的 onResult 回调（如果有）
-      console.log(transcript, "onresult");
+      const result = event.results[event.resultIndex];
+      if (result.isFinal) {
+        const transcript = result[0].transcript;
+        setTranscripts(() => [transcript]);
+        onResult?.(transcript);
+        console.log(transcript, "onresult");
+      }
     };
 
     // 识别错误的回调
@@ -202,18 +201,23 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
     }
   };
 
+  const isStarting = useRef(false);
+
   // 控制录音
   const startRecording = useCallback(() => {
-    if (!recognitionRef.current) return;
+    if (!recognitionRef.current || isStarting.current) return;
+    isStarting.current = true;
     try {
-      if (recordingState === "recording") {
-        return;
-      }
+      if (recordingState === "recording") return;
       initializeAudioAnalyser();
       recognitionRef.current.start();
     } catch (error) {
       console.error("麦克风访问失败:", error);
       cleanupResources();
+    } finally {
+      setTimeout(() => {
+        isStarting.current = false;
+      }, 1000); // 解锁，防止误触连发
     }
   }, []);
 
@@ -330,6 +334,7 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
     if (recordingState === "cancelled") {
       recognitionRef.current?.stop();
       cleanupResources();
+      cancelText(); // 清空转录内容，避免误发送
       setRecordingState("idle");
       return;
     }
@@ -349,6 +354,12 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
     }
     handleEnd();
   };
+  useEffect(() => {
+    return () => {
+      clearInterval(countDownTimer.current);
+      clearInterval(voicetimer.current);
+    };
+  }, []);
   // 渲染UI
   return (
     <div>
