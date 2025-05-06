@@ -123,16 +123,28 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
       console.log("检测到有效语音");
     });
 
+    // // 语音识别结果的回调
+    // recognition.onresult = (event: any) => {
+    //   // 提取所有识别结果并合并为字符串
+    //   const result = event.results[event.resultIndex];
+    //   if (result.isFinal) {
+    //     const transcript = result[0].transcript;
+    //     setTranscripts(() => [transcript]);
+    //     onResult?.(transcript);
+    //     console.log(transcript, "onresult");
+    //   }
+    // };
     // 语音识别结果的回调
     recognition.onresult = (event: any) => {
       // 提取所有识别结果并合并为字符串
-      const result = event.results[event.resultIndex];
-      if (result.isFinal) {
-        const transcript = result[0].transcript;
-        setTranscripts(() => [transcript]);
-        onResult?.(transcript);
-        console.log(transcript, "onresult");
-      }
+      console.log(event, "onresult");
+      const transcript = Array.from(event.results)
+        .map((result: any) => result[0].transcript)
+        .join("");
+      //   setTranscripts((prev) => [...prev, transcript]); // 更新识别结果列表
+      setTranscripts(() => [transcript]); // 更新识别结果列表
+      onResult?.(transcript); // 调用外部传入的 onResult 回调（如果有）
+      console.log(transcript, "onresult");
     };
 
     // 识别错误的回调
@@ -358,6 +370,18 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
     return () => {
       clearInterval(countDownTimer.current);
       clearInterval(voicetimer.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    const globalEndHandler = () => {
+      handleEndEvent();
+    };
+    window.addEventListener("touchend", globalEndHandler);
+    window.addEventListener("mouseup", globalEndHandler);
+    return () => {
+      window.removeEventListener("touchend", globalEndHandler);
+      window.removeEventListener("mouseup", globalEndHandler);
     };
   }, []);
   // 渲染UI
