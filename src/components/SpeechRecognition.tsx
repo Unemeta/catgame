@@ -5,6 +5,7 @@ import styles from "@/styles/Speech.module.css"; // 确保有对应的 CSS 文�
 import LottieView from "@/components/lottie";
 import { cn } from "@/lib/utils";
 import { useShowVocie } from "@/store";
+import { Player } from "@lottiefiles/react-lottie-player";
 
 // 类型定义
 interface SpeechRecognitionProps {
@@ -47,7 +48,6 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   const [voiceVolume, setVoiceVolume] = useState(0);
   // const [vb, setVb] = useState(1);
   const [countdown, setCountDown] = useState(15);
-  const [speed, SetSpeed] = useState(1);
   const vanimateRef = useRef<any | null>(null);
   // const [showFast, setShowFast] = useState(false);
   const voicetimer = useRef<any>(null);
@@ -269,15 +269,15 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
     const res = voiceVolume / 255;
     console.log(res);
     if (res < 0.2) {
-      SetSpeed(2);
+      vanimateRef.current?.setPlayerSpeed(1);
     } else if (res < 0.4) {
-      SetSpeed(4);
+      vanimateRef.current?.setPlayerSpeed(2);
     } else if (res < 0.6) {
-      SetSpeed(5);
+      vanimateRef.current?.setPlayerSpeed(3);
     } else if (res < 0.8) {
-      SetSpeed(8);
+      vanimateRef.current?.setPlayerSpeed(4);
     } else {
-      SetSpeed(10);
+      vanimateRef.current?.setPlayerSpeed(5);
     }
   }, [voiceVolume]);
 
@@ -340,27 +340,20 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
     <div>
       {recordingState === "recording" ? (
         <>
-          {/* {showFast ? (
-            <LottieView
-              src={"/lottie/vfast.json"}
-              className={styles.vanimate}
-              loop={true}
-            ></LottieView>
-          ) : (
-            <LottieView
-              src={"/lottie/vnormal.json"}
-              className={styles.vanimate}
-              loop={true}
-              ref={vanimateRef}
-            ></LottieView>
-          )} */}
-          <LottieView
+          {/* <LottieView
             src={"/lottie/vnormal.json"}
             className={styles.vanimate}
             loop={true}
             ref={vanimateRef}
             speed={speed}
-          ></LottieView>
+          ></LottieView> */}
+          <Player
+            src={"/lottie/vnormal.json"}
+            className={styles.vanimate}
+            loop={true}
+            ref={vanimateRef}
+            autoplay={true}
+          ></Player>
 
           <div className={styles.vanimateText}>
             Recording ends in {countdown} seconds.
@@ -385,6 +378,7 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
           onTouchEnd={handleEndEvent}
           onTouchCancel={handleEndEvent}
           onMouseDown={handleMouseDown}
+          onKeyUp={handleEndEvent}
           onMouseMove={handleMouseMove}
           onMouseUp={handleEndEvent}
           onMouseLeave={handleEndEvent}
@@ -406,7 +400,7 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
               />
             </div>
           ) : (
-            <div className={'sendInputWrap'}>
+            <div className={"sendInputWrap"}>
               <div className={styles.recordText}>Press and hold to speak</div>
             </div>
           )}
