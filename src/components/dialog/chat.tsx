@@ -267,6 +267,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
               </div>
             </div>
             <div className="flex flex-col chatCttH lmdWfull z-1 relative">
+              <div className="hidden chatBoxSizeHeight"></div>
               <div className="flex justify-end items-start dmb40 grow overflow-y-scroll">
                 <div
                   className="chatCtt lmdWfull flex flex-col dgap20 overflow-y-scroll dpr36"

@@ -664,11 +664,16 @@ body {
   color: white;
 }
 @media screen and (max-width: 768px) {
+ 
   .h5ChatNum {
     display: block;
   }
   .chatCttH {
     height: calc(100vh - 16vh);
+  }
+  .chatBoxSizeHeight {
+    height: 50000px;
+    display: block;
   }
   .headerBackpack {
     /* padding-top:45px; */
