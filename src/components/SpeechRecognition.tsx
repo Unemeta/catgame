@@ -48,20 +48,13 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   const [isLongPress, setIsLongPress] = useState(false);
 
   const [touchStartY, setTouchStartY] = useState<number>(0);
-  //   const [currentY, setCurrentY] = useState<number>(0);
 
   const [voiceVolume, setVoiceVolume] = useState(0);
-  // const [vb, setVb] = useState(1);
   const [countdown, setCountDown] = useState(15);
   const lottieInstance = useRef<any>(null);
-  // const [speed, setSpeed] = useState(1);
-  // const vanimateRef = useRef<any | null>(null);
-  // const [showFast, setShowFast] = useState(false);
+
   const voicetimer = useRef<any>(null);
   const countDownTimer = useRef<any>(null);
-
-  // let timer: any = null;
-  // let voicetimer: any = null;
   // 常量配置
   const LONG_PRESS_DURATION = 700; // 长按判定时间
 
@@ -312,16 +305,16 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   }, [voiceVolume]);
 
   // 事件处理器
-  const handleTouchStart = (e: React.TouchEvent) => {
-    handleStart(e.touches[0].clientY);
+  const handleTouchStart = (e: React.PointerEvent) => {
+    handleStart(e.clientY);
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
     handleStart(e.clientY);
   };
 
-  const handleTouchMove = (e: React.TouchEvent) => {
-    handleMove(e.touches[0].clientY);
+  const handleTouchMove = (e: React.PointerEvent) => {
+    handleMove(e.clientY);
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -425,10 +418,10 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
 
       <div className={styles.container}>
         <div
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleEndEvent}
-          onTouchCancel={handleEndEvent}
+          onPointerDown={handleTouchStart}
+          onPointerMove={handleTouchMove}
+          onPointerUp={handleEndEvent}
+          onPointerCancel={handleEndEvent}
           onMouseDown={handleMouseDown}
           onKeyUp={handleEndEvent}
           onMouseMove={handleMouseMove}
@@ -457,22 +450,6 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
             </div>
           )}
         </div>
-
-        {/* <LottieView
-        src={"/lottie/v1.json"}
-        className={styles.newIcon}
-        loop={true}
-      ></LottieView> */}
-        {/* <LottieView
-        src={"/lottie/v2.json"}
-        className={styles.newIcon}
-        loop={true}
-      ></LottieView>
-        <LottieView
-        src={"/lottie/v3.json"}
-        className={styles.newIcon}
-        loop={true}
-      ></LottieView> */}
         <div className={styles.newIcon} onClick={() => setShowVoice(false)}>
           <LottieView src={"/lottie/v4.json"} loop={true}></LottieView>
         </div>
