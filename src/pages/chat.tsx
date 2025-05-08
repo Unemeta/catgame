@@ -194,7 +194,7 @@ const ChatView = () => {
       <div className={styles.contentBgChat}>
         <div className="relative h-[100vh] w-[100vw]">
           <div className="headerBackpack flex justify-between items-center dpl50 dpt18 dpb18 dpr110 dh90">
-            {process.env.NEXT_PUBLIC_vertical === "true" ? (
+            {process.env.NEXT_PUBLIC_VERTICAL === "true" ? (
               <div className=""></div>
             ) : (
               <div

@@ -55,7 +55,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           <ToastContainer />
         </>
       )} */}
-       {process.env.NEXT_PUBLIC_vertical === "true" && isvertical ? (
+       {process.env.NEXT_PUBLIC_VERTICAL === "true" && isvertical ? (
         <div className="rotate-screen">请旋转设备至竖屏模式</div>
       ) : (
         <>
