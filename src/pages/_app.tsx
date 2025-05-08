@@ -19,13 +19,13 @@ import Head from "next/head";
 // Router.events.on("routeChangeError", () => NProgress.done());
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const [isPortrait, setIsPortrait] = useState(false);
+  // const [isPortrait, setIsPortrait] = useState(false);
   const [isvertical, setisvertical] = useState(false)
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     const handleOrientation = () => {
-      setIsPortrait(window.innerHeight > window.innerWidth);
+      // setIsPortrait(window.innerHeight > window.innerWidth);
       setisvertical(window.innerHeight < window.innerWidth);
       const top = getComputedStyle(document.documentElement).getPropertyValue(
         "--safe-area-inset-top"
