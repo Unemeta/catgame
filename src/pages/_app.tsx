@@ -20,11 +20,13 @@ import Head from "next/head";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const [isPortrait, setIsPortrait] = useState(false);
+  const [isvertical, setisvertical] = useState(false)
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     const handleOrientation = () => {
       setIsPortrait(window.innerHeight > window.innerWidth);
+      setisvertical(window.innerHeight < window.innerWidth);
       const top = getComputedStyle(document.documentElement).getPropertyValue(
         "--safe-area-inset-top"
       );
@@ -45,8 +47,16 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           content="width=device-width, initial-scale=1,user-scalable=no, viewport-fit=cover"
         />
       </Head>
-      {isPortrait && false ? (
+      {/* {isPortrait && false ? (
         <div className="rotate-screen">请旋转设备至横屏模式</div>
+      ) : (
+        <>
+          <Component {...pageProps} />
+          <ToastContainer />
+        </>
+      )} */}
+       {process.env.NEXT_PUBLIC_vertical === "true" && isvertical ? (
+        <div className="rotate-screen">请旋转设备至竖屏模式</div>
       ) : (
         <>
           <Component {...pageProps} />

@@ -18,8 +18,10 @@ import LoveCollect from "@/components/LoveCollect";
 import Rewards from "@/components/dialog/rewards";
 import DialogChatView from "@/components/dialog/chat";
 import TalkSelect from "@/components/dialog/talkselect";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
   const { fetchUser } = useFetchUser();
   const [showLevelUp] = useShowLevelUp();
   const [progress, setProgress] = useState(0);
@@ -148,7 +150,7 @@ export default function Home() {
               </div>
             }
           ></DialogFood>
-          <DialogChatView
+          {/* <DialogChatView
             trigger={
               <div className="fixed top-[53%] left-[42%] translate-[-50%] z-1 cursor-pointer">
                 <img
@@ -158,7 +160,19 @@ export default function Home() {
                 />
               </div>
             }
-          ></DialogChatView>
+          ></DialogChatView> */}
+          <div
+            className="fixed top-[53%] left-[42%] translate-[-50%] z-1 cursor-pointer"
+            onClick={() => {
+              router.push("/chat");
+            }}
+          >
+            <img
+              className="dw116 h-auto dmb10"
+              src="/img/chat.min.png"
+              alt=""
+            />
+          </div>
           <NavRight></NavRight>
           <VideoBackground />
           {playItemId ? <Rewards id={playItemId}></Rewards> : <></>}

@@ -27,7 +27,11 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
       await jwtHelper.setToken(res.data.accessToken, {
         expires: new Date(res.data.accessExpire * 1000),
       });
-      router.push("/");
+      if(process.env.NEXT_PUBLIC_vertical === "true"){
+        router.push("/chat");
+      }else{
+        router.push("/");
+      }
     }
   };
   const handleKeyDown = (event: { key: string; }) => {
