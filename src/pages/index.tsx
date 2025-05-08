@@ -62,6 +62,10 @@ export default function Home() {
     setFoodTabs(data);
   };
   useEffect(() => {
+    if (process.env.NEXT_PUBLIC_VERTICAL === "true") {
+      router.push("/chat");
+      return;
+    }
     if (typeof window === "undefined") return;
 
     let loaded = 0;
