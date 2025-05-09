@@ -40,7 +40,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
     }
   };
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-[url('/img/loadBg.png')] bg-cover">
+    <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-[url('/img/loadBg.png')] bg-cover bg-center">
       <div
         className={cn(
           "bg-[url('/img/bg/modelBg.jpg')] bg-cover",
