@@ -231,41 +231,28 @@ const ChatView = () => {
                 </span>
               </div>
             )}
-            <div className="flex justify-end items-center">
-              <div className="resetTimerView">
-                <div className="chatNumWrap text-white font-[500] flex justify-end items-center bg-white/10">
-                  <img className="chatNumLeft" src="/img/clock.png" alt="" />
-                  <div className="dpl10 dpr10 ">
-                    <CountdownTimer></CountdownTimer>
-                  </div>
-                </div>
-              </div>
-              <div className="h5ChatNum">
-                <div className="chatNumWrap text-white font-[500] flex justify-end items-center bg-white/10">
-                  <img
-                    className="chatNumLeft"
-                    src="/img/iconSpeak.min.png"
-                    alt=""
-                  />
-                  <div className="dpl10 dpr10 ">
-                    <span
-                      className={cn("", {
-                        "text-[#FF2549]": 20 - (Number(chatCount) || 0) === 0,
-                      })}
-                      style={{ fontFamily: "SF Pro Rounded" }}
-                    >
-                      {Number(chatCount) >= 0
-                        ? 20 - (Number(chatCount) || 0)
-                        : "-"}
-                    </span>
-                    <span
-                      className="text-white/70 drm5"
-                      style={{ fontFamily: "SF Pro Rounded" }}
-                    >
-                      /20
-                    </span>
-                  </div>
-                  <TooltipChatNum></TooltipChatNum>
+            <div className="h5ChatNum">
+              <div className="chatNumWrap text-white font-[500] flex justify-end items-center bg-white/10">
+                <img
+                  className="chatNumLeft"
+                  src="/img/iconSpeak.min.png"
+                  alt=""
+                />
+                <div className="dpl10 dpr10 ">
+                  <span
+                    className={cn("", {
+                      "text-[#FF2549]": 20 - (Number(chatCount) || 0) === 0,
+                    })}
+                    style={{ fontFamily: "SF Pro Rounded" }}
+                  >
+                    {Number(chatCount) > 0 ? 20 - (Number(chatCount) || 0) : ""}
+                  </span>
+                  <span
+                    className="text-white/70 drm5"
+                    style={{ fontFamily: "SF Pro Rounded" }}
+                  >
+                    /20
+                  </span>
                 </div>
               </div>
             </div>
