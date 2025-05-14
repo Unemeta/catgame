@@ -281,7 +281,7 @@ const ChatView = () => {
                                 "YYYY/MM/DD hh:mm"
                               )}
                             </div>
-                            <div className="dtext28 font-[500] text-[#F5F2FF]  text-wrap lmdMsgSpan overflow-hidden">
+                            <div className="dtext28 font-[500] text-[#F5F2FF]  text-wrap lmdMsgSpan overflow-hidden break-words">
                               {item?.msg}
                             </div>
                           </div>
@@ -318,7 +318,7 @@ const ChatView = () => {
                                 "YYYY/MM/DD hh:mm"
                               )}
                             </div>
-                            <div className="dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan">
+                            <div className="dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan break-words">
                               {item?.msg}
                             </div>
                           </div>
