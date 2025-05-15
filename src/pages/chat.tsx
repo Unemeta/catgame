@@ -229,14 +229,16 @@ const ChatView = () => {
               </div>
             )}
             <div className="flex justify-end items-center">
-              <div className="resetTimerView">
-                <div className="chatNumWrap text-white font-[500] flex justify-end items-center bg-white/10">
-                  <img className="chatNumLeft" src="/img/clock.png" alt="" />
-                  <div className="dpl10 dpr10 select-none">
-                    <CountdownTimer></CountdownTimer>
+              {Number(chatCount) === 20 && (
+                <div className="resetTimerView">
+                  <div className="chatNumWrap text-white font-[500] flex justify-end items-center bg-white/10">
+                    <img className="chatNumLeft" src="/img/clock.png" alt="" />
+                    <div className="dpl10 dpr10 select-none">
+                      <CountdownTimer></CountdownTimer>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
               <div className="h5ChatNum">
                 <div className="chatNumWrap text-white font-[500] flex justify-end items-center bg-white/10">
                   <img
@@ -285,7 +287,7 @@ const ChatView = () => {
                                 "YYYY/MM/DD hh:mm"
                               )}
                             </div>
-                            <div className="dtext28 font-[500] text-[#F5F2FF]  text-wrap lmdMsgSpan overflow-hidden break-words">
+                            <div className="msgText line-clamp-4 dtext28 font-[500] text-[#F5F2FF]  text-wrap lmdMsgSpan overflow-hidden break-words">
                               {item?.msg}
                             </div>
                           </div>
@@ -322,7 +324,7 @@ const ChatView = () => {
                                 "YYYY/MM/DD hh:mm"
                               )}
                             </div>
-                            <div className="dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan break-words">
+                            <div className="msgText line-clamp-4 dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan break-words">
                               {item?.msg}
                             </div>
                           </div>
