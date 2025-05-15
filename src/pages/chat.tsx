@@ -63,9 +63,9 @@ const ChatView = () => {
     socketTemp.onmessage = (event) => {
       if (event?.type === "message" && event?.data !== "pong") {
         const msgRes = JSON.parse(event?.data);
-        if (msgRes.hasOwnProperty("message")) {
-          //
-        } else {
+        if(msgRes.hasOwnProperty("message")){
+          // 
+        }else{
           return;
         }
         getChatInfo();
@@ -109,7 +109,7 @@ const ChatView = () => {
 
   const sendMessage = () => {
     if (socket) {
-      if (Number(chatCount) >= 20) {
+      if(Number(chatCount) >= 20){
         toast.info("Insufficient ability to send message");
         return;
       }
@@ -244,7 +244,7 @@ const ChatView = () => {
                     })}
                     style={{ fontFamily: "SF Pro Rounded" }}
                   >
-                    {Number(chatCount) > 0 ? 20 - (Number(chatCount) || 0) : ""}
+                    {Number(chatCount) >= 0 ? 20 - (Number(chatCount) || 0) : "-"}
                   </span>
                   <span
                     className="text-white/70 drm5"
