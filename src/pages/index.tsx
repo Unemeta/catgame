@@ -131,9 +131,6 @@ export default function Home() {
     };
 
     window.addEventListener("beforeinstallprompt", handler);
-    if (typeof window !== 'undefined') {
-      import('eruda').then((eruda) => eruda.default.init());
-    }
     return () => window.removeEventListener("beforeinstallprompt", handler);
   }, []);
   return (
