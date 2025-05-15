@@ -336,22 +336,21 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   };
   // 处理结束
   const handleEnd = useCallback(() => {
+    recognitionRef.current?.stop();
+
     if (recordingState === "cancelled") {
-      recognitionRef.current?.stop();
       cleanupResources();
       cancelText(); // 清空转录内容，避免误发送
       setRecordingState("idle");
       return;
     }
-
     if (recordingState === "recording") {
-      recognitionRef.current?.stop();
       setRecordingState("idle");
     }
   }, [recordingState, cleanupResources]);
   // 通用结束处理
   const handleEndEvent = () => {
-    console.log('handleEndEvent',isLongPress);
+    console.log("handleEndEvent", isLongPress);
     cancelLongPress();
     if (voicetimer.current) {
       clearInterval(voicetimer.current);
