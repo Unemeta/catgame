@@ -108,13 +108,18 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
       handleCount();
     };
     // 在初始化时添加 soundstart/speechstart 检测
-    recognition.addEventListener("soundstart", () => {
+    // recognition.addEventListener("soundstart", () => {
+    //   console.log("检测到声音输入");
+    // });
+    recognition.onsoundstart = () => {
       console.log("检测到声音输入");
-    });
-
-    recognition.addEventListener("speechstart", () => {
+    };
+    recognition.onspeechstart = () => {
       console.log("检测到有效语音");
-    });
+    };
+    // recognition.addEventListener("speechstart", () => {
+    //   console.log("检测到有效语音");
+    // });
 
     // // 语音识别结果的回调
     // recognition.onresult = (event: any) => {
