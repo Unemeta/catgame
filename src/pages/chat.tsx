@@ -13,8 +13,8 @@ import styles from "@/styles/Chat.module.css";
 import { cn } from "@/lib/utils";
 import LottieView from "@/components/lottie";
 import { useRouter } from "next/router";
-import TooltipChatNum from "@/components/tooltip/chatNum";
 import CountdownTimer from "@/components/countDownReset";
+import PopoverChatNum from "@/components/popover/chatNum";
 
 let timerHistory: NodeJS.Timeout | null | undefined = null;
 const ChatView = () => {
@@ -262,7 +262,7 @@ const ChatView = () => {
                       /20
                     </span>
                   </div>
-                  <TooltipChatNum></TooltipChatNum>
+                  <PopoverChatNum></PopoverChatNum>
                 </div>
               </div>
             </div>
