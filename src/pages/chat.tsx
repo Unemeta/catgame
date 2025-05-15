@@ -270,6 +270,7 @@ const ChatView = () => {
             </div>
           </div>
           <div className="flex flex-col chatCttH lmdWfull z-1 relative">
+            {/* <img className="dtest w-full absolute z-[1]" src="/img/bg/bgChatMsgTop.min.png" alt="" /> */}
             <div className="hidden chatBoxSizeHeight"></div>
             <div className="flex justify-end items-start dmb40 grow overflow-y-scroll">
               <div
@@ -279,7 +280,12 @@ const ChatView = () => {
                 {messageList?.map((item, index: number) => {
                   if (item?.role === "user") {
                     return (
-                      <div className="relative" key={index}>
+                      <div
+                        className={cn("relative", {
+                          "opacity-70": index + 4 < messageList.length,
+                        })}
+                        key={index}
+                      >
                         <div className="send bg-[rgba(36,225,55,.9)] flex justify-between items-start relative msgWrap">
                           <div className="dmaxW460 dmr25 msgTimeWrap">
                             <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 text-right msgTime">
@@ -306,7 +312,12 @@ const ChatView = () => {
                     );
                   } else {
                     return (
-                      <div className="relative" key={index}>
+                      <div
+                        className={cn("relative", {
+                          "opacity-70": index + 3 < messageList.length,
+                        })}
+                        key={index}
+                      >
                         <img
                           className=" rounded-full dmr25 robotAvator"
                           src="/img/avataCat.min.png"
