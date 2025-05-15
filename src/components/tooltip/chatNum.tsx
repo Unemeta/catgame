@@ -1,11 +1,6 @@
-// import { useState } from "react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from ".";
 
 const TooltipChatNum = () => {
-  // const [isOpen, setIsOpen] = useState(false);
-  // const handleToggle = () => {
-  //   setIsOpen((prev) => !prev);
-  // };
   return (
     <TooltipProvider>
       <Tooltip>
@@ -38,11 +33,7 @@ const TooltipChatNum = () => {
         <TooltipContent>
           {/* Remaining chats today. */}
           {/* <div className="chatNumTipText"></div> */}
-          <img
-            className="chatNumTipText"
-            src="/img/bg/tooltipChatInfo.min.png"
-            alt=""
-          />
+          <img className="chatNumTipText" src="/img/bg/tooltipChatInfo.min.png" alt="" />
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

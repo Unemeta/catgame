@@ -14,7 +14,6 @@ import { cn } from "@/lib/utils";
 import LottieView from "@/components/lottie";
 import { useRouter } from "next/router";
 import TooltipChatNum from "@/components/tooltip/chatNum";
-import CountdownTimer from "@/components/countDownReset";
 
 let timerHistory: NodeJS.Timeout | null | undefined = null;
 const ChatView = () => {
@@ -64,9 +63,9 @@ const ChatView = () => {
     socketTemp.onmessage = (event) => {
       if (event?.type === "message" && event?.data !== "pong") {
         const msgRes = JSON.parse(event?.data);
-        if (msgRes.hasOwnProperty("message")) {
-          //
-        } else {
+        if(msgRes.hasOwnProperty("message")){
+          // 
+        }else{
           return;
         }
         getChatInfo();
@@ -110,7 +109,7 @@ const ChatView = () => {
 
   const sendMessage = () => {
     if (socket) {
-      if (Number(chatCount) >= 20) {
+      if(Number(chatCount) >= 20){
         toast.info("Insufficient ability to send message");
         return;
       }
@@ -254,6 +253,7 @@ const ChatView = () => {
                     /20
                   </span>
                 </div>
+                <TooltipChatNum></TooltipChatNum>
               </div>
             </div>
           </div>

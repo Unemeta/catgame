@@ -719,9 +719,6 @@ body {
   /* transform: translateY(-140px); */
   /* border: 1px solid red; */
 }
-.resetTimerView {
-  margin-right: 30px;
-}
 @media screen and (max-width: 768px) {
   .chatNumTipText {
     text-align: center;
@@ -734,9 +731,6 @@ body {
     /* background-image: url("/img/bg/tooltipChatInfo.min.png"); */
     /* background-size: cover; */
     /* border: 1px solid red; */
-  }
-  .resetTimerView {
-    margin-right: 30px;
   }
   .h5ChatNum {
     display: block;
