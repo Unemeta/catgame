@@ -244,7 +244,7 @@ const ChatView = () => {
                     })}
                     style={{ fontFamily: "SF Pro Rounded" }}
                   >
-                    {Number(chatCount) > 0 ? 20 - (Number(chatCount) || 0) : ""}
+                    {Number(chatCount) >= 0 ? 20 - (Number(chatCount) || 0) : "-"}
                   </span>
                   <span
                     className="text-white/70 drm5"
