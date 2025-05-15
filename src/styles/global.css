@@ -716,18 +716,26 @@ body {
   text-align: center;
   width: 420px;
   height: auto;
-  /* transform: translateY(-140px); */
+  transform: translate(0px, -38%);
   /* border: 1px solid red; */
 }
 .resetTimerView {
   margin-right: 30px;
 }
+.msgText {
+  max-height: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 @media screen and (max-width: 768px) {
+  .msgText {
+    max-height: 500px;
+  }
   .chatNumTipText {
     text-align: center;
     width: 820px;
     height: auto;
-    transform: translateY(-140px);
+    transform: translate(100px, -38%);
     /* padding: 40px; */
     /* box-shadow: 0px 10px 60px 0px rgba(0, 0, 0, 0.5); */
     /* backdrop-filter: blur(65px); */
