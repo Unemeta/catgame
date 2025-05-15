@@ -907,3 +907,13 @@ body {
     background-position: 0% 50%;
   } */
 }
+
+/* 禁用 Safari 的弹性滚动 */
+@supports (-webkit-touch-callout: none) {
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+  #app {
+    overscroll-behavior-y: contain;
+  }
+}
