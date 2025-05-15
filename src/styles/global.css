@@ -716,7 +716,7 @@ body {
   text-align: center;
   width: 420px;
   height: auto;
-  transform: translate(7px, -38%);
+  transform: translate(0px, -38%);
   /* border: 1px solid red; */
 }
 .resetTimerView {
@@ -735,7 +735,7 @@ body {
     text-align: center;
     width: 820px;
     height: auto;
-    transform: translate(480px, -40%);
+    transform: translate(100px, -38%);
     /* padding: 40px; */
     /* box-shadow: 0px 10px 60px 0px rgba(0, 0, 0, 0.5); */
     /* backdrop-filter: blur(65px); */
