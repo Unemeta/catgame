@@ -351,7 +351,7 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   }, [recordingState, cleanupResources]);
   // 通用结束处理
   const handleEndEvent = () => {
-    console.log('handleEndEvent');
+    console.log('handleEndEvent',isLongPress);
     cancelLongPress();
     if (voicetimer.current) {
       clearInterval(voicetimer.current);
