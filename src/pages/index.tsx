@@ -19,7 +19,6 @@ import Rewards from "@/components/dialog/rewards";
 import DialogChatView from "@/components/dialog/chat";
 import TalkSelect from "@/components/dialog/talkselect";
 import { useRouter } from "next/router";
-import eruda from 'eruda'
 export default function Home() {
   const router = useRouter();
   const { fetchUser } = useFetchUser();
@@ -132,9 +131,10 @@ export default function Home() {
     };
 
     window.addEventListener("beforeinstallprompt", handler);
-    eruda.init();
+    if (typeof window !== 'undefined') {
+      import('eruda').then((eruda) => eruda.default.init());
+    }
     return () => window.removeEventListener("beforeinstallprompt", handler);
-   
   }, []);
   return (
     <>
