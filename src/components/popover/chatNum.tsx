@@ -32,7 +32,7 @@ const PopoverChatNum = () => {
           </defs>
         </svg>
       </PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent className="flex justify-end">
         <img
           className="chatNumTipText"
           src="/img/bg/tooltipChatInfo.min.png"
