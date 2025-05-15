@@ -117,6 +117,10 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
     recognition.onspeechstart = () => {
       console.log("检测到有效语音");
     };
+
+    recognition.onerror = (err:any) => {
+      console.log("recognition onerror", err);
+    };
     // recognition.addEventListener("speechstart", () => {
     //   console.log("检测到有效语音");
     // });
