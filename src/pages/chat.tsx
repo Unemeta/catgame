@@ -235,7 +235,7 @@ const ChatView = () => {
               <div className="resetTimerView">
                 <div className="chatNumWrap text-white font-[500] flex justify-end items-center bg-white/10">
                   <img className="chatNumLeft" src="/img/clock.png" alt="" />
-                  <div className="dpl10 dpr10 ">
+                  <div className="dpl10 dpr10 select-none">
                     <CountdownTimer></CountdownTimer>
                   </div>
                 </div>

@@ -38,7 +38,7 @@ const CountdownTimer = () => {
         `${hours}h:${minutes}m`
       );
     } else {
-      setTimeRemaining("东京0点已到！");
+      setTimeRemaining("");
     }
   };
 
