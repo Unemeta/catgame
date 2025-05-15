@@ -722,7 +722,15 @@ body {
 .resetTimerView {
   margin-right: 30px;
 }
+.msgText {
+  max-height: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 @media screen and (max-width: 768px) {
+  .msgText {
+    max-height: 500px;
+  }
   .chatNumTipText {
     text-align: center;
     width: 820px;
