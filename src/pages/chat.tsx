@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 import LottieView from "@/components/lottie";
 import { useRouter } from "next/router";
 import TooltipChatNum from "@/components/tooltip/chatNum";
+import CountdownTimer from "@/components/countDownReset";
 
 let timerHistory: NodeJS.Timeout | null | undefined = null;
 const ChatView = () => {
@@ -60,9 +61,9 @@ const ChatView = () => {
     socketTemp.onmessage = (event) => {
       if (event?.type === "message" && event?.data !== "pong") {
         const msgRes = JSON.parse(event?.data);
-        if(msgRes.hasOwnProperty("message")){
-          // 
-        }else{
+        if (msgRes.hasOwnProperty("message")) {
+          //
+        } else {
           return;
         }
         getChatInfo();
@@ -106,7 +107,7 @@ const ChatView = () => {
 
   const sendMessage = () => {
     if (socket) {
-      if(Number(chatCount) >= 20){
+      if (Number(chatCount) >= 20) {
         toast.info("Insufficient ability to send message");
         return;
       }
@@ -227,30 +228,42 @@ const ChatView = () => {
                 </span>
               </div>
             )}
-            <div className="h5ChatNum">
-              <div className="chatNumWrap text-white font-[500] flex justify-end items-center bg-white/10">
-                <img
-                  className="chatNumLeft"
-                  src="/img/iconSpeak.min.png"
-                  alt=""
-                />
-                <div className="dpl10 dpr10 ">
-                  <span
-                    className={cn("", {
-                      "text-[#FF2549]": 20 - (Number(chatCount) || 0) === 0,
-                    })}
-                    style={{ fontFamily: "SF Pro Rounded" }}
-                  >
-                    {Number(chatCount) >= 0 ? 20 - (Number(chatCount) || 0) : "-"}
-                  </span>
-                  <span
-                    className="text-white/70 drm5"
-                    style={{ fontFamily: "SF Pro Rounded" }}
-                  >
-                    /20
-                  </span>
+            <div className="flex justify-end items-center">
+              <div className="resetTimerView">
+                <div className="chatNumWrap text-white font-[500] flex justify-end items-center bg-white/10">
+                  <img className="chatNumLeft" src="/img/clock.png" alt="" />
+                  <div className="dpl10 dpr10 ">
+                    <CountdownTimer></CountdownTimer>
+                  </div>
                 </div>
-                <TooltipChatNum></TooltipChatNum>
+              </div>
+              <div className="h5ChatNum">
+                <div className="chatNumWrap text-white font-[500] flex justify-end items-center bg-white/10">
+                  <img
+                    className="chatNumLeft"
+                    src="/img/iconSpeak.min.png"
+                    alt=""
+                  />
+                  <div className="dpl10 dpr10 ">
+                    <span
+                      className={cn("", {
+                        "text-[#FF2549]": 20 - (Number(chatCount) || 0) === 0,
+                      })}
+                      style={{ fontFamily: "SF Pro Rounded" }}
+                    >
+                      {Number(chatCount) >= 0
+                        ? 20 - (Number(chatCount) || 0)
+                        : "-"}
+                    </span>
+                    <span
+                      className="text-white/70 drm5"
+                      style={{ fontFamily: "SF Pro Rounded" }}
+                    >
+                      /20
+                    </span>
+                  </div>
+                  <TooltipChatNum></TooltipChatNum>
+                </div>
               </div>
             </div>
           </div>
