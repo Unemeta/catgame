@@ -351,7 +351,7 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   }, [recordingState, cleanupResources]);
   // 通用结束处理
   const handleEndEvent = () => {
-    console.log(isLongPress);
+    console.log('handleEndEvent');
     cancelLongPress();
     if (voicetimer.current) {
       clearInterval(voicetimer.current);
@@ -367,15 +367,15 @@ const SpeechRecognition: React.FC<SpeechRecognitionProps> = ({
   }, []);
 
   useEffect(() => {
-    const globalEndHandler = () => {
-      handleEndEvent();
-    };
-    window.addEventListener("touchend", globalEndHandler);
-    window.addEventListener("mouseup", globalEndHandler);
-    return () => {
-      window.removeEventListener("touchend", globalEndHandler);
-      window.removeEventListener("mouseup", globalEndHandler);
-    };
+    // const globalEndHandler = () => {
+    //   handleEndEvent();
+    // };
+    // window.addEventListener("touchend", globalEndHandler);
+    // window.addEventListener("mouseup", globalEndHandler);
+    // return () => {
+    //   window.removeEventListener("touchend", globalEndHandler);
+    //   window.removeEventListener("mouseup", globalEndHandler);
+    // };
   }, []);
   // 渲染UI
   return (
