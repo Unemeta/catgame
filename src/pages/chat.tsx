@@ -13,6 +13,7 @@ import styles from "@/styles/Chat.module.css";
 import { cn } from "@/lib/utils";
 import LottieView from "@/components/lottie";
 import { useRouter } from "next/router";
+import TooltipChatNum from "@/components/tooltip/chatNum";
 
 let timerHistory: NodeJS.Timeout | null | undefined = null;
 const ChatView = () => {
@@ -58,18 +59,27 @@ const ChatView = () => {
     };
     socketTemp.onmessage = (event) => {
       if (event?.type === "message" && event?.data !== "pong") {
+        const msgRes = JSON.parse(event?.data);
+        if(msgRes.hasOwnProperty("message")){
+          // 
+        }else{
+          return;
+        }
         getChatInfo();
         setmessageList((pre) => {
           return [
             ...pre,
             {
               chatId: userData?.nickname,
-              msg: event?.data,
+              msg: msgRes?.message,
               role: "cat",
               time: Math.floor(new Date().getTime() / 1000),
             },
           ];
         });
+        if (msgRes.hasOwnProperty("chatCount")) {
+          setchatCount(String(msgRes.chatCount));
+        }
       }
       // setMessages((prevMessages) => [...prevMessages, event.data]);
     };
@@ -96,6 +106,10 @@ const ChatView = () => {
 
   const sendMessage = () => {
     if (socket) {
+      if(Number(chatCount) >= 20){
+        toast.info("Insufficient ability to send message");
+        return;
+      }
       if (inputMsg?.length > 0) {
         setmessageList((preMsgList) => {
           return [
@@ -236,30 +250,7 @@ const ChatView = () => {
                     /20
                   </span>
                 </div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  className="chatNumRight"
-                >
-                  <g clip-path="url(#clip0_2028_5852)">
-                    <path
-                      d="M6.05967 6C6.21641 5.55445 6.52578 5.17874 6.93298 4.93942C7.34018 4.70011 7.81894 4.61263 8.28446 4.69248C8.74998 4.77233 9.17222 5.01435 9.47639 5.37569C9.78057 5.73702 9.94705 6.19435 9.94634 6.66667C9.94634 8 7.94634 8.66667 7.94634 8.66667M7.99967 11.3333H8.00634M14.6663 8C14.6663 11.6819 11.6816 14.6667 7.99967 14.6667C4.31778 14.6667 1.33301 11.6819 1.33301 8C1.33301 4.3181 4.31778 1.33334 7.99967 1.33334C11.6816 1.33334 14.6663 4.3181 14.6663 8Z"
-                      stroke="#FFF41A"
-                      stroke-opacity="0.7"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_2028_5852">
-                      <rect width="16" height="16" fill="white" />
-                    </clipPath>
-                  </defs>
-                </svg>
+                <TooltipChatNum></TooltipChatNum>
               </div>
             </div>
           </div>
