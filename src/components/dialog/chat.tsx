@@ -337,7 +337,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
               <div className="lmdSizebox hidden"></div>
               {showVoice ? (
                 <SpeechRecognition
-                  language="zh-CN"
+                  language="zh_cn"
                   onSend={(text) => sendMessageByVoice(text)}
                 ></SpeechRecognition>
               ) : (
