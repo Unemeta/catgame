@@ -33,13 +33,13 @@ type RecordingState = "idle" | "recording" | "cancelled";
 const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
   language = "zh_cn",
   onResult,
-  onError,
+  // onError,
   onCancel,
   onSend,
 }) => {
   const [, setShowVoice] = useShowVocie();
   const [recordingState, setRecordingState] = useState<RecordingState>("idle");
-  const [, setError] = useState<string | null>(null);
+  // const [, setError] = useState<string | null>(null);
   const [y, setY] = useState(0);
 
   const longPressTimer = useRef<any>(null);
@@ -257,8 +257,6 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
     return url;
   };
 
-  useEffect(() => {}, []);
-
   //连接websocket语音，初始和websocket断开后执行
   const connectWebSocket = () => {
     const url = generateWebSocketUrl();
@@ -322,6 +320,10 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
           const innerText =
             resultTextTempRef.current || resultTextRef.current || "";
           setMessage(innerText);
+          if (onResult) {
+            onResult(innerText);
+          }
+
           console.log(innerText);
         }
       };
@@ -375,7 +377,7 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
           bufferDuration: any,
           bufferSampleRate: any,
           newBufferIdx: number,
-          asyncEnd: any
+          // asyncEnd: any
         ) {
           //录音实时回调，大约1秒调用12次本回调，buffers为开始到现在的所有录音pcm数据块(16位小端LE)
           //可实时上传（发送）数据，可实时绘制波形，ASR语音识别，使用可参考Recorder
@@ -538,6 +540,10 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
     const this_ = RecordApp;
     this_.watchDogTimer = 0; //停止监控onProcess超时
     setIsRecording(false);
+
+    console.log(isRecording)
+    console.log(isLongPress)
+
     resultTextTempRef.current = "";
     resultTextRef.current = "";
     RecordApp.Stop(
