@@ -156,15 +156,16 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
   const cancelText = () => {
     resultTextTempRef.current = "";
     resultTextRef.current = "";
+    setMessage("");
   };
 
   // 发送文案，需要发送后进行清除
   const sendText = () => {
-    setTimeout(() => {
-      cancelText();
-    }, 500);
     if (messageContent) {
       onSend?.(messageContent); // 调用外部传入的 onResult 回调（如果有）
+      setTimeout(() => {
+        cancelText();
+      }, 500);
     }
   };
 
@@ -540,12 +541,9 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
     const this_ = RecordApp;
     this_.watchDogTimer = 0; //停止监控onProcess超时
     setIsRecording(false);
-
     console.log(isRecording);
     console.log(isLongPress);
-
-    resultTextTempRef.current = "";
-    resultTextRef.current = "";
+    // cancelText();
     RecordApp.Stop(
       function (arrayBuffer: BlobPart, duration: string, mime: any) {
         //arrayBuffer就是录音文件的二进制数据，不同平台环境下均可进行播放、上传
@@ -593,10 +591,8 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
       ) : (
         <></>
       )}
-
+      <div style={{ color: "red" }}>{y}</div>
       <div className={styles.container}>
-        <div style={{ color: "red" }}>{y}</div>
-
         <div
           onPointerDown={handleTouchStart}
           onPointerMove={handleTouchMove}
