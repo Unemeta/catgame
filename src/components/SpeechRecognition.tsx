@@ -352,13 +352,13 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
 
   /**开始录音**/
   const startRecording = function () {
+    recReq();
     if (!wsRef.current) {
       connectWebSocket();
     }
     let processTime = 0;
     let clearBufferIdx = 0;
     RealTimeSendReset();
-    recReq();
     setRecordingState("recording");
     handleCount();
     setIsRecording(true);
@@ -376,7 +376,7 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
           powerLevel: any,
           bufferDuration: any,
           bufferSampleRate: any,
-          newBufferIdx: number,
+          newBufferIdx: number
           // asyncEnd: any
         ) {
           //录音实时回调，大约1秒调用12次本回调，buffers为开始到现在的所有录音pcm数据块(16位小端LE)
@@ -541,8 +541,8 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
     this_.watchDogTimer = 0; //停止监控onProcess超时
     setIsRecording(false);
 
-    console.log(isRecording)
-    console.log(isLongPress)
+    console.log(isRecording);
+    console.log(isLongPress);
 
     resultTextTempRef.current = "";
     resultTextRef.current = "";
