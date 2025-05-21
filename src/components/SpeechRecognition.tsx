@@ -94,11 +94,11 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
       //   setCurrentY(clientY);
       const deltaY = touchStartY - clientY;
       setY(deltaY);
-      if (deltaY > 50 && recordingState === "recording") {
+      if (deltaY > 5 && recordingState === "recording") {
         setRecordingState("cancelled");
         cancelLongPress();
         onCancel?.();
-      } else if (recordingState === "cancelled" && deltaY <= 50) {
+      } else if (recordingState === "cancelled" && deltaY <= 5) {
         setRecordingState("recording");
       }
     },
