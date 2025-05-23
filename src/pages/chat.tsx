@@ -25,7 +25,7 @@ const ChatView = () => {
   const [socket, setSocket] = useState<WebSocket | null>(null);
   const [inputMsg, setinputMsg] = useState("");
   const [messageList, setmessageList] = useState<
-    { chatId: string; msg: string; role: string; time: number }[]
+    { chatId: string; msg: string; role: string; time: number; msgId: string }[]
   >([]);
   const chatEndRef = useRef(null);
   const [toConnect, settoConnect] = useState(false);
@@ -70,7 +70,7 @@ const ChatView = () => {
           return;
         }
         getChatInfo();
-        setmessageList((pre) => {
+        setmessageList((pre: any) => {
           return [
             ...pre,
             {
@@ -115,7 +115,7 @@ const ChatView = () => {
         return;
       }
       if (inputMsg?.length > 0) {
-        setmessageList((preMsgList) => {
+        setmessageList((preMsgList: any) => {
           return [
             ...preMsgList,
             {
@@ -141,7 +141,7 @@ const ChatView = () => {
     try {
       if (socket) {
         if (text?.length > 0) {
-          setmessageList((preMsgList) => {
+          setmessageList((preMsgList: any) => {
             return [
               ...preMsgList,
               {
@@ -207,6 +207,54 @@ const ChatView = () => {
       });
     }
   };
+  const mediaSwitch = (msg: string, msg_id: string) => {
+    if (
+      msg?.indexOf("png") > -1 ||
+      msg?.indexOf("jpg") > -1 ||
+      msg?.indexOf("jpeg") > -1 ||
+      msg?.indexOf("images.unemeta.com") > -1
+    ) {
+      return <img className="chatMedia" src={msg} alt="" />;
+    } else if (msg?.indexOf("mp4") > -1) {
+      const handlePlay = (id: string) => {
+        console.log(`视频 ${id} 开始播放`);
+      };
+
+      const handlePause = (id: string) => {
+        console.log(`视频 ${id} 已暂停`);
+      };
+
+      const handleEnded = (id: string) => {
+        console.log(`视频 ${id} 播放结束`);
+      };
+
+      const handleTimeUpdate = (id: string, currentTime: string) => {
+        console.log(`视频 ${id} 当前播放时间: ${currentTime}`);
+      };
+      const handleOnError = (id: string, e: any) => {
+        console.log(`error ${id} ${JSON.stringify(e)}`);
+      };
+      return (
+        <video
+          src=""
+          controls
+          onPlay={() => handlePlay(msg_id)}
+          onPause={() => handlePause(msg_id)}
+          onEnded={() => handleEnded(msg_id)}
+          onTimeUpdate={(e: any) =>
+            handleTimeUpdate(msg_id, e.target.currentTime)
+          }
+          onError={(e: any) => handleOnError(msg_id, e)}
+        >
+          <source src={msg} type="video/mp4" />
+          您的浏览器不支持 HTML5 视频标签
+        </video>
+      );
+    } else {
+      return <div className="">{msg}</div>;
+    }
+  };
+
   return (
     <div className={styles.DialogContent}>
       <div className={styles.contentBgChat}>
@@ -292,7 +340,7 @@ const ChatView = () => {
                         <div className="send bg-[rgba(36,225,55,.9)] flex justify-between items-start relative msgWrap">
                           <div className="dmaxW460 dmr25 msgTimeWrap">
                             <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 text-right msgTime">
-                              {moment(item.time * 1000).format(
+                              {moment(item.time * 1000).local().format(
                                 "YYYY/MM/DD hh:mm"
                               )}
                             </div>
@@ -334,12 +382,12 @@ const ChatView = () => {
                             /> */}
                           <div className="dmaxW460 lmdWfull">
                             <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 msgTime">
-                              {moment(item.time * 1000).format(
+                              {moment(item.time * 1000).local().format(
                                 "YYYY/MM/DD hh:mm"
                               )}
                             </div>
                             <div className="msgText line-clamp-4 dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan break-words">
-                              {item?.msg}
+                              {mediaSwitch(item?.msg, item?.msgId)}
                             </div>
                           </div>
                         </div>
