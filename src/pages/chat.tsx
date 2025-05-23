@@ -204,6 +204,26 @@ const ChatView = () => {
       });
     }
   };
+  const mediaSwitch = (msg: string) => {
+    if (
+      msg?.indexOf("png") > -1 ||
+      msg?.indexOf("jpg") > -1 ||
+      msg?.indexOf("jpeg") > -1 ||
+      msg?.indexOf("images.unemeta.com") > -1
+    ) {
+      return <img className="chatMedia" src={msg} alt="" />;
+    } else if (msg?.indexOf("mp4") > -1) {
+      return (
+        <video src="" controls>
+          <source src={msg} type="video/mp4" />
+          您的浏览器不支持 HTML5 视频标签
+        </video>
+      );
+    } else {
+      return <div className="">{msg}</div>;
+    }
+  };
+
   return (
     <div className={styles.DialogContent}>
       <div className={styles.contentBgChat}>
@@ -336,7 +356,7 @@ const ChatView = () => {
                               )}
                             </div>
                             <div className="msgText line-clamp-4 dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan break-words">
-                              {item?.msg}
+                              {mediaSwitch(item?.msg)}
                             </div>
                           </div>
                         </div>
