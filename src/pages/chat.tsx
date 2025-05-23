@@ -337,7 +337,7 @@ const ChatView = () => {
                         <div className="send bg-[rgba(36,225,55,.9)] flex justify-between items-start relative msgWrap">
                           <div className="dmaxW460 dmr25 msgTimeWrap">
                             <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 text-right msgTime">
-                              {moment(item.time * 1000).format(
+                              {moment(item.time * 1000).local().format(
                                 "YYYY/MM/DD hh:mm"
                               )}
                             </div>
@@ -379,7 +379,7 @@ const ChatView = () => {
                             /> */}
                           <div className="dmaxW460 lmdWfull">
                             <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 msgTime">
-                              {moment(item.time * 1000).format(
+                              {moment(item.time * 1000).local().format(
                                 "YYYY/MM/DD hh:mm"
                               )}
                             </div>
