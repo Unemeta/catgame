@@ -16,6 +16,7 @@ import { useRouter } from "next/router";
 import CountdownTimer from "@/components/countDownReset";
 import PopoverChatNum from "@/components/popover/chatNum";
 import ImgView from "@/components/photeView";
+import VideoPlayView from "@/components/videoPlay";
 
 let timerHistory: NodeJS.Timeout | null | undefined = null;
 const ChatView = () => {
@@ -205,6 +206,7 @@ const ChatView = () => {
       });
     }
   };
+
   const mediaSwitch = (msg: string, msg_id: string) => {
     if (
       msg?.indexOf("png") > -1 ||
@@ -212,41 +214,12 @@ const ChatView = () => {
       msg?.indexOf("jpeg") > -1 ||
       msg?.indexOf("images.unemeta.com") > -1
     ) {
-      return <ImgView  src={msg} />;
+      return <ImgView src={msg} />;
     } else if (msg?.indexOf("mp4") > -1) {
-      const handlePlay = (id: string) => {
-        console.log(`视频 ${id} 开始播放`);
-      };
+   
 
-      const handlePause = (id: string) => {
-        console.log(`视频 ${id} 已暂停`);
-      };
-
-      const handleEnded = (id: string) => {
-        console.log(`视频 ${id} 播放结束`);
-      };
-
-      const handleTimeUpdate = (id: string, currentTime: string) => {
-        console.log(`视频 ${id} 当前播放时间: ${currentTime}`);
-      };
-      const handleOnError = (id: string, e: any) => {
-        console.log(`error ${id} ${JSON.stringify(e)}`);
-      };
       return (
-        <video
-          src=""
-          controls
-          onPlay={() => handlePlay(msg_id)}
-          onPause={() => handlePause(msg_id)}
-          onEnded={() => handleEnded(msg_id)}
-          onTimeUpdate={(e: any) =>
-            handleTimeUpdate(msg_id, e.target.currentTime)
-          }
-          onError={(e: any) => handleOnError(msg_id, e)}
-        >
-          <source src={msg} type="video/mp4" />
-          您的浏览器不支持 HTML5 视频标签
-        </video>
+        <VideoPlayView msg={msg} msg_id={msg_id}></VideoPlayView>
       );
     } else {
       return <div className="">{msg}</div>;
@@ -338,9 +311,9 @@ const ChatView = () => {
                         <div className="send bg-[rgba(36,225,55,.9)] flex justify-between items-start relative msgWrap">
                           <div className="dmaxW460 dmr25 msgTimeWrap">
                             <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 text-right msgTime">
-                              {moment(item.time * 1000).local().format(
-                                "YYYY/MM/DD hh:mm"
-                              )}
+                              {moment(item.time * 1000)
+                                .local()
+                                .format("YYYY/MM/DD hh:mm")}
                             </div>
                             <div className="msgText line-clamp-4 dtext28 font-[500] text-[#F5F2FF]  text-wrap lmdMsgSpan overflow-hidden break-words">
                               {item?.msg}
@@ -380,9 +353,9 @@ const ChatView = () => {
                             /> */}
                           <div className="dmaxW460 lmdWfull">
                             <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 msgTime">
-                              {moment(item.time * 1000).local().format(
-                                "YYYY/MM/DD hh:mm"
-                              )}
+                              {moment(item.time * 1000)
+                                .local()
+                                .format("YYYY/MM/DD hh:mm")}
                             </div>
                             <div className="msgText line-clamp-4 dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan break-words">
                               {mediaSwitch(item?.msg, item?.msgId)}
