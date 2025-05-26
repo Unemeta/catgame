@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import "@/styles/global.css";
 import { ToastContainer } from "react-toastify";
 import Head from "next/head";
+import 'react-photo-view/dist/react-photo-view.css';
+
 
 // import Router from "next/router";
 // import NProgress from "nprogress";
