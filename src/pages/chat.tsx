@@ -70,15 +70,20 @@ const ChatView = () => {
         }
         getChatInfo();
         setmessageList((pre: any) => {
-          return [
+          const resArr = [
             ...pre,
             {
               chatId: userData?.nickname,
               msg: msgRes?.message,
+              msgId: msgRes?.msgId,
               role: "cat",
               time: Math.floor(new Date().getTime() / 1000),
             },
           ];
+          const uniqueArr = Array.from(
+            new Set(resArr.map((message) => message.msgId))
+          ).map((msgId) => resArr.find((message) => message.msgId === msgId));
+          return uniqueArr;
         });
         if (msgRes.hasOwnProperty("chatCount")) {
           setchatCount(String(msgRes.chatCount));
@@ -175,7 +180,11 @@ const ChatView = () => {
         method: "get",
       });
       if (data?.msgList) {
-        setmessageList([...data.msgList.reverse()]);
+        const resArr = [...data.msgList.reverse()];
+        const uniqueArr = Array.from(
+          new Set(resArr.map((message) => message.msgId))
+        ).map((msgId) => resArr.find((message) => message.msgId === msgId));
+        setmessageList(uniqueArr);
       }
     } catch (error: any) {
       console.error(error);
@@ -207,7 +216,7 @@ const ChatView = () => {
     }
   };
 
-  const mediaSwitch = (msg: string, msg_id: string) => {
+  const mediaSwitch = (msg: string, msgId: string) => {
     if (
       msg?.indexOf("png") > -1 ||
       msg?.indexOf("jpg") > -1 ||
@@ -216,11 +225,7 @@ const ChatView = () => {
     ) {
       return <ImgView src={msg} />;
     } else if (msg?.indexOf("mp4") > -1) {
-   
-
-      return (
-        <VideoPlayView msg={msg} msg_id={msg_id}></VideoPlayView>
-      );
+      return <VideoPlayView msg={msg} msg_id={msgId}></VideoPlayView>;
     } else {
       return <div className="">{msg}</div>;
     }
