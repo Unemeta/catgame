@@ -15,6 +15,7 @@ import LottieView from "@/components/lottie";
 import { useRouter } from "next/router";
 import CountdownTimer from "@/components/countDownReset";
 import PopoverChatNum from "@/components/popover/chatNum";
+import ImgView from "@/components/photeView";
 
 let timerHistory: NodeJS.Timeout | null | undefined = null;
 const ChatView = () => {
@@ -211,7 +212,7 @@ const ChatView = () => {
       msg?.indexOf("jpeg") > -1 ||
       msg?.indexOf("images.unemeta.com") > -1
     ) {
-      return <img className="chatMedia" src={msg} alt="" />;
+      return <ImgView  src={msg} />;
     } else if (msg?.indexOf("mp4") > -1) {
       const handlePlay = (id: string) => {
         console.log(`视频 ${id} 开始播放`);

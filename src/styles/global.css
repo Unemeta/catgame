@@ -727,7 +727,22 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.PhotoView-Slider__toolbarIcon {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
+  .imgClose,
+  .imgDownload {
+    width: 120px;
+    height: 120px;
+  }
+  .toolbarRender {
+    padding-top: 300px;
+    padding-left: 90px;
+    padding-right: 150px;
+    padding-bottom: 50px;
+  }
   .chatMedia {
     width: 100%;
     height: 1560px;
