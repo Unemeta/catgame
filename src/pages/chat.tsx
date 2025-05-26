@@ -169,7 +169,7 @@ const ChatView = () => {
   const getHistory = async () => {
     try {
       const { data } = await request({
-        url: `/api/cat/v1/chat/history?page=1&pageSize=1000`,
+        url: `/api/cat/v1/chat/history?page=1&pageSize=500`,
         method: "get",
       });
       if (data?.msgList) {
