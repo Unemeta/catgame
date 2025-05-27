@@ -144,6 +144,7 @@ const VideoPlayView = ({ msg_id, msg, eventid }: iVideoPlayView) => {
         onRateChange={() => onRateChangeCb(msg_id)}
         onSeeked={() => onSeekedCb(msg_id)}
         onVolumeChange={() => onVolumeChangeCb(msg_id)}
+        disablePictureInPicture
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onTimeUpdate={(e: any) =>
           handleTimeUpdate(msg_id, e.target.currentTime)
