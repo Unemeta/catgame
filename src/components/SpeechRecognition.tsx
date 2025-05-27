@@ -591,7 +591,7 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
       ) : (
         <></>
       )}
-      <div style={{ color: "red" }}>{y}</div>
+      {/* <div style={{ color: "red" }}>{y}</div> */}
       <div className={styles.container}>
         <div
           onPointerDown={handleTouchStart}

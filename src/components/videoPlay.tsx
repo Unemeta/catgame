@@ -1,10 +1,14 @@
 import { useEffect, useRef } from "react";
+import * as globalApi from "@/services/global";
+// import { downloadMp4 } from "@/utils/save";
+const eventType = globalApi.eventType;
 
 interface iVideoPlayView {
   msg_id: string;
   msg: string;
+  eventid: number;
 }
-const VideoPlayView = ({ msg_id, msg }: iVideoPlayView) => {
+const VideoPlayView = ({ msg_id, msg, eventid }: iVideoPlayView) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const videoRef = useRef<any>(null);
 
@@ -16,9 +20,41 @@ const VideoPlayView = ({ msg_id, msg }: iVideoPlayView) => {
         // 根据需要添加其他逻辑
       }
     };
+    const handleFull = (event) => {
+      // 判断是否点击了控件内的元素
+      // if (event.target.closest(".video-controls")) {
+      //   console.log("视频控件被点击:", event.target);
+      //   // 根据需要添加其他逻辑
+      // }
+      console.log(eventid);
+      console.log(document.fullscreenElement);
+      const isFullscreen = document.fullscreenElement;
+      if (isFullscreen) {
+        console.log("isFullscreen true");
+      } else {
+        console.log("isFullscreen false");
+        console.log(videoRef.current.currentTime);
+        console.log(videoRef.current.duration);
+        if (videoRef.current.currentTime) {
+          const info = {
+            currentTime: videoRef.current.currentTime,
+            duration: videoRef.current.duration,
+            percent:
+              (videoRef.current.currentTime / videoRef.current.duration) * 100 +
+              "%",
+          };
+          globalApi.eventRecord(
+            eventid,
+            eventType.EventTypeVideoInfo,
+            JSON.stringify(info)
+          );
+        }
+      }
+    };
     const videoElement = videoRef.current;
     if (videoElement) {
       videoElement?.addEventListener("click", handleControlClick);
+      videoElement?.addEventListener("fullscreenchange", handleFull);
     }
     return () => {
       if (videoElement) {
@@ -27,8 +63,10 @@ const VideoPlayView = ({ msg_id, msg }: iVideoPlayView) => {
     };
   }, []);
 
-  const handlePlay = (id: string) => {
+  const handlePlay = (id: string, eventid: number) => {
     console.log(`视频 ${id} 开始播放`);
+    // globalApi.eventRecord(eventid, 3);
+    globalApi.eventRecord(eventid, eventType.EventTypePlayVideo);
   };
 
   const handlePause = (id: string) => {
@@ -74,12 +112,16 @@ const VideoPlayView = ({ msg_id, msg }: iVideoPlayView) => {
   //   }
   // };
   const handleDownload = () => {
-    const link = document.createElement("a");
-    link.href = msg;
-    link.download = "video.mp4";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // const link = document.createElement("a");
+    // link.href = msg;
+    // link.download = "video.mp4";
+    // document.body.appendChild(link);
+    // link.click();
+    // document.body.removeChild(link);
+
+    // const linkdecode = decodeURIComponent(msg);
+    // downloadMp4(linkdecode, "video.mp4");
+    globalApi.eventRecord(eventid, eventType.EventTypeSaveVideo);
     console.log("下载视频");
   };
   // const handlePlayPause = () => {
@@ -94,7 +136,7 @@ const VideoPlayView = ({ msg_id, msg }: iVideoPlayView) => {
       <video
         ref={videoRef}
         controls
-        onPlay={() => handlePlay(msg_id)}
+        onPlay={() => handlePlay(msg_id, eventid)}
         onPause={() => handlePause(msg_id)}
         onEnded={() => handleEnded(msg_id)}
         onResize={() => onResizeCb(msg_id)}
@@ -116,7 +158,9 @@ const VideoPlayView = ({ msg_id, msg }: iVideoPlayView) => {
           {videoRef.current && !videoRef.current.paused ? "暂停" : "播放"}
         </div> */}
         {/* <div className="videoToolItem" onClick={handleFullscreen}>全屏</div> */}
-        <div className="videoToolItem" onClick={handleDownload}>下载</div>
+        <div className="videoToolItem" onClick={handleDownload}>
+          下载
+        </div>
       </div>
     </div>
   );

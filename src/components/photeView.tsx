@@ -1,18 +1,24 @@
 /* eslint-disable @next/next/no-img-element */
 import { PhotoProvider, PhotoView } from "react-photo-view";
-import { saveAs } from "file-saver";
-
+// import { saveAs } from "file-saver";
+import * as globalApi from "@/services/global";
+import { downloadMedia } from "@/utils/save";
+const eventType = globalApi.eventType;
 interface iPhotoView {
   src: string;
+  eventid: number;
 }
-const ImgView = ({ src }: iPhotoView) => {
+const ImgView = ({ src, eventid }: iPhotoView) => {
   const handleDownload = () => {
     console.log("图片", src);
-    saveAs(src, "downloaded-image.jpg");
+    // saveAs(src, "downloaded-image.jpg");
+    downloadMedia(src, "downloaded-image.jpg");
+    globalApi.eventRecord(eventid, eventType.EventTypeSaveImage);
     console.log("图片已下载");
   };
   const handleZoomCb = () => {
-    console.log("图片放大");
+    console.log("图片放大", eventid);
+    globalApi.eventRecord(eventid, eventType.EventTypeZoomIn);
   };
   return (
     <PhotoProvider

@@ -27,7 +27,14 @@ const ChatView = () => {
   const [socket, setSocket] = useState<WebSocket | null>(null);
   const [inputMsg, setinputMsg] = useState("");
   const [messageList, setmessageList] = useState<
-    { chatId: string; msg: string; role: string; time: number; msgId: string }[]
+    {
+      chatId: string;
+      msg: string;
+      role: string;
+      time: number;
+      msgId: string;
+      eventid: number;
+    }[]
   >([]);
   const chatEndRef = useRef(null);
   const [toConnect, settoConnect] = useState(false);
@@ -66,7 +73,10 @@ const ChatView = () => {
     socketTemp.onmessage = (event) => {
       if (event?.type === "message" && event?.data !== "pong") {
         const msgRes = JSON.parse(event?.data);
-        if (msgRes.hasOwnProperty("message") && msgRes["message"] != "Msg received") {
+        if (
+          msgRes.hasOwnProperty("message") &&
+          msgRes["message"] != "Msg received"
+        ) {
           //
         } else {
           return;
@@ -219,16 +229,22 @@ const ChatView = () => {
     }
   };
 
-  const mediaSwitch = (msg: string, msgId: string) => {
+  const mediaSwitch = (msg: string, msgId: string, eventid: number) => {
     if (
       msg?.indexOf("png") > -1 ||
       msg?.indexOf("jpg") > -1 ||
       msg?.indexOf("jpeg") > -1 ||
       msg?.indexOf("images.unemeta.com") > -1
     ) {
-      return <ImgView src={msg} />;
+      return <ImgView src={msg} eventid={eventid} />;
     } else if (msg?.indexOf("mp4") > -1) {
-      return <VideoPlayView msg={msg} msg_id={msgId}></VideoPlayView>;
+      return (
+        <VideoPlayView
+          msg={msg}
+          msg_id={msgId}
+          eventid={eventid}
+        ></VideoPlayView>
+      );
     } else {
       return <div className="">{msg}</div>;
     }
@@ -366,7 +382,11 @@ const ChatView = () => {
                                 .format("YYYY/MM/DD hh:mm")}
                             </div>
                             <div className="msgText line-clamp-4 dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan break-words">
-                              {mediaSwitch(item?.msg, item?.msgId)}
+                              {mediaSwitch(
+                                item?.msg,
+                                item?.msgId,
+                                item?.eventid
+                              )}
                             </div>
                           </div>
                         </div>
