@@ -66,7 +66,8 @@ const ChatView = () => {
     socketTemp.onmessage = (event) => {
       if (event?.type === "message" && event?.data !== "pong") {
         const msgRes = JSON.parse(event?.data);
-        if (msgRes.hasOwnProperty("message")) {
+        console.log(msgRes);
+        if (msgRes.hasOwnProperty("message") && msgRes["message"] != "Msg received") {
           //
         } else {
           return;
