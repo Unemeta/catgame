@@ -59,20 +59,20 @@ const VideoPlayView = ({ msg_id, msg }: iVideoPlayView) => {
     console.log(`onVolumeChangeCb ${id} `);
   };
 
-  const handleFullscreen = () => {
-    if (videoRef.current) {
-      if (videoRef.current.requestFullscreen) {
-        videoRef.current.requestFullscreen();
-      } else if (videoRef.current.webkitRequestFullscreen) {
-        // Safari
-        videoRef.current.webkitRequestFullscreen();
-      } else if (videoRef.current.msRequestFullscreen) {
-        // IE
-        videoRef.current.msRequestFullscreen();
-      }
-      console.log("进入全屏");
-    }
-  };
+  // const handleFullscreen = () => {
+  //   if (videoRef.current) {
+  //     if (videoRef.current.requestFullscreen) {
+  //       videoRef.current.requestFullscreen();
+  //     } else if (videoRef.current.webkitRequestFullscreen) {
+  //       // Safari
+  //       videoRef.current.webkitRequestFullscreen();
+  //     } else if (videoRef.current.msRequestFullscreen) {
+  //       // IE
+  //       videoRef.current.msRequestFullscreen();
+  //     }
+  //     console.log("进入全屏");
+  //   }
+  // };
   const handleDownload = () => {
     const link = document.createElement("a");
     link.href = msg;
@@ -82,13 +82,13 @@ const VideoPlayView = ({ msg_id, msg }: iVideoPlayView) => {
     document.body.removeChild(link);
     console.log("下载视频");
   };
-  const handlePlayPause = () => {
-    if (videoRef.current.paused) {
-      videoRef.current.play();
-    } else {
-      videoRef.current.pause();
-    }
-  };
+  // const handlePlayPause = () => {
+  //   if (videoRef.current.paused) {
+  //     videoRef.current.play();
+  //   } else {
+  //     videoRef.current.pause();
+  //   }
+  // };
   return (
     <div className="relative">
       <video
@@ -112,10 +112,10 @@ const VideoPlayView = ({ msg_id, msg }: iVideoPlayView) => {
         您的浏览器不支持 HTML5 视频标签
       </video>
       <div className="absolute right-0 bottom-0 flex justify-end items-center videoTool">
-        <div className="videoToolItem" onClick={handlePlayPause}>
+        {/* <div className="videoToolItem" onClick={handlePlayPause}>
           {videoRef.current && !videoRef.current.paused ? "暂停" : "播放"}
-        </div>
-        <div className="videoToolItem" onClick={handleFullscreen}>全屏</div>
+        </div> */}
+        {/* <div className="videoToolItem" onClick={handleFullscreen}>全屏</div> */}
         <div className="videoToolItem" onClick={handleDownload}>下载</div>
       </div>
     </div>
