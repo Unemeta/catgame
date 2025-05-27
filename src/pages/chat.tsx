@@ -55,9 +55,9 @@ const ChatView = () => {
         }
       }, 2000);
     })();
-    if (typeof window !== "undefined") {
-      import("eruda").then((eruda) => eruda.default.init());
-    }
+    // if (typeof window !== "undefined") {
+    //   import("eruda").then((eruda) => eruda.default.init());
+    // }
   }, []);
 
   useEffect(() => {

@@ -18,7 +18,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
         const targetUrl = url;
         const protocol = targetUrl.startsWith('https') ? https : http;
-
         protocol.get(targetUrl, (fileRes) => {
             res.setHeader('Content-Type', fileRes.headers['content-type'] || 'application/octet-stream');
             res.setHeader('Content-Disposition', 'attachment; filename=video.mp4');

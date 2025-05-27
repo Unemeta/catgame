@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef } from "react";
 import * as globalApi from "@/services/global";
-// import { downloadMp4 } from "@/utils/save";
+import { downloadMp4 } from "@/utils/save";
 const eventType = globalApi.eventType;
 
 interface iVideoPlayView {
@@ -120,8 +120,8 @@ const VideoPlayView = ({ msg_id, msg, eventid }: iVideoPlayView) => {
     // link.click();
     // document.body.removeChild(link);
 
-    // const linkdecode = decodeURIComponent(msg);
-    // downloadMp4(linkdecode, "video.mp4");
+    const linkdecode = decodeURIComponent(msg);
+    downloadMp4(linkdecode, "video.mp4");
     globalApi.eventRecord(eventid, eventType.EventTypeSaveVideo);
     console.log("下载视频");
   };
