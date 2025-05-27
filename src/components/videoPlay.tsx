@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef } from "react";
 import * as globalApi from "@/services/global";
 // import { downloadMp4 } from "@/utils/save";
@@ -13,14 +14,14 @@ const VideoPlayView = ({ msg_id, msg, eventid }: iVideoPlayView) => {
   const videoRef = useRef<any>(null);
 
   useEffect(() => {
-    const handleControlClick = (event) => {
+    const handleControlClick = (event: any) => {
       // 判断是否点击了控件内的元素
       if (event.target.closest(".video-controls")) {
         console.log("视频控件被点击:", event.target);
         // 根据需要添加其他逻辑
       }
     };
-    const handleFull = (event) => {
+    const handleFull = () => {
       // 判断是否点击了控件内的元素
       // if (event.target.closest(".video-controls")) {
       //   console.log("视频控件被点击:", event.target);
@@ -78,7 +79,7 @@ const VideoPlayView = ({ msg_id, msg, eventid }: iVideoPlayView) => {
   };
 
   const handleTimeUpdate = (id: string, currentTime: string) => {
-    // console.log(`视频 ${id} 当前播放时间: ${currentTime}`);
+    console.log(`视频 ${id} 当前播放时间: ${currentTime}`);
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleOnError = (id: string, e: any) => {
