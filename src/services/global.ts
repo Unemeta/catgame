@@ -38,7 +38,7 @@ export function eventRecord(id: number, type: number, videoInfo?: string) {
         data: {
             eventId: id,
             type,
-            videoInfo
+            videoInfo: videoInfo ? videoInfo : ''
         }
     });
 }
