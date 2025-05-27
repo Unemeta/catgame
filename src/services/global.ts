@@ -36,7 +36,7 @@ export function eventRecord(id: number, type: number, videoInfo?: string) {
         url: "/api/cat/v1/chat/event/record",
         method: "post",
         data: {
-            eventid: id,
+            eventId: id,
             type,
             videoInfo
         }
