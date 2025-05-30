@@ -42,6 +42,7 @@ const ChatView = () => {
 
   useEffect(() => {
     (() => {
+      window["moment"] = moment;
       if (timerHistory) {
         clearTimeout(timerHistory);
       }
@@ -337,7 +338,7 @@ const ChatView = () => {
                             <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 text-right msgTime">
                               {moment(item.time * 1000)
                                 .local()
-                                .format("YYYY/MM/DD hh:mm")}
+                                .format("YYYY/MM/DD HH:mm")}
                             </div>
                             <div className="msgText line-clamp-4 dtext28 font-[500] text-[#F5F2FF]  text-wrap lmdMsgSpan overflow-hidden break-words">
                               {item?.msg}
@@ -379,7 +380,7 @@ const ChatView = () => {
                             <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 msgTime">
                               {moment(item.time * 1000)
                                 .local()
-                                .format("YYYY/MM/DD hh:mm")}
+                                .format("YYYY/MM/DD HH:mm")}
                             </div>
                             <div className="msgText line-clamp-4 dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan break-words">
                               {mediaSwitch(
