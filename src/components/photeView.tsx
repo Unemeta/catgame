@@ -71,7 +71,7 @@ const ImgView = ({ src }: iPhotoView) => {
           <img
             className="chatMedia"
             src={src}
-            // style={{ objectFit: "cover" }}
+            style={{ objectFit: "contain" }}
             alt=""
           />
         </div>
