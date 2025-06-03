@@ -229,26 +229,63 @@ const ChatView = () => {
       });
     }
   };
-
+  async function isVideoUrl(url: string) {
+    try {
+      const response = await fetch(url, { method: "HEAD" });
+      const contentType = response.headers.get("Content-Type");
+      return contentType && contentType.startsWith("video/");
+    } catch (error) {
+      return false;
+    }
+  }
+  function isVideoEndUrl(url: string) {
+    const videoExtensions = [
+      ".mp4",
+      ".avi",
+      ".mov",
+      ".wmv",
+      ".mkv",
+      ".flv",
+      ".webm",
+    ];
+    return videoExtensions.some((extension) => url.endsWith(extension));
+  }
   const mediaSwitch = (msg: string, msgId: string, eventid: number) => {
-    if (
-      msg?.indexOf("png") > -1 ||
-      msg?.indexOf("PNG") > -1 ||
-      msg?.indexOf("jpg") > -1 ||
-      msg?.indexOf("JPG") > -1 ||
-      msg?.indexOf("jpeg") > -1 ||
-      msg?.indexOf("JPEG") > -1 ||
-      msg?.indexOf("images.unemeta.com") > -1
-    ) {
-      return <ImgView src={msg} eventid={eventid} />;
-    } else if (msg?.indexOf("mp4") > -1) {
-      return (
-        <VideoPlayView
-          msg={msg}
-          msg_id={msgId}
-          eventid={eventid}
-        ></VideoPlayView>
-      );
+    if (msg.indexOf("http") > -1 || msg.indexOf("https") > -1) {
+      if (
+        msg?.indexOf("png") > -1 ||
+        msg?.indexOf("PNG") > -1 ||
+        msg?.indexOf("jpg") > -1 ||
+        msg?.indexOf("JPG") > -1 ||
+        msg?.indexOf("jpeg") > -1 ||
+        msg?.indexOf("JPEG") > -1 ||
+        msg?.indexOf("images.unemeta.com") > -1
+      ) {
+        return <ImgView src={msg} eventid={eventid} />;
+      }
+      if (isVideoEndUrl(msg)) {
+        return (
+          <VideoPlayView
+            msg={msg}
+            msg_id={msgId}
+            eventid={eventid}
+          ></VideoPlayView>
+        );
+      }
+      (async () => {
+        const isVideo = await isVideoUrl(msg);
+        if (isVideo) {
+          return (
+            <VideoPlayView
+              msg={msg}
+              msg_id={msgId}
+              eventid={eventid}
+            ></VideoPlayView>
+          );
+        } else {
+          return <div className="">{msg}</div>;
+        }
+      })();
     } else {
       return <div className="">{msg}</div>;
     }
