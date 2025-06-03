@@ -258,8 +258,7 @@ const ChatView = () => {
         msg?.indexOf("jpg") > -1 ||
         msg?.indexOf("JPG") > -1 ||
         msg?.indexOf("jpeg") > -1 ||
-        msg?.indexOf("JPEG") > -1 ||
-        msg?.indexOf("images.unemeta.com") > -1
+        msg?.indexOf("JPEG") > -1
       ) {
         return <ImgView src={msg} eventid={eventid} />;
       }
@@ -271,21 +270,9 @@ const ChatView = () => {
             eventid={eventid}
           ></VideoPlayView>
         );
+      } else {
+        return <div className="">{msg}</div>;
       }
-      (async () => {
-        const isVideo = await isVideoUrl(msg);
-        if (isVideo) {
-          return (
-            <VideoPlayView
-              msg={msg}
-              msg_id={msgId}
-              eventid={eventid}
-            ></VideoPlayView>
-          );
-        } else {
-          return <div className="">{msg}</div>;
-        }
-      })();
     } else {
       return <div className="">{msg}</div>;
     }
