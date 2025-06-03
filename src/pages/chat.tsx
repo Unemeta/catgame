@@ -233,8 +233,11 @@ const ChatView = () => {
   const mediaSwitch = (msg: string, msgId: string, eventid: number) => {
     if (
       msg?.indexOf("png") > -1 ||
+      msg?.indexOf("PNG") > -1 ||
       msg?.indexOf("jpg") > -1 ||
+      msg?.indexOf("JPG") > -1 ||
       msg?.indexOf("jpeg") > -1 ||
+      msg?.indexOf("JPEG") > -1 ||
       msg?.indexOf("images.unemeta.com") > -1
     ) {
       return <ImgView src={msg} eventid={eventid} />;
