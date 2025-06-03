@@ -83,7 +83,7 @@ const VideoPlayView = ({ msg_id, msg, eventid }: iVideoPlayView) => {
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleOnError = (id: string, e: any) => {
-    console.log(`error ${id} ${JSON.stringify(e)}`);
+    console.log(`error ${id} ${e}`);
   };
   const onResizeCb = (id: string) => {
     console.log(`onResizeCb ${id} `);
@@ -146,9 +146,9 @@ const VideoPlayView = ({ msg_id, msg, eventid }: iVideoPlayView) => {
         disablePictureInPicture
         onContextMenu={(e) => e.preventDefault()}
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        onTimeUpdate={(e: any) =>
-          handleTimeUpdate(msg_id, e.target.currentTime)
-        }
+        // onTimeUpdate={(e: any) =>
+        //   handleTimeUpdate(msg_id, e.target.currentTime)
+        // }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onError={(e: any) => handleOnError(msg_id, e)}
       >
