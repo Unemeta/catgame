@@ -782,8 +782,8 @@ body {
     background: url("/img/chatBg.min.png") no-repeat center/cover;
   }
   .chatBoxSizeHeight {
-    height: 900rem;
-    max-height: 700px;
+    height: 800rem;
+    max-height: 600px;
     display: block;
   }
   .headerBackpack {
