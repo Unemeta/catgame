@@ -754,7 +754,7 @@ body {
   }
   .chatMedia {
     width: 100%;
-    height: 1560px;
+    /* height: 1560px; */
   }
   .msgText {
     max-height: 2300px;
