@@ -78,9 +78,9 @@ const VideoPlayView = ({ msg_id, msg, eventid }: iVideoPlayView) => {
     console.log(`视频 ${id} 播放结束`);
   };
 
-  const handleTimeUpdate = (id: string, currentTime: string) => {
-    console.log(`视频 ${id} 当前播放时间: ${currentTime}`);
-  };
+  // const handleTimeUpdate = (id: string, currentTime: string) => {
+  //   console.log(`视频 ${id} 当前播放时间: ${currentTime}`);
+  // };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleOnError = (id: string, e: any) => {
     console.log(`error ${id} ${e}`);
