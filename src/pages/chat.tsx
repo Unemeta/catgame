@@ -356,7 +356,7 @@ const ChatView = () => {
                     return (
                       <div
                         className={cn("relative", {
-                          "opacity-70": index + 4 < messageList.length,
+                          "opacity-50": index + 4 < messageList.length,
                         })}
                         key={index}
                       >
