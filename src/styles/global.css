@@ -734,7 +734,7 @@ body {
 @media screen and (max-width: 768px) {
   html {
     /* font-size: 1.3vw;  */
-    font-size: 2.6vw; 
+    font-size: 2.54vw; 
   }
   .videoTool {
     font-size: 70px;
