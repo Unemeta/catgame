@@ -18,7 +18,7 @@ const PartyView = () => {
           </div>
           <div className="h-[4.3vh]"></div>
           <div className="px-[3rem]">
-            <div className="px-[2.8vh] py-[2.8vh] relative h-[61vh]">
+            <div className="px-[2.8vh] py-[2.8vh] relative h-[61vh] bg-[url('/img/bg/bg_card_cat.min.png')] bg-cover">
               <div className="">
                 <div className="px-[1rem] py-2 text-white text-[1.6rem] font-[700] bg-[#F4738D99] rounded-[5rem] border-[#E397BC] border-w-[0.1rem] inline-block">
                   Independent
@@ -41,9 +41,10 @@ const PartyView = () => {
                     Aloof Cats
                   </div>
                 </div>
-                <div className="text-[#826662] text-[1.6rem] font-[500] h-[15.rem] flex justify-center items-center px-[3.5rem]">
-                  They have a natural aura, prefer their space, but once they
-                  trust you, they’ll quietly stay by your side for the long run.
+                <div className="text-[#826662] text-[1.4rem] font-[500] flex justify-center items-center px-[3rem] text-center pb-[2.2rem]">
+                  They have a natural aura, prefer their <br /> space, but once
+                  they trust you, they’ll <br /> quietly stay by your side for
+                  the long <br /> run.
                 </div>
               </div>
             </div>
@@ -64,7 +65,9 @@ const PartyView = () => {
                   fill="#E96856"
                 />
               </svg>
-              <span className="px-[1rem] text-[#E96856] text-[2rem] font-[700]">Meet your cat</span>
+              <span className="px-[1rem] text-[#E96856] text-[2rem] font-[700]">
+                Meet your cat
+              </span>
               <svg
                 className="w-[2.8rem] h-[2.8rem]"
                 xmlns="http://www.w3.org/2000/svg"
