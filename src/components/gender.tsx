@@ -10,8 +10,7 @@ const Age = ({ onClick }: iAnswerView) => {
       <div className="text-center justify-start text-[#EA8373] text-[3rem] font-bold font-['SF_Pro_Rounded'] leading-9">
         What’s your gender?
       </div>
-
-      <div>
+      <div className="flex">
         <div className="w-[16rem] h-[20.6rem] px-[1rem] py-[1.2rem] bg-white rounded-[3rem] inline-flex flex-col justify-center items-center gap-[1rem]">
           <div className="w-[8rem] h-[8rem] bg-[#EA8273] rounded-full" />
           {/* <div className="w-[4rem] h-[4rem] relative overflow-hidden">
@@ -21,6 +20,7 @@ const Age = ({ onClick }: iAnswerView) => {
             Female
           </div>
         </div>
+        <img src="/img/Union.svg" alt="" className="w-[18rem] h-[23rem]" />
       </div>
       <div className="mt-[9.6rem]" onClick={onClick}>
         {old ? (
