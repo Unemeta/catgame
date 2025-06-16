@@ -27,6 +27,9 @@ const Step3View = () => {
             </div>
           </div>
           <div className="h-[24rem]"></div>
+          <div className="absolute left-[6.9rem] top-[5.8rem]">
+            <img src="/img/bg_cat.min.png" className="w-[20rem] h-[28.5rem]" alt="" />
+          </div>
           <div className="absolute bottom-0 left-0 w-full">
             <div className="flex justify-center items-center mb-[2rem]">
               <div className="bg-[url('/img/bg/bg_aloof_cat.min.png')] bg-cover bg-no-repeat text-white text-[2.8rem] font-[700] h-[5.3rem] px-[5rem] flex justify-center items-center">
