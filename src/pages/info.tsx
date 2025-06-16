@@ -14,7 +14,6 @@ const InfoView = () => {
   const [basicInfo] = useUserBasicInfo();
   const router = useRouter()
   const postInfo = async () => {
-    router.push("/question");
     const res = await request({
       url: "/api/cat/v1/survey/survey/basic",
       method: "post",
@@ -84,7 +83,7 @@ const InfoView = () => {
                 } catch (error) {
                   console.log(error)
                 }
-                
+                router.push("/question");
               }}
             ></Gender>
           )}
