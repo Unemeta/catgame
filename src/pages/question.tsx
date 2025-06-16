@@ -8,21 +8,18 @@ import { request } from "@/utils/request";
 const PartyView = () => {
   const [stepIndex, setstepIndex] = useState(0);
   // const [payload, setpayload] = useState({
-  // ei: 0,
-  // sn: 0,
-  // tf: 0,
-  // jp: 0,
+  
   // });
-  const postInfo = async () => {
+  const postInfo = async (selectIndexs: number[]) => {
     try {
       const res = await request({
         url: "/api/cat/v1/survey/survey/mbti",
         method: "post",
         data: {
-          ei: 0,
-          sn: 0,
-          tf: 0,
-          jp: 0,
+          ei: selectIndexs[0],
+          sn: selectIndexs[1],
+          tf: selectIndexs[2],
+          jp: selectIndexs[3],
         },
       });
       setstepIndex(2);
@@ -70,9 +67,9 @@ const PartyView = () => {
         )}
         {stepIndex == 1 && (
           <AnswerView
-            onClick={() => {
-              postInfo();
-              // setstepIndex(2);
+            onClick={(selectIndexs) => {
+              postInfo(selectIndexs);
+              setstepIndex(2);
             }}
           ></AnswerView>
         )}
