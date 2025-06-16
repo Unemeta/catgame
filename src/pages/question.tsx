@@ -2,16 +2,34 @@ import AnswerView from "@/components/answer";
 import Step3View from "@/components/step3";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+// import { request } from "@/utils/request";
 
 /* eslint-disable @next/next/no-img-element */
 const PartyView = () => {
   const [stepIndex, setstepIndex] = useState(0);
+  // const [payload, setpayload] = useState({
+  //   ei: 0,
+  //   sn: 0,
+  //   tf: 0,
+  //   jp: 0,
+  // });
+  // const postInfo = async () => {
+  //   const res = await request({
+  //     url: "/api/cat/v1/survey/survey/mbti",
+  //     method: "post",
+  //     data: {
+  //       ...payload,
+  //     },
+  //   });
+  //   setstepIndex(2);
+  //   console.log(res);
+  // };
   return (
     <div className="">
       <div className="relative">
         <img
-          className={cn("w-[100vw] h-[100vh] absolute inset-0 z-[1]",{
-            "blur-[20px]": stepIndex !== 0
+          className={cn("w-[100vw] h-[100vh] absolute inset-0 z-[1]", {
+            "blur-[20px]": stepIndex !== 0,
           })}
           src="/img/bg/bg_pop_rain.min.png"
           alt=""
@@ -46,6 +64,7 @@ const PartyView = () => {
         {stepIndex == 1 && (
           <AnswerView
             onClick={() => {
+              // postInfo();
               setstepIndex(2);
             }}
           ></AnswerView>
