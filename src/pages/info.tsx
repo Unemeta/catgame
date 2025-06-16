@@ -75,8 +75,13 @@ const InfoView = () => {
           )}
           {stepIndex === 2 && (
             <Gender
-              onClick={() => {
-                postInfo();
+              onClick={async() => {
+                try {
+                 await postInfo();
+                } catch (error) {
+                  console.log(error)
+                }
+                
               }}
             ></Gender>
           )}

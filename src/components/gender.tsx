@@ -2,7 +2,6 @@
 interface iAnswerView {
   onClick: VoidFunction;
 }
-import { useState } from "react";
 import { useUserBasicInfo } from "@/store/info";
 import { cn } from "@/lib/utils";
 

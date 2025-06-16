@@ -5,7 +5,7 @@ import React, { useState, useEffect, useRef } from "react";
 const ProgressBar = ({ setShow }: { setShow: () => void }) => {
   const [progress, setProgress] = useState(0);
   const [isActive, setIsActive] = useState(false);
-  const [speed, setSpeed] = useState(100); // 毫秒
+  const [speed, ] = useState(50); // 毫秒
   const intervalRef = useRef<any>(null);
 
   // 开始/暂停进度
@@ -14,11 +14,11 @@ const ProgressBar = ({ setShow }: { setShow: () => void }) => {
   };
 
   // 重置进度
-  const resetProgress = () => {
-    setIsActive(false);
-    setProgress(0);
-    clearInterval(intervalRef.current);
-  };
+  //   const resetProgress = () => {
+  //     setIsActive(false);
+  //     setProgress(0);
+  //     clearInterval(intervalRef.current);
+  //   };
 
   // 更新进度
   useEffect(() => {
@@ -51,9 +51,9 @@ const ProgressBar = ({ setShow }: { setShow: () => void }) => {
   }, [progress, setShow]);
 
   // 改变速度
-  const changeSpeed = (newSpeed: number) => {
-    setSpeed(newSpeed);
-  };
+  //   const changeSpeed = (newSpeed: number) => {
+  //     setSpeed(newSpeed);
+  //   };
 
   return (
     <div className="flex items-center flex-col h-[100vh] justify-center">
@@ -72,7 +72,7 @@ const ProgressBar = ({ setShow }: { setShow: () => void }) => {
               className="absolute -top-[1.6rem] w-[6rem] h-[6rem] flex items-center justify-center z-1"
               style={{ left: `calc(${progress}% - 1rem)` }}
             >
-              <img src="/img/progressicon.png" alt="" className="w-full" />
+              <img src="/img/progressicon.svg" alt="" className="w-full" />
             </div>
           </div>
         </div>
