@@ -1,4 +1,7 @@
+import { useRouter } from "next/router";
+
 const Step3View = () => {
+  const router = useRouter();
   return (
     <div className="w-full h-full absolute inset-0 z-[2] ">
       <div className="h-[6vh]"></div>
@@ -27,6 +30,13 @@ const Step3View = () => {
             </div>
           </div>
           <div className="h-[24rem]"></div>
+          <div className="absolute left-[6.9rem] top-[5.8rem]">
+            <img
+              src="/img/bg_cat.min.png"
+              className="w-[20rem] h-[28.5rem]"
+              alt=""
+            />
+          </div>
           <div className="absolute bottom-0 left-0 w-full">
             <div className="flex justify-center items-center mb-[2rem]">
               <div className="bg-[url('/img/bg/bg_aloof_cat.min.png')] bg-cover bg-no-repeat text-white text-[2.8rem] font-[700] h-[5.3rem] px-[5rem] flex justify-center items-center">
@@ -57,7 +67,12 @@ const Step3View = () => {
               fill="#E96856"
             />
           </svg>
-          <span className="px-[1rem] text-[#E96856] text-[2rem] font-[700]">
+          <span
+            className="px-[1rem] text-[#E96856] text-[2rem] font-[700]"
+            onClick={() => {
+              router.push("/chat");
+            }}
+          >
             Meet your cat
           </span>
           <svg
@@ -71,7 +86,7 @@ const Step3View = () => {
               stroke="#E96856"
               stroke-width="4"
               stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinejoin="round"
             />
           </svg>
         </div>

@@ -7,10 +7,12 @@ import ProgressBar from "@/components/progressbar";
 import { cn } from "@/lib/utils";
 import { useUserBasicInfo } from "@/store/info";
 import { request } from "@/utils/request";
+import { useRouter } from "next/router";
 const InfoView = () => {
   const [stepIndex, setstepIndex] = useState(0);
   const [showQuestion, setShowQuestion] = useState(false);
   const [basicInfo] = useUserBasicInfo();
+  const router = useRouter()
   const postInfo = async () => {
     const res = await request({
       url: "/api/cat/v1/survey/survey/basic",
@@ -81,7 +83,7 @@ const InfoView = () => {
                 } catch (error) {
                   console.log(error)
                 }
-                
+                router.push("/question");
               }}
             ></Gender>
           )}
