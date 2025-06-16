@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 interface iAnswerView {
   onClick: VoidFunction;
@@ -17,7 +18,8 @@ const Age = ({ onClick }: iAnswerView) => {
           className={cn(
             "w-[16rem] h-[20.6rem] px-[1rem] py-[1.2rem]  rounded-[3rem] inline-flex flex-col justify-center items-center gap-[1rem]",
             {
-              "bg-gradient-to-l from-[#EA8273] to-[#ECA89E] shadow-[0px_4px_24px_0px_rgba(236,168,158,1.00)] shadow-[0px_3px_4px_0px_rgba(255,255,255,0.25)] border border-[#FF9A8B]": basicInfo.gender === 0,
+              //   "bg-gradient-to-l from-[#EA8273] to-[#ECA89E] shadow-[0px_4px_24px_0px_rgba(236,168,158,1.00)] shadow-[0px_3px_4px_0px_rgba(255,255,255,0.25)] border border-[#FF9A8B]":
+              //     basicInfo.gender === 0,
               "bg-[#fff] ": basicInfo.gender !== 0,
             }
           )}
@@ -25,6 +27,14 @@ const Age = ({ onClick }: iAnswerView) => {
             setBasicInfo({ ...basicInfo, gender: 0 });
           }}
         >
+          {basicInfo.gender === 0 ? (
+            <img
+              src="/img/genderbg.png"
+              className="absolute -z-1 w-[16rem] h-[20.6rem]"
+            ></img>
+          ) : (
+            <></>
+          )}
           <div
             className={cn(
               "w-[8rem] h-[8rem] rounded-full flex items-center justify-center",
@@ -64,7 +74,8 @@ const Age = ({ onClick }: iAnswerView) => {
           className={cn(
             "w-[16rem] h-[20.6rem] px-[1rem] py-[1.2rem]  rounded-[3rem] inline-flex flex-col justify-center items-center gap-[1rem]",
             {
-              "bg-gradient-to-l from-[#EA8273] to-[#ECA89E] shadow-[0px_4px_24px_0px_rgba(236,168,158,1.00)] shadow-[0px_3px_4px_0px_rgba(255,255,255,0.25)] border border-[#FF9A8B]": basicInfo.gender === 1,
+              //   "bg-gradient-to-l from-[#EA8273] to-[#ECA89E] shadow-[0px_4px_24px_0px_rgba(236,168,158,1.00)] shadow-[0px_3px_4px_0px_rgba(255,255,255,0.25)] border border-[#FF9A8B]":
+              //     basicInfo.gender === 1,
               "bg-[#fff] ": basicInfo.gender !== 1,
             }
           )}
@@ -72,6 +83,14 @@ const Age = ({ onClick }: iAnswerView) => {
             setBasicInfo({ ...basicInfo, gender: 1 });
           }}
         >
+          {basicInfo.gender === 1 ? (
+            <img
+              src="/img/genderbg.png"
+              className="absolute -z-1 w-[16rem] h-[20.6rem]"
+            ></img>
+          ) : (
+            <></>
+          )}
           <div
             className={cn(
               "w-[8rem] h-[8rem] rounded-full flex items-center justify-center",
@@ -106,31 +125,6 @@ const Age = ({ onClick }: iAnswerView) => {
             Female
           </div>
         </div>
-
-        {/* <div
-          className="w-[16rem] h-[20.6rem] px-[1rem] py-[1.2rem] bg-white rounded-[3rem] inline-flex flex-col justify-center items-center gap-[1rem]"
-          onClick={() => {
-            setBasicInfo({ ...basicInfo, gender: 1 });
-          }}
-        >
-          <div className="w-[8rem] h-[8rem] bg-[#EA8273] rounded-full flex items-center justify-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="4rem"
-              height="4rem"
-              viewBox="0 0 4rem 4rem"
-              fill="none"
-            >
-              <path
-                d="M35.75 2.5H22C21 2.5 20.25 3.25 20.25 4.25C20.25 5.25 21 6 22 6H31.25L25 12.5C22.5 10.5 19.5 9 16.25 9C8.75 9 2.5 15.5 2.5 23.25C2.5 31 8.75 37.5 16.25 37.5C23.75 37.5 30 31 30 23.25C30 20.25 29 17.25 27.5 15L34.25 8V18.5C34.25 19.5 35 20.25 36 20.25C37 20.25 37.75 19.5 37.75 18.5V4.25C37.5 3.25 36.75 2.5 35.75 2.5ZM16.25 34C10.5 34 6 29.25 6 23.25C6 17.25 10.5 12.5 16.25 12.5C22 12.5 26.5 17.25 26.5 23.25C26.5 29.25 22 34 16.25 34Z"
-                fill="white"
-              />
-            </svg>
-          </div>
-          <div className="text-center justify-start text-[#826662] text-[2rem] font-bold font-['SF_Pro_Rounded'] leading-tight">
-            Male
-          </div>
-        </div> */}
       </div>
       <div className="mt-[9.6rem]" onClick={onClick}>
         <img
