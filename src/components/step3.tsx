@@ -71,7 +71,7 @@ const Step3View = () => {
               stroke="#E96856"
               stroke-width="4"
               stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinejoin="round"
             />
           </svg>
         </div>

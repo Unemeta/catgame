@@ -46,7 +46,7 @@ const ImgView = ({ src, eventid }: iPhotoView) => {
                   stroke="white"
                   stroke-width="2"
                   stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinejoin="round"
                 />
               </svg>
 
@@ -64,7 +64,7 @@ const ImgView = ({ src, eventid }: iPhotoView) => {
                   stroke="white"
                   stroke-width="2"
                   stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </div>
