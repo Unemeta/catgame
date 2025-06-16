@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 interface iAnswerView {
   onClick: VoidFunction;
@@ -17,7 +18,7 @@ const Age = ({ onClick }: iAnswerView) => {
         How old are you?
       </div>
 
-      <div className="relative mt-[6rem] w-[33rem] h-[26rem] overflow-auto">
+      <div className="relative mt-[6rem] w-[33rem] h-[26rem] overflow-auto py-[1rem]">
         {oldList.map((item) => {
           return (
             <div
@@ -26,16 +27,22 @@ const Age = ({ onClick }: iAnswerView) => {
                 "w-[33rem] px-[2rem] py-[1.2rem] rounded-[5rem] inline-flex justify-center items-center gap-[1rem] mb-[2rem]",
                 {
                   "bg-white": item !== basicInfo.age,
-                  // "bg-[url(/img/agebg.png)]":
+                  // "bg-[url(/img/agebg.png)] bg-cover":
                   //   item === basicInfo.age,
-                  "bg-gradient-to-l from-[#EA8273] to-[#ECA89E] ":
-                    item === basicInfo.age,
+                  // "bg-gradient-to-l from-[#EA8273] to-[#ECA89E] ":
+                  //   item === basicInfo.age,
                 }
               )}
               onClick={() => {
                 setBasicInfo({ ...basicInfo, age: item });
               }}
             >
+              {item === basicInfo.age ? (
+                <img src="/img/agebg.svg" className="absolute -z-1"></img>
+              ) : (
+                <></>
+              )}
+
               <div
                 className={cn(
                   "flex-1 text-center justify-start text-[#826662] text-[2rem] font-bold font-['SF_Pro_Rounded'] leading-tight",

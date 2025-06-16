@@ -5,6 +5,7 @@ interface iAnswerView {
 import { useRef, useEffect, useState } from "react";
 import { useUserBasicInfo } from "@/store/info";
 import { request } from "@/utils/request";
+import { cn } from "@/lib/utils";
 
 const NickName = ({ onClick }: iAnswerView) => {
   const inputref = useRef<HTMLInputElement>(null);
@@ -32,12 +33,20 @@ const NickName = ({ onClick }: iAnswerView) => {
       </div>
 
       <div className="relative mt-[6rem] w-full">
-        <img
+        {/* <img
           src="/img/catInputIcon.svg"
           alt=""
           className="h-[7.5rem] w-[10.7rem] absolute left-[50%] top-[-1.6rem] -translate-x-[50%] -z-1"
-        />
-        <div className="w-full h-[7.6rem] bg-[white] rounded-[2rem] flex justify-center items-center">
+        /> */}
+        <div
+          className={cn(
+            "w-full h-[9.6rem]  bg-cover flex justify-center items-center",
+            {
+              "bg-[url('/img/inormal.jpg')]": !basicInfo.nickname,
+              "bg-[url('/img/ifocus.jpg')]": basicInfo.nickname,
+            }
+          )}
+        >
           <input
             type="text"
             className="w-[28rem] h-[3rem] text-[3rem] text-[#EA8373] placeholder:text-[#EA8373] outline-0
