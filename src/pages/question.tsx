@@ -1,5 +1,6 @@
 import AnswerView from "@/components/answer";
 import Step3View from "@/components/step3";
+import { cn } from "@/lib/utils";
 import { useState } from "react";
 
 /* eslint-disable @next/next/no-img-element */
@@ -9,7 +10,9 @@ const PartyView = () => {
     <div className="">
       <div className="relative">
         <img
-          className="w-[100vw] h-[100vh] absolute inset-0 z-[1]"
+          className={cn("w-[100vw] h-[100vh] absolute inset-0 z-[1]",{
+            "blur-[20px]": stepIndex !== 0
+          })}
           src="/img/bg/bg_pop_rain.min.png"
           alt=""
         />
