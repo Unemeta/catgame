@@ -1,32 +1,53 @@
+/* eslint-disable @next/next/no-img-element */
 import { useRouter } from "next/router";
 
-const Step3View = () => {
+interface iStep3View {
+  mbtiRes: {
+    disposition: number;
+    nickname: string;
+  };
+}
+const Step3View = ({ mbtiRes }: iStep3View) => {
+  const cats = [
+    {
+      type: "Lively Cats",
+      name: "JOJO",
+      keys: ["Energetic", "clingy", "cute"],
+      desc: "They’re full of energy, love being around you, and are always ready to dive into a new adventure with you.",
+    },
+    {
+      type: "Aloof Cats",
+      name: "YOYO",
+      keys: ["Independent", "reserved", "intelligent"],
+      desc: "They have a natural aura, prefer their space, but once they trust you, they’ll quietly stay by your side for the long run.",
+    },
+  ];
   const router = useRouter();
   return (
     <div className="w-full h-full absolute inset-0 z-[2] ">
       <div className="h-[6vh]"></div>
       <div className="text-[#fff] text-[3rem] font-[700] text-center leading-[1] mb-[0.5rem]">
-        Hello, YOYO.
+        Hello, {cats[mbtiRes.disposition ?? 0].name}.
       </div>
       <div className="text-[#fff] text-[2rem] font-[700] text-center leading-[1]">
-        This is your Aloof Cats.
+        This is your {cats[mbtiRes.disposition ?? 0].type}.
       </div>
       <div className="h-[4.3vh]"></div>
       <div className="px-[3rem]">
         <div className="px-[2.8vh] py-[2.8vh] relative h-[61vh] bg-[url('/img/bg/bg_card_cat.min.png')] bg-cover">
           <div className="">
             <div className="px-[1rem] py-2 text-white text-[1.6rem] font-[700] bg-[#F4738D99] rounded-[5rem] border-[#E397BC] border-w-[0.1rem] inline-block">
-              Independent
+              {cats[mbtiRes.disposition ?? 0].keys[0]}
             </div>
           </div>
           <div className="">
             <div className="px-[1rem] py-2 text-white text-[1.6rem] font-[700] bg-[#2278C199] rounded-[5rem] border-[#6D9FDA] border-w-[0.1rem] inline-block my-[0.6rem]">
-              Reserved
+              {cats[mbtiRes.disposition ?? 0].keys[1]}
             </div>
           </div>
           <div className="">
             <div className="px-[1rem] py-2 text-white text-[1.6rem] font-[700] bg-[#4A5F7799] rounded-[5rem] border-[#95A1C1] border-w-[0.1rem] inline-block">
-              Intelligent
+              {cats[mbtiRes.disposition ?? 0].keys[2]}
             </div>
           </div>
           <div className="h-[24rem]"></div>
@@ -40,13 +61,14 @@ const Step3View = () => {
           <div className="absolute bottom-0 left-0 w-full">
             <div className="flex justify-center items-center mb-[2rem]">
               <div className="bg-[url('/img/bg/bg_aloof_cat.min.png')] bg-cover bg-no-repeat text-white text-[2.8rem] font-[700] h-[5.3rem] px-[5rem] flex justify-center items-center">
-                Aloof Cats
+                {cats[mbtiRes.disposition ?? 0].type}
               </div>
             </div>
             <div className="text-[#826662] text-[1.4rem] font-[500] flex justify-center items-center px-[3rem] text-center pb-[2.2rem]">
-              They have a natural aura, prefer their <br /> space, but once they
+              {/* They have a natural aura, prefer their <br /> space, but once they
               trust you, they’ll <br /> quietly stay by your side for the long{" "}
-              <br /> run.
+              <br /> run. */}
+              {cats[mbtiRes.disposition ?? 0].desc}
             </div>
           </div>
         </div>

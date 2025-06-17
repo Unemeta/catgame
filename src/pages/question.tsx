@@ -7,8 +7,12 @@ import { request } from "@/utils/request";
 /* eslint-disable @next/next/no-img-element */
 const PartyView = () => {
   const [stepIndex, setstepIndex] = useState(0);
+  const [mbtiRes, setmbtiRes] = useState({
+    disposition: 0,
+    nickname: "",
+  });
   // const [payload, setpayload] = useState({
-  
+
   // });
   const postInfo = async (selectIndexs: number[]) => {
     try {
@@ -24,6 +28,10 @@ const PartyView = () => {
       });
       setstepIndex(2);
       console.log(res);
+      setmbtiRes({
+        disposition: res.data.disposition,
+        nickname: res.data.nickname,
+      });
     } catch (error) {
       console.log(error);
     }
@@ -73,7 +81,7 @@ const PartyView = () => {
             }}
           ></AnswerView>
         )}
-        {stepIndex == 2 && <Step3View></Step3View>}
+        {stepIndex == 2 && <Step3View mbtiRes={mbtiRes}></Step3View>}
       </div>
     </div>
   );
