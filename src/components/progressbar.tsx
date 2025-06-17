@@ -5,7 +5,7 @@ import React, { useState, useEffect, useRef } from "react";
 const ProgressBar = ({ setShow }: { setShow: () => void }) => {
   const [progress, setProgress] = useState(0);
   const [isActive, setIsActive] = useState(false);
-  const [speed, ] = useState(50); // 毫秒
+  const [speed] = useState(50); // 毫秒
   const intervalRef = useRef<any>(null);
 
   // 开始/暂停进度
@@ -70,7 +70,7 @@ const ProgressBar = ({ setShow }: { setShow: () => void }) => {
             {/* 移动的图标 */}
             <div
               className="absolute -top-[1.6rem] w-[6rem] h-[6rem] flex items-center justify-center z-1"
-              style={{ left: `calc(${progress}% - 1rem)` }}
+              style={{ left: `calc(${progress-10}% - 1rem)` }}
             >
               <img src="/img/progressicon.svg" alt="" className="w-full" />
             </div>
