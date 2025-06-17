@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-img-element */
 interface iAnswerView {
   onClick: VoidFunction;
@@ -11,15 +12,30 @@ const NickName = ({ onClick }: iAnswerView) => {
   const inputref = useRef<HTMLInputElement>(null);
   const [basicInfo, setBasicInfo] = useUserBasicInfo();
   const [randomNames, setRandomNames] = useState<string[]>([]);
+  const [namelist, setNameList] = useState<any[]>([]);
+  const nameIndex = useRef(0);
   const getNickName = async () => {
     const res = await request({
       url: "/api/cat/v1/survey/nicknames",
       method: "get",
     });
-    const { femaleNames, maleNames } = res.data;
-    const names = [...femaleNames, ...maleNames];
-    setRandomNames(names);
+    const { names } = res.data;
+    setNameList(names);
+    //首次
+    const { male, female } = names[nameIndex.current];
+    setRandomNames([...male, ...female]);
   };
+  // 刷新名字
+  const refreshName = () => {
+    if (nameIndex.current < 4) {
+      nameIndex.current += 1;
+    } else {
+      nameIndex.current = 0;
+    }
+    const { male, female } = namelist[nameIndex.current];
+    setRandomNames([...male, ...female]);
+  };
+
   useEffect(() => {
     inputref.current!.value = basicInfo.nickname;
   }, [basicInfo.nickname]);
@@ -33,11 +49,6 @@ const NickName = ({ onClick }: iAnswerView) => {
       </div>
 
       <div className="relative mt-[6rem] w-full">
-        {/* <img
-          src="/img/catInputIcon.svg"
-          alt=""
-          className="h-[7.5rem] w-[10.7rem] absolute left-[50%] top-[-1.6rem] -translate-x-[50%] -z-1"
-        /> */}
         <div
           className={cn(
             "w-full h-[9.6rem]  bg-cover flex justify-center items-center",
@@ -69,7 +80,7 @@ const NickName = ({ onClick }: iAnswerView) => {
           src="/img/refresh-name.svg"
           alt=""
           className="w-[2.4rem] h-[2.4rem]"
-          onClick={() => getNickName()}
+          onClick={() => refreshName()}
         />
       </div>
 
@@ -91,43 +102,6 @@ const NickName = ({ onClick }: iAnswerView) => {
             </div>
           );
         })}
-        {/* <div
-          className="w-[16.5rem] px-[2rem] py-[1.2rem] bg-white rounded-[5rem] inline-flex justify-center items-center gap-[1rem]"
-          onClick={() => {
-            if (inputref.current) {
-              setBasicInfo({ ...basicInfo, nickname: "Abe" });
-            }
-          }}
-        >
-          <div className="flex-1 text-center justify-start text-[#EA8273] text-[2rem] font-bold font-['SF_Pro_Rounded'] leading-tight">
-            Abe
-          </div>
-        </div>
-        <div className="w-[16.5rem] px-[2rem] py-[1.2rem] bg-white rounded-[5rem] inline-flex justify-center items-center gap-[1rem]">
-          <div className="flex-1 text-center justify-start text-[#EA8273] text-[2rem] font-bold font-['SF_Pro_Rounded'] leading-tight">
-            Abe
-          </div>
-        </div>
-        <div className="w-[16.5rem] px-[2rem] py-[1.2rem] bg-white rounded-[5rem] inline-flex justify-center items-center gap-[1rem]">
-          <div className="flex-1 text-center justify-start text-[#EA8273] text-[2rem] font-bold font-['SF_Pro_Rounded'] leading-tight">
-            Abe
-          </div>
-        </div>
-        <div className="w-[16.5rem] px-[2rem] py-[1.2rem] bg-white rounded-[5rem] inline-flex justify-center items-center gap-[1rem]">
-          <div className="flex-1 text-center justify-start text-[#EA8273] text-[2rem] font-bold font-['SF_Pro_Rounded'] leading-tight">
-            Abe
-          </div>
-        </div>
-        <div className="w-[16.5rem] px-[2rem] py-[1.2rem] bg-white rounded-[5rem] inline-flex justify-center items-center gap-[1rem]">
-          <div className="flex-1 text-center justify-start text-[#EA8273] text-[2rem] font-bold font-['SF_Pro_Rounded'] leading-tight">
-            Abe
-          </div>
-        </div>
-        <div className="w-[16.5rem] px-[2rem] py-[1.2rem] bg-white rounded-[5rem] inline-flex justify-center items-center gap-[1rem]">
-          <div className="flex-1 text-center justify-start text-[#EA8273] text-[2rem] font-bold font-['SF_Pro_Rounded'] leading-tight">
-            Abe
-          </div>
-        </div> */}
       </div>
       <div className="mt-[6rem]">
         {basicInfo.nickname ? (
