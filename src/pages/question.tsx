@@ -37,7 +37,7 @@ const PartyView = () => {
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      toast.error(JSON.stringify(error.response.data ?? error));
+      toast.error(error.response.data ?? JSON.stringify(error));
       console.log(error);
     }
   };
