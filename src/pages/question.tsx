@@ -3,6 +3,7 @@ import Step3View from "@/components/step3";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { request } from "@/utils/request";
+import { toast } from "react-toastify";
 
 /* eslint-disable @next/next/no-img-element */
 const PartyView = () => {
@@ -26,13 +27,17 @@ const PartyView = () => {
           jp: selectIndexs[3],
         },
       });
-      setstepIndex(2);
       console.log(res);
-      setmbtiRes({
-        disposition: res.data.disposition,
-        nickname: res.data.nickname,
-      });
-    } catch (error) {
+      if (res.data) {
+        setstepIndex(2);
+        setmbtiRes({
+          disposition: res.data.disposition,
+          nickname: res.data.nickname,
+        });
+      }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      toast.error(JSON.stringify(error.response.data ?? error));
       console.log(error);
     }
   };
@@ -77,7 +82,6 @@ const PartyView = () => {
           <AnswerView
             onClick={(selectIndexs) => {
               postInfo(selectIndexs);
-              setstepIndex(2);
             }}
           ></AnswerView>
         )}
