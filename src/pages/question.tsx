@@ -35,7 +35,7 @@ const PartyView = () => {
           nickname: res.data.nickname,
         });
       }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast.error(JSON.stringify(error.response.data ?? error));
       console.log(error);
@@ -85,7 +85,12 @@ const PartyView = () => {
             }}
           ></AnswerView>
         )}
-        {stepIndex == 2 && <Step3View mbtiRes={mbtiRes}></Step3View>}
+        {stepIndex == 2 && (
+          <Step3View
+            mbtiRes={mbtiRes}
+            index={mbtiRes.disposition ? mbtiRes.disposition - 1 : 0}
+          ></Step3View>
+        )}
       </div>
     </div>
   );
