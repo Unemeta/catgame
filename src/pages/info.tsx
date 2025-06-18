@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NickName from "@/components/nickname";
 import Age from "@/components/age";
 import Gender from "@/components/gender";
@@ -12,7 +12,7 @@ const InfoView = () => {
   const [stepIndex, setstepIndex] = useState(0);
   const [showQuestion, setShowQuestion] = useState(false);
   const [basicInfo] = useUserBasicInfo();
-  const router = useRouter()
+  const router = useRouter();
   const postInfo = async () => {
     const res = await request({
       url: "/api/cat/v1/survey/survey/basic",
@@ -23,6 +23,27 @@ const InfoView = () => {
     });
     console.log(res);
   };
+  const getStep = async () => {
+    const res = await request({
+      url: "/api/cat/v1/survey/survey/step",
+      method: "get",
+    });
+    const { step } = res.data;
+    //0 代表未填写过基础信息
+    //1 代表填写过基础信息，未填写过mbti
+    //2 代表填写过基础信息和mbti
+    if (step === 1) {
+      router.push("/question");
+    }
+    if (step === 2) {
+      router.push("/chat");
+    }
+  };
+
+  useEffect(() => {
+    getStep();
+  }, []);
+
   return (
     <div className="w-full h-[100vh] absolute inset-0 z-[2] px-[2rem] bg-[url('/img/infoback.jpg')] bg-cover">
       {showQuestion ? (
@@ -77,11 +98,11 @@ const InfoView = () => {
           )}
           {stepIndex === 2 && (
             <Gender
-              onClick={async() => {
+              onClick={async () => {
                 try {
-                 await postInfo();
+                  await postInfo();
                 } catch (error) {
-                  console.log(error)
+                  console.log(error);
                 }
                 router.push("/question");
               }}
