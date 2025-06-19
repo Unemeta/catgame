@@ -25,17 +25,23 @@
 
 @media screen and (max-width: 768px) {
   .contentBgChat {
-    background-image: url("/img/bg/bgChat.min.png");
+    /* background-image: url("/img/bg/bgChat.min.png"); */
+    
+    /* background-image: url("/img/bg/bg_chat.min.png"); */
+    background-image: url("/img/bg/bg_chat2.min.png");
+    background-size: cover ;
+    background-position: center; 
   }
 }
 .mask {
   height: 57vh;
   flex-shrink: 0;
-  background: linear-gradient(
+  /* background: linear-gradient(
     180deg,
     rgba(51, 43, 71, 0) 21.45%,
     #422b47 79.47%
-  );
+  ); */
+  background: linear-gradient(180deg, rgba(51, 43, 71, 0.00) 15.06%, #47352B 100%);
 }
 
 .newIcon {

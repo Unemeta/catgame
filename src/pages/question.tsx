@@ -55,10 +55,10 @@ const PartyView = () => {
           <div className="w-full h-[100vh] absolute inset-0 z-[2] text-center">
             <div className="flex flex-col h-full">
               <div className="h-[9.3vh]"></div>
-              <div className="text-white text-[3rem] font-[700] mb-[3vh]">
+              <div className="text-white text-[2.8rem] font-[700] mb-[3vh]">
                 Soul Identification
               </div>
-              <div className="text-center text-white text-[1.8rem] font-[500] leading-[1.1]">
+              <div className="text-center text-white text-[1.6rem] font-[500] leading-[1.1]">
                 Meowster has prepared soul <br /> identification questions for
                 you. <br /> Based on your answers, it will find a <br /> cat
                 that matches you.
