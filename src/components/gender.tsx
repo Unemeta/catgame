@@ -16,28 +16,26 @@ const Age = ({ onClick }: iAnswerView) => {
       <div className="flex gap-[1rem] mt-[6rem]">
         <div
           className={cn(
-            "w-[16rem] h-[20.6rem] px-[1rem] py-[1.2rem]  rounded-[3rem] inline-flex flex-col justify-center items-center gap-[1rem]",
+            "w-[13.5rem] h-[16.6rem] px-[1rem] py-[3.5rem] rounded-[3rem] inline-flex flex-col justify-center items-center gap-[0.8rem]",
             {
-              //   "bg-gradient-to-l from-[#EA8273] to-[#ECA89E] shadow-[0px_4px_24px_0px_rgba(236,168,158,1.00)] shadow-[0px_3px_4px_0px_rgba(255,255,255,0.25)] border border-[#FF9A8B]":
-              //     basicInfo.gender === 0,
+              "bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)] rounded-[2rem]":
+                basicInfo.gender === 0,
               "bg-[#fff] ": basicInfo.gender !== 0,
             }
           )}
+          style={{
+            boxShadow:
+              basicInfo.gender === 0
+                ? "0px 3px 4px 0px rgba(255, 255, 255, 0.25), 0px 4px 24px 0px #ECA89E"
+                : "",
+          }}
           onClick={() => {
             setBasicInfo({ ...basicInfo, gender: 0 });
           }}
         >
-          {basicInfo.gender === 0 ? (
-            <img
-              src="/img/genderbg.png"
-              className="absolute -z-1 w-[16rem] h-[20.6rem]"
-            ></img>
-          ) : (
-            <></>
-          )}
           <div
             className={cn(
-              "w-[8rem] h-[8rem] rounded-full flex items-center justify-center",
+              "w-[7rem] h-[7rem] rounded-full flex items-center justify-center",
               {
                 "bg-[#EA8273] ": basicInfo.gender !== 0,
                 "bg-[#fff] ": basicInfo.gender === 0,
@@ -59,7 +57,7 @@ const Age = ({ onClick }: iAnswerView) => {
           </div>
           <div
             className={cn(
-              "text-center justify-start  text-[2rem] font-bold font-['SF_Pro_Rounded'] leading-tight",
+              "text-center justify-start text-[1.6rem] font-bold font-['SF_Pro_Rounded'] leading-tight",
               {
                 "text-[#fff]": basicInfo.gender === 0,
                 "text-[#826662]": basicInfo.gender !== 0,
@@ -72,28 +70,34 @@ const Age = ({ onClick }: iAnswerView) => {
 
         <div
           className={cn(
-            "w-[16rem] h-[20.6rem] px-[1rem] py-[1.2rem]  rounded-[3rem] inline-flex flex-col justify-center items-center gap-[1rem]",
+            "w-[13.5rem] h-[16.6rem] px-[1rem] py-[3.5rem] rounded-[2rem] inline-flex flex-col justify-center items-center gap-[0.8rem]",
             {
-              //   "bg-gradient-to-l from-[#EA8273] to-[#ECA89E] shadow-[0px_4px_24px_0px_rgba(236,168,158,1.00)] shadow-[0px_3px_4px_0px_rgba(255,255,255,0.25)] border border-[#FF9A8B]":
-              //     basicInfo.gender === 1,
+              "bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)] rounded-[2rem]":
+                basicInfo.gender === 1,
               "bg-[#fff] ": basicInfo.gender !== 1,
             }
           )}
+          style={{
+            boxShadow:
+              basicInfo.gender === 1
+                ? "0px 3px 4px 0px rgba(255, 255, 255, 0.25), 0px 4px 24px 0px #ECA89E"
+                : "",
+          }}
           onClick={() => {
             setBasicInfo({ ...basicInfo, gender: 1 });
           }}
         >
-          {basicInfo.gender === 1 ? (
+          {/* {basicInfo.gender === 1 ? (
             <img
               src="/img/genderbg.png"
               className="absolute -z-1 w-[16rem] h-[20.6rem]"
             ></img>
           ) : (
             <></>
-          )}
+          )} */}
           <div
             className={cn(
-              "w-[8rem] h-[8rem] rounded-full flex items-center justify-center",
+              "w-[7rem] h-[7rem] rounded-full flex items-center justify-center",
               {
                 "bg-[#EA8273] ": basicInfo.gender !== 1,
                 "bg-[#fff] ": basicInfo.gender === 1,
@@ -115,7 +119,7 @@ const Age = ({ onClick }: iAnswerView) => {
           </div>
           <div
             className={cn(
-              "text-center justify-start  text-[2rem] font-bold font-['SF_Pro_Rounded'] leading-tight",
+              "text-center justify-start  text-[1.6rem] font-bold font-['SF_Pro_Rounded'] leading-tight",
               {
                 "text-[#fff]": basicInfo.gender === 1,
                 "text-[#826662]": basicInfo.gender !== 1,

@@ -18,34 +18,41 @@ const Age = ({ onClick }: iAnswerView) => {
         How old are you?
       </div>
 
-      <div className="relative mt-[6rem] w-[33rem] h-[26rem] overflow-auto py-[1rem]">
+      <div className="relative mt-[6rem] w-[35rem] h-[26rem] overflow-auto py-[2rem] px-[2rem]">
         {oldList.map((item) => {
           return (
             <div
               key={item}
               className={cn(
-                "w-[33rem] px-[2rem] py-[1.2rem] rounded-[5rem] inline-flex justify-center items-center gap-[1rem] mb-[2rem]",
+                "w-[30rem] py-[1.2rem] rounded-[5rem] inline-flex justify-center items-center gap-[1rem] mb-[2rem]",
                 {
                   "bg-white": item !== basicInfo.age,
-                  // "bg-[url(/img/agebg.png)] bg-cover":
-                  //   item === basicInfo.age,
-                  // "bg-gradient-to-l from-[#EA8273] to-[#ECA89E] ":
-                  //   item === basicInfo.age,
+                  "bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)] rounded-[20px]":
+                    item === basicInfo.age,
                 }
               )}
               onClick={() => {
                 setBasicInfo({ ...basicInfo, age: item });
               }}
+              style={{
+                boxShadow:
+                  item === basicInfo.age
+                    ? "0px 3px 4px 0px rgba(255, 255, 255, 0.25), 0px 4px 24px 0px #ECA89E"
+                    : "",
+              }}
             >
-              {item === basicInfo.age ? (
-                <img src="/img/agebg.svg" className="absolute -z-1"></img>
+              {/* {item === basicInfo.age ? (
+                <img
+                  src="/img/agebg.png"
+                  className="absolute -z-1 w-full"
+                ></img>
               ) : (
                 <></>
-              )}
+              )} */}
 
               <div
                 className={cn(
-                  "flex-1 text-center justify-start text-[#826662] text-[2rem] font-bold font-['SF_Pro_Rounded'] leading-tight",
+                  "flex-1 text-center justify-start text-[#826662] text-[1.6rem] font-bold font-['SF_Pro_Rounded'] leading-tight",
                   {
                     "text-[#826662]": item !== basicInfo.age,
                     "text-[#FFFAFA]": item === basicInfo.age,
@@ -83,7 +90,7 @@ const Age = ({ onClick }: iAnswerView) => {
             onClick={onClick}
           />
         ) : (
-         <img
+          <img
             src="/img/arrow_rightdis.min.png"
             alt=""
             className="w-[12rem] h-[12rem]"

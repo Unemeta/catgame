@@ -48,19 +48,33 @@ const NickName = ({ onClick }: iAnswerView) => {
         What’s your nickname?
       </div>
 
-      <div className="relative mt-[6rem] w-full">
+      <div className="relative mt-[6rem]">
         <div
           className={cn(
-            "w-full h-[9.6rem]  bg-cover flex justify-center items-center",
-            {
-              "bg-[url('/img/inormal.jpg')]": !basicInfo.nickname,
-              "bg-[url('/img/ifocus.jpg')]": basicInfo.nickname,
-            }
+            "w-[31rem] h-[5rem] bg-cover flex justify-center items-center"
+            // {
+            //   "bg-[url('/img/inormal.png')]": !basicInfo.nickname,
+            //   "bg-[url('/img/ifocus.png')]": basicInfo.nickname,
+            // }
           )}
         >
+          {basicInfo.nickname ? (
+            <img
+              src="/img/ifocus.png"
+              alt=""
+              className="absolute -top-[0.5rem] left-0 w-full h-full -z-1"
+            />
+          ) : (
+            <img
+              src="/img/inormal.png"
+              alt=""
+              className="absolute -top-[0.5rem] left-0 w-full h-full -z-1"
+            />
+          )}
+
           <input
             type="text"
-            className="w-[28rem] h-[3rem] text-[3rem] text-[#EA8373] placeholder:text-[#EA8373] outline-0
+            className="w-[28rem] h-[2.4rem] text-[2.4rem] text-[#EA8373] placeholder:text-[#EA8373] outline-0 text-center
                      placeholder:font-['SF_Pro_Rounded']
                      placeholder:opacity-20"
             placeholder="Enter your nickname"
@@ -72,7 +86,7 @@ const NickName = ({ onClick }: iAnswerView) => {
           />
         </div>
       </div>
-      <div className="flex justify-between w-full mt-[3rem]">
+      <div className="flex justify-between w-[31rem] mt-[3rem]">
         <div className="text-center justify-start text-stone-500 text-[1.8rem] font-medium font-['SF_Pro_Rounded'] leading-snug">
           Or randomly select one
         </div>
@@ -84,19 +98,40 @@ const NickName = ({ onClick }: iAnswerView) => {
         />
       </div>
 
-      <div className="flex gap-[1rem] flex-wrap mt-[2rem] h-[17rem] overflow-auto">
+      <div className="flex gap-[1rem] flex-wrap mt-[2rem] overflow-auto justify-center py-[2rem]">
         {randomNames.map((item) => {
           return (
             <div
               key={item}
-              className="w-[16.5rem] px-[2rem] py-[1.2rem] bg-white rounded-[5rem] inline-flex justify-center items-center gap-[1rem]"
+              className={cn(
+                "w-[15.2rem] px-[2rem] py-[1.3rem] rounded-[2rem] inline-flex justify-center items-center gap-[1rem]",
+                {
+                  "bg-white": item !== basicInfo.nickname,
+                  "bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)] rounded-[20px]":
+                    item === basicInfo.nickname,
+                }
+              )}
+              style={{
+                boxShadow:
+                  item === basicInfo.nickname
+                    ? "0px 3px 4px 0px rgba(255, 255, 255, 0.25), 0px 4px 24px 0px #ECA89E"
+                    : "",
+              }}
               onClick={() => {
                 if (inputref.current) {
                   setBasicInfo({ ...basicInfo, nickname: item });
                 }
               }}
             >
-              <div className="flex-1 text-center justify-start text-[#EA8273] text-[2rem] font-bold font-['SF_Pro_Rounded'] leading-tight">
+              <div
+                className={cn(
+                  "flex-1 text-center justify-start text-[1.6rem] font-bold font-['SF_Pro_Rounded'] leading-tight",
+                  {
+                    "text-[#EA8273]": item !== basicInfo.nickname,
+                    "text-white": item === basicInfo.nickname,
+                  }
+                )}
+              >
                 {item}
               </div>
             </div>
