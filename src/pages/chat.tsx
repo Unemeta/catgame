@@ -23,6 +23,7 @@ const ChatView = () => {
   const router = useRouter();
   const { userData } = useFetchUser();
   const [showVoice, setShowVoice] = useShowVocie();
+  // const { scrollTop, clientHeight,scrollHieght } = useScrollTop("chatWindow");
 
   const [socket, setSocket] = useState<WebSocket | null>(null);
   const [inputMsg, setinputMsg] = useState("");
@@ -346,9 +347,14 @@ const ChatView = () => {
           <div className="flex flex-col chatCttH lmdWfull z-1 relative">
             {/* <img className="dtest w-full absolute z-[1]" src="/img/bg/bgChatMsgTop.min.png" alt="" /> */}
             <div className="hidden chatBoxSizeHeight"></div>
-            <div className="flex justify-end items-start dmb40 grow overflow-y-scroll">
+            <div className="flex justify-end items-start dmb40 grow overflow-y-scroll relative" id="chatWindow">
+              {/* <div className={cn("overlay w-[100vw]",{
+                // "opacity-90": true,
+              })}>
+                <div className="w-[100vw]"></div>
+              </div> */}
               <div
-                className="chatCtt lmdWfull flex flex-col dgap20 overflow-y-scroll dpr36"
+                className="chatCtt lmdWfull flex flex-col dgap20  dpr36"
                 ref={chatEndRef}
               >
                 {messageList?.map((item, index: number) => {
