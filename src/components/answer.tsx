@@ -60,7 +60,7 @@ const AnswerView = ({ onClick }: iAnswerView) => {
         </div>
         <div className="h-[5.5vh]"></div>
         <div
-          className="text-[#fff] text-[3rem] font-[700] text-center leading-[1] mb-[0.5rem]"
+          className="text-[#fff] text-[2.4rem] font-[700] text-center leading-[1] mb-[0.5rem]"
           dangerouslySetInnerHTML={{
             __html: questionArr[stepAnswerIndex]["q"],
           }}
@@ -104,7 +104,7 @@ const AnswerView = ({ onClick }: iAnswerView) => {
             </div>
             <span
               className={cn(
-                "w-[24.7rem] text-[1.8rem] font-[700] leading-[1.2] text-[#826662]",
+                "w-[24.7rem] text-[1.6rem] font-[700] leading-[1.2] text-[#826662]",
                 {
                   "text-white": selectIndexQuestionArr[stepAnswerIndex] == 0,
                 }
@@ -148,7 +148,7 @@ const AnswerView = ({ onClick }: iAnswerView) => {
             </div>
             <span
               className={cn(
-                "w-[24.7rem] text-[#826662] text-[1.8rem] font-[700] leading-[1.2]",
+                "w-[24.7rem] text-[#826662] text-[1.6rem] font-[700] leading-[1.2]",
                 {
                   "text-white": selectIndexQuestionArr[stepAnswerIndex] == 1,
                 }
