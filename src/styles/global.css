@@ -633,13 +633,15 @@ body {
   height: 47px;
 }
 .sendInputWrap {
-  --borderWidth: 5px;
+  /* --borderWidth: 5px;
   position: relative;
   background: #422636;
-  /* border-radius: calc(10 * var(--borderWidth)); */
-  border-radius: 9999px;
+  border-radius: 9999px; */
+  border-radius: 22px;
+  border: 1.5px solid #D8C5B9;
+  background: rgba(0, 0, 0, 0.20);
 }
-.sendInputWrap:after {
+/* .sendInputWrap:after {
   content: "";
   position: absolute;
   top: calc(-1 * var(--borderWidth));
@@ -657,12 +659,11 @@ body {
     #07b39b,
     #6fba82
   );
-  /* border-radius: calc(10 * var(--borderWidth)); */
   border-radius: 9999px;
   z-index: -1;
   animation: animatedgradient 3s ease alternate infinite;
   background-size: 300% 300%;
-}
+} */
 .sendInput {
   height: 80px;
   color: white;
@@ -698,7 +699,7 @@ body {
   height: 0;
   border-style: solid;
   border-width: 6px 0 6px 8px;
-  border-color: transparent transparent transparent #24e137e6;
+  border-color: transparent transparent transparent #ea8273b3;
 }
 .receive::after {
   content: "";
@@ -874,7 +875,7 @@ body {
     height: 0;
     border-style: solid;
     border-width: 4px 0 4px 6px; /* 上、右、下、左 */
-    border-color: transparent transparent transparent #24e137e6;
+    border-color: transparent transparent transparent #ea8273b3;
   }
   .chatMsg {
     width: 100% !important;
@@ -911,7 +912,7 @@ body {
   }
   .sendInput {
     padding-left: 40px;
-    height: 180px;
+    height: 3.6rem;
     width: 73vw;
     border-radius: 100px;
     /* width: 100%; */

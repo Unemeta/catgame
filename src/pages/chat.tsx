@@ -366,7 +366,7 @@ const ChatView = () => {
                         })}
                         key={index}
                       >
-                        <div className="send bg-[rgba(36,225,55,.9)] flex justify-between items-start relative msgWrap">
+                        <div className="send bg-[rgba(234,130,115,0.7)] flex justify-between items-start relative msgWrap">
                           <div className="dmaxW460 dmr25 msgTimeWrap">
                             <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 text-right msgTime">
                               {moment(item.time * 1000)
