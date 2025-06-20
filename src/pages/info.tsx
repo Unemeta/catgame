@@ -10,7 +10,7 @@ import { request } from "@/utils/request";
 import { useRouter } from "next/router";
 const InfoView = () => {
   const [stepIndex, setstepIndex] = useState(0);
-  const [showQuestion, setShowQuestion] = useState(true);
+  const [showQuestion, setShowQuestion] = useState(false);
   const [basicInfo] = useUserBasicInfo();
   const router = useRouter();
   const postInfo = async () => {

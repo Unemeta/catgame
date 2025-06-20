@@ -56,7 +56,7 @@ const ProgressBar = ({ setShow }: { setShow: () => void }) => {
   //   };
 
   return (
-    <div className="flex items-center flex-col h-[100vh] justify-center">
+    <div className="flex items-center flex-col h-[100vh] justify-center relative">
       <img src="/img/loadingicon.png" alt="" className="mb-[1.8rem]" />
       {/* 进度条容器 */}
       <div className="mb-10 w-[16.8rem]">
@@ -70,7 +70,7 @@ const ProgressBar = ({ setShow }: { setShow: () => void }) => {
             {/* 移动的图标 */}
             <div
               className="absolute -top-[1.3rem] w-[4rem] h-[4rem] flex items-center justify-center z-1"
-              style={{ left: `calc(${progress-10}% - 1rem)` }}
+              style={{ left: `calc(${progress - 10}% - 1rem)` }}
             >
               <img src="/img/progressicon.png" alt="" className="w-full" />
             </div>
@@ -84,6 +84,9 @@ const ProgressBar = ({ setShow }: { setShow: () => void }) => {
             {progress}%
           </div>
         </div>
+      </div>
+      <div className="w-[18.8rem] opacity-50 text-center justify-start text-[#826662] text-[1.2rem] font-medium font-['SF_Pro_Rounded'] leading-3 absolute bottom-[3rem]">
+        Milk is not suitable for most cats and may cause diarrhea.
       </div>
 
       {/* 控制面板 */}
