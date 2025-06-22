@@ -303,7 +303,7 @@ const ChatView = () => {
                 </span>
               </div>
             )}
-            {/* <div className="flex justify-end items-center dtest">
+            {/* <div className="flex justify-end items-center ">
               {Number(chatCount) === 20 && (
                 <div className="resetTimerView">
                   <div className="chatNumWrap text-white font-[500] flex justify-end items-center bg-white/10">
@@ -374,7 +374,7 @@ const ChatView = () => {
             </div>
           </div>
           <div className="flex flex-col chatCttH lmdWfull z-1 relative">
-            {/* <img className="dtest w-full absolute z-[1]" src="/img/bg/bgChatMsgTop.min.png" alt="" /> */}
+            {/* <img className=" w-full absolute z-[1]" src="/img/bg/bgChatMsgTop.min.png" alt="" /> */}
             {/* <div className="hidden chatBoxSizeHeight"></div> */}
             <div
               className={cn("top-[1rem] left-0 absolute z-[111111]", {
@@ -394,72 +394,84 @@ const ChatView = () => {
                 {messageList?.map((item, index: number) => {
                   if (item?.role === "user") {
                     return (
-                      <div
-                        className={cn("relative", {
-                          // "opacity-50": index + 4 < messageList.length,
-                        })}
-                        key={index}
-                      >
-                        <div className="send bg-[rgba(234,130,115,0.7)] flex justify-between items-start relative msgWrap">
-                          <div className="dmaxW460 dmr25 msgTimeWrap">
-                            {index != 0 &&
-                            item.time - messageList[index - 1].time > 5 * 60 ? (
-                              <></>
-                            ) : (
-                              <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 text-right msgTime">
-                                {moment(item.time * 1000)
-                                  .local()
-                                  .format("YYYY/MM/DD HH:mm")}
-                              </div>
-                            )}
-                            <div className="msgText line-clamp-4 dtext28 font-[500] text-[#F5F2FF]  text-wrap lmdMsgSpan overflow-hidden break-words">
-                              {item?.msg}
-                            </div>
-                          </div>
-                          {/* <img
-                              className=" rounded-full userIcon"
-                              src="/img/avataUser.min.png"
-                              alt=""
-                            /> */}
-                        </div>
-                        <img
-                          className=" rounded-full  userAvator"
-                          src="/img/avataUser.min.png"
-                          alt=""
-                        />
-                      </div>
-                    );
-                  } else {
-                    return (
-                      <div
-                        className={cn("relative", {
-                          // "opacity-70": index + 3 < messageList.length,
-                        })}
-                        key={index}
-                      >
-                        <img
-                          className=" rounded-full dmr25 robotAvator"
-                          src="/img/avataCat.min.png"
-                          alt=""
-                        />
-                        <div className="receive bg-[rgba(90,_35,_92,_0.30)] flex justify-start items-start msgWrap">
-                          {/* <img
-                              className=" rounded-full dmr25 robotAvator"
-                              src="/img/avataCat.min.png"
-                              alt=""
-                            /> */}
-                          <div className="dmaxW460 lmdWfull">
-                            <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 msgTime">
+                      <div className="" key={index}>
+                        <div className="dmaxW460 dmr25 msgTimeWrap relative flex justify-end items-center">
+                          {/* {index != 0 &&
+                          item.time - messageList[index - 1].time < 5 * 60 ? (
+                            <></>
+                          ) : (
+                            <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 text-right msgTime flex justify-center py-[1.5rem]">
                               {moment(item.time * 1000)
                                 .local()
                                 .format("YYYY/MM/DD HH:mm")}
                             </div>
-                            <div className="msgText line-clamp-4 dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan break-words">
-                              {mediaSwitch(
-                                item?.msg,
-                                item?.msgId,
-                                item?.eventid
-                              )}
+                          )} */}
+                          <div
+                            className={cn("relative flex justify-end", {
+                              // "opacity-50": index + 4 < messageList.length,
+                            })}
+                          >
+                            <div className="send bg-[rgba(234,130,115,0.7)] flex justify-end items-start relative msgWrap">
+                              <div className="msgText line-clamp-4 dtext28 font-[500] text-[#F5F2FF]  text-wrap lmdMsgSpan overflow-hidden break-words">
+                                {item?.msg}
+                              </div>
+                            </div>
+                            {/* <img
+                              className=" rounded-full userIcon"
+                              src="/img/avataUser.min.png"
+                              alt=""
+                            /> */}
+                          </div>
+                          <img
+                            className=" rounded-full  userAvator"
+                            src="/img/avataUser.min.png"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <div className="" key={index}>
+                        {index != 0 &&
+                        item.time - messageList[index - 1].time < 5 * 60 ? (
+                          <></>
+                        ) : (
+                          <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 text-right msgTime flex justify-center py-[1.5rem]">
+                            {moment(item.time * 1000)
+                              .local()
+                              .format("YYYY/MM/DD HH:mm")}
+                          </div>
+                        )}
+                        <div
+                          className={cn("relative flex justify-start", {
+                            // "opacity-70": index + 3 < messageList.length,
+                          })}
+                        >
+                          <img
+                            className=" rounded-full dmr25 robotAvator"
+                            src="/img/avataCat.min.png"
+                            alt=""
+                          />
+                          <div className="receive bg-[rgba(90,_35,_92,_0.30)] flex justify-start items-start msgWrap">
+                            {/* <img
+                              className=" rounded-full dmr25 robotAvator"
+                              src="/img/avataCat.min.png"
+                              alt=""
+                            /> */}
+                            <div className="dmaxW460 lmdWfull">
+                              {/* <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 msgTime">
+                                {moment(item.time * 1000)
+                                  .local()
+                                  .format("YYYY/MM/DD HH:mm")}
+                              </div> */}
+                              <div className="msgText line-clamp-4 dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan break-words">
+                                {mediaSwitch(
+                                  item?.msg,
+                                  item?.msgId,
+                                  item?.eventid
+                                )}
+                              </div>
                             </div>
                           </div>
                         </div>
