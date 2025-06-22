@@ -851,7 +851,7 @@ body {
     padding-bottom: 50px;
     border-radius: 15px;
     position: relative;
-    max-width: 80vw;
+    max-width: 70vw;
   }
   .receive::after {
     content: "";
