@@ -8,6 +8,9 @@ import { cn } from "@/lib/utils";
 import { useUserBasicInfo } from "@/store/info";
 import { request } from "@/utils/request";
 import { useRouter } from "next/router";
+import DialogCheckIn from "@/components/dialog/checkIn";
+// import DialogExchange from "@/components/dialog/exchange";
+
 const InfoView = () => {
   const [stepIndex, setstepIndex] = useState(0);
   const [showQuestion, setShowQuestion] = useState(false);
@@ -32,12 +35,12 @@ const InfoView = () => {
     //0 代表未填写过基础信息
     //1 代表填写过基础信息，未填写过mbti
     //2 代表填写过基础信息和mbti
-    if (step === 1) {
-      router.push("/question");
-    }
-    if (step === 2) {
-      router.push("/chat");
-    }
+    // if (step === 1) {
+    //   router.push("/question");
+    // }
+    // if (step === 2) {
+    //   router.push("/chat");
+    // }
   };
 
   useEffect(() => {
@@ -116,6 +119,7 @@ const InfoView = () => {
           }}
         ></ProgressBar>
       )}
+      <DialogCheckIn id={1}></DialogCheckIn>
     </div>
   );
 };
