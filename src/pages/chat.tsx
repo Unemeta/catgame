@@ -283,7 +283,7 @@ const ChatView = () => {
     <div className={styles.DialogContent}>
       <div className={styles.contentBgChat}>
         <div className="relative h-[100vh] w-[100vw]">
-          <div className="headerBackpack flex justify-between items-center dpl50 dpt18 dpb18 dpr110 dh90">
+          <div className="headerBackpack flex justify-between items-center dpt18 dpb18  dh90 px-[2rem]">
             {process.env.NEXT_PUBLIC_VERTICAL === "true" ? (
               <div className=""></div>
             ) : (
@@ -303,7 +303,7 @@ const ChatView = () => {
                 </span>
               </div>
             )}
-            <div className="flex justify-end items-center">
+            {/* <div className="flex justify-end items-center dtest">
               {Number(chatCount) === 20 && (
                 <div className="resetTimerView">
                   <div className="chatNumWrap text-white font-[500] flex justify-end items-center bg-white/10">
@@ -342,17 +342,51 @@ const ChatView = () => {
                   <PopoverChatNum></PopoverChatNum>
                 </div>
               </div>
+            </div> */}
+            <div className="flex justify-end items-center">
+              <div className="px-[0.8rem] py-[0.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(58,53,53,0.20)_0%,rgba(58,53,53,0.20)_100%),linear-gradient(180deg,rgba(255,152,146,0.60)_0%,rgba(255,185,181,0.60)_100%)]">
+                <img
+                  className="w-[1.6rem] h-[1.6rem] mr-[0.6rem]"
+                  src="/svg/check_ calendar.svg"
+                  alt=""
+                />
+                <span className="text-[#FFF] text-[1.4rem] font-[700]">
+                  01:23m
+                </span>
+              </div>
+              <div className="w-[0.6rem]"></div>
+              <div className="px-[0.8rem] py-[0.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(46,59,63,0.20)_0%,rgba(46,59,63,0.20)_100%),linear-gradient(180deg,rgba(146,207,236,0.60)_0%,rgba(172,224,249,0.60)_100%);]">
+                <img
+                  className="w-[1.6rem] h-[1.6rem] mr-[0.6rem]"
+                  src="/svg/fish.svg"
+                  alt=""
+                />
+                <span className="text-[#FFF] text-[1.4rem] font-[700]">
+                  4,234
+                </span>
+              </div>
+              <div className="w-[0.6rem]"></div>
+              <img
+                className="w-[2.4rem] h-[2.4rem]"
+                src="/img/setting.min.png"
+                alt=""
+              />
             </div>
           </div>
           <div className="flex flex-col chatCttH lmdWfull z-1 relative">
             {/* <img className="dtest w-full absolute z-[1]" src="/img/bg/bgChatMsgTop.min.png" alt="" /> */}
-            <div className="hidden chatBoxSizeHeight"></div>
-            <div className="flex justify-end items-start dmb40 grow overflow-y-scroll relative" id="chatWindow">
-              {/* <div className={cn("overlay w-[100vw]",{
+            {/* <div className="hidden chatBoxSizeHeight"></div> */}
+            <div
+              className={cn("top-[1rem] left-0 absolute z-[111111]", {
                 // "opacity-90": true,
-              })}>
-                <div className="w-[100vw]"></div>
-              </div> */}
+              })}
+            >
+              <div className="w-[100vw] h-[5rem] bg-black/50 blur-[4rem]"></div>
+            </div>
+            <div
+              className="flex justify-end items-start dmb40 grow overflow-y-scroll relative"
+              id="chatWindow"
+            >
               <div
                 className="chatCtt lmdWfull flex flex-col dgap20  dpr36"
                 ref={chatEndRef}
@@ -362,17 +396,22 @@ const ChatView = () => {
                     return (
                       <div
                         className={cn("relative", {
-                          "opacity-50": index + 4 < messageList.length,
+                          // "opacity-50": index + 4 < messageList.length,
                         })}
                         key={index}
                       >
                         <div className="send bg-[rgba(234,130,115,0.7)] flex justify-between items-start relative msgWrap">
                           <div className="dmaxW460 dmr25 msgTimeWrap">
-                            <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 text-right msgTime">
-                              {moment(item.time * 1000)
-                                .local()
-                                .format("YYYY/MM/DD HH:mm")}
-                            </div>
+                            {index != 0 &&
+                            item.time - messageList[index - 1].time > 5 * 60 ? (
+                              <></>
+                            ) : (
+                              <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 text-right msgTime">
+                                {moment(item.time * 1000)
+                                  .local()
+                                  .format("YYYY/MM/DD HH:mm")}
+                              </div>
+                            )}
                             <div className="msgText line-clamp-4 dtext28 font-[500] text-[#F5F2FF]  text-wrap lmdMsgSpan overflow-hidden break-words">
                               {item?.msg}
                             </div>
@@ -394,7 +433,7 @@ const ChatView = () => {
                     return (
                       <div
                         className={cn("relative", {
-                          "opacity-70": index + 3 < messageList.length,
+                          // "opacity-70": index + 3 < messageList.length,
                         })}
                         key={index}
                       >
