@@ -5,7 +5,7 @@ import { ReactNode, useEffect, useRef, useState } from "react";
 // import styles from "@/styles/Backpack.module.css";
 import { jwtHelper } from "@/utils/jwt";
 import { request } from "@/utils/request";
-import { useExchange, useFetchUser, useShowVocie } from "@/store";
+import { useFetchUser, useShowVocie } from "@/store";
 import { toast } from "react-toastify";
 import moment from "moment";
 import SpeechRecognition from "@/components/SpeechRecognition";
@@ -29,7 +29,7 @@ const ChatView = () => {
 
   const [socket, setSocket] = useState<WebSocket | null>(null);
   const [inputMsg, setinputMsg] = useState("");
-  const [showExchange, setshowExchange] = useExchange();
+  const [showExchange, setshowExchange] = useState(false);
 
   const [messageList, setmessageList] = useState<
     {
@@ -133,7 +133,7 @@ const ChatView = () => {
 
   const sendMessage = () => {
     if (Number(chatCount) >= 20) {
-      // toast.info("Insufficient ability to send message");
+      // toast.info("Insufficient ability to send message, buy more chat opportunities");
       setshowExchange(true);
       return;
     }
@@ -499,7 +499,7 @@ const ChatView = () => {
             ) : (
               <div className="textInput flex justify-center items-center sendSpeakerWrap relative">
                 <div className="absolute top-[-3rem] right-[1rem]">
-                  {Number(chatCount) === 20 ? (
+                  {Number(chatCount) >= 20 ? (
                     <div className="flex justify-center items-center px-[1rem] py-[0.6rem] bg-[rgba(58,53,53,0.50)] border-white/20 border-[1px] rounded-[11rem]">
                       {/* <img
                           className="chatNumLeft"
@@ -568,7 +568,8 @@ const ChatView = () => {
           <div className={cn(styles.mask, "w-[100vw] absolute bottom-0")}></div>
         </div>
         {/* <VideoBackground /> */}
-        <DialogExchange id={1}></DialogExchange>
+        
+        <DialogExchange id={1} show={showExchange} setShow={setshowExchange}></DialogExchange>
       </div>
     </div>
   );
