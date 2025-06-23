@@ -8,6 +8,7 @@ interface iDialogExchange {
   id: number;
 }
 const DialogExchange = ({ id }: iDialogExchange) => {
+  console.log(id);
   const [showCheckIn, setShowCheckIn] = useCheckInDia();
   return (
     <Dialog open={showCheckIn} onOpenChange={setShowCheckIn}>
