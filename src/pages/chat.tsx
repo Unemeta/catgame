@@ -388,7 +388,7 @@ const ChatView = () => {
               id="chatWindow"
             >
               <div
-                className="chatCtt lmdWfull flex flex-col dgap20  dpr36"
+                className="chatCtt lmdWfull flex flex-col gap-[1.4rem]  dpr36"
                 ref={chatEndRef}
               >
                 {messageList?.map((item, index: number) => {
@@ -399,7 +399,7 @@ const ChatView = () => {
                         item.time - messageList[index - 1].time < 5 * 60 ? (
                           <></>
                         ) : (
-                          <div className="dtext24 font-[500] text-white/70 dmb8 text-right msgTime flex justify-center py-[1.5rem]">
+                          <div className="dtext24 font-[500] text-white dmb8 text-right msgTime flex justify-center py-[1.5rem]">
                             {moment(item.time * 1000)
                               .local()
                               .format("YYYY/MM/DD HH:mm")}
@@ -437,7 +437,7 @@ const ChatView = () => {
                         item.time - messageList[index - 1].time < 5 * 60 ? (
                           <></>
                         ) : (
-                          <div className="dtext24 font-[500] text-white/70  dmb8 text-right msgTime flex justify-center py-[1.5rem]">
+                          <div className="dtext24 font-[500] text-white  dmb8 text-right msgTime flex justify-center py-[1.5rem]">
                             {moment(item.time * 1000)
                               .local()
                               .format("YYYY/MM/DD HH:mm")}

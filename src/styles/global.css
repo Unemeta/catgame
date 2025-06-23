@@ -837,18 +837,18 @@ body {
     display: none;
   }
   .chatCtt {
-    padding-left: 300px;
-    padding-right: 300px;
+    padding-left: 6rem;
+    padding-right: 6rem;
   }
   .lmdWfull {
     width: 100%;
     max-width: 100%;
   }
   .msgWrap {
-    padding-left: 60px;
-    padding-right: 60px;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
     border-radius: 15px;
     position: relative;
     max-width: 70vw;
@@ -857,7 +857,7 @@ body {
     content: "";
     position: absolute;
     left: -25px; /* 定位到左侧外部 */
-    top: 50%;
+    top: 100px;
     transform: translateY(-50%);
     width: 0;
     height: 0;
@@ -870,7 +870,7 @@ body {
     content: "";
     position: absolute;
     right: -25px; /* 向右超出父元素 10px */
-    top: 50%;
+    top: 2rem;
     transform: translateY(-50%);
     width: 0;
     height: 0;
@@ -895,16 +895,16 @@ body {
     height: 180px;
     display: block;
     position: absolute;
-    right: -220px;
-    top: 30px;
+    right: -4.5rem;
+    top: 0rem;
   }
   .robotAvator {
     width: 180px;
     height: 180px;
     display: block;
     position: absolute;
-    left: -200px;
-    top: 30px;
+    left: -4.5rem;
+    top: 0rem;
   }
   .sendSpeakerWrap {
     padding-left: 60px;
