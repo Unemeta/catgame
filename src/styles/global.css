@@ -863,7 +863,7 @@ body {
     height: 0;
     border-style: solid;
     border-width: 4px 6px 4px 0; /* 上、右、下、左 */
-    border-color: transparent #5a235c4d transparent transparent;
+    border-color: transparent #20232a80 transparent transparent;
   }
 
   .send::after {

@@ -395,17 +395,17 @@ const ChatView = () => {
                   if (item?.role === "user") {
                     return (
                       <div className="" key={index}>
+                        {index != 0 &&
+                        item.time - messageList[index - 1].time < 5 * 60 ? (
+                          <></>
+                        ) : (
+                          <div className="dtext24 font-[500] text-white/70 dmb8 text-right msgTime flex justify-center py-[1.5rem]">
+                            {moment(item.time * 1000)
+                              .local()
+                              .format("YYYY/MM/DD HH:mm")}
+                          </div>
+                        )}
                         <div className="dmaxW460 dmr25 msgTimeWrap relative flex justify-end items-center">
-                          {/* {index != 0 &&
-                          item.time - messageList[index - 1].time < 5 * 60 ? (
-                            <></>
-                          ) : (
-                            <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 text-right msgTime flex justify-center py-[1.5rem]">
-                              {moment(item.time * 1000)
-                                .local()
-                                .format("YYYY/MM/DD HH:mm")}
-                            </div>
-                          )} */}
                           <div
                             className={cn("relative flex justify-end", {
                               // "opacity-50": index + 4 < messageList.length,
@@ -437,7 +437,7 @@ const ChatView = () => {
                         item.time - messageList[index - 1].time < 5 * 60 ? (
                           <></>
                         ) : (
-                          <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 text-right msgTime flex justify-center py-[1.5rem]">
+                          <div className="dtext24 font-[500] text-white/70  dmb8 text-right msgTime flex justify-center py-[1.5rem]">
                             {moment(item.time * 1000)
                               .local()
                               .format("YYYY/MM/DD HH:mm")}
@@ -453,7 +453,7 @@ const ChatView = () => {
                             src="/img/avataCat.min.png"
                             alt=""
                           />
-                          <div className="receive bg-[rgba(90,_35,_92,_0.30)] flex justify-start items-start msgWrap">
+                          <div className="receive bg-[rgba(32,_35,_42,_0.50)] flex justify-start items-start msgWrap">
                             {/* <img
                               className=" rounded-full dmr25 robotAvator"
                               src="/img/avataCat.min.png"
