@@ -136,29 +136,54 @@ const DialogCheckIn = () => {
                           className={cn(
                             "p-[0.8rem] relative bg-white/30 rounded-[10px] outline-1 outline-offset-[-1px] outline-white/20 inline-flex flex-col justify-start items-center gap-px w-[31%]",
                             {
-                              "w-[100%]": item.day === 7,
+                              "w-[100%] flex-row justify-around":
+                                item.day === 7,
                             }
                           )}
                           key={item.day}
                           onClick={checkIn}
                         >
-                          <div
-                            className={cn("relative w-[4rem]", {
-                              "opacity-50": item.checked,
-                            })}
-                          >
-                            <img className="" src="/img/fishitem.png" />
-                          </div>
-                          <div
-                            className={cn(
-                              "self-stretch text-center justify-start text-stone-600 text-[1.4rem] font-semibold font-['SF_Pro_Rounded'] leading-3 mt-[0.3rem]",
-                              {
+                          <div>
+                            <div
+                              className={cn("relative w-[4rem]", {
                                 "opacity-50": item.checked,
-                              }
-                            )}
-                          >
-                            x20
+                              })}
+                            >
+                              <img className="" src="/img/fishitem.png" />
+                            </div>
+                            <div
+                              className={cn(
+                                "self-stretch text-center justify-start text-stone-600 text-[1.4rem] font-semibold font-['SF_Pro_Rounded'] leading-3 mt-[0.3rem]",
+                                {
+                                  "opacity-50": item.checked,
+                                }
+                              )}
+                            >
+                              x20
+                            </div>
                           </div>
+
+                          {item.day === 7 && (
+                            <div>
+                              <div
+                                className={cn("relative w-[4rem]", {
+                                  "opacity-50": item.checked,
+                                })}
+                              >
+                                <img className="" src="/img/fishitem.png" />
+                              </div>
+                              <div
+                                className={cn(
+                                  "self-stretch text-center justify-start text-stone-600 text-[1.4rem] font-semibold font-['SF_Pro_Rounded'] leading-3 mt-[0.3rem]",
+                                  {
+                                    "opacity-50": item.checked,
+                                  }
+                                )}
+                              >
+                                x20
+                              </div>
+                            </div>
+                          )}
                           {item.checked ? (
                             <img
                               src="/img/footcheck.png"
@@ -175,58 +200,6 @@ const DialogCheckIn = () => {
                         </div>
                       );
                     })}
-                    {/* <div className="p-2 relative bg-white/10 rounded-[10px]  outline-1 outline-offset-[-1px] outline-white/30 inline-flex flex-col justify-start items-center gap-px w-[32%]">
-                    <div className="relative opacity-50 w-[4rem]">
-                      <img className="" src="/img/fishitem.png" />
-                    </div>
-                    <div className="self-stretch opacity-50 text-center justify-start text-stone-600 text-[1.2rem] font-semibold font-['SF_Pro_Rounded'] leading-3 mt-[0.3rem]">
-                      x20
-                    </div>
-                    <img
-                      src="/img/footcheck.png"
-                      alt=""
-                      className="w-[2.7rem] h-[2.7rem] left-[-0.4rem] top-[-0.4rem] absolute"
-                    />
-                  </div>
-                  <div className="p-2 relative bg-white/30 rounded-[10px] outline-1 outline-offset-[-1px] outline-white/20 inline-flex flex-col justify-start items-center gap-px w-[32%]">
-                    <div className="relative w-[4rem]">
-                      <img className="" src="/img/fishitem.png" />
-                    </div>
-                    <div className="self-stretch opacity-50 text-center justify-start text-stone-600 text-[1.2rem] font-semibold font-['SF_Pro_Rounded'] leading-3 mt-[0.3rem]">
-                      x20
-                    </div>
-                    <div className="px-[0.5rem] py-[0.3rem] left-[-0.4rem] top-[-0.4rem] absolute bg-white rounded-[2rem] outline-1 outline-white inline-flex justify-center items-center gap-2.5">
-                      <div className="justify-start text-red-400 text-[1.2rem] font-['SF_Pro_Rounded'] leading-3">
-                        Day 4
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-2 relative bg-white/30 rounded-[10px] outline-1 outline-offset-[-1px] outline-white/20 inline-flex flex-col justify-start items-center gap-px w-[32%]">
-                    <div className="relative w-[4rem]">
-                      <img className="" src="/img/fishitem.png" />
-                    </div>
-                    <div className="self-stretch opacity-50 text-center justify-start text-stone-600 text-[1.2rem] font-semibold font-['SF_Pro_Rounded'] leading-3 mt-[0.3rem]">
-                      x20
-                    </div>
-                    <div className="px-[0.5rem] py-[0.3rem] left-[-0.4rem] top-[-0.4rem] absolute bg-white rounded-[2rem] outline-1 outline-white inline-flex justify-center items-center gap-2.5">
-                      <div className="justify-start text-red-400 text-[1.2rem] font-['SF_Pro_Rounded'] leading-3">
-                        Day 4
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-2 relative bg-white/30 rounded-[10px] outline-1 outline-offset-[-1px] outline-white/20 inline-flex flex-col justify-start items-center gap-px w-[100%]">
-                    <div className="relative w-[4rem]">
-                      <img className="" src="/img/fishitem.png" />
-                    </div>
-                    <div className="self-stretch opacity-50 text-center justify-start text-stone-600 text-[1.2rem] font-semibold font-['SF_Pro_Rounded'] leading-3 mt-[0.3rem]">
-                      x20
-                    </div>
-                    <div className="px-[0.5rem] py-[0.3rem] left-[-0.4rem] top-[-0.4rem] absolute bg-white rounded-[2rem] outline-1 outline-white inline-flex justify-center items-center gap-2.5">
-                      <div className="justify-start text-red-400 text-[1.2rem] font-['SF_Pro_Rounded'] leading-3">
-                        Day 4
-                      </div>
-                    </div>
-                  </div> */}
                   </div>
                 </div>
               </div>

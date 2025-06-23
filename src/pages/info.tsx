@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { useUserBasicInfo } from "@/store/info";
 import { request } from "@/utils/request";
 import { useRouter } from "next/router";
-import DialogCheckIn from "@/components/dialog/checkIn";
+// import DialogCheckIn from "@/components/dialog/checkIn";
 // import DialogExchange from "@/components/dialog/exchange";
 
 const InfoView = () => {
@@ -120,8 +120,7 @@ const InfoView = () => {
           }}
         ></ProgressBar>
       )}
-      {/* <DialogCheckIn id={1}></DialogCheckIn> */}
-      <DialogCheckIn></DialogCheckIn>
+      {/* <DialogCheckIn></DialogCheckIn> */}
     </div>
   );
 };

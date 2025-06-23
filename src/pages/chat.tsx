@@ -5,7 +5,7 @@ import { ReactNode, useEffect, useRef, useState } from "react";
 // import styles from "@/styles/Backpack.module.css";
 import { jwtHelper } from "@/utils/jwt";
 import { request } from "@/utils/request";
-import { useFetchUser, useShowVocie } from "@/store";
+import { useFetchUser, useShowVocie, useCheckInDia } from "@/store";
 import { toast } from "react-toastify";
 import moment from "moment";
 import SpeechRecognition from "@/components/SpeechRecognition";
@@ -19,6 +19,7 @@ import ImgView from "@/components/photeView";
 import VideoPlayView from "@/components/videoPlay";
 import DialogSetting from "@/components/dialog/setting";
 import DialogExchange from "@/components/dialog/exchange";
+import DialogCheckIn from "@/components/dialog/checkIn";
 
 let timerHistory: NodeJS.Timeout | null | undefined = null;
 const ChatView = () => {
@@ -26,6 +27,7 @@ const ChatView = () => {
   const { userData } = useFetchUser();
   const [showVoice, setShowVoice] = useShowVocie();
   // const { scrollTop, clientHeight,scrollHieght } = useScrollTop("chatWindow");
+  const [, setShowCheckIn] = useCheckInDia();
 
   const [socket, setSocket] = useState<WebSocket | null>(null);
   const [inputMsg, setinputMsg] = useState("");
@@ -349,7 +351,12 @@ const ChatView = () => {
               </div>
             </div> */}
             <div className="flex justify-end items-center">
-              <div className="px-[0.8rem] py-[0.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(58,53,53,0.20)_0%,rgba(58,53,53,0.20)_100%),linear-gradient(180deg,rgba(255,152,146,0.60)_0%,rgba(255,185,181,0.60)_100%)]">
+              <div
+                className="px-[0.8rem] py-[0.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(58,53,53,0.20)_0%,rgba(58,53,53,0.20)_100%),linear-gradient(180deg,rgba(255,152,146,0.60)_0%,rgba(255,185,181,0.60)_100%)]"
+                onClick={() => {
+                  setShowCheckIn(true);
+                }}
+              >
                 <img
                   className="w-[1.6rem] h-[1.6rem] mr-[0.6rem]"
                   src="/svg/check_ calendar.svg"
@@ -568,8 +575,13 @@ const ChatView = () => {
           <div className={cn(styles.mask, "w-[100vw] absolute bottom-0")}></div>
         </div>
         {/* <VideoBackground /> */}
-        
-        <DialogExchange id={1} show={showExchange} setShow={setshowExchange}></DialogExchange>
+
+        <DialogExchange
+          id={1}
+          show={showExchange}
+          setShow={setshowExchange}
+        ></DialogExchange>
+        <DialogCheckIn></DialogCheckIn>
       </div>
     </div>
   );
