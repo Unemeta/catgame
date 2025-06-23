@@ -3,7 +3,7 @@
 import { ReactNode, useState } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from ".";
 import { cn } from "@/lib/utils";
-
+import { useFetchUser } from "@/store";
 
 interface iDialogSetting {
   trigger?: ReactNode;
@@ -13,6 +13,7 @@ interface iDialogSetting {
 const DialogSetting = ({ trigger }: iDialogSetting) => {
   const [isOpen, setisOpen] = useState(false);
   const [indexLanguase, setindexLanguase] = useState(0);
+  const { userData } = useFetchUser();
 
   return (
     <Dialog
@@ -25,7 +26,6 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
       <DialogContent className="p-0 h-auto w-[83vw]">
         <DialogTitle></DialogTitle>
         <div
-        
           className="rounded-[3rem] bg-[linear-gradient(187deg,#B48471_-9.74%,rgba(212,204,195,0.60)_72.93%)] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.55)] border-[#FFFFF7] border-[0.2rem] "
           // style={{
           //   background:
@@ -40,7 +40,7 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
           <div className="px-[2rem]">
             <div className="h-[1.6rem]"></div>
             <div className="mb-[1rem] text-white text-[1.4rem] font-[500]">
-              Hello, YOYO.
+              Hello, {userData?.nickname}
             </div>
             <div className="flex justify-between items-center px-[1.6rem] py-[0.8rem] bg-white/10 border-white/30 border-[0.1rem] rounded-[1rem]">
               <div className="flex justify-start items-center">
@@ -50,7 +50,7 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
                   alt=""
                 />
                 <span className="text-white text-[1.4rem] font-[700]">
-                  UID: 36000453
+                  UID: {userData?.uuid}
                 </span>
               </div>
               <div className="">
