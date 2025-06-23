@@ -493,7 +493,34 @@ const ChatView = () => {
                 onSend={(text) => sendMessageByVoice(text)}
               ></SpeechRecognition>
             ) : (
-              <div className="textInput flex justify-center items-center sendSpeakerWrap">
+              <div className="textInput flex justify-center items-center sendSpeakerWrap relative">
+                <div className="absolute top-[-3rem] right-[1rem]">
+                  {Number(chatCount) === 20 ? (
+                    <div className="flex justify-center items-center px-[1rem] py-[0.6rem] bg-[rgba(58,53,53,0.50)] border-white/20 border-[1px] rounded-[11rem]">
+                      {/* <img
+                          className="chatNumLeft"
+                          src="/img/clock.png"
+                          alt=""
+                        /> */}
+                      <span className="text-white text-[1rem] font-[500] mr-[0.4rem]">
+                        Update
+                      </span>
+                      <div className="text-white text-[1rem] font-[800]">
+                        <CountdownTimer></CountdownTimer>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="px-[1rem] py-[0.6rem] bg-[rgba(58,53,53,0.50)] border-white/20 border-[1px] rounded-[11rem]">
+                      <span className="text-white text-[1rem] font-[500]">
+                        ChatPoints:{" "}
+                        {Number(chatCount) >= 0
+                          ? 20 - (Number(chatCount) || 0)
+                          : "-"}
+                        /20
+                      </span>
+                    </div>
+                  )}
+                </div>
                 <div className="relative sendInputWrap flex ">
                   <input
                     tabIndex={-1}

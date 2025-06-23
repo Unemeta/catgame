@@ -790,9 +790,6 @@ body {
     /* background-size: cover; */
     /* border: 1px solid red; */
   }
-  .resetTimerView {
-    margin-right: 30px;
-  }
   .h5ChatNum {
     display: block;
   }
@@ -829,9 +826,6 @@ body {
     height: 70px;
   }
   .chatNumWrap {
-    padding: 8px 30px 8px 30px;
-    font-size: 62px;
-    border-radius: 20px;
   }
   .chatEnegy {
     display: none;
