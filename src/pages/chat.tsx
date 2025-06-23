@@ -17,6 +17,7 @@ import CountdownTimer from "@/components/countDownReset";
 import PopoverChatNum from "@/components/popover/chatNum";
 import ImgView from "@/components/photeView";
 import VideoPlayView from "@/components/videoPlay";
+import DialogSetting from "@/components/dialog/setting";
 
 let timerHistory: NodeJS.Timeout | null | undefined = null;
 const ChatView = () => {
@@ -366,11 +367,15 @@ const ChatView = () => {
                 </span>
               </div>
               <div className="w-[0.6rem]"></div>
-              <img
-                className="w-[2.4rem] h-[2.4rem]"
-                src="/img/setting.min.png"
-                alt=""
-              />
+              <DialogSetting
+                trigger={
+                  <img
+                    className="w-[2.4rem] h-[2.4rem]"
+                    src="/img/setting.min.png"
+                    alt=""
+                  />
+                }
+              ></DialogSetting>
             </div>
           </div>
           <div className="flex flex-col chatCttH lmdWfull z-1 relative">
