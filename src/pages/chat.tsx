@@ -18,6 +18,7 @@ import PopoverChatNum from "@/components/popover/chatNum";
 import ImgView from "@/components/photeView";
 import VideoPlayView from "@/components/videoPlay";
 import DialogSetting from "@/components/dialog/setting";
+import DialogExchange from "@/components/dialog/exchange";
 
 let timerHistory: NodeJS.Timeout | null | undefined = null;
 const ChatView = () => {
@@ -28,6 +29,7 @@ const ChatView = () => {
 
   const [socket, setSocket] = useState<WebSocket | null>(null);
   const [inputMsg, setinputMsg] = useState("");
+  const [showExchange, setshowExchange] = useState(false);
   const [messageList, setmessageList] = useState<
     {
       chatId: string;
@@ -132,6 +134,7 @@ const ChatView = () => {
     if (socket) {
       if (Number(chatCount) >= 20) {
         toast.info("Insufficient ability to send message");
+        setshowExchange(true);
         return;
       }
       if (inputMsg?.length > 0) {
@@ -562,6 +565,7 @@ const ChatView = () => {
           <div className={cn(styles.mask, "w-[100vw] absolute bottom-0")}></div>
         </div>
         {/* <VideoBackground /> */}
+        {showExchange && <DialogExchange id={1}></DialogExchange>}
       </div>
     </div>
   );
