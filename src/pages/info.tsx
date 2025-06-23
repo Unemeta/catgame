@@ -120,7 +120,8 @@ const InfoView = () => {
           }}
         ></ProgressBar>
       )}
-      <DialogCheckIn id={1}></DialogCheckIn>
+      {/* <DialogCheckIn id={1}></DialogCheckIn> */}
+      <DialogCheckIn></DialogCheckIn>
     </div>
   );
 };
