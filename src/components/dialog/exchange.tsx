@@ -12,10 +12,10 @@ const DialogExchange = ({ id }: iDialogExchange) => {
   const [showCheckIn, setShowCheckIn] = useCheckInDia();
   return (
     <Dialog open={showCheckIn} onOpenChange={setShowCheckIn}>
-      <DialogTitle></DialogTitle>
-      <DialogContent>
-        <div className="w-[30rem] h-[35rem] relative">
-          <div className="self-stretch bg-gradient-to-b from-red-300 to-stone-500/0 rounded-[3rem] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.55)] outline outline-2 outline-offset-[-2px] outline-stone-50 inline-flex flex-col justify-start items-center gap-4 overflow-hidden w-full">
+      <DialogContent className="p-0 h-auto w-[83vw]">
+        <DialogTitle></DialogTitle>
+        <div className="relative bg-[url('/img/bg_setting.min.png')] bg-cover rounded-[3rem]  shadow-[0px_4px_20px_0px_rgba(0,0,0,0.55)] border-[#FFFFF7] border-[0.2rem]">
+          <div className="self-stretch  to-stone-500/0 rounded-[3rem] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.55)] outline outline-2 outline-offset-[-2px] outline-stone-50 inline-flex flex-col justify-start items-center gap-4 overflow-hidden w-full">
             {/* 标题 */}
             <div
               className="text-center justify-start text-yellow-900 text-[1.8rem] font-extrabold font-['SF_Pro_Rounded'] leading-snug p-[1rem] rounded-tl-[3rem] rounded-tr-[3rem] w-full"
