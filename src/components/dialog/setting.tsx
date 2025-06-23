@@ -25,7 +25,8 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
       <DialogContent className="p-0 h-auto w-[83vw]">
         <DialogTitle></DialogTitle>
         <div
-          className="rounded-[3rem] bg-[url('/img/bg_setting.min.png')] bg-cover shadow-[0px_4px_20px_0px_rgba(0,0,0,0.55)] border-[#FFFFF7] border-[0.2rem] "
+        
+          className="rounded-[3rem] bg-[linear-gradient(187deg,#B48471_-9.74%,rgba(212,204,195,0.60)_72.93%)] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.55)] border-[#FFFFF7] border-[0.2rem] "
           // style={{
           //   background:
           //     "linear-gradient(187deg, #EDA88D -9.74%, rgba(157, 137, 87, 0.00) 72.93%, rgba(240, 233, 225, 0.60));",
