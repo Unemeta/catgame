@@ -4,6 +4,8 @@ import { ReactNode, useState } from "react";
 import { Dialog, DialogContent } from ".";
 import IconView from "../IconView";
 import { cn } from "@/lib/utils";
+import { request } from "@/utils/request";
+import { toast } from "react-toastify";
 interface iDialogExchange {
   show: boolean;
   setShow: (val: boolean) => void;
@@ -13,6 +15,26 @@ interface iDialogExchange {
 const DialogExchange = ({ id, show, setShow }: iDialogExchange) => {
   const [amountBuy, setamountBuy] = useState(4);
   console.log(id);
+
+  const handleConfirm = async () => {
+    try {
+      const res = await request({
+        url: `/api/cat/v1/chat/fish/swap`,
+        method: "post",
+        data: {
+          type: 0,
+          amount: amountBuy,
+        },
+      });
+      console.log(res);
+      toast.success("Exchange successful");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.error(error);
+      toast.error(error?.response?.data || JSON.stringify(error));
+    }
+    setShow(false);
+  };
   return (
     <Dialog
       open={show}
@@ -79,7 +101,7 @@ const DialogExchange = ({ id, show, setShow }: iDialogExchange) => {
             <div className="flex justify-center items-center mt-[1.6rem] mb-[1.6rem]">
               <div
                 className="self-stretch flex flex-col justify-start items-center gap-2.5"
-                onClick={() => setShow(false)}
+                onClick={handleConfirm}
               >
                 <div className="w-[13.2rem] h-[3.8rem] px-5 py-3 bg-white rounded-[31.74px] shadow-[0px_3px_14px_0px_rgba(255,255,255,0.45)] inline-flex justify-center items-center gap-2">
                   <div className="text-center justify-start text-red-400 text-[1.6rem] font-extrabold font-['SF_Pro_Rounded'] leading-tight">
@@ -98,7 +120,6 @@ const DialogExchange = ({ id, show, setShow }: iDialogExchange) => {
               <img className="w-[4rem] h-auto" src="/img/close.png" alt="" />
             </div>
           </div>
-          
         </div>
       </DialogContent>
     </Dialog>
