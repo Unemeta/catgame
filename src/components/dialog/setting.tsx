@@ -1,11 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-img-element */
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useState } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from ".";
-import DialogTitleView from "./dialogTitle";
 import { cn } from "@/lib/utils";
 
-const videoUrl = "/videos/playball.mp4";
 
 interface iDialogSetting {
   trigger?: ReactNode;
@@ -15,7 +13,6 @@ interface iDialogSetting {
 const DialogSetting = ({ trigger }: iDialogSetting) => {
   const [isOpen, setisOpen] = useState(false);
   const [indexLanguase, setindexLanguase] = useState(0);
-  const refVideo = useRef(null);
 
   return (
     <Dialog

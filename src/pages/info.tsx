@@ -32,6 +32,7 @@ const InfoView = () => {
       method: "get",
     });
     const { step } = res.data;
+    console.log(step);
     //0 代表未填写过基础信息
     //1 代表填写过基础信息，未填写过mbti
     //2 代表填写过基础信息和mbti
