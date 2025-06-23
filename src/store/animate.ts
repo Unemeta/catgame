@@ -74,3 +74,10 @@ export const useCheckInDia = () => {
     useHydrateAtoms([[showCheckInDia, true]] as const);
     return useAtom(showCheckInDia);
 };
+
+
+const showExchange = atom<boolean>(false)
+export const useExchange = () => {
+    useHydrateAtoms([[showExchange, false]] as const);
+    return useAtom(showExchange);
+};

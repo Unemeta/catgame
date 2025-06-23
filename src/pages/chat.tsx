@@ -5,7 +5,7 @@ import { ReactNode, useEffect, useRef, useState } from "react";
 // import styles from "@/styles/Backpack.module.css";
 import { jwtHelper } from "@/utils/jwt";
 import { request } from "@/utils/request";
-import { useFetchUser, useShowVocie } from "@/store";
+import { useExchange, useFetchUser, useShowVocie } from "@/store";
 import { toast } from "react-toastify";
 import moment from "moment";
 import SpeechRecognition from "@/components/SpeechRecognition";
@@ -29,7 +29,8 @@ const ChatView = () => {
 
   const [socket, setSocket] = useState<WebSocket | null>(null);
   const [inputMsg, setinputMsg] = useState("");
-  const [showExchange, setshowExchange] = useState(false);
+  const [showExchange, setshowExchange] = useExchange();
+
   const [messageList, setmessageList] = useState<
     {
       chatId: string;
@@ -131,12 +132,12 @@ const ChatView = () => {
   }, [messageList]);
 
   const sendMessage = () => {
+    if (Number(chatCount) >= 20) {
+      // toast.info("Insufficient ability to send message");
+      setshowExchange(true);
+      return;
+    }
     if (socket) {
-      if (Number(chatCount) >= 20) {
-        toast.info("Insufficient ability to send message");
-        setshowExchange(true);
-        return;
-      }
       if (inputMsg?.length > 0) {
         setmessageList((preMsgList: any) => {
           return [
@@ -366,7 +367,7 @@ const ChatView = () => {
                   alt=""
                 />
                 <span className="text-[#FFF] text-[1.4rem] font-[700]">
-                  4,234
+                  {Number(userData?.fishAmount ?? 0).toLocaleString()}
                 </span>
               </div>
               <div className="w-[0.6rem]"></div>
@@ -517,7 +518,9 @@ const ChatView = () => {
                       <span className="text-white text-[1rem] font-[500]">
                         ChatPoints:{" "}
                         {Number(chatCount) >= 0
-                          ? 20 - (Number(chatCount) || 0)
+                          ? 20 - (Number(chatCount) || 0) >= 0
+                            ? 20 - (Number(chatCount) || 0)
+                            : 0
                           : "-"}
                         /20
                       </span>
@@ -565,7 +568,7 @@ const ChatView = () => {
           <div className={cn(styles.mask, "w-[100vw] absolute bottom-0")}></div>
         </div>
         {/* <VideoBackground /> */}
-        {showExchange && <DialogExchange id={1}></DialogExchange>}
+        <DialogExchange id={1}></DialogExchange>
       </div>
     </div>
   );

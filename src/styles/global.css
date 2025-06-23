@@ -938,7 +938,7 @@ body {
     --borderWidth: 10px;
     border-radius: calc(10 * var(--borderWidth));
   }
-  .sendInputWrap:after {
+  /* .sendInputWrap:after {
     content: "";
     position: absolute;
     top: calc(-1 * var(--borderWidth));
@@ -946,7 +946,7 @@ body {
     height: calc(100% + var(--borderWidth) * 2);
     width: calc(100% + var(--borderWidth) * 2);
     border-radius: calc(10 * var(--borderWidth));
-  }
+  } */
   /* animation: animatedgradient 3s ease alternate infinite; */
   .drm5 {
     margin-right: 20px;

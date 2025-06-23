@@ -7,6 +7,7 @@ interface userInfo {
     avatar: string,
     nickname: string,
     nowExpPercent: number,
+    fishAmount:number,
     totalLevel: number,
     diamond: number,
     coin: number,
@@ -22,6 +23,7 @@ const userDataAtom = atom<userInfo>(
         nowExpPercent: 0,
         totalLevel: 0,
         diamond: 0,
+        fishAmount:0,
         coin: 0,
         nowExp: 0,
         totalLevelTotalExp: 0
@@ -34,6 +36,7 @@ export const useUserData = () => {
         avatar: '',
         nickname: '',
         nowExpPercent: 0,
+        fishAmount:0,
         totalLevel: 0,
         diamond: 0,
         coin: 0,

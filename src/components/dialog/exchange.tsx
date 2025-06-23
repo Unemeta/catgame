@@ -2,16 +2,16 @@
 /* eslint-disable @next/next/no-img-element */
 import { ReactNode } from "react";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from ".";
-import { useCheckInDia } from "@/store";
+import {  useExchange } from "@/store";
 interface iDialogExchange {
   trigger?: ReactNode;
   id: number;
 }
 const DialogExchange = ({ id }: iDialogExchange) => {
   console.log(id);
-  const [showCheckIn, setShowCheckIn] = useCheckInDia();
+  const [showExchange, setshowExchange] = useExchange();
   return (
-    <Dialog open={showCheckIn} onOpenChange={setShowCheckIn}>
+    <Dialog open={showExchange} onOpenChange={setshowExchange}>
       <DialogContent className="p-0 h-auto w-[83vw]">
         <DialogTitle></DialogTitle>
         <div className="relative bg-[linear-gradient(187deg,#B48471_-9.74%,rgba(212,204,195,0.60)_72.93%)] rounded-[3rem]  shadow-[0px_4px_20px_0px_rgba(0,0,0,0.55)] border-[#FFFFF7] border-[0.2rem]">
