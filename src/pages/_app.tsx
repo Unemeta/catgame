@@ -3,8 +3,7 @@ import { useEffect, useState } from "react";
 import "@/styles/global.css";
 import { ToastContainer } from "react-toastify";
 import Head from "next/head";
-import 'react-photo-view/dist/react-photo-view.css';
-
+import "react-photo-view/dist/react-photo-view.css";
 
 // import Router from "next/router";
 // import NProgress from "nprogress";
@@ -22,7 +21,7 @@ import 'react-photo-view/dist/react-photo-view.css';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   // const [isPortrait, setIsPortrait] = useState(false);
-  const [isvertical, setisvertical] = useState(false)
+  const [isvertical, setisvertical] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -57,7 +56,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           <ToastContainer />
         </>
       )} */}
-       {process.env.NEXT_PUBLIC_VERTICAL === "true" && isvertical ? (
+      {process.env.NEXT_PUBLIC_VERTICAL === "true" && isvertical ? (
         <div className="rotate-screen">请旋转设备至竖屏模式</div>
       ) : (
         <>
