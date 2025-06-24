@@ -48,9 +48,8 @@ const ChatView = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    fetchUser();
-  }, [fetchUser]);
-
+    fetchUser?.();
+  }, []);
 
   useEffect(() => {
     (() => {
@@ -372,7 +371,12 @@ const ChatView = () => {
                 </span>
               </div>
               <div className="w-[0.6rem]"></div>
-              <div className="px-[0.8rem] py-[0.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(46,59,63,0.20)_0%,rgba(46,59,63,0.20)_100%),linear-gradient(180deg,rgba(146,207,236,0.60)_0%,rgba(172,224,249,0.60)_100%);]">
+              <div
+                className="px-[0.8rem] py-[0.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(46,59,63,0.20)_0%,rgba(46,59,63,0.20)_100%),linear-gradient(180deg,rgba(146,207,236,0.60)_0%,rgba(172,224,249,0.60)_100%);]"
+                onClick={() => {
+                  setshowExchange(true);
+                }}
+              >
                 <img
                   className="w-[1.6rem] h-[1.6rem] mr-[0.6rem]"
                   src="/svg/fish.svg"
