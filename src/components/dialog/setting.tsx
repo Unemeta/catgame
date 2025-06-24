@@ -4,6 +4,7 @@ import { ReactNode, useState } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from ".";
 import { cn } from "@/lib/utils";
 import { useFetchUser } from "@/store";
+import { toast } from "react-toastify";
 
 interface iDialogSetting {
   trigger?: ReactNode;
@@ -15,6 +16,26 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
   const [indexLanguase, setindexLanguase] = useState(0);
   const { userData } = useFetchUser();
 
+  const copyToClipboard = (textToCopy: string | number) => {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(textToCopy.toString());
+    } else {
+      const textArea = document.createElement("textarea");
+      textArea.value = textToCopy.toString();
+      textArea.style.position = "absolute";
+      textArea.style.opacity = "0";
+      textArea.style.left = "-999999px";
+      textArea.style.top = "-999999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      return new Promise<void>((res, rej) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        document.execCommand("copy") ? res() : rej();
+        textArea.remove();
+      });
+    }
+  };
   return (
     <Dialog
       open={isOpen}
@@ -58,6 +79,15 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
                   className="w-[1.8rem] h-[1.8rem]"
                   src="/svg/icon_copy.svg"
                   alt=""
+                  onClick={() => {
+                    if (userData?.uuid) {
+                      copyToClipboard(userData?.uuid).then(() => {
+                        toast.success("Copied");
+                      });
+                    } else {
+                      toast.error("uid null");
+                    }
+                  }}
                 />
               </div>
             </div>
@@ -72,7 +102,12 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
                   Photo Album
                 </span>
               </div>
-              <div className="">
+              <div
+                className=""
+                onClick={() => {
+                  toast.info("Coming soon!");
+                }}
+              >
                 <img
                   className="w-[1.8rem] h-[1.8rem]"
                   src="/svg/icon_arrow_right.svg"
@@ -96,6 +131,13 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
                   className="w-[1.8rem] h-[1.8rem]"
                   src="/svg/icon_arrow_right.svg"
                   alt=""
+                  onClick={() => {
+                    window.open(
+                      // "https://discord.com/invite/YzztkC6ENe",
+                      "https://discord.com",
+                      "_blank"
+                    );
+                  }}
                 />
               </div>
             </div>
