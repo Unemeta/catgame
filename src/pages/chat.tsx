@@ -367,7 +367,7 @@ const ChatView = () => {
                   alt=""
                 />
                 <span className="text-[#FFF] text-[1.4rem] font-[700]">
-                  01:23m
+                  day {userData.day}
                 </span>
               </div>
               <div className="w-[0.6rem]"></div>

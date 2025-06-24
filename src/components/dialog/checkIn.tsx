@@ -205,29 +205,30 @@ const DialogCheckIn = () => {
               </div>
 
               <div className="flex justify-center items-center">
-                <DialogTrigger>
-                  <div
-                    className={cn(
-                      "self-stretch pb-4 flex flex-col justify-start items-center gap-2.5",
-                      {
-                        "opacity-50": loading,
-                      }
+                <div
+                  className={cn(
+                    "self-stretch pb-4 flex flex-col justify-start items-center gap-2.5",
+                    {
+                      "opacity-50": loading,
+                    }
+                  )}
+                  onClick={() => {
+                    setShowCheckIn(false);
+                  }}
+                >
+                  <div className="w-[13.2rem] h-[3.8rem] px-5 py-3 bg-white rounded-[31.74px] shadow-[0px_4px_24px_0px_rgba(214,90,63,0.60)] shadow-[0px_3px_14px_0px_rgba(255,255,255,0.45)] inline-flex justify-center items-center gap-2">
+                    {loading && (
+                      <img
+                        src="/img/loading.png"
+                        alt=""
+                        className="w-[1.8rem]"
+                      />
                     )}
-                  >
-                    <div className="w-[13.2rem] h-[3.8rem] px-5 py-3 bg-white rounded-[31.74px] shadow-[0px_4px_24px_0px_rgba(214,90,63,0.60)] shadow-[0px_3px_14px_0px_rgba(255,255,255,0.45)] inline-flex justify-center items-center gap-2">
-                      {loading && (
-                        <img
-                          src="/img/loading.png"
-                          alt=""
-                          className="w-[1.8rem]"
-                        />
-                      )}
-                      <div className="text-center justify-start text-[#E96856] text-[1.6rem] font-extrabold font-['SF_Pro_Rounded'] leading-tight">
-                        Confirm
-                      </div>
+                    <div className="text-center justify-start text-[#E96856] text-[1.6rem] font-extrabold font-['SF_Pro_Rounded'] leading-tight">
+                      Confirm
                     </div>
                   </div>
-                </DialogTrigger>
+                </div>
               </div>
             </div>
 

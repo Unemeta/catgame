@@ -7,13 +7,14 @@ interface userInfo {
     avatar: string,
     nickname: string,
     nowExpPercent: number,
-    fishAmount:number,
+    fishAmount: number,
     totalLevel: number,
     uuid: string,
     diamond: number,
     coin: number,
     nowExp: number,
-    totalLevelTotalExp: number
+    totalLevelTotalExp: number,
+    day: number
 }
 
 const userDataAtom = atom<userInfo>(
@@ -24,11 +25,12 @@ const userDataAtom = atom<userInfo>(
         nowExpPercent: 0,
         totalLevel: 0,
         diamond: 0,
-        fishAmount:0,
+        fishAmount: 0,
         uuid: '',
         coin: 0,
         nowExp: 0,
-        totalLevelTotalExp: 0
+        totalLevelTotalExp: 0,
+        day: 0
     },
 );
 
@@ -38,13 +40,14 @@ export const useUserData = () => {
         avatar: '',
         nickname: '',
         nowExpPercent: 0,
-        fishAmount:0,
+        fishAmount: 0,
         uuid: '',
         totalLevel: 0,
         diamond: 0,
         coin: 0,
         nowExp: 0,
-        totalLevelTotalExp: 0
+        totalLevelTotalExp: 0,
+        day: 0,
     }]] as const);
     return useAtom(userDataAtom);
 };
