@@ -23,7 +23,7 @@ interface iDialogChatView {
 let timerHistory: NodeJS.Timeout | null | undefined = null;
 const DialogChatView = ({ trigger }: iDialogChatView) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { userData } = useFetchUser();
+  const { userData, fetchUser } = useFetchUser();
   const [showVoice, setShowVoice] = useShowVocie();
 
   const [socket, setSocket] = useState<WebSocket | null>(null);
@@ -34,6 +34,10 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
   const chatEndRef = useRef(null);
   const [toConnect, settoConnect] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    fetchUser();
+  }, [fetchUser]);
 
   useEffect(() => {
     (() => {
@@ -228,7 +232,7 @@ const DialogChatView = ({ trigger }: iDialogChatView) => {
                   <div className="dpl10 dpr10 ">
                     <span
                       className={cn("", {
-                        "text-[#FF2549]": 20 - (Number(chatCount) || 0) === 0
+                        "text-[#FF2549]": 20 - (Number(chatCount) || 0) === 0,
                       })}
                       style={{ fontFamily: "SF Pro Rounded" }}
                     >
