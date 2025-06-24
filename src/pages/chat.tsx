@@ -24,7 +24,7 @@ import DialogCheckIn from "@/components/dialog/checkIn";
 let timerHistory: NodeJS.Timeout | null | undefined = null;
 const ChatView = () => {
   const router = useRouter();
-  const { userData } = useFetchUser();
+  const { userData, fetchUser } = useFetchUser();
   const [showVoice, setShowVoice] = useShowVocie();
   // const { scrollTop, clientHeight,scrollHieght } = useScrollTop("chatWindow");
   const [, setShowCheckIn] = useCheckInDia();
@@ -46,6 +46,11 @@ const ChatView = () => {
   const chatEndRef = useRef(null);
   const [toConnect, settoConnect] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    fetchUser();
+  }, [fetchUser]);
+
 
   useEffect(() => {
     (() => {
