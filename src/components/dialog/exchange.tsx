@@ -9,10 +9,11 @@ import { toast } from "react-toastify";
 interface iDialogExchange {
   show: boolean;
   setShow: (val: boolean) => void;
+  cb: ()=>void;
   trigger?: ReactNode;
   id: number;
 }
-const DialogExchange = ({ id, show, setShow }: iDialogExchange) => {
+const DialogExchange = ({ id, show, setShow,cb }: iDialogExchange) => {
   const [amountBuy, setamountBuy] = useState(4);
   console.log(id);
 
@@ -28,6 +29,7 @@ const DialogExchange = ({ id, show, setShow }: iDialogExchange) => {
       });
       console.log(res);
       toast.success("Exchange successful");
+      cb()
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error(error);

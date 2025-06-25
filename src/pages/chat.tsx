@@ -603,6 +603,10 @@ const ChatView = () => {
 
         <DialogExchange
           id={1}
+          cb={()=>{
+            fetchUser();
+            getChatInfo();
+          }}
           show={showExchange}
           setShow={setshowExchange}
         ></DialogExchange>
