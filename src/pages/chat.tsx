@@ -46,6 +46,7 @@ const ChatView = () => {
   const chatEndRef = useRef(null);
   const [toConnect, settoConnect] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const [showCatLoading, setshowCatLoading] = useState(false);
 
   useEffect(() => {
     fetchUser?.();
@@ -109,6 +110,7 @@ const ChatView = () => {
           ).map((msgId) => resArr.find((message) => message.msgId === msgId));
           return uniqueArr;
         });
+        setshowCatLoading(false);
         if (msgRes.hasOwnProperty("chatCount")) {
           setchatCount(String(msgRes.chatCount));
         }
@@ -145,7 +147,7 @@ const ChatView = () => {
     if (socket) {
       if (inputMsg?.length > 0) {
         setmessageList((preMsgList: any) => {
-          const chatId = `${new Date().getTime()}-${userData?.nickname}`
+          const chatId = `${new Date().getTime()}-${userData?.nickname}`;
           console.log(chatId);
           return [
             ...preMsgList,
@@ -159,6 +161,7 @@ const ChatView = () => {
           ];
         });
         socket?.send(inputMsg);
+        setshowCatLoading(true);
         setinputMsg("");
       } else {
         toast.info("Please enter msg");
@@ -506,6 +509,17 @@ const ChatView = () => {
                     );
                   }
                 })}
+                {showCatLoading && (
+                  <div className="flex justify-start items-center h-[3rem] ">
+                    <div className="bg-[rgba(32,_35,_42,_0.50)] px-[1rem] py-[0.7rem] rounded-[1.5rem] inline-block">
+                      <div className="load-3 flex justify-start items-center">
+                        <div className="line"></div>
+                        <div className="line mx-[0.5rem]"></div>
+                        <div className="line"></div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
             <div className="lmdSizebox hidden"></div>
