@@ -15,8 +15,13 @@ const PartyView = () => {
   // const [payload, setpayload] = useState({
 
   // });
+  const [isLoading, setisLoading] = useState(false)
   const postInfo = async (selectIndexs: number[]) => {
     try {
+      if(isLoading){
+        return
+      }
+      setisLoading(true);
       const res = await request({
         url: "/api/cat/v1/survey/survey/mbti",
         method: "post",
@@ -40,6 +45,7 @@ const PartyView = () => {
       toast.error(error.response.data ?? JSON.stringify(error));
       console.log(error);
     }
+    setisLoading(false);
   };
   return (
     <div className="">
