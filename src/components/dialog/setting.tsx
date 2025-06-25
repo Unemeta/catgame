@@ -5,6 +5,8 @@ import { Dialog, DialogContent, DialogTitle, DialogTrigger } from ".";
 import { cn } from "@/lib/utils";
 import { useFetchUser } from "@/store";
 import { toast } from "react-toastify";
+import { jwtHelper } from "@/utils/jwt";
+import { useRouter } from "next/router";
 
 interface iDialogSetting {
   trigger?: ReactNode;
@@ -15,6 +17,7 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
   const [isOpen, setisOpen] = useState(false);
   const [indexLanguase, setindexLanguase] = useState(0);
   const { userData } = useFetchUser();
+  const router = useRouter();
 
   const copyToClipboard = (textToCopy: string | number) => {
     if (navigator.clipboard && window.isSecureContext) {
@@ -197,6 +200,19 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
               >
                 <span className="text-[#E96856] text-[1.6rem] font-[800]">
                   Confirm
+                </span>
+              </div>
+            </div>
+            <div className="flex justify-center items-center mt-[1rem]">
+              <div
+                className="bg-white shadow-[0px_3px_14px_0px_rgba(255,255,255,0.45)] rounded-[3.1rem] w-[13.2rem] py-[1.2rem] flex justify-center items-center"
+                onClick={() => {
+                  jwtHelper.clearToken();
+                  router.push("/login");
+                }}
+              >
+                <span className="text-[#E96856] text-[1.6rem] font-[800]">
+                  Log out
                 </span>
               </div>
             </div>
