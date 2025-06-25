@@ -19,7 +19,7 @@ import ImgView from "@/components/photeView";
 import VideoPlayView from "@/components/videoPlay";
 import DialogSetting from "@/components/dialog/setting";
 import DialogExchange from "@/components/dialog/exchange";
-import DialogCheckIn from "@/components/dialog/checkIn";
+import { DialogCheckIn } from "@/components/dialog/checkIn";
 
 let timerHistory: NodeJS.Timeout | null | undefined = null;
 const ChatView = () => {

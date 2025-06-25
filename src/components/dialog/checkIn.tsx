@@ -6,29 +6,40 @@ import { useCheckInDia } from "@/store";
 import { cn } from "@/lib/utils";
 import { request } from "@/utils/request";
 
-const SignToast = () => {
+export const SignToast = () => {
   return (
     <div
-      className="w-[100%] px-[6rem] py-[1rem] outline-1 outline-offset-[-1px] outline-stone-400/0 inline-flex flex-col justify-center items-center gap-2 z-100 top-[40%]"
       style={{
-        background:
-          "linear-gradient(90deg, rgba(108, 73, 55, 0.00) 0%, #6C4937 49.52%, rgba(108, 73, 55, 0.00) 100%)",
+        position: "absolute",
+        zIndex: 1000,
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%,-50%)",
+        width: "100vw",
       }}
     >
-      <div className="relative opacity-90 overflow-hidden">
-        <img
-          src="/img/check-circle-broken.png"
-          alt=""
-          className="w-[1.8rem] h-[1.8rem]"
-        />
-      </div>
-      <div className="self-stretch text-center justify-start text-white text-[1.4rem] font-bold font-['SF_Pro_Rounded'] leading-none">
-        Sign in successfully
+      <div
+        className="w-[100%] px-[6rem] py-[1rem] outline-1 outline-offset-[-1px] outline-stone-400/0 inline-flex flex-col justify-center items-center gap-2 z-100 top-[40%]"
+        style={{
+          background:
+            "linear-gradient(90deg, rgba(108, 73, 55, 0.00) 0%, #6C4937 49.52%, rgba(108, 73, 55, 0.00) 100%)",
+        }}
+      >
+        <div className="relative opacity-90 overflow-hidden">
+          <img
+            src="/img/check-circle-broken.png"
+            alt=""
+            className="w-[1.8rem] h-[1.8rem]"
+          />
+        </div>
+        <div className="self-stretch text-center justify-start text-white text-[1.4rem] font-bold font-['SF_Pro_Rounded'] leading-none">
+          Sign in successfully
+        </div>
       </div>
     </div>
   );
 };
-const DialogCheckIn = () => {
+export const DialogCheckIn = () => {
   const [showCheckIn, setShowCheckIn] = useCheckInDia();
   const [loading, setLoading] = useState(false);
   const [checkdays, setCheckdays] = useState([
@@ -102,10 +113,8 @@ const DialogCheckIn = () => {
     <>
       <Dialog open={showCheckIn} onOpenChange={setShowCheckIn}>
         <DialogTitle></DialogTitle>
-
         <DialogContent>
           {showToast && <SignToast></SignToast>}
-
           <div className="w-[30rem] h-[35rem] relative">
             <div className="self-stretch bg-gradient-to-b from-red-300 to-stone-500/0 rounded-[3rem] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.55)] outline-2 outline-offset-[-2px] outline-stone-50 inline-flex flex-col justify-start items-center gap-4 overflow-hidden w-full">
               {/* 标题 */}
@@ -249,5 +258,3 @@ const DialogCheckIn = () => {
     </>
   );
 };
-
-export default DialogCheckIn;
