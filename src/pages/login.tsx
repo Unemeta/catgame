@@ -28,7 +28,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
         expires: new Date(res.data.accessExpire * 1000),
       });
       if(process.env.NEXT_PUBLIC_VERTICAL === "true"){
-        router.push("/chat");
+        router.push("/info");
       }else{
         router.push("/");
       }
