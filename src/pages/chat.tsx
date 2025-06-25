@@ -98,7 +98,6 @@ const ChatView = () => {
           const resArr = [
             ...pre,
             {
-              chatId: userData?.nickname,
               msg: msgRes?.message,
               msgId: msgRes?.msgId,
               role: "cat",
@@ -146,10 +145,13 @@ const ChatView = () => {
     if (socket) {
       if (inputMsg?.length > 0) {
         setmessageList((preMsgList: any) => {
+          const chatId = `${new Date().getTime()}-${userData?.nickname}`
+          console.log(chatId);
           return [
             ...preMsgList,
             {
-              chatId: userData?.nickname,
+              chatId: chatId,
+              msgId: chatId,
               msg: inputMsg,
               role: "user",
               time: Math.floor(new Date().getTime() / 1000),
