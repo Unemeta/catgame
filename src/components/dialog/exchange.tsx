@@ -14,7 +14,7 @@ interface iDialogExchange {
   id: number;
 }
 const DialogExchange = ({ id, show, setShow,cb }: iDialogExchange) => {
-  const [amountBuy, setamountBuy] = useState(4);
+  const [amountBuy, setamountBuy] = useState(1);
   console.log(id);
 
   const handleConfirm = async () => {
