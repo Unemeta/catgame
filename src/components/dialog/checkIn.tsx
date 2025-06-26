@@ -212,8 +212,8 @@ export const DialogCheckIn = () => {
                   </div>
                 </div>
               </div>
-
-              <div className="flex justify-center items-center">
+              <div className="h-[4rem]"></div>
+              {/* <div className="flex justify-center items-center">
                 <div
                   className={cn(
                     "self-stretch pb-4 flex flex-col justify-start items-center gap-2.5",
@@ -238,7 +238,7 @@ export const DialogCheckIn = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             <div className="flex absolute top-[2rem] right-[2.5rem] translate-x-[100%] translate-y-[-80%]">
