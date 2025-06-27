@@ -1,5 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from "next/router";
+import IconView from "./IconView";
+import { request } from "@/utils/request";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 interface iStep3View {
   index: number;
@@ -9,6 +13,7 @@ interface iStep3View {
   };
 }
 const Step3View = ({ index }: iStep3View) => {
+  const [inputMsg, setinputMsg] = useState("");
   const cats = [
     {
       type: "Lively Cats",
@@ -35,7 +40,10 @@ const Step3View = ({ index }: iStep3View) => {
       </div>
       <div className="h-[1.2rem]"></div>
       <div className="px-[3rem]">
-        <div className="px-[2.8vh] py-[2.8vh] relative h-[55vh] bg-[url('/img/bg/bg_card_cat.min.png')]" style={{backgroundSize: "100% 100%"}}>
+        <div
+          className="px-[1.6rem] py-[1.6rem] relative h-[55vh] bg-[url('/img/bg/bg_card_cat.min.png')]"
+          style={{ backgroundSize: "100% 100%" }}
+        >
           <div className="">
             <div className="px-[1rem] py-2 text-white text-[1.6rem] font-[700] bg-[#F4738D99] rounded-[5rem] border-[#E397BC] border-w-[0.1rem] inline-block">
               {cats[index].keys[0]}
@@ -52,20 +60,31 @@ const Step3View = ({ index }: iStep3View) => {
             </div>
           </div>
           <div className="h-[24rem]"></div>
-          <div className="absolute left-[6.9rem] top-[5.8rem]">
+          <div className="absolute left-[0] top-[4rem] w-full flex justify-center">
             <img
               src="/img/bg_cat.min.png"
-              className="w-[20rem] h-[28.5rem]"
+              className="w-[auto] h-[34vh]"
               alt=""
             />
           </div>
           <div className="absolute bottom-0 left-0 w-full">
-            <div className="flex justify-center items-center mb-[2rem]">
-              <div className="bg-[url('/img/bg/bg_aloof_cat.min.png')] bg-cover bg-no-repeat text-white text-[2.8rem] font-[700] h-[5.3rem] px-[5rem] flex justify-center items-center">
+            <div className="flex justify-center items-center">
+              {/* <div className="bg-[url('/img/bg/bg_aloof_cat.min.png')] bg-cover bg-no-repeat text-white text-[2.8rem] font-[700] h-[5.3rem] px-[5rem] flex justify-center items-center">
                 {cats[index].type}
+              </div> */}
+              <div className="relative">
+                <input
+                  onChange={(e) => setinputMsg(e.target.value)}
+                  className="border-[1px] focus:outline-[#E96856]! border-[#E96856] rounded-full bg-white w-[21rem] h-[4rem] text-[#EA8273] text-[2rem] font-[700] px-[2rem] pr-[3.6rem] text-center"
+                  type="text"
+                />
+                <IconView
+                  className="w-[1.5rem] h-[1.5rem] absolute right-[1.8rem] top-[1.2rem]"
+                  type="eduitCatName"
+                ></IconView>
               </div>
             </div>
-            <div className="text-[#826662] text-[1.4rem] font-[500] flex justify-center items-center px-[3rem] text-center pb-[2.2rem]">
+            <div className="mt-[1rem] text-[#826662] text-[1.4rem] font-[700] flex justify-center items-center px-[3rem] text-center pb-[3rem]">
               {/* They have a natural aura, prefer their <br /> space, but once they
               trust you, they’ll <br /> quietly stay by your side for the long{" "}
               <br /> run. */}
@@ -92,8 +111,28 @@ const Step3View = ({ index }: iStep3View) => {
           </svg>
           <span
             className="px-[1rem] text-[#E96856] text-[2rem] font-[700]"
-            onClick={() => {
-              router.push("/chat");
+            onClick={async () => {
+              try {
+                if (inputMsg.length > 0) {
+                  //
+                } else {
+                  toast.info("Please enter the cat's name");
+                  return;
+                }
+                const { data } = await request({
+                  url: `/api/cat/v1/user/meow/name`,
+                  method: "post",
+                  data: {
+                    name: inputMsg,
+                  },
+                });
+                console.log(data);
+                router.push("/chat");
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              } catch (error: any) {
+                console.error(error);
+                toast.error(error?.response?.data || JSON.stringify(error));
+              }
             }}
           >
             Meet your cat
