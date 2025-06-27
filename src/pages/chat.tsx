@@ -302,7 +302,7 @@ const ChatView = () => {
           "bg-[url('/img/bg/bg_chat2.min.png')] bg-cover wrapHeight overflow-hidden  relative  w-[100vw] flex flex-col"
         )}
       >
-        <div className="headerBackpack flex justify-between items-center  px-[2rem] pt-[2rem]">
+        <div className="headerBackpack flex justify-between items-center  px-[2rem] pt-[1rem] pb-[1rem]">
           <div className="">
             {process.env.NEXT_PUBLIC_VERTICAL === "true" ? (
               <div className=""></div>
@@ -380,10 +380,9 @@ const ChatView = () => {
               </div>
             </div> */}
           <div className="flex justify-end items-center">
-            {/* <img className="w-[3.4rem] h-[3.4rem]" src="/img/emailBye.png" alt="" /> */}
             <img
               className="w-[2.4rem] h-[2.4rem]"
-              src="/img/setting.min.png"
+              src="/img/emailBye.png"
               alt=""
             />
             <div className="w-[0.6rem]"></div>
@@ -401,9 +400,6 @@ const ChatView = () => {
                 </div>
               }
             ></DialogCheckIn>
-
-            <div className="w-[0.6rem]"></div>
-
             <div className="w-[0.6rem]"></div>
             <DialogSetting
               trigger={
