@@ -85,7 +85,7 @@ const ChatView = () => {
     socketTemp.onmessage = (event) => {
       if (event?.type === "message" && event?.data !== "pong") {
         const msgRes = JSON.parse(event?.data);
-        if(msgRes?.type === "text"){
+        if (msgRes?.type === "text") {
           setchatCount(String(msgRes.chatCount));
         }
         if (
@@ -326,13 +326,13 @@ const ChatView = () => {
               </div>
             )}
             <div
-              className="px-[0.8rem] py-[0.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(46,59,63,0.20)_0%,rgba(46,59,63,0.20)_100%),linear-gradient(180deg,rgba(146,207,236,0.60)_0%,rgba(172,224,249,0.60)_100%);]"
+              className="px-[0.8rem] h-[2.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(46,59,63,0.20)_0%,rgba(46,59,63,0.20)_100%),linear-gradient(180deg,rgba(146,207,236,0.60)_0%,rgba(172,224,249,0.60)_100%);]"
               onClick={() => {
                 setshowExchange(true);
               }}
             >
               <img
-                className="w-[1.6rem] h-[1.6rem] mr-[0.6rem]"
+                className="w-[2rem] h-[2rem] mr-[0.6rem]"
                 src="/svg/fish.svg"
                 alt=""
               />
@@ -382,15 +382,19 @@ const ChatView = () => {
               </div>
             </div> */}
           <div className="flex justify-end items-center">
-            <img
-              className="w-[2.4rem] h-[2.4rem]"
-              src="/img/emailBye.png"
-              alt=""
-            />
+            <div className="relative">
+              <div className="w-[0.8rem] h-[0.8rem] bg-[#E95658] absolute right-0 top-[-0.1rem] rounded-full"></div>
+              <img
+                className="w-[2.4rem] h-[2.4rem]"
+                src="/img/emailBye.png"
+                alt=""
+              />
+            </div>
+
             <div className="w-[0.6rem]"></div>
             <DialogCheckIn
               trigger={
-                <div className="px-[0.8rem] py-[0.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(58,53,53,0.20)_0%,rgba(58,53,53,0.20)_100%),linear-gradient(180deg,rgba(255,152,146,0.60)_0%,rgba(255,185,181,0.60)_100%)]">
+                <div className="px-[0.8rem] h-[2.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(58,53,53,0.20)_0%,rgba(58,53,53,0.20)_100%),linear-gradient(180deg,rgba(255,152,146,0.60)_0%,rgba(255,185,181,0.60)_100%)]">
                   <img
                     className="w-[1.6rem] h-[1.6rem] mr-[0.6rem]"
                     src="/svg/check_ calendar.svg"
