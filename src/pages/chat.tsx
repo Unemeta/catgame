@@ -297,29 +297,28 @@ const ChatView = () => {
 
   return (
     <div className={styles.DialogContent}>
-      <div className={styles.contentBgChat}>
-        <div className="relative h-[100vh] w-[100vw]">
-          <div className="headerBackpack flex justify-between items-center dpt18 dpb18  dh90 px-[2rem]">
-            {process.env.NEXT_PUBLIC_VERTICAL === "true" ? (
-              <div className=""></div>
-            ) : (
-              <div
-                className="flex justify-start items-center cursor-pointer select-none"
-                onClick={() => {
-                  router.push("/");
-                }}
-              >
-                <img
-                  src="/img/back.svg"
-                  alt=""
-                  className="backIcon dw25 dh25"
-                />
-                <span className="text-white dtext25 font-[500] dml15 backText">
-                  Back
-                </span>
-              </div>
-            )}
-            {/* <div className="flex justify-end items-center ">
+      <div
+        className={cn(
+          "bg-[url('/img/bg/bg_chat2.min.png')] bg-cover h-[87vh] overflow-hidden  relative  w-[100vw] flex flex-col"
+        )}
+      >
+        <div className="headerBackpack flex justify-between items-center dpt18 dpb18 px-[2rem]">
+          {process.env.NEXT_PUBLIC_VERTICAL === "true" ? (
+            <div className=""></div>
+          ) : (
+            <div
+              className="flex justify-start items-center cursor-pointer select-none"
+              onClick={() => {
+                router.push("/");
+              }}
+            >
+              <img src="/img/back.svg" alt="" className="backIcon dw25 dh25" />
+              <span className="text-white dtext25 font-[500] dml15 backText">
+                Back
+              </span>
+            </div>
+          )}
+          {/* <div className="flex justify-end items-center ">
               {Number(chatCount) === 20 && (
                 <div className="resetTimerView">
                   <div className="chatNumWrap text-white font-[500] flex justify-end items-center bg-white/10">
@@ -359,248 +358,241 @@ const ChatView = () => {
                 </div>
               </div>
             </div> */}
-            <div className="flex justify-end items-center">
-              <DialogCheckIn
-                trigger={
-                  <div className="px-[0.8rem] py-[0.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(58,53,53,0.20)_0%,rgba(58,53,53,0.20)_100%),linear-gradient(180deg,rgba(255,152,146,0.60)_0%,rgba(255,185,181,0.60)_100%)]">
-                    <img
-                      className="w-[1.6rem] h-[1.6rem] mr-[0.6rem]"
-                      src="/svg/check_ calendar.svg"
-                      alt=""
-                    />
-                    <span className="text-[#FFF] text-[1.4rem] font-[700]">
-                      day {userData?.day}
-                    </span>
-                  </div>
-                }
-              ></DialogCheckIn>
-
-              <div className="w-[0.6rem]"></div>
-              <div
-                className="px-[0.8rem] py-[0.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(46,59,63,0.20)_0%,rgba(46,59,63,0.20)_100%),linear-gradient(180deg,rgba(146,207,236,0.60)_0%,rgba(172,224,249,0.60)_100%);]"
-                onClick={() => {
-                  setshowExchange(true);
-                }}
-              >
-                <img
-                  className="w-[1.6rem] h-[1.6rem] mr-[0.6rem]"
-                  src="/svg/fish.svg"
-                  alt=""
-                />
-                <span className="text-[#FFF] text-[1.4rem] font-[700]">
-                  {Number(userData?.fishAmount ?? 0).toLocaleString()}
-                </span>
-              </div>
-              <div className="w-[0.6rem]"></div>
-              <DialogSetting
-                trigger={
+          <div className="flex justify-end items-center">
+            <DialogCheckIn
+              trigger={
+                <div className="px-[0.8rem] py-[0.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(58,53,53,0.20)_0%,rgba(58,53,53,0.20)_100%),linear-gradient(180deg,rgba(255,152,146,0.60)_0%,rgba(255,185,181,0.60)_100%)]">
                   <img
-                    className="w-[2.4rem] h-[2.4rem]"
-                    src="/img/setting.min.png"
+                    className="w-[1.6rem] h-[1.6rem] mr-[0.6rem]"
+                    src="/svg/check_ calendar.svg"
                     alt=""
                   />
-                }
-              ></DialogSetting>
-            </div>
-          </div>
-          <div className="flex flex-col chatCttH lmdWfull z-1 relative">
-            {/* <img className=" w-full absolute z-[1]" src="/img/bg/bgChatMsgTop.min.png" alt="" /> */}
-            {/* <div className="hidden chatBoxSizeHeight"></div> */}
+                  <span className="text-[#FFF] text-[1.4rem] font-[700]">
+                    day {userData?.day}
+                  </span>
+                </div>
+              }
+            ></DialogCheckIn>
+
+            <div className="w-[0.6rem]"></div>
             <div
+              className="px-[0.8rem] py-[0.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(46,59,63,0.20)_0%,rgba(46,59,63,0.20)_100%),linear-gradient(180deg,rgba(146,207,236,0.60)_0%,rgba(172,224,249,0.60)_100%);]"
+              onClick={() => {
+                setshowExchange(true);
+              }}
+            >
+              <img
+                className="w-[1.6rem] h-[1.6rem] mr-[0.6rem]"
+                src="/svg/fish.svg"
+                alt=""
+              />
+              <span className="text-[#FFF] text-[1.4rem] font-[700]">
+                {Number(userData?.fishAmount ?? 0).toLocaleString()}
+              </span>
+            </div>
+            <div className="w-[0.6rem]"></div>
+            <DialogSetting
+              trigger={
+                <img
+                  className="w-[2.4rem] h-[2.4rem]"
+                  src="/img/setting.min.png"
+                  alt=""
+                />
+              }
+            ></DialogSetting>
+          </div>
+        </div>
+        {/* <div className=" flex flex-col chatCttH lmdWfull z-1 relative grow overflow-y-scroll"> */}
+        {/* <img className=" w-full absolute z-[1]" src="/img/bg/bgChatMsgTop.min.png" alt="" /> */}
+        {/* <div className="hidden chatBoxSizeHeight"></div> */}
+        {/* <div
               className={cn("top-[1rem] left-0 absolute z-[111111]", {
                 // "opacity-90": true,
               })}
             >
               <div className="w-[100vw] h-[5rem] bg-black/50 blur-[4rem]"></div>
-            </div>
-            <div
-              className="flex justify-end items-start dmb40 grow overflow-y-scroll relative"
-              id="chatWindow"
-            >
-              <div
-                className="chatCtt lmdWfull flex flex-col gap-[1.4rem]  dpr36"
-                ref={chatEndRef}
-              >
-                {messageList?.map((item, index: number) => {
-                  if (item?.role === "user") {
-                    return (
-                      <div className="" key={index}>
-                        {index != 0 &&
-                        item.time - messageList[index - 1].time < 5 * 60 ? (
-                          <></>
-                        ) : (
-                          <div className="dtext24 font-[500] text-white dmb8 text-right msgTime flex justify-center py-[1.5rem]">
-                            {moment(item.time * 1000)
-                              .local()
-                              .format("YYYY/MM/DD HH:mm")}
+            </div> */}
+        <div
+          className=" flex justify-end items-start dmb40 grow overflow-y-scroll relative"
+          id="chatWindow"
+        >
+          <div
+            className="chatCtt lmdWfull flex flex-col gap-[1.4rem]  dpr36"
+            ref={chatEndRef}
+          >
+            {messageList?.map((item, index: number) => {
+              if (item?.role === "user") {
+                return (
+                  <div className="" key={index}>
+                    {index != 0 &&
+                    item.time - messageList[index - 1].time < 5 * 60 ? (
+                      <></>
+                    ) : (
+                      <div className="dtext24 font-[500] text-white dmb8 text-right msgTime flex justify-center py-[1.5rem]">
+                        {moment(item.time * 1000)
+                          .local()
+                          .format("YYYY/MM/DD HH:mm")}
+                      </div>
+                    )}
+                    <div className="dmaxW460 dmr25 msgTimeWrap relative flex justify-end items-center">
+                      <div
+                        className={cn("relative flex justify-end", {
+                          // "opacity-50": index + 4 < messageList.length,
+                        })}
+                      >
+                        <div className="send bg-[rgba(234,130,115,0.7)] flex justify-end items-start relative msgWrap">
+                          <div className="msgText line-clamp-4 dtext28 font-[500] text-[#F5F2FF]  text-wrap lmdMsgSpan overflow-hidden break-words">
+                            {item?.msg}
                           </div>
-                        )}
-                        <div className="dmaxW460 dmr25 msgTimeWrap relative flex justify-end items-center">
-                          <div
-                            className={cn("relative flex justify-end", {
-                              // "opacity-50": index + 4 < messageList.length,
-                            })}
-                          >
-                            <div className="send bg-[rgba(234,130,115,0.7)] flex justify-end items-start relative msgWrap">
-                              <div className="msgText line-clamp-4 dtext28 font-[500] text-[#F5F2FF]  text-wrap lmdMsgSpan overflow-hidden break-words">
-                                {item?.msg}
-                              </div>
-                            </div>
-                            {/* <img
+                        </div>
+                        {/* <img
                               className=" rounded-full userIcon"
                               src="/img/avataUser.min.png"
                               alt=""
                             /> */}
-                          </div>
-                          <img
-                            className=" rounded-full  userAvator"
-                            src="/img/avataUser.min.png"
-                            alt=""
-                          />
-                        </div>
                       </div>
-                    );
-                  } else {
-                    return (
-                      <div className="" key={index}>
-                        {index != 0 &&
-                        item.time - messageList[index - 1].time < 5 * 60 ? (
-                          <></>
-                        ) : (
-                          <div className="dtext24 font-[500] text-white  dmb8 text-right msgTime flex justify-center py-[1.5rem]">
-                            {moment(item.time * 1000)
-                              .local()
-                              .format("YYYY/MM/DD HH:mm")}
-                          </div>
-                        )}
-                        <div
-                          className={cn("relative flex justify-start", {
-                            // "opacity-70": index + 3 < messageList.length,
-                          })}
-                        >
-                          <img
-                            className=" rounded-full dmr25 robotAvator"
-                            src="/img/avataCat.min.png"
-                            alt=""
-                          />
-                          <div className="receive bg-[rgba(32,_35,_42,_0.50)] flex justify-start items-start msgWrap">
-                            {/* <img
+                      <img
+                        className=" rounded-full  userAvator"
+                        src="/img/avataUser.min.png"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                );
+              } else {
+                return (
+                  <div className="" key={index}>
+                    {index != 0 &&
+                    item.time - messageList[index - 1].time < 5 * 60 ? (
+                      <></>
+                    ) : (
+                      <div className="dtext24 font-[500] text-white  dmb8 text-right msgTime flex justify-center py-[1.5rem]">
+                        {moment(item.time * 1000)
+                          .local()
+                          .format("YYYY/MM/DD HH:mm")}
+                      </div>
+                    )}
+                    <div
+                      className={cn("relative flex justify-start", {
+                        // "opacity-70": index + 3 < messageList.length,
+                      })}
+                    >
+                      <img
+                        className=" rounded-full dmr25 robotAvator"
+                        src="/img/avataCat.min.png"
+                        alt=""
+                      />
+                      <div className="receive bg-[rgba(32,_35,_42,_0.50)] flex justify-start items-start msgWrap">
+                        {/* <img
                               className=" rounded-full dmr25 robotAvator"
                               src="/img/avataCat.min.png"
                               alt=""
                             /> */}
-                            <div className="dmaxW460 lmdWfull">
-                              {/* <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 msgTime">
+                        <div className="dmaxW460 lmdWfull">
+                          {/* <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 msgTime">
                                 {moment(item.time * 1000)
                                   .local()
                                   .format("YYYY/MM/DD HH:mm")}
                               </div> */}
-                              <div className="msgText line-clamp-4 dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan break-words">
-                                {mediaSwitch(
-                                  item?.msg,
-                                  item?.msgId,
-                                  item?.eventid
-                                )}
-                              </div>
-                            </div>
+                          <div className="msgText line-clamp-4 dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan break-words">
+                            {mediaSwitch(item?.msg, item?.msgId, item?.eventid)}
                           </div>
                         </div>
                       </div>
-                    );
-                  }
-                })}
-                {showCatLoading && (
-                  <div className="flex justify-start items-center h-[3rem] ">
-                    <div className="bg-[rgba(32,_35,_42,_0.50)] px-[1rem] py-[0.7rem] rounded-[1.5rem] inline-block">
-                      <div className="load-3 flex justify-start items-center">
-                        <div className="line"></div>
-                        <div className="line mx-[0.5rem]"></div>
-                        <div className="line"></div>
-                      </div>
                     </div>
                   </div>
-                )}
+                );
+              }
+            })}
+            {showCatLoading && (
+              <div className="flex justify-start items-center h-[3rem] ">
+                <div className="bg-[rgba(32,_35,_42,_0.50)] px-[1rem] py-[0.7rem] rounded-[1.5rem] inline-block">
+                  <div className="load-3 flex justify-start items-center">
+                    <div className="line"></div>
+                    <div className="line mx-[0.5rem]"></div>
+                    <div className="line"></div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="lmdSizebox hidden"></div>
-            {showVoice ? (
-              <SpeechRecognition
-                language="zh_cn"
-                onSend={(text) => sendMessageByVoice(text)}
-              ></SpeechRecognition>
-            ) : (
-              <div className="textInput flex justify-center items-center sendSpeakerWrap relative">
-                <div className="absolute top-[-3rem] right-[1rem]">
-                  {Number(chatCount) >= 20 ? (
-                    <div className="flex justify-center items-center px-[1rem] py-[0.6rem] bg-[rgba(58,53,53,0.50)] border-white/20 border-[1px] rounded-[11rem]">
-                      {/* <img
+            )}
+          </div>
+        </div>
+        {/* </div> */}
+        <div className="">
+          {showVoice ? (
+            <SpeechRecognition
+              language="zh_cn"
+              onSend={(text) => sendMessageByVoice(text)}
+            ></SpeechRecognition>
+          ) : (
+            <div className="textInput flex justify-center items-center sendSpeakerWrap relative">
+              <div className="absolute top-[-3rem] right-[1rem]">
+                {Number(chatCount) >= 20 ? (
+                  <div className="flex justify-center items-center px-[1rem] py-[0.6rem] bg-[rgba(58,53,53,0.50)] border-white/20 border-[1px] rounded-[11rem]">
+                    {/* <img
                           className="chatNumLeft"
                           src="/img/clock.png"
                           alt=""
                         /> */}
-                      <span className="text-white text-[1rem] font-[500] mr-[0.4rem]">
-                        Update
-                      </span>
-                      <div className="text-white text-[1rem] font-[800]">
-                        <CountdownTimer></CountdownTimer>
-                      </div>
+                    <span className="text-white text-[1rem] font-[500] mr-[0.4rem]">
+                      Update
+                    </span>
+                    <div className="text-white text-[1rem] font-[800]">
+                      <CountdownTimer></CountdownTimer>
                     </div>
-                  ) : (
-                    <div className="px-[1rem] py-[0.6rem] bg-[rgba(58,53,53,0.50)] border-white/20 border-[1px] rounded-[11rem]">
-                      <span className="text-white text-[1rem] font-[500]">
-                        ChatPoints:{" "}
-                        {Number(chatCount) >= 0
-                          ? 20 - (Number(chatCount) || 0) >= 0
-                            ? 20 - (Number(chatCount) || 0)
-                            : 0
-                          : "-"}
-                        /20
-                      </span>
-                    </div>
-                  )}
-                </div>
-                <div className="relative sendInputWrap flex ">
-                  <input
-                    tabIndex={-1}
-                    ref={inputRef}
-                    className="sendInput drounded160 dw780 bg-[#0f040f82] dpl15 outline-none  font-[800]"
-                    type="text"
-                    onChange={(e) => setinputMsg(e.target.value)}
-                    onKeyDown={handleKeyDown}
-                    value={inputMsg}
-                    placeholder="What are you talking about?"
-                  />
-                  {/* <div
+                  </div>
+                ) : (
+                  <div className="px-[1rem] py-[0.6rem] bg-[rgba(58,53,53,0.50)] border-white/20 border-[1px] rounded-[11rem]">
+                    <span className="text-white text-[1rem] font-[500]">
+                      ChatPoints:{" "}
+                      {Number(chatCount) >= 0
+                        ? 20 - (Number(chatCount) || 0) >= 0
+                          ? 20 - (Number(chatCount) || 0)
+                          : 0
+                        : "-"}
+                      /20
+                    </span>
+                  </div>
+                )}
+              </div>
+              <div className="relative sendInputWrap flex ">
+                <input
+                  tabIndex={-1}
+                  ref={inputRef}
+                  className="sendInput drounded160 dw780 bg-[#0f040f82] dpl15 outline-none  font-[800]"
+                  type="text"
+                  onChange={(e) => setinputMsg(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  value={inputMsg}
+                  placeholder="What are you talking about?"
+                />
+                {/* <div
                       className="lmdSend absolute dright80 top-[50%] dtranslateYF50 bg-[linear-gradient(0deg,_#BE6FFF_0%,_#6C8AFF_100%)] drounded20 dpx30 dpy20 text-white dtext24 font-[800] cursor-pointer select-none"
                       onClick={sendMessage}
                       onKeyDown={handleKeyDown}
                     >
                       Send
                     </div> */}
-                </div>
-                <div onClick={() => setShowVoice(true)}>
-                  <LottieView
-                    src={"/lottie/v1.json"}
-                    className={styles.newIcon}
-                    loop={true}
-                  ></LottieView>
-                </div>
               </div>
-            )}
-
-            <div className="lmdSizebox hidden"></div>
-          </div>
-          {/* <div className="flex absolute left-[13%] top-[3%] chatEnegy">
+              <div className="" onClick={() => setShowVoice(true)}>
+                <LottieView
+                  src={"/lottie/v1.json"}
+                  className={styles.newIcon}
+                  loop={true}
+                ></LottieView>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="h-[4vh]"></div>
+        {/* <div className="flex absolute left-[13%] top-[3%] chatEnegy">
               <ChatEnergy
                 imgUrl="./img/chatPaw.min.png"
                 label="Communication Energy"
                 number={20}
               ></ChatEnergy>
             </div> */}
-          <div className={cn(styles.mask, "w-[100vw] absolute bottom-0")}></div>
-        </div>
-        {/* <VideoBackground /> */}
-
+        {/* <div className={cn(styles.mask, "w-[100vw] absolute bottom-0")}></div> */}
         <DialogExchange
           id={1}
           cb={() => {
@@ -611,6 +603,7 @@ const ChatView = () => {
           setShow={setshowExchange}
         ></DialogExchange>
       </div>
+      {/* <VideoBackground /> */}
     </div>
   );
 };
