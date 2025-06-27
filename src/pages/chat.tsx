@@ -299,7 +299,7 @@ const ChatView = () => {
     <div className={styles.DialogContent}>
       <div
         className={cn(
-          "bg-[url('/img/bg/bg_chat2.min.png')] bg-cover h-[87vh] overflow-hidden  relative  w-[100vw] flex flex-col"
+          "bg-[url('/img/bg/bg_chat2.min.png')] bg-cover wrapHeight overflow-hidden  relative  w-[100vw] flex flex-col"
         )}
       >
         <div className="headerBackpack flex justify-between items-center dpt18 dpb18 px-[2rem]">
@@ -584,7 +584,6 @@ const ChatView = () => {
             </div>
           )}
         </div>
-        <div className="h-[4vh]"></div>
         {/* <div className="flex absolute left-[13%] top-[3%] chatEnegy">
               <ChatEnergy
                 imgUrl="./img/chatPaw.min.png"
