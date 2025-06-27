@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import { ReactNode, useState } from "react";
-import { Dialog, DialogContent, DialogTrigger } from ".";
+import { Dialog, DialogContent } from ".";
 import IconView from "../IconView";
 import { cn } from "@/lib/utils";
 import { request } from "@/utils/request";
@@ -18,7 +18,6 @@ const DialogExchange = ({
   show,
   setShow,
   cb,
-  trigger,
 }: iDialogExchange) => {
   const [amountBuy, setamountBuy] = useState(1);
   console.log(id);
