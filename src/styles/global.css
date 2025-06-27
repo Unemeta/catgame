@@ -609,9 +609,9 @@ body {
   border-width: 4px;
 }
 
-.chatCttH {
+/* .chatCttH {
   height: calc(100vh - 140px);
-}
+} */
 
 .chatCtt {
   padding-left: 160px;
@@ -793,10 +793,9 @@ body {
   .h5ChatNum {
     display: block;
   }
-  .chatCttH {
-    height: calc(100vh - 16vh);
-    /* background: url("/img/chatBg.min.png") no-repeat center/cover; */
-  }
+  /* .chatCttH {
+    height: calc(100vh - 15rem);
+  } */
   .chatBoxSizeHeight {
     height: 4rem;
     max-height: 600px;
@@ -804,7 +803,7 @@ body {
   }
   .headerBackpack {
     /* padding-top:45px; */
-    height: 230px;
+    /* height: 6rem; */
     /* padding-bottom: 45px; */
   }
   .backIcon {
