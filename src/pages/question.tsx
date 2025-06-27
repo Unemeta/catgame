@@ -51,14 +51,14 @@ const PartyView = () => {
     <div className="">
       <div className="relative">
         <img
-          className={cn("w-[100vw] h-[100vh] absolute inset-0 z-[1]", {
+          className={cn("w-[100vw] wrapHeight absolute inset-0 z-[1]", {
             "blur-[20px]": stepIndex !== 0,
           })}
           src="/img/bg/bg_pop_rain.min.png"
           alt=""
         />
         {stepIndex == 0 && (
-          <div className="w-full h-[100vh] absolute inset-0 z-[2] text-center">
+          <div className="w-full wrapHeight absolute inset-0 z-[2] text-center">
             <div className="flex flex-col h-full">
               <div className="h-[9.3vh]"></div>
               <div className="text-white text-[2.8rem] font-[700] mb-[3vh]">
@@ -70,14 +70,14 @@ const PartyView = () => {
                 that matches you.
               </div>
               <div
-                className="absolute bottom-[6vh] left-[50vw] ml-[-3.4rem]"
+                className="absolute bottom-[1rem] left-[50vw] translate-x-[-50%]"
                 onClick={() => {
                   setstepIndex(1);
                 }}
               >
                 <img
                   src="/img/arrow_right.min.png"
-                  className="w-[6.9rem] h-[6.9rem]"
+                  className="w-[27vw] h-[27vw]"
                   alt=""
                 />
               </div>
