@@ -733,6 +733,9 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+  .wrapHeight {
+    height: 87vh;
+  }
   html {
     /* font-size: 1.3vw;  */
     font-size: 2.54vw;
