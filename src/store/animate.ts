@@ -71,7 +71,7 @@ export const useShowVocie = () => {
 const showCheckInDia = atom<boolean>(false) // 是否显示签到弹框
 
 export const useCheckInDia = () => {
-    useHydrateAtoms([[showCheckInDia, true]] as const);
+    useHydrateAtoms([[showCheckInDia, false]] as const);
     return useAtom(showCheckInDia);
 };
 

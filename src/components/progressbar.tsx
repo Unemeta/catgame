@@ -85,7 +85,7 @@ const ProgressBar = ({ setShow }: { setShow: () => void }) => {
           </div>
         </div>
       </div>
-      <div className="w-[18.8rem] opacity-50 text-center justify-start text-[#826662] text-[1.2rem] font-medium font-['SF_Pro_Rounded'] leading-3 absolute bottom-[3rem]">
+      <div className="w-[18.8rem] opacity-50 text-center justify-start text-[#826662] text-[1.2rem] line-height-[1.2rem] absolute bottom-[3rem]">
         Milk is not suitable for most cats and may cause diarrhea.
       </div>
 

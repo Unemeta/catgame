@@ -41,7 +41,7 @@ export const SignToast = () => {
 };
 export const DialogCheckIn = () => {
   const [showCheckIn, setShowCheckIn] = useCheckInDia();
-//   const [loading, setLoading] = useState(false);
+  //   const [loading, setLoading] = useState(false);
   const [checkdays, setCheckdays] = useState([
     {
       day: 1,
@@ -76,7 +76,6 @@ export const DialogCheckIn = () => {
 
   const checkIn = async () => {
     try {
-    //   setLoading(true);
       const res = await request({
         url: "/api/cat/v1/user/checkin",
         method: "post",
@@ -95,6 +94,8 @@ export const DialogCheckIn = () => {
         })
       );
       if (isCheckin) {
+        // 自动签到展示
+        setShowCheckIn(true);
         setShowToast(true);
         setTimeout(() => {
           setShowToast(false);
