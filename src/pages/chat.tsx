@@ -519,19 +519,22 @@ const ChatView = () => {
               }
             })}
             {showCatLoading && (
-              <div className="flex justify-start items-center h-[3rem] relative">
-                <img
-                  className=" rounded-full dmr25 robotAvator"
-                  src="/img/avataCat.min.png"
-                  alt=""
-                />
-                <div className="bg-[rgba(32,_35,_42,_0.50)] px-[1rem] py-[0.7rem] rounded-[1.5rem] inline-block">
-                  <div className="load-3 flex justify-start items-center">
-                    <div className="line"></div>
-                    <div className="line mx-[0.5rem]"></div>
-                    <div className="line"></div>
+              <div className="">
+                <div className="flex justify-start items-center h-[3rem] relative">
+                  <img
+                    className=" rounded-full dmr25 robotAvator"
+                    src="/img/avataCat.min.png"
+                    alt=""
+                  />
+                  <div className="bg-[rgba(32,_35,_42,_0.50)] px-[1rem] py-[0.7rem] rounded-[1.5rem] inline-block">
+                    <div className="load-3 flex justify-start items-center">
+                      <div className="line"></div>
+                      <div className="line mx-[0.5rem]"></div>
+                      <div className="line"></div>
+                    </div>
                   </div>
                 </div>
+                <div className="h-[1rem]"></div>
               </div>
             )}
           </div>
