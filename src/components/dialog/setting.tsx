@@ -69,11 +69,11 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
             <div className="flex justify-between items-center px-[1.6rem] py-[0.8rem] bg-white/10 border-white/30 border-[0.1rem] rounded-[1rem]">
               <div className="flex justify-start items-center">
                 <img
-                  className="w-[1.5rem] h-[1.5rem] mr-[0.6rem]"
+                  className="w-[1.8rem] h-[1.8rem] mr-[0.6rem]"
                   src="/svg/icon_user.svg"
                   alt=""
                 />
-                <span className="text-white text-[1.4rem] font-[700]">
+                <span className="text-white text-[1.4rem] font-[700] text-nowrap max-w-[20rem] overflow-ellipsis overflow-hidden">
                   UID: {userData?.uuid}
                 </span>
               </div>
