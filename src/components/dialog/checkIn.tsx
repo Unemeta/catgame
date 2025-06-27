@@ -1,11 +1,14 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
-import { useState, useEffect } from "react";
+import { useState, useEffect, ReactNode } from "react";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from ".";
 import { useCheckInDia } from "@/store";
 import { cn } from "@/lib/utils";
 import { request } from "@/utils/request";
 
+interface iDialogCheckIn {
+  trigger?: ReactNode;
+}
 export const SignToast = () => {
   return (
     <div
@@ -39,7 +42,7 @@ export const SignToast = () => {
     </div>
   );
 };
-export const DialogCheckIn = () => {
+export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
   const [showCheckIn, setShowCheckIn] = useCheckInDia();
   //   const [loading, setLoading] = useState(false);
   const [checkdays, setCheckdays] = useState([
@@ -112,8 +115,10 @@ export const DialogCheckIn = () => {
   return (
     <>
       <Dialog open={showCheckIn} onOpenChange={setShowCheckIn}>
-        <DialogTitle></DialogTitle>
+        <DialogTrigger>{trigger}</DialogTrigger>
         <DialogContent>
+          <DialogTitle></DialogTitle>
+
           {showToast && <SignToast></SignToast>}
           <div className="w-[30rem] h-[35rem] relative">
             <div className="self-stretch bg-gradient-to-b from-red-300 to-stone-500/0 rounded-[3rem] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.55)] outline-2 outline-offset-[-2px] outline-stone-50 inline-flex flex-col justify-start items-center gap-4 overflow-hidden w-full">

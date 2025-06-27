@@ -360,21 +360,21 @@ const ChatView = () => {
               </div>
             </div> */}
             <div className="flex justify-end items-center">
-              <div
-                className="px-[0.8rem] py-[0.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(58,53,53,0.20)_0%,rgba(58,53,53,0.20)_100%),linear-gradient(180deg,rgba(255,152,146,0.60)_0%,rgba(255,185,181,0.60)_100%)]"
-                onClick={() => {
-                  setShowCheckIn(true);
-                }}
-              >
-                <img
-                  className="w-[1.6rem] h-[1.6rem] mr-[0.6rem]"
-                  src="/svg/check_ calendar.svg"
-                  alt=""
-                />
-                <span className="text-[#FFF] text-[1.4rem] font-[700]">
-                  day {userData.day}
-                </span>
-              </div>
+              <DialogCheckIn
+                trigger={
+                  <div className="px-[0.8rem] py-[0.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(58,53,53,0.20)_0%,rgba(58,53,53,0.20)_100%),linear-gradient(180deg,rgba(255,152,146,0.60)_0%,rgba(255,185,181,0.60)_100%)]">
+                    <img
+                      className="w-[1.6rem] h-[1.6rem] mr-[0.6rem]"
+                      src="/svg/check_ calendar.svg"
+                      alt=""
+                    />
+                    <span className="text-[#FFF] text-[1.4rem] font-[700]">
+                      day {userData.day}
+                    </span>
+                  </div>
+                }
+              ></DialogCheckIn>
+
               <div className="w-[0.6rem]"></div>
               <div
                 className="px-[0.8rem] py-[0.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(46,59,63,0.20)_0%,rgba(46,59,63,0.20)_100%),linear-gradient(180deg,rgba(146,207,236,0.60)_0%,rgba(172,224,249,0.60)_100%);]"
@@ -603,14 +603,13 @@ const ChatView = () => {
 
         <DialogExchange
           id={1}
-          cb={()=>{
+          cb={() => {
             fetchUser();
             getChatInfo();
           }}
           show={showExchange}
           setShow={setshowExchange}
         ></DialogExchange>
-        <DialogCheckIn></DialogCheckIn>
       </div>
     </div>
   );
