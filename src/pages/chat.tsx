@@ -302,22 +302,43 @@ const ChatView = () => {
           "bg-[url('/img/bg/bg_chat2.min.png')] bg-cover wrapHeight overflow-hidden  relative  w-[100vw] flex flex-col"
         )}
       >
-        <div className="headerBackpack flex justify-between items-center dpt18 dpb18 px-[2rem]">
-          {process.env.NEXT_PUBLIC_VERTICAL === "true" ? (
-            <div className=""></div>
-          ) : (
+        <div className="headerBackpack flex justify-between items-center  px-[2rem] pt-[2rem]">
+          <div className="">
+            {process.env.NEXT_PUBLIC_VERTICAL === "true" ? (
+              <div className=""></div>
+            ) : (
+              <div
+                className="flex justify-start items-center cursor-pointer select-none"
+                onClick={() => {
+                  router.push("/");
+                }}
+              >
+                <img
+                  src="/img/back.svg"
+                  alt=""
+                  className="backIcon dw25 dh25"
+                />
+                <span className="text-white dtext25 font-[500] dml15 backText">
+                  Back
+                </span>
+              </div>
+            )}
             <div
-              className="flex justify-start items-center cursor-pointer select-none"
+              className="px-[0.8rem] py-[0.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(46,59,63,0.20)_0%,rgba(46,59,63,0.20)_100%),linear-gradient(180deg,rgba(146,207,236,0.60)_0%,rgba(172,224,249,0.60)_100%);]"
               onClick={() => {
-                router.push("/");
+                setshowExchange(true);
               }}
             >
-              <img src="/img/back.svg" alt="" className="backIcon dw25 dh25" />
-              <span className="text-white dtext25 font-[500] dml15 backText">
-                Back
+              <img
+                className="w-[1.6rem] h-[1.6rem] mr-[0.6rem]"
+                src="/svg/fish.svg"
+                alt=""
+              />
+              <span className="text-[#FFF] text-[1.4rem] font-[700]">
+                {Number(userData?.fishAmount ?? 0).toLocaleString()}
               </span>
             </div>
-          )}
+          </div>
           {/* <div className="flex justify-end items-center ">
               {Number(chatCount) === 20 && (
                 <div className="resetTimerView">
@@ -375,21 +396,7 @@ const ChatView = () => {
             ></DialogCheckIn>
 
             <div className="w-[0.6rem]"></div>
-            <div
-              className="px-[0.8rem] py-[0.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(46,59,63,0.20)_0%,rgba(46,59,63,0.20)_100%),linear-gradient(180deg,rgba(146,207,236,0.60)_0%,rgba(172,224,249,0.60)_100%);]"
-              onClick={() => {
-                setshowExchange(true);
-              }}
-            >
-              <img
-                className="w-[1.6rem] h-[1.6rem] mr-[0.6rem]"
-                src="/svg/fish.svg"
-                alt=""
-              />
-              <span className="text-[#FFF] text-[1.4rem] font-[700]">
-                {Number(userData?.fishAmount ?? 0).toLocaleString()}
-              </span>
-            </div>
+
             <div className="w-[0.6rem]"></div>
             <DialogSetting
               trigger={
