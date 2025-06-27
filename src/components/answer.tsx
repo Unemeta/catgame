@@ -27,13 +27,13 @@ const AnswerView = ({ onClick }: iAnswerView) => {
       a2: "Offer comfort first and express empathy and support",
     },
     {
-      q: "When planning a trip, you prefer to",
+      q: "When planning a trip, you prefer to 　　　　　　",
       a1: "Arrange the itinerary, hotels, and routes in advance to stay organized",
       a2: "Just book a flight and go, enjoying the freedom to explore spontaneously",
     },
   ]);
   return (
-    <div className="w-full h-[100vh] absolute inset-0 z-[2]">
+    <div className="w-full wrapHeight absolute inset-0 z-[2]">
       <div className="flex flex-col h-full">
         <div className="h-[3vh]"></div>
         <div className="flex justify-center items-center space-x-[0.4rem] px-[2rem]">
@@ -67,7 +67,7 @@ const AnswerView = ({ onClick }: iAnswerView) => {
         ></div>
         <div className="h-[4vh]"></div>
         <div className="flex justify-center items-end">
-          <div className="bg-[url('/img/cat_red.min.png')] w-[28.4rem] h-[28.4rem] bg-cover"></div>
+          <div className="bg-[url('/img/cat_red.min.png')] w-[17.6rem] h-[17.6rem] bg-cover"></div>
         </div>
         <div className="h-[2.6vh]"></div>
         <div className="flex justify-center items-center mb-[2rem]">
@@ -78,7 +78,7 @@ const AnswerView = ({ onClick }: iAnswerView) => {
               setselectIndexQuestionArr(pre);
             }}
             className={cn(
-              "w-[85vw] text-wrap rounded-[3.1rem] px-[2rem] py-[1.2rem] flex justify-center items-center bg-white/70",
+              "h-[7.6rem] w-[85vw] text-wrap rounded-[3.1rem] px-[2rem] py-[1.2rem] flex justify-center items-center bg-white/70",
               {
                 "bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)]  shadow-[0px,3px,4px,0px,rgba(255,255,255,0.25),0px,4px,24px,0px,#ECA89E] border-[#FF9A8B]F":
                   selectIndexQuestionArr[stepAnswerIndex] == 0,
@@ -122,7 +122,7 @@ const AnswerView = ({ onClick }: iAnswerView) => {
               setselectIndexQuestionArr(pre);
             }}
             className={cn(
-              "w-[85vw] text-wrap bg-white/70 rounded-[3.1rem] blur--[1rem] px-[2rem] py-[1.2rem] flex justify-center items-center",
+              "h-[7.6rem] w-[85vw] text-wrap bg-white/70 rounded-[3.1rem] blur--[1rem] px-[2rem] py-[1.2rem] flex justify-center items-center",
               {
                 "bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)]  shadow-[0px,3px,4px,0px,rgba(255,255,255,0.25),0px,4px,24px,0px,#ECA89E] border-[#FF9A8B]F":
                   selectIndexQuestionArr[stepAnswerIndex] == 1,
@@ -159,7 +159,7 @@ const AnswerView = ({ onClick }: iAnswerView) => {
           </div>
         </div>
         <div
-          className="absolute bottom-[6vh] left-[50vw] ml-[-3.4rem]"
+          className="absolute bottom-[1rem] left-[50vw] translate-x-[-50%]"
           onClick={() => {
             if (stepAnswerIndex >= 3) {
               console.log(selectIndexQuestionArr);
@@ -172,7 +172,7 @@ const AnswerView = ({ onClick }: iAnswerView) => {
           {/* opacity-50 */}
           <img
             src="/img/arrow_right.min.png"
-            className="w-[6.9rem] h-[6.9rem] "
+            className="w-[27vw] h-[27vw] "
             alt=""
           />
         </div>
