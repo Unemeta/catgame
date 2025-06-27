@@ -27,15 +27,15 @@ const Step3View = ({ index }: iStep3View) => {
   return (
     <div className="w-full h-full absolute inset-0 z-[2] ">
       <div className="h-[6vh]"></div>
-      <div className="text-[#fff] text-[3rem] font-[700] text-center leading-[1] mb-[0.5rem]">
+      <div className="text-[#fff] text-[3rem] font-[700] text-center leading-[1] mb-[1rem]">
         Hello, {cats[index]?.name}.
       </div>
       <div className="text-[#fff] text-[2rem] font-[700] text-center leading-[1]">
         This is your {cats[index].type}.
       </div>
-      <div className="h-[4.3vh]"></div>
+      <div className="h-[1.2rem]"></div>
       <div className="px-[3rem]">
-        <div className="px-[2.8vh] py-[2.8vh] relative h-[61vh] bg-[url('/img/bg/bg_card_cat.min.png')] bg-cover">
+        <div className="px-[2.8vh] py-[2.8vh] relative h-[55vh] bg-[url('/img/bg/bg_card_cat.min.png')]" style={{backgroundSize: "100% 100%"}}>
           <div className="">
             <div className="px-[1rem] py-2 text-white text-[1.6rem] font-[700] bg-[#F4738D99] rounded-[5rem] border-[#E397BC] border-w-[0.1rem] inline-block">
               {cats[index].keys[0]}
@@ -74,7 +74,7 @@ const Step3View = ({ index }: iStep3View) => {
           </div>
         </div>
       </div>
-      <div className="h-[6.3vh]"></div>
+      <div className="h-[5vh]"></div>
       <div className="flex justify-center items-center">
         <div className="flex justify-center items-center rounded-[3.1rem] bg-[#FFF] shadow-[0px,3px,14px,0px,rgba(255,255,255,0.45)] h-[7vh] w-[74vw]">
           <svg
