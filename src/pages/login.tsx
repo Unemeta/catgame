@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { request } from "@/utils/request";
 import { jwtHelper } from "@/utils/jwt";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 interface ProgressLoaderProps {
   progress: number;
@@ -14,27 +15,31 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
   const [account, setAccount] = useState("");
   const router = useRouter();
   const login = async () => {
-    console.log("login", account);
     if (account) {
-      const res = await request({
-        url: "/api/cat/v1/user/login",
-        method: "post",
-        data: {
-          username: account,
-          password: account,
-        },
-      });
-      await jwtHelper.setToken(res.data.accessToken, {
-        expires: new Date(res.data.accessExpire * 1000),
-      });
-      if(process.env.NEXT_PUBLIC_VERTICAL === "true"){
-        router.push("/info");
-      }else{
-        router.push("/");
+      try {
+        const res = await request({
+          url: "/api/cat/v1/user/login",
+          method: "post",
+          data: {
+            username: account,
+            password: account,
+          },
+        });
+        await jwtHelper.setToken(res.data.accessToken, {
+          expires: new Date(res.data.accessExpire * 1000),
+        });
+        if (process.env.NEXT_PUBLIC_VERTICAL === "true") {
+          router.push("/info");
+        } else {
+          router.push("/");
+        }
+      } catch (error) {
+        console.log(error)
+        toast.error(JSON.stringify(error));
       }
     }
   };
-  const handleKeyDown = (event: { key: string; }) => {
+  const handleKeyDown = (event: { key: string }) => {
     if (event?.key === "Enter") {
       login();
     }
@@ -60,7 +65,10 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
           onChange={(e) => setAccount(e.target.value)}
         />
         <div
-          className={cn("bg-[url('/img/bg/btnbg.jpg')] bg-cover cursor-pointer select-none", styles.btn)}
+          className={cn(
+            "bg-[url('/img/bg/btnbg.jpg')] bg-cover cursor-pointer select-none",
+            styles.btn
+          )}
           onClick={login}
         >
           Log in

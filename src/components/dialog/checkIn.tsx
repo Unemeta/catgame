@@ -134,7 +134,7 @@ export const DialogCheckIn = () => {
                 <div className="self-stretch inline-flex justify-start items-start gap-1.5">
                   {/* 左边的猫图 */}
                   <img
-                    className="w-[9rem] self-stretch rounded-[10px]  outline-1 outline-stone-400/80"
+                    className="w-[8.5rem] self-stretch rounded-[1rem]  outline-1 outline-stone-400/80"
                     src="/img/catexample.png"
                   />
                   <div className="flex-1 flex justify-around items-start gap-[0.5rem] flex-wrap">
