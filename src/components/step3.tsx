@@ -28,7 +28,7 @@ const Step3View = ({ index }: iStep3View) => {
     <div className="w-full h-full absolute inset-0 z-[2] ">
       <div className="h-[6vh]"></div>
       <div className="text-[#fff] text-[3rem] font-[700] text-center leading-[1] mb-[0.5rem]">
-        Hello, {cats[index].name}.
+        Hello, {cats[index]?.name}.
       </div>
       <div className="text-[#fff] text-[2rem] font-[700] text-center leading-[1]">
         This is your {cats[index].type}.
