@@ -10,25 +10,25 @@ export default function Top() {
   return (
     <div className={styles.top}>
       <Avatar
-        avatar={userData.avatar}
-        nickname={userData.nickname}
-        level={userData.totalLevel}
+        avatar={userData?.avatar}
+        nickname={userData?.nickname}
+        level={userData?.totalLevel}
       ></Avatar>
       <TopEx
         imgUrl="./img/love.png"
         label="Affection"
-        number={userData.nowExp}
-        totalNumber={userData.totalLevelTotalExp}
+        number={userData?.nowExp}
+        totalNumber={userData?.totalLevelTotalExp}
       ></TopEx>
       <TopItem
         imgUrl="./img/gold.svg"
         label="Gold"
-        number={userData.coin}
+        number={userData?.coin}
       ></TopItem>
       <TopItem
         imgUrl="./img/LostEnergy.svg"
         label="Crystal"
-        number={userData.diamond}
+        number={userData?.diamond}
       ></TopItem>
     </div>
   );

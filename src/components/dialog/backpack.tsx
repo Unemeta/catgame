@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { ReactNode, useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from ".";
-import {TopItem} from "../TopItem";
+import { TopItem } from "../TopItem";
 import { useFetchUser } from "@/store";
 import { cn } from "@/lib/utils";
 import { request } from "@/utils/request";
@@ -204,11 +204,7 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
                   }}
                 >
                   {item?.svg}
-                  <span
-                    className={cn(
-                      "dtext26  font-[500]"
-                    )}
-                  >
+                  <span className={cn("dtext26  font-[500]")}>
                     {item?.title}
                   </span>
                 </div>
@@ -218,14 +214,14 @@ const DialogBackpack = ({ trigger }: iDialogBackpack) => {
               <TopItem
                 imgUrl="./img/gold.svg"
                 label="Gold"
-                number={userData.coin}
+                number={userData?.coin || 0}
                 duration={0}
                 showCountUp={false}
               ></TopItem>
               <TopItem
                 imgUrl="./img/LostEnergy.svg"
                 label="Crystal"
-                number={userData.diamond}
+                number={userData?.diamond || 0}
                 showCountUp={false}
               ></TopItem>
             </div>

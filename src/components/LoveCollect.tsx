@@ -7,19 +7,19 @@ import BubbleStats from "@/components/BubbleStats";
 export default function LoveCollect() {
   const { userData } = useFetchUser();
   const [showLove, setShowLove] = useShowLoveCollect();
-  const [progress, setProgress] = useState(userData.nowExpPercent);
+  const [progress, setProgress] = useState(userData?.nowExpPercent);
   useEffect(() => {
     // 展示爱心动画收集后，需要对lottie元素隐藏，并且再做经验值更新的操作
     if (showLove) {
       setTimeout(() => {
         setShowLove(false);
-        setProgress(userData.nowExpPercent);
+        setProgress(userData?.nowExpPercent);
       }, 3000);
     }else{
       // 数据初始化或者刷新数据时不用做延迟
-      setProgress(userData.nowExpPercent);
+      setProgress(userData?.nowExpPercent);
     }
-  }, [showLove, setShowLove, userData.nowExpPercent]);
+  }, [showLove, setShowLove, userData?.nowExpPercent]);
 
   return (
     <>

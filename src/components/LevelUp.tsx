@@ -32,7 +32,9 @@ const LevelUp = () => {
       ></LottieView>
       <div className={cn("flex flex-col items-center", styles.levelArr)}>
         <img src="/img/levelArrow.svg" alt="" className={styles.levelImg} />
-        <div className={styles.levelContent}>Lv. {userData.totalLevel}</div>
+        <div className={styles.levelContent}>
+          Lv. {userData?.totalLevel || 0}
+        </div>
       </div>
       <div
         className={cn(
