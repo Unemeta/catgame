@@ -22,8 +22,10 @@ const NickName = ({ onClick }: iAnswerView) => {
     const { names } = res.data;
     setNameList(names);
     //首次
-    const { male, female } = names[nameIndex.current];
-    setRandomNames([...male, ...female]);
+    if (names.length > 0) {
+      const { male, female } = names[nameIndex.current];
+      setRandomNames([...male, ...female]);
+    }
   };
   // 刷新名字
   const refreshName = () => {
@@ -43,7 +45,7 @@ const NickName = ({ onClick }: iAnswerView) => {
     getNickName();
   }, []);
   return (
-    <div className="flex flex-col justify-center items-center mt-[13rem]">
+    <div className="flex flex-col justify-center items-center mt-[11rem]">
       <div className="text-center justify-start text-[#EA8373] text-[2.8rem] font-bold font-['SF_Pro_Rounded'] leading-9">
         What’s your nickname?
       </div>

@@ -2,7 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState, useEffect, ReactNode } from "react";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from ".";
-import { useCheckInDia } from "@/store";
+import { useCheckInDia, useFetchUser } from "@/store";
 import { cn } from "@/lib/utils";
 import { request } from "@/utils/request";
 
@@ -44,6 +44,8 @@ export const SignToast = () => {
 };
 export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
   const [showCheckIn, setShowCheckIn] = useCheckInDia();
+  const { fetchUser } = useFetchUser();
+
   //   const [loading, setLoading] = useState(false);
   const [checkdays, setCheckdays] = useState([
     {
@@ -100,6 +102,7 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
         // 自动签到展示
         setShowCheckIn(true);
         setShowToast(true);
+        fetchUser();
         setTimeout(() => {
           setShowToast(false);
         }, 1000);
