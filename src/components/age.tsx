@@ -13,35 +13,35 @@ for (let i = 16; i < 101; i++) {
 const Age = ({ onClick }: iAnswerView) => {
   const [basicInfo, setBasicInfo] = useUserBasicInfo();
   return (
-    <div className="flex flex-col justify-center items-center mt-[18rem]">
+    <div className="flex flex-col items-center mt-[11rem] h-[58rem]">
       <div className="text-center justify-start text-[#EA8373] text-[3rem] font-bold font-['SF_Pro_Rounded'] leading-9">
         How old are you?
       </div>
-
-      <div className="relative mt-[6rem] w-[35rem] h-[26rem] overflow-auto py-[2rem] px-[2rem]">
-        {oldList.map((item) => {
-          return (
-            <div
-              key={item}
-              className={cn(
-                "w-[30rem] py-[1.2rem] rounded-[5rem] inline-flex justify-center items-center gap-[1rem] mb-[2rem]",
-                {
-                  "bg-white": item !== basicInfo.age,
-                  "bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)] rounded-[20px]":
-                    item === basicInfo.age,
-                }
-              )}
-              onClick={() => {
-                setBasicInfo({ ...basicInfo, age: item });
-              }}
-              style={{
-                boxShadow:
-                  item === basicInfo.age
-                    ? "0px 3px 4px 0px rgba(255, 255, 255, 0.25), 0px 4px 24px 0px #ECA89E"
-                    : "",
-              }}
-            >
-              {/* {item === basicInfo.age ? (
+      <div className="h-[36rem]">
+        <div className="relative mt-[6rem] w-[35rem] h-[28rem] overflow-auto py-[2rem] px-[2rem]">
+          {oldList.map((item) => {
+            return (
+              <div
+                key={item}
+                className={cn(
+                  "w-[30rem] py-[1.2rem] rounded-[5rem] inline-flex justify-center items-center gap-[1rem] mb-[2rem]",
+                  {
+                    "bg-white": item !== basicInfo.age,
+                    "bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)] rounded-[20px]":
+                      item === basicInfo.age,
+                  }
+                )}
+                onClick={() => {
+                  setBasicInfo({ ...basicInfo, age: item });
+                }}
+                style={{
+                  boxShadow:
+                    item === basicInfo.age
+                      ? "0px 3px 4px 0px rgba(255, 255, 255, 0.25), 0px 4px 24px 0px #ECA89E"
+                      : "",
+                }}
+              >
+                {/* {item === basicInfo.age ? (
                 <img
                   src="/img/agebg.png"
                   className="absolute -z-1 w-full"
@@ -50,21 +50,21 @@ const Age = ({ onClick }: iAnswerView) => {
                 <></>
               )} */}
 
-              <div
-                className={cn(
-                  "flex-1 text-center justify-start text-[#826662] text-[1.6rem] font-bold font-['SF_Pro_Rounded'] leading-tight",
-                  {
-                    "text-[#826662]": item !== basicInfo.age,
-                    "text-[#FFFAFA]": item === basicInfo.age,
-                  }
-                )}
-              >
-                {item}
+                <div
+                  className={cn(
+                    "flex-1 text-center justify-start text-[#826662] text-[1.6rem] font-bold font-['SF_Pro_Rounded'] leading-tight",
+                    {
+                      "text-[#826662]": item !== basicInfo.age,
+                      "text-[#FFFAFA]": item === basicInfo.age,
+                    }
+                  )}
+                >
+                  {item}
+                </div>
               </div>
-            </div>
-          );
-        })}
-        {/* <div
+            );
+          })}
+          {/* <div
           className="w-[33rem] px-[2rem] py-[1.2rem] bg-white rounded-[5rem] inline-flex justify-center items-center gap-[1rem] mb-[2rem]"
           onClick={() => {
             setOld(1);
@@ -79,9 +79,9 @@ const Age = ({ onClick }: iAnswerView) => {
             5
           </div>
         </div> */}
+        </div>
       </div>
-
-      <div className="mt-[9.6rem]">
+      <div className="mt-[6rem]">
         {basicInfo.age ? (
           <img
             src="/img/arrow_right.min.png"

@@ -13,7 +13,7 @@ import { useRouter } from "next/router";
 
 const InfoView = () => {
   const [stepIndex, setstepIndex] = useState(0);
-  const [showQuestion, setShowQuestion] = useState(false);
+  const [showQuestion, setShowQuestion] = useState(true);
   const [basicInfo] = useUserBasicInfo();
   const router = useRouter();
   const postInfo = async () => {
@@ -87,21 +87,31 @@ const InfoView = () => {
             />
           </div>
           {stepIndex === 0 && (
-            <NickName
+            // <NickName
+            //   onClick={() => {
+            //     setstepIndex(1);
+            //   }}
+            // ></NickName>
+            <Gender
               onClick={() => {
                 setstepIndex(1);
               }}
-            ></NickName>
+            ></Gender>
           )}
           {stepIndex === 1 && (
-            <Age
+            <NickName
               onClick={() => {
                 setstepIndex(2);
               }}
-            ></Age>
+            ></NickName>
+            // <Age
+            //   onClick={() => {
+            //     setstepIndex(2);
+            //   }}
+            // ></Age>
           )}
           {stepIndex === 2 && (
-            <Gender
+            <Age
               onClick={async () => {
                 try {
                   await postInfo();
@@ -110,7 +120,7 @@ const InfoView = () => {
                 }
                 router.push("/question");
               }}
-            ></Gender>
+            ></Age>
           )}
         </>
       ) : (

@@ -24,18 +24,29 @@ const NickName = ({ onClick }: iAnswerView) => {
     //首次
     if (names.length > 0) {
       const { male, female } = names[nameIndex.current];
-      setRandomNames([...male, ...female]);
+      if (basicInfo.gender === 0) {
+        setRandomNames([...male]);
+      } else {
+        setRandomNames([...female]);
+      }
     }
+    // setRandomNames(["aaa", "bbb", "ccc", "ddd"]);
   };
   // 刷新名字
   const refreshName = () => {
-    if (nameIndex.current < 4) {
+    if (nameIndex.current < 2) {
       nameIndex.current += 1;
     } else {
       nameIndex.current = 0;
     }
     const { male, female } = namelist[nameIndex.current];
-    setRandomNames([...male, ...female]);
+    if (namelist.length > 0) {
+      if (basicInfo.gender === 0) {
+        setRandomNames([...male]);
+      } else {
+        setRandomNames([...female]);
+      }
+    }
   };
 
   useEffect(() => {
@@ -45,101 +56,102 @@ const NickName = ({ onClick }: iAnswerView) => {
     getNickName();
   }, []);
   return (
-    <div className="flex flex-col justify-center items-center mt-[11rem]">
+    <div className="flex flex-col items-center mt-[11rem] h-[58rem]">
       <div className="text-center justify-start text-[#EA8373] text-[2.8rem] font-bold font-['SF_Pro_Rounded'] leading-9">
         What’s your nickname?
       </div>
+      <div className="h-[36rem]">
+        <div className="relative mt-[6rem]">
+          <div
+            className={cn(
+              "w-[31rem] h-[5rem] bg-cover flex justify-center items-center"
+              // {
+              //   "bg-[url('/img/inormal.png')]": !basicInfo.nickname,
+              //   "bg-[url('/img/ifocus.png')]": basicInfo.nickname,
+              // }
+            )}
+          >
+            {basicInfo.nickname ? (
+              <img
+                src="/img/ifocus.png"
+                alt=""
+                className="absolute -top-[0.5rem] left-0 w-full h-full -z-1"
+              />
+            ) : (
+              <img
+                src="/img/inormal.png"
+                alt=""
+                className="absolute -top-[0.5rem] left-0 w-full h-full -z-1"
+              />
+            )}
 
-      <div className="relative mt-[6rem]">
-        <div
-          className={cn(
-            "w-[31rem] h-[5rem] bg-cover flex justify-center items-center"
-            // {
-            //   "bg-[url('/img/inormal.png')]": !basicInfo.nickname,
-            //   "bg-[url('/img/ifocus.png')]": basicInfo.nickname,
-            // }
-          )}
-        >
-          {basicInfo.nickname ? (
-            <img
-              src="/img/ifocus.png"
-              alt=""
-              className="absolute -top-[0.5rem] left-0 w-full h-full -z-1"
-            />
-          ) : (
-            <img
-              src="/img/inormal.png"
-              alt=""
-              className="absolute -top-[0.5rem] left-0 w-full h-full -z-1"
-            />
-          )}
-
-          <input
-            type="text"
-            className="w-[28rem] h-[2.4rem] text-[2.4rem] text-[#EA8373] placeholder:text-[#EA8373] outline-0 text-center
+            <input
+              type="text"
+              className="w-[28rem] h-[2.4rem] text-[2.4rem] text-[#EA8373] placeholder:text-[#EA8373] outline-0 text-center
                      placeholder:font-['SF_Pro_Rounded']
                      placeholder:opacity-20"
-            placeholder="Enter your nickname"
-            value={basicInfo.nickname}
-            onChange={(e) => {
-              setBasicInfo({ ...basicInfo, nickname: e.target.value });
-            }}
-            ref={inputref}
+              placeholder="Enter your nickname"
+              value={basicInfo.nickname}
+              onChange={(e) => {
+                setBasicInfo({ ...basicInfo, nickname: e.target.value });
+              }}
+              ref={inputref}
+            />
+          </div>
+        </div>
+        <div className="flex justify-between w-[31rem] mt-[3rem]">
+          <div className="text-center justify-start text-stone-500 text-[1.8rem] font-medium font-['SF_Pro_Rounded'] leading-snug">
+            Or randomly select one
+          </div>
+          <img
+            src="/img/refresh-name.svg"
+            alt=""
+            className="w-[2.4rem] h-[2.4rem]"
+            onClick={() => refreshName()}
           />
         </div>
-      </div>
-      <div className="flex justify-between w-[31rem] mt-[3rem]">
-        <div className="text-center justify-start text-stone-500 text-[1.8rem] font-medium font-['SF_Pro_Rounded'] leading-snug">
-          Or randomly select one
-        </div>
-        <img
-          src="/img/refresh-name.svg"
-          alt=""
-          className="w-[2.4rem] h-[2.4rem]"
-          onClick={() => refreshName()}
-        />
-      </div>
-
-      <div className="flex gap-[1rem] flex-wrap mt-[2rem] overflow-auto justify-center py-[2rem]">
-        {randomNames.map((item) => {
-          return (
-            <div
-              key={item}
-              className={cn(
-                "w-[15.2rem] px-[2rem] py-[1.3rem] rounded-[2rem] inline-flex justify-center items-center gap-[1rem]",
-                {
-                  "bg-white": item !== basicInfo.nickname,
-                  "bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)] rounded-[20px]":
-                    item === basicInfo.nickname,
-                }
-              )}
-              style={{
-                boxShadow:
-                  item === basicInfo.nickname
-                    ? "0px 3px 4px 0px rgba(255, 255, 255, 0.25), 0px 4px 24px 0px #ECA89E"
-                    : "",
-              }}
-              onClick={() => {
-                if (inputref.current) {
-                  setBasicInfo({ ...basicInfo, nickname: item });
-                }
-              }}
-            >
+        <div className="flex gap-[1rem] flex-wrap mt-[2rem] overflow-auto justify-center py-[2rem]">
+          {randomNames.map((item) => {
+            return (
               <div
+                key={item}
                 className={cn(
-                  "flex-1 text-center justify-start text-[1.6rem] font-bold font-['SF_Pro_Rounded'] leading-tight",
+                  "w-[15.2rem] px-[2rem] py-[1.3rem] rounded-[2rem] inline-flex justify-center items-center gap-[1rem]",
                   {
-                    "text-[#EA8273]": item !== basicInfo.nickname,
-                    "text-white": item === basicInfo.nickname,
+                    "bg-white": item !== basicInfo.nickname,
+                    "bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)] rounded-[20px]":
+                      item === basicInfo.nickname,
                   }
                 )}
+                style={{
+                  boxShadow:
+                    item === basicInfo.nickname
+                      ? "0px 3px 4px 0px rgba(255, 255, 255, 0.25), 0px 4px 24px 0px #ECA89E"
+                      : "",
+                }}
+                onClick={() => {
+                  if (inputref.current) {
+                    setBasicInfo({ ...basicInfo, nickname: item });
+                  }
+                }}
               >
-                {item}
+                <div
+                  className={cn(
+                    "flex-1 text-center justify-start text-[1.6rem] font-bold font-['SF_Pro_Rounded'] leading-tight",
+                    {
+                      "text-[#EA8273]": item !== basicInfo.nickname,
+                      "text-white": item === basicInfo.nickname,
+                    }
+                  )}
+                >
+                  {item}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
+
       <div className="mt-[6rem]">
         {basicInfo.nickname ? (
           <img
