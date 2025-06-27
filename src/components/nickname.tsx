@@ -64,7 +64,7 @@ const NickName = ({ onClick }: iAnswerView) => {
         <div className="relative mt-[6rem]">
           <div
             className={cn(
-              "w-[31rem] h-[5rem] bg-cover flex justify-center items-center"
+              "w-[full] h-[5rem] bg-cover flex justify-center items-center"
               // {
               //   "bg-[url('/img/inormal.png')]": !basicInfo.nickname,
               //   "bg-[url('/img/ifocus.png')]": basicInfo.nickname,
