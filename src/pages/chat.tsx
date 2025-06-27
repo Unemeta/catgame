@@ -54,7 +54,6 @@ const ChatView = () => {
 
   useEffect(() => {
     (() => {
-      window["moment"] = moment;
       if (timerHistory) {
         clearTimeout(timerHistory);
       }
@@ -86,6 +85,9 @@ const ChatView = () => {
     socketTemp.onmessage = (event) => {
       if (event?.type === "message" && event?.data !== "pong") {
         const msgRes = JSON.parse(event?.data);
+        if(msgRes?.type === "text"){
+          setchatCount(String(msgRes.chatCount));
+        }
         if (
           msgRes.hasOwnProperty("message") &&
           msgRes["message"] != "Msg received"
@@ -94,7 +96,7 @@ const ChatView = () => {
         } else {
           return;
         }
-        getChatInfo();
+        // getChatInfo();
         setmessageList((pre: any) => {
           const resArr = [
             ...pre,
