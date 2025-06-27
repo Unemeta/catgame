@@ -380,6 +380,13 @@ const ChatView = () => {
               </div>
             </div> */}
           <div className="flex justify-end items-center">
+            {/* <img className="w-[3.4rem] h-[3.4rem]" src="/img/emailBye.png" alt="" /> */}
+            <img
+              className="w-[2.4rem] h-[2.4rem]"
+              src="/img/setting.min.png"
+              alt=""
+            />
+            <div className="w-[0.6rem]"></div>
             <DialogCheckIn
               trigger={
                 <div className="px-[0.8rem] py-[0.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(58,53,53,0.20)_0%,rgba(58,53,53,0.20)_100%),linear-gradient(180deg,rgba(255,152,146,0.60)_0%,rgba(255,185,181,0.60)_100%)]">
@@ -512,7 +519,12 @@ const ChatView = () => {
               }
             })}
             {showCatLoading && (
-              <div className="flex justify-start items-center h-[3rem] ">
+              <div className="flex justify-start items-center h-[3rem] relative">
+                <img
+                  className=" rounded-full dmr25 robotAvator"
+                  src="/img/avataCat.min.png"
+                  alt=""
+                />
                 <div className="bg-[rgba(32,_35,_42,_0.50)] px-[1rem] py-[0.7rem] rounded-[1.5rem] inline-block">
                   <div className="load-3 flex justify-start items-center">
                     <div className="line"></div>
@@ -590,6 +602,7 @@ const ChatView = () => {
               </div>
             </div>
           )}
+          <div className="h-[1rem]"></div>
         </div>
         {/* <div className="flex absolute left-[13%] top-[3%] chatEnegy">
               <ChatEnergy
