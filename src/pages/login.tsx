@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
 import styles from "@/styles/Login.module.css"; // 确保有对应的 CSS 文件
@@ -33,9 +34,9 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
         } else {
           router.push("/");
         }
-      } catch (error) {
-        console.log(error)
-        toast.error(JSON.stringify(error));
+      } catch (error: any) {
+        console.log(error);
+        toast.error(error.message || JSON.stringify(error));
       }
     }
   };
