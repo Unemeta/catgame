@@ -9,11 +9,11 @@ import { toast } from "react-toastify";
 interface iDialogExchange {
   show: boolean;
   setShow: (val: boolean) => void;
-  cb: ()=>void;
+  cb: () => void;
   trigger?: ReactNode;
   id: number;
 }
-const DialogExchange = ({ id, show, setShow,cb }: iDialogExchange) => {
+const DialogExchange = ({ id, show, setShow, cb }: iDialogExchange) => {
   const [amountBuy, setamountBuy] = useState(1);
   console.log(id);
 
@@ -29,8 +29,8 @@ const DialogExchange = ({ id, show, setShow,cb }: iDialogExchange) => {
       });
       console.log(res);
       toast.success("Exchange successful");
-      cb()
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      cb();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error(error);
       toast.error(error?.response?.data || JSON.stringify(error));
@@ -59,8 +59,7 @@ const DialogExchange = ({ id, show, setShow,cb }: iDialogExchange) => {
 
             <div className="self-stretch px-[2rem] flex flex-col justify-start items-center">
               <div className="mt-[1.6rem] mb-[1rem] self-stretch text-white text-[1.4rem] leading-none [text-shadow:_0px_0px_8px_rgb(255_255_255_/_0.45)] text-left">
-                You have insufficient chats for today. Would you like to spend
-                Fish to buy more chat opportunities?
+                Would you like to exchange Fish for Chat Points?
               </div>
 
               {/* content */}
