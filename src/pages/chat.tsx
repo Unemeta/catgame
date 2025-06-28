@@ -14,12 +14,12 @@ import { cn } from "@/lib/utils";
 import LottieView from "@/components/lottie";
 import { useRouter } from "next/router";
 import CountdownTimer from "@/components/countDownReset";
-import PopoverChatNum from "@/components/popover/chatNum";
 import ImgView from "@/components/photeView";
 import VideoPlayView from "@/components/videoPlay";
 import DialogSetting from "@/components/dialog/setting";
 import DialogExchange from "@/components/dialog/exchange";
 import { DialogCheckIn } from "@/components/dialog/checkIn";
+import VideoBackgroundChat from "@/components/VideoBackgroundChat";
 
 let timerHistory: NodeJS.Timeout | null | undefined = null;
 const ChatView = () => {
@@ -300,8 +300,9 @@ const ChatView = () => {
   return (
     <div className={styles.DialogContent}>
       <div
+      // bg-[url('/img/bg/bg_chat2.min.png')] bg-cover
         className={cn(
-          "bg-[url('/img/bg/bg_chat2.min.png')] bg-cover wrapHeight overflow-hidden  relative  w-[100vw] flex flex-col"
+          " wrapHeight overflow-hidden  relative  w-[100vw] flex flex-col"
         )}
       >
         <div className="headerBackpack flex justify-between items-center  px-[2rem] pt-[1rem] pb-[1rem]">
@@ -382,7 +383,7 @@ const ChatView = () => {
               </div>
             </div> */}
           <div className="flex justify-end items-center">
-            <div className="relative">
+            <div className="relative" onClick={()=> router.push("/letter")}>
               <div className="w-[0.8rem] h-[0.8rem] bg-[#E95658] absolute right-0 top-[-0.1rem] rounded-full"></div>
               <img
                 className="w-[2.4rem] h-[2.4rem]"
@@ -627,7 +628,7 @@ const ChatView = () => {
           setShow={setshowExchange}
         ></DialogExchange>
       </div>
-      {/* <VideoBackground /> */}
+      <VideoBackgroundChat />
     </div>
   );
 };
