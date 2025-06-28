@@ -14,6 +14,7 @@ interface iStep3View {
 }
 const Step3View = ({ index }: iStep3View) => {
   const [inputMsg, setinputMsg] = useState("");
+  // 1活泼2高冷3疗愈4好奇
   const cats = [
     {
       type: "Lively Cats",
