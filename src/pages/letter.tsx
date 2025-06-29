@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @next/next/no-img-element */
+import DialogShare from "@/components/dialog/share";
 import IconView from "@/components/IconView";
 import { useRouter } from "next/router";
 
@@ -28,11 +29,15 @@ const LetterView = () => {
               Farewell letter
             </span>
           </div>
-          <IconView
-            className="w-[2rem] h-[2rem]"
-            type="share"
-            onClick={handleShare}
-          ></IconView>
+          <DialogShare
+            trigger={
+              <IconView
+                className="w-[2rem] h-[2rem]"
+                type="share"
+                onClick={handleShare}
+              ></IconView>
+            }
+          ></DialogShare>
         </div>
       </div>
       <div className="h-[4.6rem]"></div>

@@ -54,6 +54,28 @@ const svgMap = {
       />
     </svg>
   ),
+  x: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="21"
+      height="20"
+      viewBox="0 0 21 20"
+      fill="none"
+    >
+      <path
+        d="M18.6302 18.4616H13.2456L2.47637 1.53857H7.86098L18.6302 18.4616ZM14.0907 16.9232H15.8275L7.01588 3.07703H5.2791L14.0907 16.9232Z"
+        fill="#E96856"
+      />
+      <path
+        d="M18.2456 1.53857H15.9379L10.8846 7.71485L12.0385 9.1251L18.2456 1.53857Z"
+        fill="#E96856"
+      />
+      <path
+        d="M2.0918 18.4616H4.39949L10.0638 11.5386L8.96154 10.0653L2.0918 18.4616Z"
+        fill="#E96856"
+      />
+    </svg>
+  ),
   add: (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -183,7 +205,7 @@ const svgMap = {
 
 export interface iconProps extends React.HTMLAttributes<HTMLButtonElement> {
   className?: string;
-  type?: "eduitCatName" | "back" | "share" | "add" | "sub";
+  type?: "eduitCatName" | "back" | "share" | "add" | "sub" | "x";
 }
 
 const IconView = (props: iconProps) => {
