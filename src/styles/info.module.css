@@ -1,0 +1,6 @@
+.container {
+  /* 使用 -webkit-fill-available 兼容移动设备 */
+  height: 100vh;
+  height: -webkit-fill-available; /* 解决iOS Safari问题 */
+  min-height: 100vh;
+}

@@ -8,6 +8,8 @@ import { cn } from "@/lib/utils";
 import { useUserBasicInfo } from "@/store/info";
 import { request } from "@/utils/request";
 import { useRouter } from "next/router";
+import styles from "@/styles/info.module.css";
+
 // import DialogCheckIn from "@/components/dialog/checkIn";
 // import DialogExchange from "@/components/dialog/exchange";
 
@@ -49,7 +51,12 @@ const InfoView = () => {
   }, []);
 
   return (
-    <div className="w-full h-[100vh] absolute inset-0 z-[2] px-[2rem] bg-[url('/img/infoback.jpg')] bg-cover">
+    <div
+      className={cn(
+        "w-full absolute inset-0 z-[2] px-[2rem] bg-[url('/img/infoback.jpg')] bg-cover",
+        styles.container
+      )}
+    >
       {showQuestion ? (
         <>
           <div className="h-[3vh]"></div>
