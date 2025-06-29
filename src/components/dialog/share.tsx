@@ -12,7 +12,7 @@ interface iDialogShare {
 }
 const DialogShare = ({ trigger }: iDialogShare) => {
   const [isOpen, setisOpen] = useState(false);
-  const [link, setlink] = useState("https://discord.gg/your_invite_code");
+  const [link] = useState("https://discord.gg/your_invite_code");
 
   const copyToClipboard = (textToCopy: string | number) => {
     if (navigator.clipboard && window.isSecureContext) {
