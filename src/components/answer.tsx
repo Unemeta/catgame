@@ -74,7 +74,7 @@ const AnswerView = ({ onClick }: iAnswerView) => {
           <div
             onClick={() => {
               const pre = [...selectIndexQuestionArr];
-              pre[stepAnswerIndex] =  0;
+              pre[stepAnswerIndex] = 0;
               setselectIndexQuestionArr(pre);
             }}
             className={cn(
@@ -118,7 +118,7 @@ const AnswerView = ({ onClick }: iAnswerView) => {
           <div
             onClick={() => {
               const pre = [...selectIndexQuestionArr];
-              pre[stepAnswerIndex] =  1;
+              pre[stepAnswerIndex] = 1;
               setselectIndexQuestionArr(pre);
             }}
             className={cn(
@@ -158,7 +158,7 @@ const AnswerView = ({ onClick }: iAnswerView) => {
             </span>
           </div>
         </div>
-        <div
+        {/* <div
           className="absolute bottom-[1rem] left-[50vw] translate-x-[-50%]"
           onClick={() => {
             if (stepAnswerIndex >= 3) {
@@ -168,15 +168,25 @@ const AnswerView = ({ onClick }: iAnswerView) => {
               setstepAnswerIndex((stepAnswerIndex) => stepAnswerIndex + 1);
             }
           }}
-        >
-          {/* opacity-50 */}
+        > */}
+        {/* opacity-50 */}
+        <div className="flex justify-center items-center mt-[2rem]">
           <img
             src="/img/arrow_right.min.png"
             className="w-[27vw] h-[27vw] "
             alt=""
+            onClick={() => {
+              if (stepAnswerIndex >= 3) {
+                console.log(selectIndexQuestionArr);
+                onClick(selectIndexQuestionArr);
+              } else {
+                setstepAnswerIndex((stepAnswerIndex) => stepAnswerIndex + 1);
+              }
+            }}
           />
         </div>
       </div>
+      {/* </div> */}
     </div>
   );
 };

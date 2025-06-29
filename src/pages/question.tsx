@@ -15,11 +15,11 @@ const PartyView = () => {
   // const [payload, setpayload] = useState({
 
   // });
-  const [isLoading, setisLoading] = useState(false)
+  const [isLoading, setisLoading] = useState(false);
   const postInfo = async (selectIndexs: number[]) => {
     try {
-      if(isLoading){
-        return
+      if (isLoading) {
+        return;
       }
       setisLoading(true);
       const res = await request({
@@ -51,7 +51,7 @@ const PartyView = () => {
     <div className="">
       <div className="relative">
         <img
-          className={cn("w-[100vw] wrapHeight absolute inset-0 z-[1]", {
+          className={cn("w-[100vw] min-h-[100vh] absolute inset-0 z-[1]", {
             "blur-[20px]": stepIndex !== 0,
           })}
           src="/img/bg/bg_pop_rain.min.png"
@@ -69,18 +69,24 @@ const PartyView = () => {
                 you. <br /> Based on your answers, it will find a <br /> cat
                 that matches you.
               </div>
-              <div
+
+              {/* <div
                 className="absolute bottom-[1rem] left-[50vw] translate-x-[-50%]"
                 onClick={() => {
                   setstepIndex(1);
                 }}
-              >
+              > */}
+              <div className="flex justify-center items-center mt-[33rem]">
                 <img
                   src="/img/arrow_right.min.png"
                   className="w-[27vw] h-[27vw]"
                   alt=""
+                  onClick={() => {
+                    setstepIndex(1);
+                  }}
                 />
               </div>
+              {/* </div> */}
             </div>
           </div>
         )}
