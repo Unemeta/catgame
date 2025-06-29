@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @next/next/no-img-element */
 import IconView from "@/components/IconView";
 import { useRouter } from "next/router";
