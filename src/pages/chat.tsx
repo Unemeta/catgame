@@ -300,7 +300,7 @@ const ChatView = () => {
   return (
     <div className={styles.DialogContent}>
       <div
-      // bg-[url('/img/bg/bg_chat2.min.png')] bg-cover
+        // bg-[url('/img/bg/bg_chat2.min.png')] bg-cover
         className={cn(
           " wrapHeight overflow-hidden  relative  w-[100vw] flex flex-col"
         )}
@@ -383,7 +383,7 @@ const ChatView = () => {
               </div>
             </div> */}
           <div className="flex justify-end items-center">
-            <div className="relative" onClick={()=> router.push("/letter")}>
+            <div className="relative" onClick={() => router.push("/letter")}>
               <div className="w-[0.8rem] h-[0.8rem] bg-[#E95658] absolute right-0 top-[-0.1rem] rounded-full"></div>
               <img
                 className="w-[2.4rem] h-[2.4rem]"
@@ -543,7 +543,7 @@ const ChatView = () => {
           </div>
         </div>
         {/* </div> */}
-        <div className="">
+        <div className="fixed bottom-0 left-0 w-full">
           {showVoice ? (
             <SpeechRecognition
               language="zh_cn"
@@ -627,8 +627,8 @@ const ChatView = () => {
           show={showExchange}
           setShow={setshowExchange}
         ></DialogExchange>
+        <VideoBackgroundChat />
       </div>
-      <VideoBackgroundChat />
     </div>
   );
 };
