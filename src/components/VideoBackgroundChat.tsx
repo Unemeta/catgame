@@ -29,7 +29,7 @@ export default function VideoBackgroundChat() {
         // console.log(video.currentTime,'video.DEFAULT_LOOP')
         if (video.currentTime >= DEFAULT_LOOP[1]) {
           video.currentTime = DEFAULT_LOOP[0];
-          video.play();
+          video?.play();
         }
       }
     };
