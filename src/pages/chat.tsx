@@ -275,18 +275,17 @@ const ChatView = () => {
       ".flv",
       ".webm",
     ];
-    return videoExtensions.some((extension) => url.endsWith(extension));
+    return videoExtensions.some((extension) => url.toLocaleLowerCase().endsWith(extension));
+  }
+  function isImgEndUrl(url: string) {
+    const imgEnds = [".png", ".jpg", ".jpeg"];
+    return imgEnds.some((extension) =>
+      url.toLocaleLowerCase().endsWith(extension)
+    );
   }
   const mediaSwitch = (msg: string, msgId: string, eventid: number) => {
     if (msg.indexOf("http") > -1 || msg.indexOf("https") > -1) {
-      if (
-        msg?.indexOf("png") > -1 ||
-        msg?.indexOf("PNG") > -1 ||
-        msg?.indexOf("jpg") > -1 ||
-        msg?.indexOf("JPG") > -1 ||
-        msg?.indexOf("jpeg") > -1 ||
-        msg?.indexOf("JPEG") > -1
-      ) {
+      if (isImgEndUrl(msg)) {
         return <ImgView src={msg} eventid={eventid} />;
       }
       if (isVideoEndUrl(msg)) {
