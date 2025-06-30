@@ -15,18 +15,44 @@ interface iStep3View {
 const Step3View = ({ index }: iStep3View) => {
   const [inputMsg, setinputMsg] = useState("");
   // 1活泼2高冷3疗愈4好奇
+  // const cats = [
+  //   {
+  //     type: "Lively Cats",
+  //     name: "JOJO",
+  //     keys: ["Energetic", "clingy", "cute"],
+  //     desc: "They’re full of energy, love being around you, and are always ready to dive into a new adventure with you.",
+  //   },
+  //   {
+  //     type: "Aloof Cats",
+  //     name: "YOYO",
+  //     keys: ["Independent", "reserved", "intelligent"],
+  //     desc: "They have a natural aura, prefer their space, but once they trust you, they’ll quietly stay by your side for the long run.",
+  //   },
+  // ];
   const cats = [
     {
-      type: "Lively Cats",
-      name: "JOJO",
-      keys: ["Energetic", "clingy", "cute"],
-      desc: "They’re full of energy, love being around you, and are always ready to dive into a new adventure with you.",
+      type: "Cats",
+      name: "",
+      keys: [" ", " "],
+      desc: " ",
     },
     {
       type: "Aloof Cats",
-      name: "YOYO",
-      keys: ["Independent", "reserved", "intelligent"],
-      desc: "They have a natural aura, prefer their space, but once they trust you, they’ll quietly stay by your side for the long run.",
+      name: "",
+      keys: ["Reserved", "Tsundere"],
+      desc: "Carries their own quiet aura, never needy — yet once they choose you, they’ll be your loyal companion for life.",
+    },
+    {
+      type: "Soothing Cats",
+      name: "",
+      keys: ["Soothing", "Tenderness"],
+      desc: "Warm and caring, always offering gentle companionship that gradually brings peace to your heart.",
+    },
+    {
+      type: "Curious Cats",
+      name: "",
+      keys: ["Spirited", "Lively"],
+      desc: "With a lively spirit and a love for exploration, they roam freely, eyes shining with dreams of the world.",
     },
   ];
   const router = useRouter();
