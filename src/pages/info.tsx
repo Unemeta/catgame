@@ -53,8 +53,7 @@ const InfoView = () => {
   return (
     <div
       className={cn(
-        "w-full absolute inset-0 z-[2] px-[2rem] bg-[url('/img/infoback.jpg')] bg-cover",
-        styles.container
+        "w-full absolute inset-0 z-[2] px-[2rem] bg-[url('/img/infoback.jpg')] bg-cover wrapHeight overflow-scroll",
       )}
     >
       {showQuestion ? (
