@@ -229,6 +229,7 @@ const ChatView = () => {
     }
   };
   const [chatCount, setchatCount] = useState("");
+  const [farewellLetterStatus, setfarewellLetterStatus] = useState("");
   const getChatInfo = async () => {
     try {
       const { data } = await request({
@@ -238,6 +239,9 @@ const ChatView = () => {
       console.log(data);
       if (data.hasOwnProperty("chatCount")) {
         setchatCount(String(data.chatCount));
+      }
+      if (data.hasOwnProperty("farewellLetterStatus")) {
+        setfarewellLetterStatus(String(data.farewellLetterStatus));
       }
     } catch (error: any) {
       console.error(error);
@@ -409,14 +413,20 @@ const ChatView = () => {
               </div>
             </div> */}
           <div className="flex justify-end items-center">
-            <div className="relative" onClick={() => router.push("/letter")}>
-              <div className="w-[0.8rem] h-[0.8rem] bg-[#E95658] absolute right-0 top-[-0.1rem] rounded-full"></div>
-              <img
-                className="w-[2.4rem] h-[2.4rem]"
-                src="/img/emailBye.png"
-                alt=""
-              />
-            </div>
+            {/* 1 没发送 2 发送未读 3 发送已读 */}
+            {(farewellLetterStatus == "2" || farewellLetterStatus == "3") && (
+              <div
+                className="relative"
+                onClick={() => router.push(`/letter?id=${userData?.uuid}`)}
+              >
+                <div className="w-[0.8rem] h-[0.8rem] bg-[#E95658] absolute right-0 top-[-0.1rem] rounded-full"></div>
+                <img
+                  className="w-[2.4rem] h-[2.4rem]"
+                  src="/img/emailBye.png"
+                  alt=""
+                />
+              </div>
+            )}
 
             <div className="w-[0.6rem]"></div>
             <DialogCheckIn

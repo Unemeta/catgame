@@ -2,7 +2,9 @@
 /* eslint-disable @next/next/no-img-element */
 import DialogShare from "@/components/dialog/share";
 import IconView from "@/components/IconView";
+import { request } from "@/utils/request";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 const LetterView = () => {
   const router = useRouter();
@@ -15,6 +17,37 @@ const LetterView = () => {
   const handleDiscord = async () => {
     console.log("handleDiscord");
   };
+  const [letterInfo, setletterInfo] = useState({
+    text: "",
+    url: "",
+  });
+
+  useEffect(() => {
+    (async () => {
+      const uuid = router.query.id;
+      if (uuid) {
+        //
+      } else {
+        return;
+      }
+      console.log(router.query);
+      try {
+        const { data } = await request({
+          url: `/api/cat/v1/chat/farewellletter/info?uuid=${uuid}`,
+          method: "get",
+        });
+        if (data) {
+          console.log(data);
+          setletterInfo(data);
+        }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (error: any) {
+        console.error(error);
+        // toast.error(error?.msg || JSON.stringify(error));
+      }
+    })();
+  }, [router.query]);
+
   return (
     <div className="bg-[#F0E4DD] min-h-[100vh]">
       <div className="fixed w-full bg-[#F0E4DD]">
@@ -54,9 +87,14 @@ const LetterView = () => {
             </span>
           </div>
           <div className="flex justify-center items-center">
-            <img
+            {/* <img
               className="w-[28rem] h-[35rem]"
               src="/img/letter_cat.png"
+              alt=""
+            /> */}
+            <img
+              className="w-[28rem] h-[35rem]"
+              src={letterInfo?.url}
               alt=""
             />
           </div>
@@ -100,7 +138,7 @@ const LetterView = () => {
         >
           <div className="px-[3.4rem] pt-[5.7rem] pb-[2.9rem]">
             <span className="text-[#6C4937] text-[1.4rem] font-[500] leading-[1.5]">
-              Meow~ It's me, your most adorable little kitty! I'm so happy to be
+              {/* Meow~ It's me, your most adorable little kitty! I'm so happy to be
               with you this week that my tail is up in the air~ So, I'm quietly
               writing you a letter, wanting to meow to you, to recall the warm
               days between us! Do you still remember? On the first day, you told
@@ -122,7 +160,8 @@ const LetterView = () => {
               week: when you successfully completed a task, the sense of
               accomplishment was enough to make my cat ears tremble! It feels
               great to be happy when you are happy! <br />
-              <br /> Love you, kitty~~~
+              <br /> Love you, kitty~~~ */}
+              {letterInfo?.text}
               <div className="h-[1.5rem]"></div>
             </span>
           </div>
