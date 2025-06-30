@@ -62,6 +62,9 @@ const ChatView = () => {
         getHistory();
         getChatInfo();
       }, 3000);
+      setTimeout(async () => {
+        getChatInfo();
+      }, 30 * 1000);
       setTimeout(() => {
         if (inputRef?.current) {
           inputRef.current.tabIndex = 0;
@@ -275,7 +278,9 @@ const ChatView = () => {
       ".flv",
       ".webm",
     ];
-    return videoExtensions.some((extension) => url.toLocaleLowerCase().endsWith(extension));
+    return videoExtensions.some((extension) =>
+      url.toLocaleLowerCase().endsWith(extension)
+    );
   }
   function isImgEndUrl(url: string) {
     const imgEnds = [".png", ".jpg", ".jpeg"];
@@ -623,11 +628,11 @@ const ChatView = () => {
                   loop={true}
                 ></LottieView>
               </div>
-              <div className="relative sendInputWrap flex grow rounded-[2.2rem]">
+              <div className="relative sendInputWrap flex grow rounded-[2.2rem] overflow-hidden">
                 <textarea
                   tabIndex={-1}
                   ref={inputRef}
-                  className="sendInput w-full bg-[#0f040f82] rounded-[1rem] text-[1.4rem] text-white outline-none  font-[500] pl-[2rem] pr-[6rem] py-[0.6rem] flex justify-center items-center leading-[1.5]"
+                  className="sendInput w-full bg-[#0f040f82] text-[1.4rem] text-white outline-none  font-[500] pl-[2rem] pr-[6rem] py-[0.6rem] flex justify-center items-center leading-[1.5]"
                   // type="text"
                   // rows={1}
                   onChange={(e) => setinputMsg(e.target.value)}
