@@ -637,7 +637,6 @@ body {
   position: relative;
   background: #422636;
   border-radius: 9999px; */
-  border-radius: 22px;
   border: 1.5px solid #d8c5b9;
   background: rgba(0, 0, 0, 0.2);
 }
@@ -664,11 +663,6 @@ body {
   animation: animatedgradient 3s ease alternate infinite;
   background-size: 300% 300%;
 } */
-.sendInput {
-  height: 80px;
-  color: white;
-  font-size: 24px;
-}
 .userAvator {
   width: 90px;
   height: 90px;
@@ -909,20 +903,6 @@ body {
     padding-right: 60px;
     padding-bottom: 0;
   }
-  .sendInput {
-    padding-left: 40px;
-    height: 3.6rem;
-    width: 73vw;
-    border-radius: 100px;
-    /* width: 100%; */
-    font-size: 60px;
-    font-weight: 500;
-    color: white;
-    /* border-radius: 22px; */
-    background: rgba(15, 4, 15, 0.51);
-    position: relative;
-    border: none;
-  }
   .lmdSend {
     display: none;
   }
@@ -939,8 +919,8 @@ body {
   }
 
   .sendInputWrap {
-    --borderWidth: 10px;
-    border-radius: calc(10 * var(--borderWidth));
+    /* --borderWidth: 10px; */
+    /* border-radius: calc(10 * var(--borderWidth)); */
   }
   /* .sendInputWrap:after {
     content: "";

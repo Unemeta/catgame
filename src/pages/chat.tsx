@@ -45,7 +45,8 @@ const ChatView = () => {
   >([]);
   const chatEndRef = useRef(null);
   const [toConnect, settoConnect] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
+  // const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
   const [showCatLoading, setshowCatLoading] = useState(false);
 
   useEffect(() => {
@@ -201,11 +202,6 @@ const ChatView = () => {
       console.log(error);
     }
   };
-  const handleKeyDown = (event: any) => {
-    if (event?.key === "Enter") {
-      sendMessage();
-    }
-  };
   const getHistory = async () => {
     try {
       const { data } = await request({
@@ -297,6 +293,28 @@ const ChatView = () => {
     }
   };
 
+  const [value, setValue] = useState("");
+  const maxRows = 5; // 最大行数
+  const lineHeight = 24; // 行高，单位为 px
+  const handleInput = (e: any) => {
+    if (e.target.value.length < 30) {
+      e.target.style.height = "auto"; // 重置高度以适应新内容
+      e.target.style.height = `3.6rem`; // 设置为内容高度
+      return;
+    }
+    const { scrollHeight } = e.target;
+    const currentRows = Math.floor(scrollHeight / lineHeight);
+
+    if (currentRows <= maxRows) {
+      setValue(e.target.value);
+      e.target.style.height = "auto"; // 重置高度以适应新内容
+      e.target.style.height = `${scrollHeight}px`; // 设置为内容高度
+    } else {
+      e.target.style.overflowY = "auto"; // 超过最大行数时显示滚动条
+      e.target.style.height = `${maxRows * lineHeight}px`; // 限制高度
+      setValue(e.target.value);
+    }
+  };
   return (
     <div className={styles.DialogContent}>
       <div
@@ -543,6 +561,7 @@ const ChatView = () => {
           </div>
         </div>
         {/* </div> */}
+        <div className="h-[4rem]"></div>
         <div className="fixed bottom-0 left-0 w-full">
           {showVoice ? (
             <SpeechRecognition
@@ -550,7 +569,7 @@ const ChatView = () => {
               onSend={(text) => sendMessageByVoice(text)}
             ></SpeechRecognition>
           ) : (
-            <div className="textInput flex justify-center items-center sendSpeakerWrap relative">
+            <div className="textInput flex justify-center items-center sendSpeakerWrap relative dtest">
               <div className="absolute top-[-3rem] right-[1rem]">
                 {Number(chatCount) >= 20 ? (
                   <div className="flex justify-center items-center px-[1rem] py-[0.6rem] bg-[rgba(58,53,53,0.50)] border-white/20 border-[1px] rounded-[11rem]">
@@ -580,16 +599,32 @@ const ChatView = () => {
                   </div>
                 )}
               </div>
-              <div className="relative sendInputWrap flex ">
-                <input
+              <div className="" onClick={() => setShowVoice(true)}>
+                <LottieView
+                  src={"/lottie/v1.json"}
+                  className={styles.newIcon}
+                  loop={true}
+                ></LottieView>
+              </div>
+              <div className="relative sendInputWrap flex grow rounded-[2.2rem]">
+                <textarea
                   tabIndex={-1}
                   ref={inputRef}
-                  className="sendInput drounded160 dw780 bg-[#0f040f82] dpl15 outline-none  font-[800]"
-                  type="text"
+                  className="sendInput w-full bg-[#0f040f82] rounded-[1rem] text-[1.4rem] text-white outline-none  font-[500] pl-[2rem] pr-[6rem] py-[0.6rem] flex justify-center items-center leading-[1.5]"
+                  // type="text"
+                  // rows={1}
                   onChange={(e) => setinputMsg(e.target.value)}
-                  onKeyDown={handleKeyDown}
+                  onInput={handleInput}
                   value={inputMsg}
                   placeholder="What are you talking about?"
+                />
+                <img
+                  onClick={() => {
+                    sendMessage();
+                  }}
+                  className="w-[4.6rem] h-[2.8rem] absolute right-[0.4rem] bottom-[0.5rem]"
+                  src="/img/sendMsg.min.png"
+                  alt=""
                 />
                 {/* <div
                       className="lmdSend absolute dright80 top-[50%] dtranslateYF50 bg-[linear-gradient(0deg,_#BE6FFF_0%,_#6C8AFF_100%)] drounded20 dpx30 dpy20 text-white dtext24 font-[800] cursor-pointer select-none"
@@ -598,13 +633,6 @@ const ChatView = () => {
                     >
                       Send
                     </div> */}
-              </div>
-              <div className="" onClick={() => setShowVoice(true)}>
-                <LottieView
-                  src={"/lottie/v1.json"}
-                  className={styles.newIcon}
-                  loop={true}
-                ></LottieView>
               </div>
             </div>
           )}
