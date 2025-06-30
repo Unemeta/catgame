@@ -40,6 +40,16 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     return () => window.removeEventListener("resize", handleOrientation);
   }, []);
 
+  useEffect(() => {
+    function setFullHeight() {
+      const vh = window.innerHeight;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    }
+
+    window.addEventListener("resize", setFullHeight);
+    window.addEventListener("load", setFullHeight);
+  }, []);
+
   return (
     <>
       <Head>

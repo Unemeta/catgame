@@ -735,7 +735,8 @@ body {
 @media screen and (max-width: 768px) {
   .wrapHeight {
     /* height: 87vh; */
-    height: 100vh;
+    /* height: 100vh; */
+    height: var(--vh);
   }
   html {
     /* font-size: 1.3vw;  */

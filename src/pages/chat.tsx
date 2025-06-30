@@ -543,7 +543,7 @@ const ChatView = () => {
           </div>
         </div>
         {/* </div> */}
-        <div className="">
+        <div className="absolute bottom-0 left-0 w-full">
           {showVoice ? (
             <SpeechRecognition
               language="zh_cn"
