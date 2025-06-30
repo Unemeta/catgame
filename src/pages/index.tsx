@@ -16,7 +16,6 @@ import { Tabs } from "@/types";
 import { useShowLevelUp, useFetchUser, usePlayItemId } from "@/store";
 import LoveCollect from "@/components/LoveCollect";
 import Rewards from "@/components/dialog/rewards";
-import DialogChatView from "@/components/dialog/chat";
 import TalkSelect from "@/components/dialog/talkselect";
 import { useRouter } from "next/router";
 export default function Home() {
