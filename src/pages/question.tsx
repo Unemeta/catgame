@@ -4,13 +4,16 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { request } from "@/utils/request";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 /* eslint-disable @next/next/no-img-element */
 const PartyView = () => {
   const [stepIndex, setstepIndex] = useState(0);
+  const router = useRouter();
   const [mbtiRes, setmbtiRes] = useState({
     disposition: 0,
     nickname: "",
+    meowname: "",
   });
   // const [payload, setpayload] = useState({
 
@@ -38,12 +41,14 @@ const PartyView = () => {
         setmbtiRes({
           disposition: res.data.disposition,
           nickname: res.data.nickname,
+          meowname: res.data.meowname,
         });
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast.error(error.response.data ?? JSON.stringify(error));
       console.log(error);
+      router.push("/");
     }
     setisLoading(false);
   };

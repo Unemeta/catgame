@@ -2,7 +2,7 @@
 import { useRouter } from "next/router";
 import IconView from "./IconView";
 import { request } from "@/utils/request";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 interface iStep3View {
@@ -10,23 +10,58 @@ interface iStep3View {
   mbtiRes: {
     disposition: number;
     nickname: string;
+    meowname?: string;
   };
 }
-const Step3View = ({ index }: iStep3View) => {
-  const [inputMsg, setinputMsg] = useState("");
+const Step3View = ({ index, mbtiRes }: iStep3View) => {
+  const [inputMsg, setinputMsg] = useState(mbtiRes?.meowname ?? "");
+  useEffect(() => {
+    if (mbtiRes?.meowname && mbtiRes?.meowname?.length > 0) {
+      setinputMsg(mbtiRes?.meowname);
+    }
+
+    return () => {};
+  }, [mbtiRes]);
+
   // 1活泼2高冷3疗愈4好奇
+  // const cats = [
+  //   {
+  //     type: "Lively Cats",
+  //     name: "JOJO",
+  //     keys: ["Energetic", "clingy", "cute"],
+  //     desc: "They’re full of energy, love being around you, and are always ready to dive into a new adventure with you.",
+  //   },
+  //   {
+  //     type: "Aloof Cats",
+  //     name: "YOYO",
+  //     keys: ["Independent", "reserved", "intelligent"],
+  //     desc: "They have a natural aura, prefer their space, but once they trust you, they’ll quietly stay by your side for the long run.",
+  //   },
+  // ];
   const cats = [
     {
-      type: "Lively Cats",
-      name: "JOJO",
-      keys: ["Energetic", "clingy", "cute"],
-      desc: "They’re full of energy, love being around you, and are always ready to dive into a new adventure with you.",
+      type: "Cats",
+      name: "",
+      keys: [" ", " "],
+      desc: " ",
     },
     {
       type: "Aloof Cats",
-      name: "YOYO",
-      keys: ["Independent", "reserved", "intelligent"],
-      desc: "They have a natural aura, prefer their space, but once they trust you, they’ll quietly stay by your side for the long run.",
+      name: "",
+      keys: ["Reserved", "Tsundere"],
+      desc: "Carries their own quiet aura, never needy — yet once they choose you, they’ll be your loyal companion for life.",
+    },
+    {
+      type: "Soothing Cats",
+      name: "",
+      keys: ["Soothing", "Tenderness"],
+      desc: "Warm and caring, always offering gentle companionship that gradually brings peace to your heart.",
+    },
+    {
+      type: "Curious Cats",
+      name: "",
+      keys: ["Spirited", "Lively"],
+      desc: "With a lively spirit and a love for exploration, they roam freely, eyes shining with dreams of the world.",
     },
   ];
   const router = useRouter();
@@ -34,7 +69,7 @@ const Step3View = ({ index }: iStep3View) => {
     <div className="w-full h-full absolute inset-0 z-[2] ">
       <div className="h-[6vh]"></div>
       <div className="text-[#fff] text-[3rem] font-[700] text-center leading-[1] mb-[1rem]">
-        Hello, {cats[index]?.name}.
+        Hello, {mbtiRes?.nickname}.
       </div>
       <div className="text-[#fff] text-[2rem] font-[700] text-center leading-[1]">
         This is your {cats[index].type}.
@@ -55,11 +90,13 @@ const Step3View = ({ index }: iStep3View) => {
               {cats[index].keys[1]}
             </div>
           </div>
-          <div className="">
-            <div className="px-[1rem] py-2 text-white text-[1.6rem] font-[700] bg-[#4A5F7799] rounded-[5rem] border-[#95A1C1] border-w-[0.1rem] inline-block">
-              {cats[index].keys[2]}
+          {cats[index].keys.length >= 2 && (
+            <div className="">
+              <div className="px-[1rem] py-2 text-white text-[1.6rem] font-[700] bg-[#4A5F7799] rounded-[5rem] border-[#95A1C1] border-w-[0.1rem] inline-block">
+                {cats[index].keys[2]}
+              </div>
             </div>
-          </div>
+          )}
           <div className="h-[24rem]"></div>
           <div className="absolute left-[0] top-[4rem] w-full flex justify-center">
             <img
@@ -76,6 +113,7 @@ const Step3View = ({ index }: iStep3View) => {
               <div className="relative">
                 <input
                   onChange={(e) => setinputMsg(e.target.value)}
+                  value={inputMsg}
                   className="border-[1px] focus:outline-[#E96856]! border-[#E96856] rounded-full bg-white w-[21rem] h-[4rem] text-[#EA8273] text-[2rem] font-[700] px-[2rem] pr-[3.6rem] text-center"
                   type="text"
                 />
