@@ -90,7 +90,7 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
               {cats[index].keys[1]}
             </div>
           </div>
-          {cats[index].keys.length >= 2 && (
+          {cats[index].keys.length > 2 && (
             <div className="">
               <div className="px-[1rem] py-2 text-white text-[1.6rem] font-[700] bg-[#4A5F7799] rounded-[5rem] border-[#95A1C1] border-w-[0.1rem] inline-block">
                 {cats[index].keys[2]}
