@@ -133,7 +133,7 @@ const Age = ({ onClick }: iAnswerView) => {
         </div>
       </div>
 
-      <div className="mt-[5rem]" onClick={onClick}>
+      <div className="mt-[4rem]" onClick={onClick}>
         <img
           src="/img/arrow_right.min.png"
           alt=""

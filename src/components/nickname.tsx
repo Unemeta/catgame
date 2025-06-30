@@ -152,7 +152,7 @@ const NickName = ({ onClick }: iAnswerView) => {
         </div>
       </div>
 
-      <div className="mt-[5rem]">
+      <div className="mt-[4rem]">
         {basicInfo.nickname ? (
           <img
             src="/img/arrow_right.min.png"
