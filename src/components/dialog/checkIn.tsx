@@ -118,8 +118,8 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
   return (
     <>
       <Dialog open={showCheckIn} onOpenChange={setShowCheckIn}>
-        <DialogTrigger>{trigger}</DialogTrigger>
-        <DialogContent>
+        <DialogTrigger className="outline-none">{trigger}</DialogTrigger>
+        <DialogContent className="outline-none">
           <DialogTitle></DialogTitle>
 
           {showToast && <SignToast></SignToast>}
@@ -249,8 +249,8 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
               </div> */}
             </div>
 
-            <div className="flex absolute top-[2rem] right-[2.5rem] translate-x-[100%] translate-y-[-80%] outline-none">
-              <DialogTrigger>
+            <div className="flex absolute top-[2rem] right-[2.5rem] translate-x-[100%] translate-y-[-80%]">
+              <DialogTrigger className="outline-none">
                 <div className="flex justify-center items-center cursor-pointer select-none">
                   <img
                     className="w-[4rem] h-auto"
