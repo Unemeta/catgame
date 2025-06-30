@@ -202,6 +202,14 @@ const ChatView = () => {
       console.log(error);
     }
   };
+  const handleKeyDown = (event: any) => {
+    if (event?.key === "Enter") {
+      sendMessage();
+      setTimeout(() => {
+        handleInput(event, true);
+      }, 1000);
+    }
+  };
   const getHistory = async () => {
     try {
       const { data } = await request({
@@ -296,9 +304,9 @@ const ChatView = () => {
   const [value, setValue] = useState("");
   const maxRows = 5; // 最大行数
   const lineHeight = 24; // 行高，单位为 px
-  const handleInput = (e: any) => {
-    if (e.target.value.length < 30) {
-      e.target.style.height = "auto"; // 重置高度以适应新内容
+  const handleInput = (e: any, reset = false) => {
+    if (e.target.value.length < 30 || reset == true) {
+      // e.target.style.height = "auto"; // 重置高度以适应新内容
       e.target.style.height = `3.6rem`; // 设置为内容高度
       return;
     }
@@ -561,7 +569,7 @@ const ChatView = () => {
           </div>
         </div>
         {/* </div> */}
-        <div className="h-[4rem]"></div>
+        <div className="h-[7rem]"></div>
         <div className="fixed bottom-0 left-0 w-full">
           {showVoice ? (
             <SpeechRecognition
@@ -615,6 +623,9 @@ const ChatView = () => {
                   // rows={1}
                   onChange={(e) => setinputMsg(e.target.value)}
                   onInput={handleInput}
+                  onKeyDown={(e) => {
+                    handleKeyDown(e);
+                  }}
                   value={inputMsg}
                   placeholder="What are you talking about?"
                 />
