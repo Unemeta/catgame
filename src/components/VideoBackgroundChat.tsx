@@ -20,7 +20,7 @@ export default function VideoBackgroundChat() {
         autoPlay
         loop
         preload="auto"
-        className="absolute top-0 left-0 w-[100%] object-cover"
+        className="absolute top-0 left-0 w-[100%] h-[100%] object-cover"
       ></video>
     </div>
   );
