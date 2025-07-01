@@ -124,7 +124,14 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
 
           {showToast && <SignToast></SignToast>}
           <div className="w-[30rem] h-[35rem] relative outline-none">
-            <div className="self-stretch bg-gradient-to-b from-red-300 to-stone-500/0 rounded-[3rem] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.55)] outline-2 outline-offset-[-2px] outline-stone-50 inline-flex flex-col justify-start items-center gap-4 overflow-hidden w-full">
+            <div
+              className="self-stretch rounded-[3rem] inline-flex flex-col justify-start items-center gap-4 overflow-hidden w-full bg-[linear-gradient(187deg,#B48471_-9.74%,rgba(212,204,195,0.60)_72.93%)] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.55)] border-[#FFFFF7] border-[0.2rem]"
+              // style={{
+              //   background:
+              //     "linear-gradient(187deg, #B48471 -9.74%, rgba(212, 204, 195, 0.60) 72.93%)",
+              //   border: "2px solid #FFFFF7;",
+              // }}
+            >
               {/* 标题 */}
               <div
                 className="text-center justify-start text-yellow-900 text-[1.8rem] font-extrabold font-['SF_Pro_Rounded'] leading-snug p-[1rem] rounded-tl-[3rem] rounded-tr-[3rem] w-full"
