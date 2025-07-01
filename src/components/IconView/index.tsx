@@ -76,6 +76,35 @@ const svgMap = {
       />
     </svg>
   ),
+  loginOUT: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="17"
+      height="17"
+      viewBox="0 0 17 17"
+      fill="none"
+    >
+      <g clip-path="url(#clip0_3462_26016)">
+        <path
+          d="M8.5 5.83325L11.1667 8.49992M11.1667 8.49992L8.5 11.1666M11.1667 8.49992H2.5M2.72521 5.16659C3.87791 3.17391 6.03239 1.83325 8.5 1.83325C12.1819 1.83325 15.1667 4.81802 15.1667 8.49992C15.1667 12.1818 12.1819 15.1666 8.5 15.1666C6.03239 15.1666 3.87791 13.8259 2.72521 11.8333"
+          stroke="#FF2C3D"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_3462_26016">
+          <rect
+            width="16"
+            height="16"
+            fill="white"
+            transform="translate(0.5 0.5)"
+          />
+        </clipPath>
+      </defs>
+    </svg>
+  ),
   add: (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -205,7 +234,7 @@ const svgMap = {
 
 export interface iconProps extends React.HTMLAttributes<HTMLButtonElement> {
   className?: string;
-  type?: "eduitCatName" | "back" | "share" | "add" | "sub" | "x";
+  type?: "eduitCatName" | "back" | "share" | "add" | "sub" | "x" | "loginOUT";
 }
 
 const IconView = (props: iconProps) => {
