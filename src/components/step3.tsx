@@ -129,7 +129,7 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
               <br /> run. */}
               {cats[index].desc}
             </div>
-            <div className="h-[5rem]"></div>
+            <div className="h-[3.5rem]"></div>
           </div>
         </div>
       </div>
