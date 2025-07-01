@@ -19,7 +19,7 @@ export default function VideoBackgroundChat() {
   return (
     <div className={"fixed top-0 left-0 w-[100vw] wrapHeight  z-[-1]"}>
       <img
-        className="absolute top-0 left-0 w-[100%] h-[100%] object-cover dtest"
+        className="absolute top-0 left-0 w-[100%] h-[100%] object-cover"
         src="/img/bg/bg_chat2.min.png"
         alt=""
       />
@@ -32,7 +32,7 @@ export default function VideoBackgroundChat() {
         loop
         preload="auto"
         onLoadedData={handleLoadedData}
-        className="absolute top-0 left-0 w-[100%] h-[100%] object-cover dtest"
+        className="absolute top-0 left-0 w-[100%] h-[100%] object-cover"
       ></video>
     </div>
   );
