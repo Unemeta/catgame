@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { useUserBasicInfo } from "@/store/info";
 import { request } from "@/utils/request";
 import { useRouter } from "next/router";
+import styles from "@/styles/info.module.css";
 
 // import DialogCheckIn from "@/components/dialog/checkIn";
 // import DialogExchange from "@/components/dialog/exchange";
@@ -52,7 +53,8 @@ const InfoView = () => {
   return (
     <div
       className={cn(
-        "w-full absolute inset-0 z-[2] px-[2rem] bg-[url('/img/infoback.jpg')] bg-cover wrapHeight overflow-scroll",
+        "w-full absolute inset-0 z-[2] px-[2rem] bg-[url('/img/infoback.jpg')] bg-cover overflow-scroll",
+        styles.container
       )}
     >
       {showQuestion ? (

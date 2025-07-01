@@ -4,19 +4,18 @@ import DialogShare from "@/components/dialog/share";
 import IconView from "@/components/IconView";
 import { request } from "@/utils/request";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import ScreenshotDownloader from "@/components/ScreenshotDownloader";
+import Discord from "@/components/Discord";
 
 const LetterView = () => {
+  const contentRef = useRef(null);
+
   const router = useRouter();
   const handleShare = async () => {
     console.log("share");
   };
-  const handleDownload = async () => {
-    console.log("handleDownload");
-  };
-  const handleDiscord = async () => {
-    console.log("handleDiscord");
-  };
+
   const [letterInfo, setletterInfo] = useState({
     text: "",
     url: "",
@@ -40,7 +39,7 @@ const LetterView = () => {
           console.log(data);
           setletterInfo(data);
         }
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         console.error(error);
         // toast.error(error?.msg || JSON.stringify(error));
@@ -49,7 +48,7 @@ const LetterView = () => {
   }, [router.query]);
 
   return (
-    <div className="bg-[#F0E4DD] min-h-[100vh]">
+    <div className="bg-[#F0E4DD] min-h-[100vh]" ref={contentRef}>
       <div className="fixed w-full bg-[#F0E4DD]">
         <div className="header flex justify-between items-center h-[4.6rem] px-[2rem]">
           <IconView
@@ -92,11 +91,7 @@ const LetterView = () => {
               src="/img/letter_cat.png"
               alt=""
             /> */}
-            <img
-              className="w-[28rem] h-[35rem]"
-              src={letterInfo?.url}
-              alt=""
-            />
+            <img className="w-[28rem] h-[35rem]" src={letterInfo?.url} alt="" />
           </div>
           <div className="h-[1.6rem]"></div>
         </div>
@@ -169,34 +164,8 @@ const LetterView = () => {
       </div>
       <div className="h-[1.3rem]"></div>
       <div className="flex justify-center items-center gap-[4.1rem]">
-        <div
-          className="flex flex-col justify-center items-center"
-          onClick={handleDownload}
-        >
-          <img
-            className="w-[3.6rem] h-[3.6rem]"
-            src="/img/letter_downld.png"
-            alt=""
-          />
-          <div className="h-[0.6rem]"></div>
-          <span className="text-[#6C4937] text-[1.4rem] font-[500]">
-            Download
-          </span>
-        </div>
-        <div
-          className="flex flex-col justify-center items-center"
-          onClick={handleDiscord}
-        >
-          <img
-            className="w-[3.6rem] h-[3.6rem]"
-            src="/img/discord.png"
-            alt=""
-          />
-          <div className="h-[0.6rem]"></div>
-          <span className="text-[#6C4937] text-[1.4rem] font-[500]">
-            Discord
-          </span>
-        </div>
+        <ScreenshotDownloader targetRef={contentRef} fileName="sharepage" />
+        <Discord></Discord>
       </div>
       <div className="h-[2.2rem]"></div>
     </div>
