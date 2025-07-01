@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import html2canvas from "html2canvas";
 
 const ScreenshotDownloader = ({ targetRef, fileName = "screenshot" }: any) => {
