@@ -57,7 +57,7 @@ const NickName = ({ onClick }: iAnswerView) => {
   }, []);
   return (
     <div className="flex flex-col items-center mt-[11rem] h-[58rem]">
-      <div className="text-center justify-start text-[#EA8373] text-[2.8rem] font-bold font-['SF_Pro_Rounded'] leading-9">
+      <div className="text-center justify-start text-[#EA8373] text-[2.4rem] font-[700] font-['SF_Pro_Rounded'] leading-9">
         What’s your nickname?
       </div>
       <div className="h-[36rem]">
@@ -157,14 +157,14 @@ const NickName = ({ onClick }: iAnswerView) => {
           <img
             src="/img/arrow_right.min.png"
             alt=""
-            className="w-[12rem] h-[12rem]"
+            className="w-[10rem] h-[10rem]"
             onClick={onClick}
           />
         ) : (
           <img
             src="/img/arrow_rightdis.min.png"
             alt=""
-            className="w-[12rem] h-[12rem]"
+            className="w-[10rem] h-[10rem]"
           />
         )}
       </div>

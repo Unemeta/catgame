@@ -10,14 +10,14 @@ const Age = ({ onClick }: iAnswerView) => {
   const [basicInfo, setBasicInfo] = useUserBasicInfo();
   return (
     <div className="flex flex-col items-center mt-[11rem] h-[58rem]">
-      <div className="text-center justify-start text-[#EA8373] text-[3rem] font-bold font-['SF_Pro_Rounded'] leading-9">
+      <div className="text-center justify-start text-[#EA8373] text-[2.4rem] font-[700] font-['SF_Pro_Rounded'] leading-9">
         What’s your gender?
       </div>
       <div className="h-[36rem]">
-        <div className="flex gap-[1rem] mt-[6rem]">
+        <div className="flex gap-[3rem] mt-[6rem]">
           <div
             className={cn(
-              "w-[13.5rem] h-[16.6rem] px-[1rem] py-[3.5rem] rounded-[3rem] inline-flex flex-col justify-center items-center gap-[0.8rem]",
+              "w-[13.5rem] h-[16.6rem] px-[1rem] py-[3.5rem] rounded-[2rem] inline-flex flex-col justify-center items-center gap-[0.8rem]",
               {
                 "bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)] rounded-[2rem]":
                   basicInfo.gender === 0,
@@ -137,7 +137,7 @@ const Age = ({ onClick }: iAnswerView) => {
         <img
           src="/img/arrow_right.min.png"
           alt=""
-          className="w-[12rem] h-[12rem]"
+          className="w-[10rem] h-[10rem]"
         />
       </div>
     </div>
