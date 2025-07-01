@@ -97,7 +97,6 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
               </div>
             </div>
           )}
-          <div className="h-[24rem]"></div>
           <div className="absolute left-[0] top-[4rem] w-full flex justify-center">
             <img
               src="/img/bg_cat.min.png"
@@ -105,7 +104,7 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
               alt=""
             />
           </div>
-          <div className="absolute bottom-0 left-0 w-full">
+          <div className="absolute bottom-0 left-0 w-full h-[33%]">
             <div className="flex justify-center items-center">
               {/* <div className="bg-[url('/img/bg/bg_aloof_cat.min.png')] bg-cover bg-no-repeat text-white text-[2.8rem] font-[700] h-[5.3rem] px-[5rem] flex justify-center items-center">
                 {cats[index].type}
@@ -129,7 +128,6 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
               <br /> run. */}
               {cats[index].desc}
             </div>
-            <div className="h-[5rem]"></div>
           </div>
         </div>
       </div>
