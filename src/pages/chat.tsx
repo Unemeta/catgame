@@ -20,9 +20,11 @@ import DialogSetting from "@/components/dialog/setting";
 import DialogExchange from "@/components/dialog/exchange";
 import { DialogCheckIn } from "@/components/dialog/checkIn";
 import VideoBackgroundChat from "@/components/VideoBackgroundChat";
+import { useTranslation } from "react-i18next";
 
 let timerHistory: NodeJS.Timeout | null | undefined = null;
 const ChatView = () => {
+  const { t } = useTranslation();
   const router = useRouter();
   const { userData, fetchUser } = useFetchUser();
   const [showVoice, setShowVoice] = useShowVocie();
@@ -640,7 +642,7 @@ const ChatView = () => {
                   ) : (
                     <div className="px-[1rem] py-[0.6rem] bg-[rgba(58,53,53,0.50)] border-white/20 border-[1px] rounded-[11rem]">
                       <span className="text-white text-[1rem] font-[500]">
-                        ChatPoints:{" "}
+                        {t("chat.ChatPoints")}
                         {Number(chatCount) >= 0
                           ? 20 - (Number(chatCount) || 0) >= 0
                             ? 20 - (Number(chatCount) || 0)

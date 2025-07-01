@@ -5,11 +5,14 @@ import { useState } from "react";
 import { request } from "@/utils/request";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
+import { useTranslation } from "react-i18next";
 
 /* eslint-disable @next/next/no-img-element */
 const PartyView = () => {
   const [stepIndex, setstepIndex] = useState(0);
   const router = useRouter();
+  const { t } = useTranslation();
+
   const [mbtiRes, setmbtiRes] = useState({
     disposition: 0,
     nickname: "",
@@ -67,12 +70,13 @@ const PartyView = () => {
             <div className="flex flex-col h-full">
               <div className="h-[9.3vh]"></div>
               <div className="text-white text-[2.8rem] font-[700] mb-[3vh]">
-                Soul Identification
+                {t("qa.soul_title")}
               </div>
-              <div className="text-center text-white text-[1.6rem] font-[500] leading-[1.1]">
-                Meowster has prepared soul <br /> identification questions for
-                you. <br /> Based on your answers, it will find a <br /> cat
-                that matches you.
+              <div className="text-center text-white text-[1.6rem] font-[700]  flex justify-center items-center">
+                <div className="max-w-[31rem] leading-[1.4]">
+                  {" "}
+                  {t("qa.soul_desc")}
+                </div>
               </div>
 
               {/* <div
