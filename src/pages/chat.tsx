@@ -151,7 +151,8 @@ const ChatView = () => {
       return;
     }
     if (socket) {
-      if (inputMsg?.length > 0) {
+      if (inputMsg.length > 0) {
+        inputRef.current?.blur();
         setmessageList((preMsgList: any) => {
           const chatId = `${new Date().getTime()}-${userData?.nickname}`;
           console.log(chatId);
@@ -207,13 +208,25 @@ const ChatView = () => {
   };
   const handleKeyDown = (event: any) => {
     if (event?.key === "Enter") {
-      sendMessage();
-      setTimeout(() => {
-        handleInput(event, true);
-      }, 1000);
-      event.preventDefault(); // 阻止默认换行行为
-      inputRef.current?.blur(); // 失去焦点，收起键盘
+      if (inputMsg.length > 0) {
+        sendMessage();
+        setTimeout(() => {
+          handleInput(event, true);
+        }, 1000);
+        // event.preventDefault(); // 阻止默认换行行为
+        // inputRef.current?.blur(); // 失去焦点，收起键盘
+      } else {
+        toast.info("Please enter msg");
+      }
     }
+  };
+  const handleBlur = () => {
+    console.log("输入完成，当前值:");
+    inputRef.current?.blur(); // 失去焦点，收起键盘
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // 平滑滚动
+    });
   };
   const getHistory = async () => {
     try {
@@ -315,23 +328,22 @@ const ChatView = () => {
   const maxRows = 5; // 最大行数
   const lineHeight = 24; // 行高，单位为 px
   const handleInput = (e: any, reset = false) => {
-    if (e.target.value.length < 30 || reset == true) {
-      // e.target.style.height = "auto"; // 重置高度以适应新内容
-      e.target.style.height = `3.6rem`; // 设置为内容高度
-      return;
-    }
-    const { scrollHeight } = e.target;
-    const currentRows = Math.floor(scrollHeight / lineHeight);
-
-    if (currentRows <= maxRows) {
-      setValue(e.target.value);
-      e.target.style.height = "auto"; // 重置高度以适应新内容
-      e.target.style.height = `${scrollHeight}px`; // 设置为内容高度
-    } else {
-      e.target.style.overflowY = "auto"; // 超过最大行数时显示滚动条
-      e.target.style.height = `${maxRows * lineHeight}px`; // 限制高度
-      setValue(e.target.value);
-    }
+    // if (e.target.value.length < 30 || reset == true) {
+    //   e.target.style.height = "auto"; // 重置高度以适应新内容
+    //   e.target.style.height = `3.6rem`; // 设置为内容高度
+    //   return;
+    // }
+    // const { scrollHeight } = e.target;
+    // const currentRows = Math.floor(scrollHeight / lineHeight);
+    // if (currentRows <= maxRows) {
+    //   setValue(e.target.value);
+    //   e.target.style.height = "auto"; // 重置高度以适应新内容
+    //   e.target.style.height = `${scrollHeight}px`; // 设置为内容高度
+    // } else {
+    //   e.target.style.overflowY = "auto"; // 超过最大行数时显示滚动条
+    //   e.target.style.height = `${maxRows * lineHeight}px`; // 限制高度
+    //   setValue(e.target.value);
+    // }
   };
   return (
     <div className={styles.DialogContent}>
@@ -643,6 +655,7 @@ const ChatView = () => {
                   onKeyDown={(e) => {
                     handleKeyDown(e);
                   }}
+                  onBlur={handleBlur}
                   value={inputMsg}
                   placeholder="What are you talking about?"
                 />
