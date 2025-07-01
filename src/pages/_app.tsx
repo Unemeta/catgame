@@ -4,6 +4,8 @@ import "@/styles/global.css";
 import { ToastContainer } from "react-toastify";
 import Head from "next/head";
 import "react-photo-view/dist/react-photo-view.css";
+import "../i18n/configs";
+import { useTranslation } from "react-i18next";
 
 // import Router from "next/router";
 // import NProgress from "nprogress";
@@ -22,6 +24,7 @@ import "react-photo-view/dist/react-photo-view.css";
 export default function MyApp({ Component, pageProps }: AppProps) {
   // const [isPortrait, setIsPortrait] = useState(false);
   const [isvertical, setisvertical] = useState(false);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -48,6 +51,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
     window.addEventListener("resize", setFullHeight);
     window.addEventListener("load", setFullHeight);
+  }, []);
+  useEffect(() => {
+    const language = localStorage.getItem("locale");
+    if(language){
+      i18n.changeLanguage(language);
+    }
   }, []);
 
   return (
