@@ -78,20 +78,21 @@ const LetterView = () => {
         className="px-[0rem] pb-[2.5rem] bg-[url('/img/bg_letter_bye.min.png')]"
         style={{ backgroundSize: "100% 100%" }}
       >
-        <div className="h-[5.6rem]"></div>
-        <div className="px-[5rem]">
-          <div className="w-[17rem] mb-[1.1rem]">
+        <div className="h-[6.6rem]"></div>
+        <div className="px-[5.4rem]">
+          <div className="w-[17rem] mb-[1.4rem]">
             <span className="text-[#E96959] text-[2rem] font-[800] leading-[1.1]">
               A heart warming farewell letter just for you
             </span>
           </div>
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center relative">
             {/* <img
               className="w-[28rem] h-[35rem]"
               src="/img/letter_cat.png"
               alt=""
             /> */}
             <img className="w-[28rem] h-[35rem]" src={letterInfo?.url} alt="" />
+            <img className="w-[13rem] h-[6.4rem] absolute top-[-4rem] right-0" src="/img/letter_m.png" alt="" />
           </div>
           <div className="h-[1.6rem]"></div>
         </div>
@@ -125,13 +126,13 @@ const LetterView = () => {
         </div>
         <div className="h-[3rem]"></div>
       </div>
-      <div className="h-[1.5rem]"></div>
-      <div className="px-[1.8rem]">
+      {/* <div className="h-[1.5rem]"></div> */}
+      <div className="px-[0rem]">
         <div
           className=" bg-[url('/img/bg_letter.min.png')] "
-          style={{ backgroundSize: "100% 100%" }}
+          style={{ backgroundSize: "100% auto" }}
         >
-          <div className="px-[3.4rem] pt-[5.7rem] pb-[2.9rem]">
+          <div className="px-[5.7rem] pt-[7.7rem] pb-[2.9rem]">
             <span className="text-[#6C4937] text-[1.4rem] font-[500] leading-[1.5]">
               {/* Meow~ It's me, your most adorable little kitty! I'm so happy to be
               with you this week that my tail is up in the air~ So, I'm quietly
@@ -162,7 +163,7 @@ const LetterView = () => {
           </div>
         </div>
       </div>
-      <div className="h-[1.3rem]"></div>
+      <div className="h-[2.3rem]"></div>
       <div className="flex justify-center items-center gap-[4.1rem]">
         <ScreenshotDownloader targetRef={contentRef} fileName="sharepage" />
         <Discord></Discord>
