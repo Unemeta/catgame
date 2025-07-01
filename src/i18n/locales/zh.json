@@ -1,0 +1,135 @@
+{
+  "common": {
+    "header": {
+      "search": "搜索系列",
+      "nav": {
+        "explore": "探索",
+        "colletions": "系列",
+        "rewards": {
+          "title": "獎勵",
+          "uuu": "寶箱",
+          "staking": "質押",
+          "commission": "分傭"
+        },
+        "launchpad": {
+          "title": "發射台",
+          "launchpad": "發射台",
+          "giveback": "分潤計劃"
+        }
+      },
+      "profile": {
+        "menus": {
+          "myItems": "我的物品",
+          "myProjects": "我的項目",
+          "bulkList": "批量上傳",
+          "invitationCode": "填寫邀請碼",
+          "checkIn": "Check In",
+          "communityChat": "Community Chat",
+          "create": "生成",
+          "onSell": "已掛單",
+          "integral": "uuu",
+          "inviteFriends": "邀請朋友",
+          "settings": "設置",
+          "welcome": "歡迎 VIP3 用戶登錄 UneMeta",
+          "bgWelcome": "歡迎Bitget Wallet用户登錄UneMeta",
+          "spaceIdWelcome": "歡迎 Space ID 用戶登錄 UneMeta",
+          "desc": "當你在 Une 購買 NFT 後，可獲得 <span style='color: rgba(66, 133, 244, 1)'>125％</span> uuu 積分獎勵",
+          "bgDesc": "你有130uuu積分可領取，可用於兌換特殊獎勵",
+          "spaceIdDesc": "當你在 Une 購買 NFT 後，可獲得 <span style='color: rgba(66, 133, 244, 1)'>105％</span> uuu 積分獎勵",
+          "iknown": "知道了",
+          "bgiknown": "立即領取",
+          "spaceIdIknown": "知道了"
+        }
+      },
+      "locale": {
+        "title": "Language",
+        "en": "English",
+        "zh": "繁体中文",
+        "ja": "日本語"
+      },
+      "markAsRead": "全部已讀",
+      "web2Login": {
+        "connectWallet": "鏈接你的錢包",
+        "recommend": "推薦",
+        "web2Login": "郵箱登錄",
+        "email": "郵箱",
+        "loginWithEmail": "以郵箱方式登錄Unemeta",
+        "autoRegister": "未註冊郵箱登錄後將自動註冊",
+        "getVerifyCode": "獲取驗證碼",
+        "enterVerifyCode": "請輸入驗證碼",
+        "verifyCodeSended": "驗證碼已發送至",
+        "login": "登陸",
+        "sendTooOften": "發送太頻繁",
+        "verifyCodeError": "驗證碼錯誤",
+        "verifyCodeSending": "驗證碼發送中",
+        "enterEmailTip": "請填寫郵箱地址",
+        "errorEmailTip": "您輸入的郵箱有誤，請輸入正確的郵箱",
+        "inputEmailTip": "請填寫驗證碼",
+        "addressAlreadyBindTip": "該錢包地址已經綁定了別的郵箱",
+        "bindWeb3Wallet": "綁定web3錢包",
+        "bindWeb3WalletQuestion": "是否將郵箱 __email__ 綁定錢包 __address__ ？",
+        "bindSuccess": "綁定成功",
+        "bindFail": "綁定失敗",
+        "bindValidCodeError": "無效或不正確的郵箱驗證碼",
+        "emailAlreadyUsedError": "郵箱已經綁定到其他錢包",
+        "walletAlreadyUsedError": "錢包已經綁定到其他郵箱",
+        "accountSwitch": "賬號已切換至",
+        "bindWeb3WalletFailTip": "你的郵箱__email__未關聯錢包，你可以",
+        "bindWeb3WalletFailCancel": "退出登錄",
+        "bindWeb3WalletFailConfirm": "切換至web3錢包登陸",
+        "bindSuccessReward": "绑定成功，+50uuu",
+        "loginUne": "登錄UneMeta",
+        "loginUneContent": "登錄UneMeta獲取uuu積分並解鎖更多NFT福利！"
+      }
+    },
+    "footer": {
+      "copyright": "版權所有 2022 UneMeta",
+      "copyright2": "IP-centric Community Layer",
+      "auditedBy": "審核人",
+      "menus": {
+        "aboutUs": "關於我們",
+        "contactUs": "聯系我們",
+        "ourBlog": "UneMeta 研究院",
+        "discover": "Discover"
+      }
+    }
+  },
+  "chat": {
+    "hello": "你好",
+    "Settings": "设置"
+  },
+  "qa": {
+    "soul_title": "Soul Identification中文",
+    "soul_desc": "Meowster has prepared soul identification questions for you. Based on your answers, it will find a cat that matches you.中文",
+    "q1": "At a party, <br /> you’re more likely to中文",
+    "q1_a1": "Chat enthusiastically with lots of people and feel energized中文",
+    "q1_a2": "Find a quiet corner to talk with close friends and soon feel like heading home中文",
+    "q2": "When starting a new project, you tend to:中文 ",
+    "q2_a1": "Rely on past experiences and proceed step by step中文",
+    "q2_a2": "Envision the big picture and possible future directions before diving into details中文",
+    "q3": "When a friend shares their troubles, you usually中文",
+    "q3_a1": "Help analyze the root of the problem and suggest solutions中文",
+    "q3_a2": "Offer comfort first and express empathy and support中文",
+    "q4": "When planning a trip, you prefer to 中文",
+    "q4_a1": "Arrange the itinerary, hotels, and routes in advance to stay organized中文",
+    "q4_a2": "Just book a flight and go, enjoying the freedom to explore spontaneously中文",
+    "This is your": "This is your中文",
+    "Meet your cat": "Meet your cat中文",
+    "1活泼2高冷3疗愈4好奇":"1活泼2高冷3疗愈4好奇中文",
+    "cat_type1": "Cats中文",
+    "cat_desc1": "",
+    "cat_type2": "Aloof Cats中文",
+    "cat_desc2": "Carries their own quiet aura, never needy — yet once they choose you, they’ll be your loyal companion for life中文.",
+    "cat_type3": "Soothing Cats中文",
+    "cat_desc3": "Warm and caring, always offering gentle companionship that gradually brings peace to your heart.中文",
+    "cat_type4": "Curious Cats中文",
+    "cat_desc4": "With a lively spirit and a love for exploration, they roam freely, eyes shining with dreams of the world.中文",
+    "Reserved":"Reserved中文",
+    "Tsundere":"Tsundere中文",
+    "Soothing":"Soothing中文", 
+    "Tenderness":"Tenderness中文",
+    "Spirited":"Spirited中文", 
+    "Lively":"Lively中文",
+    "test": "test"
+  }
+}
