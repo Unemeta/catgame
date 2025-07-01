@@ -71,7 +71,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       ) : (
         <>
           <Component {...pageProps} />
-          <ToastContainer />
+          <ToastContainer autoClose={3000}/>
         </>
       )}
     </>
