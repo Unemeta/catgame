@@ -4,6 +4,7 @@ import IconView from "./IconView";
 import { request } from "@/utils/request";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 interface iStep3View {
   index: number;
@@ -15,6 +16,7 @@ interface iStep3View {
 }
 const Step3View = ({ index, mbtiRes }: iStep3View) => {
   const [inputMsg, setinputMsg] = useState(mbtiRes?.meowname ?? "");
+  const { t } = useTranslation();
   useEffect(() => {
     if (mbtiRes?.meowname && mbtiRes?.meowname?.length > 0) {
       setinputMsg(mbtiRes?.meowname);
@@ -40,28 +42,28 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
   // ];
   const cats = [
     {
-      type: "Cats",
+      type: t("qa.cat_type1"),
       name: "",
       keys: [" ", " "],
       desc: " ",
     },
     {
-      type: "Aloof Cats",
+      type: t("qa.cat_type2"),
       name: "",
-      keys: ["Reserved", "Tsundere"],
-      desc: "Carries their own quiet aura, never needy — yet once they choose you, they’ll be your loyal companion for life.",
+      keys: [t("qa.Reserved"), t("qa.Tsundere")],
+      desc: t("qa.cat_desc2"),
     },
     {
-      type: "Soothing Cats",
+      type: t("qa.cat_type3"),
       name: "",
-      keys: ["Soothing", "Tenderness"],
-      desc: "Warm and caring, always offering gentle companionship that gradually brings peace to your heart.",
+      keys: [t("qa.Soothing"), t("qa.Tenderness")],
+      desc: t("qa.cat_desc3"),
     },
     {
-      type: "Curious Cats",
+      type: t("qa.cat_type4"),
       name: "",
-      keys: ["Spirited", "Lively"],
-      desc: "With a lively spirit and a love for exploration, they roam freely, eyes shining with dreams of the world.",
+      keys: [t("qa.Spirited"), t("qa.Lively")],
+      desc: t("qa.cat_desc4"),
     },
   ];
   const router = useRouter();
@@ -69,10 +71,10 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
     <div className="w-full h-full absolute inset-0 z-[2] ">
       <div className="h-[6vh]"></div>
       <div className="text-[#fff] text-[3rem] font-[700] text-center leading-[1] mb-[1rem]">
-        Hello, {mbtiRes?.nickname}.
+        {t("hello")}, {mbtiRes?.nickname}.
       </div>
       <div className="text-[#fff] text-[2rem] font-[700] text-center leading-[1]">
-        This is your {cats[index].type}.
+        {t("qa.This is your")} {cats[index].type}.
       </div>
       <div className="h-[1.2rem]"></div>
       <div className="px-[3rem]">
@@ -173,7 +175,8 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
               }
             }}
           >
-            Meet your cat
+            
+            {t("qa.Meet your cat")}
           </span>
           <svg
             className="w-[2.8rem] h-[2.8rem]"

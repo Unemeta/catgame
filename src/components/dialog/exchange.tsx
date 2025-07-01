@@ -6,6 +6,7 @@ import IconView from "../IconView";
 import { cn } from "@/lib/utils";
 import { request } from "@/utils/request";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 interface iDialogExchange {
   show: boolean;
   setShow: (val: boolean) => void;
@@ -13,13 +14,9 @@ interface iDialogExchange {
   trigger?: ReactNode;
   id: number;
 }
-const DialogExchange = ({
-  id,
-  show,
-  setShow,
-  cb,
-}: iDialogExchange) => {
+const DialogExchange = ({ id, show, setShow, cb }: iDialogExchange) => {
   const [amountBuy, setamountBuy] = useState(1);
+  const { t } = useTranslation();
   console.log(id);
 
   const handleConfirm = async () => {
@@ -59,12 +56,13 @@ const DialogExchange = ({
                 background: "linear-gradient(180deg, #E3BFA5 0%, #DDB293 100%",
               }}
             >
-              Exchange
+              {t("chat.Exchange")}
             </div>
 
             <div className="self-stretch px-[2rem] flex flex-col justify-start items-center">
               <div className="mt-[1.6rem] mb-[1rem] self-stretch text-white text-[1.4rem] leading-none [text-shadow:_0px_0px_8px_rgb(255_255_255_/_0.45)] text-left">
-                Would you like to exchange Fish for Chat Points?
+                
+                {t("chat.Would you like to exchange Fish for Chat Points?")}
               </div>
 
               {/* content */}
@@ -111,7 +109,7 @@ const DialogExchange = ({
               >
                 <div className="w-[13.2rem] h-[3.8rem] px-5 py-3 bg-white rounded-[31.74px] shadow-[0px_3px_14px_0px_rgba(255,255,255,0.45)] inline-flex justify-center items-center gap-2">
                   <div className="text-center justify-start text-red-400 text-[1.6rem] font-extrabold font-['SF_Pro_Rounded'] leading-tight">
-                    Confirm
+                    {t("chat.Confirm")}
                   </div>
                 </div>
               </div>

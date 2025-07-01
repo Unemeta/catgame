@@ -1,35 +1,37 @@
 /* eslint-disable @next/next/no-img-element */
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface iAnswerView {
   onClick: (selectIndexs: number[]) => void;
 }
 const AnswerView = ({ onClick }: iAnswerView) => {
+  const { t } = useTranslation();
   const [stepAnswerIndex, setstepAnswerIndex] = useState(0);
   const [selectIndexQuestionArr, setselectIndexQuestionArr] = useState([
     0, 0, 0, 0,
   ]);
   const [questionArr] = useState([
     {
-      q: "At a party, <br /> you’re more likely to",
-      a1: "Chat enthusiastically with lots of people and feel energized",
-      a2: "Find a quiet corner to talk with close friends and soon feel like heading home",
+      q: t("qa.q1"),
+      a1: t("qa.q1_a1"),
+      a2: t("qa.q1_a2"),
     },
     {
-      q: "When starting a new project, you tend to: ",
-      a1: "Rely on past experiences and proceed step by step",
-      a2: "Envision the big picture and possible future directions before diving into details",
+      q: t("qa.q2"),
+      a1: t("qa.q2_a1"),
+      a2: t("qa.q2_a2"),
     },
     {
-      q: "When a friend shares their troubles, you usually",
-      a1: "Help analyze the root of the problem and suggest solutions",
-      a2: "Offer comfort first and express empathy and support",
+      q: t("qa.q3"),
+      a1: t("qa.q3_a1"),
+      a2: t("qa.q3_a2"),
     },
     {
-      q: "When planning a trip, you prefer to 　　　　　　",
-      a1: "Arrange the itinerary, hotels, and routes in advance to stay organized",
-      a2: "Just book a flight and go, enjoying the freedom to explore spontaneously",
+      q: t("qa.q4"),
+      a1: t("qa.q4_a1"),
+      a2: t("qa.q4_a2"),
     },
   ]);
   return (
