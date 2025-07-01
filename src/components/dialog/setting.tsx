@@ -7,6 +7,7 @@ import { useFetchUser } from "@/store";
 import { toast } from "react-toastify";
 import { jwtHelper } from "@/utils/jwt";
 import { useRouter } from "next/router";
+import IconView from "../IconView";
 
 interface iDialogSetting {
   trigger?: ReactNode;
@@ -191,7 +192,7 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
               </div>
             </div>
             <div className="h-[1.6rem]"></div>
-            <div className="flex justify-center items-center">
+            {/* <div className="flex justify-center items-center">
               <div
                 className="bg-white shadow-[0px_3px_14px_0px_rgba(255,255,255,0.45)] rounded-[3.1rem] w-[13.2rem] py-[1.2rem] flex justify-center items-center"
                 onClick={() => {
@@ -202,18 +203,19 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
                   Confirm
                 </span>
               </div>
-            </div>
+            </div> */}
             <div className="flex justify-center items-center mt-[1rem]">
               <div
-                className="bg-white shadow-[0px_3px_14px_0px_rgba(255,255,255,0.45)] rounded-[3.1rem] w-[13.2rem] py-[1.2rem] flex justify-center items-center"
+                className="bg-white shadow-[0px_3px_14px_0px_rgba(255,255,255,0.45)] rounded-[3.1rem] w-[13.2rem] h-[3.8rem] flex justify-center items-center"
                 onClick={() => {
                   jwtHelper.clearToken();
                   router.push("/login");
                 }}
               >
-                <span className="text-[#E96856] text-[1.6rem] font-[800]">
-                  Log out
+                <span className="text-[#FF2C3D] text-[1.6rem] font-[800]">
+                  Sign out
                 </span>
+                <IconView className="w-[1.6rem] h-[1.6rem] ml-[1rem]" type="loginOUT"></IconView>
               </div>
             </div>
             <div className="h-[1.6rem]"></div>

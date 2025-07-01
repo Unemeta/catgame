@@ -730,7 +730,7 @@ body {
   .wrapHeight {
     /* height: 87vh; */
     /* height: 100vh; */
-    height: var(--vh);
+    height: var(--vh) !important;
   }
   html {
     /* font-size: 1.3vw;  */
