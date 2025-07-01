@@ -18,11 +18,11 @@ export default function VideoBackgroundChat() {
 
   return (
     <div className={"fixed top-0 left-0 w-[100vw] wrapHeight  z-[-1]"}>
-      <img
+      {/* <img
         className="absolute top-0 left-0 w-[100%] h-[100%] object-cover"
         src="/img/bg/bg_chat2.min.png"
         alt=""
-      />
+      /> */}
       <video
         muted
         playsInline
