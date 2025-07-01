@@ -211,6 +211,8 @@ const ChatView = () => {
       setTimeout(() => {
         handleInput(event, true);
       }, 1000);
+      event.preventDefault(); // 阻止默认换行行为
+      inputRef.current?.blur(); // 失去焦点，收起键盘
     }
   };
   const getHistory = async () => {
