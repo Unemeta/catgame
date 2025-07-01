@@ -151,7 +151,8 @@
   align-items: center;
   position: absolute;
   left: 50%;
-  bottom: 120%;
+  /* bottom: 120%; */
+  bottom: 20%;
   transform: translateX(-50%);
 }
 
@@ -225,8 +226,8 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: -80vh;
-  /* top: 80px; */
+  /* top: -80vh; */
+  top: 80px;
 }
 
 .vanimateText {
@@ -242,8 +243,8 @@
   line-height: 130%; /* 20.8px */
   left: 50%;
   transform: translateX(-50%);
-  /* top: 700px; */
-  top: -62vh;
+  top: 700px;
+  /* top: -62vh; */
   width: 100vw;
 }
 
