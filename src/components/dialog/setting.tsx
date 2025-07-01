@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-img-element */
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from ".";
 import { cn } from "@/lib/utils";
 import { useFetchUser } from "@/store";
@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { jwtHelper } from "@/utils/jwt";
 import { useRouter } from "next/router";
 import IconView from "../IconView";
+import { useTranslation } from "react-i18next";
 
 interface iDialogSetting {
   trigger?: ReactNode;
@@ -19,6 +20,21 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
   const [indexLanguase, setindexLanguase] = useState(0);
   const { userData } = useFetchUser();
   const router = useRouter();
+  const { t,i18n } = useTranslation();
+
+  useEffect(() => {
+    const language = localStorage.getItem("locale");
+    if(language == "ja"){
+      setindexLanguase(0);
+    }
+    if(language == "zh"){
+      setindexLanguase(1);
+    }
+    if(language == "en"){
+      setindexLanguase(2);
+    }
+  }, [])
+  
 
   const copyToClipboard = (textToCopy: string | number) => {
     if (navigator.clipboard && window.isSecureContext) {
@@ -59,7 +75,7 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
         >
           <div className="flex justify-center items-center bg-[linear-gradient(180deg,#E3BFA5_0%,#DDB293_100%)] rounded-tl-[3rem] rounded-tr-[3rem] py-[1rem]">
             <span className="bg-gradient-to-t from-[#6C4734] to-[#6C4B3A] bg-clip-text text-transparent text-[1.8rem] font-[800]">
-              Settings
+              {t("chat.Settings")}
             </span>
           </div>
           <div className="px-[2rem]">
@@ -156,6 +172,8 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
                 )}
                 onClick={() => {
                   setindexLanguase(0);
+                  i18n.changeLanguage("ja");
+                  localStorage.setItem("locale","ja")
                 }}
               >
                 <span className="text-white text-[1.4rem] font-[700]">
@@ -171,6 +189,8 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
                 )}
                 onClick={() => {
                   setindexLanguase(1);
+                  i18n.changeLanguage("zh");
+                  localStorage.setItem("locale","zh")
                 }}
               >
                 <span className="text-white text-[1.4rem] font-[700]">
@@ -186,6 +206,8 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
                 )}
                 onClick={() => {
                   setindexLanguase(2);
+                  i18n.changeLanguage("en");
+                  localStorage.setItem("locale","en")
                 }}
               >
                 <span className="text-white text-[1.4rem] font-[700]">EN</span>
@@ -215,7 +237,10 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
                 <span className="text-[#FF2C3D] text-[1.6rem] font-[800]">
                   Sign out
                 </span>
-                <IconView className="w-[1.6rem] h-[1.6rem] ml-[1rem]" type="loginOUT"></IconView>
+                <IconView
+                  className="w-[1.6rem] h-[1.6rem] ml-[1rem]"
+                  type="loginOUT"
+                ></IconView>
               </div>
             </div>
             <div className="h-[1.6rem]"></div>
