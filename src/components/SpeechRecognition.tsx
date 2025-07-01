@@ -591,8 +591,35 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
       ) : (
         <></>
       )}
+       {/* <>
+          <Player
+            src={"/lottie/vnormal.json"}
+            className={styles.vanimate}
+            loop={true}
+            lottieRef={(instance) => {
+              lottieInstance.current = instance;
+            }}
+            autoplay={true}
+          ></Player>
+
+          <div className={styles.vanimateText}>
+            Recording ends in {countdown} seconds.
+          </div>
+          <div className={styles.status}>
+            <img className={styles.statusIcon} alt="" src={`/img/sendv.svg`} />
+            <div className={styles.statusText}>Release to send</div>
+          </div>
+          
+        </> */}
+         {/* <div className={styles.status}>
+          <img className={styles.statusIcon} alt="" src={`/img/cancelv.svg`} />
+          <div className={styles.statusText}>Swipe up to cancel</div>
+        </div> */}
       {/* <div style={{ color: "red" }}>{y}</div> */}
       <div className={styles.container}>
+        <div className={styles.newIcon} onClick={() => setShowVoice(false)}>
+          <LottieView src={"/lottie/v4.json"} loop={true}></LottieView>
+        </div>
         <div
           onPointerDown={handleTouchStart}
           onPointerMove={handleTouchMove}
@@ -621,13 +648,10 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
               />
             </div>
           ) : (
-            <div className={"sendInputWrap"}>
+            <div>
               <div className={styles.recordText}>Press and hold to speak</div>
             </div>
           )}
-        </div>
-        <div className={styles.newIcon} onClick={() => setShowVoice(false)}>
-          <LottieView src={"/lottie/v4.json"} loop={true}></LottieView>
         </div>
       </div>
     </div>

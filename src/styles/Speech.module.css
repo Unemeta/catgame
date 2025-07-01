@@ -137,7 +137,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 100px;
+  padding: 0 60px;
   -webkit-user-select: none; /* Safari/iOS */
   user-select: none; /* 标准语法 */
   /* 禁用长按菜单（iOS 图片/链接长按弹出菜单） */
@@ -151,7 +151,7 @@
   align-items: center;
   position: absolute;
   left: 50%;
-  bottom: 20%;
+  bottom: 120%;
   transform: translateX(-50%);
 }
 
@@ -190,8 +190,13 @@
   font-family: "SF Pro Rounded";
   font-style: normal;
   font-weight: 500;
-  background-color: #0f040f82;
-  border-radius: calc(10 * var(--borderWidth));
+  background-color: #534f50;
+  border-radius: 22px;
+  /* border-color: #656061; */
+  border: 1px solid rgba(255, 240, 238, 0.10);;
+  
+  /* background-color: #0f040f82; */
+  /* border-radius: calc(10 * var(--borderWidth)); */
   line-height: 180px; /* 16px */
   height: 180px;
   font-size: 60px;
@@ -220,7 +225,8 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 80px;
+  top: -80vh;
+  /* top: 80px; */
 }
 
 .vanimateText {
@@ -236,7 +242,8 @@
   line-height: 130%; /* 20.8px */
   left: 50%;
   transform: translateX(-50%);
-  top: 700px;
+  /* top: 700px; */
+  top: -62vh;
   width: 100vw;
 }
 
