@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import "@/styles/global.css";
