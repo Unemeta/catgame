@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useRef, useEffect, useState } from "react";
 
-const videoUrl = "/videos/test.mp4";
+const videoUrl = "/videos/chat.mp4";
 export default function VideoBackgroundChat() {
   const videoRef = useRef<HTMLVideoElement>(null);
   useEffect(() => {
