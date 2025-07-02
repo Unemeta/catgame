@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
@@ -7,6 +8,7 @@ import Head from "next/head";
 import "react-photo-view/dist/react-photo-view.css";
 import "../i18n/configs";
 import { useTranslation } from "react-i18next";
+// import "animate.css/animate.min.css"; // 引入压缩版CSS
 
 // import Router from "next/router";
 // import NProgress from "nprogress";
@@ -55,7 +57,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   }, []);
   useEffect(() => {
     const language = localStorage.getItem("locale");
-    if(language){
+    if (language) {
       i18n.changeLanguage(language);
     }
   }, []);
@@ -77,7 +79,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         </>
       )} */}
       {process.env.NEXT_PUBLIC_VERTICAL === "true" && isvertical ? (
-        <div className="rotate-screen">请旋转设备至竖屏模式</div>
+        <div className="rotate-screen">
+          <img src="/img/rotate.svg" alt="" className="w-[4rem]" />
+          <div>Please install your device in portrait mode</div>
+        </div>
       ) : (
         <>
           <Component {...pageProps} />

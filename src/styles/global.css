@@ -4,9 +4,6 @@
 @tailwind utilities;
 
 @media screen and (orientation: portrait) {
-  .rotate-screen {
-    display: flex;
-  }
 }
 
 html,
@@ -17,15 +14,19 @@ body {
 }
 .rotate-screen {
   /* display: none; */
+  display: flex;
+  flex-flow: column;
+  gap: 20px;
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  font-size: 80px;
+  background: linear-gradient(180deg, #f2ece9 0%, #f5f0ee 100%);
+  color: #e96959;
+  font-size: 50px;
   justify-content: center;
+  font-family: "SF Pro Rounded";
   align-items: center;
   text-align: center;
   z-index: 9999;
