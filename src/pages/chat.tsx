@@ -279,7 +279,7 @@ const ChatView = () => {
       }
     } catch (error: any) {
       console.error(error);
-      // toast.error(error?.msg || JSON.stringify(error));
+      toast.error(error?.msg || JSON.stringify(error));
     }
   };
   const scrollToBottom = () => {
@@ -643,11 +643,11 @@ const ChatView = () => {
                     <div className="px-[1rem] py-[0.6rem] bg-[rgba(58,53,53,0.50)] border-white/20 border-[1px] rounded-[11rem]">
                       <span className="text-white text-[1rem] font-[500]">
                         {t("chat.ChatPoints")}
-                        {Number(chatCount) >= 0
+                        {chatCount != "" && Number(chatCount) >= 0
                           ? 20 - (Number(chatCount) || 0) >= 0
                             ? 20 - (Number(chatCount) || 0)
                             : 0
-                          : "-"}
+                          : "--"}
                         /20
                       </span>
                     </div>
