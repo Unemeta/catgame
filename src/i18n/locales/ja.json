@@ -1,6 +1,14 @@
 {
   "chat": {
-    "hello": "你好",
-    "Settings": "设置ja"
+    "Settings": "Settings",
+    "Photo Album": "Photo Album",
+    "Sign out": "Sign out",
+    "Exchange": "Exchange",
+    "Would you like to exchange Fish for Chat Points?": "Would you like to exchange Fish for Chat Points?",
+    "Confirm": "Confirm",
+    "ChatPoints": "ChatPoints:",
+    "test": "test",
+    "DailyCheckin": "Daily Check-in",
+    "CheckinInfo": "Please visit every day to get better rewards."
   }
 }
