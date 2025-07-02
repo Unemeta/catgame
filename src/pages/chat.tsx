@@ -528,7 +528,7 @@ const ChatView = () => {
                         })}
                       >
                         <div className="send bg-[rgba(234,130,115,0.7)] flex justify-end items-start relative msgWrap">
-                          <div className="msgText line-clamp-4 dtext28 font-[500] text-[#F5F2FF]  text-wrap lmdMsgSpan overflow-hidden break-words">
+                          <div className="msgText line-clamp-[20] dtext28 font-[500] text-[#F5F2FF]  text-wrap lmdMsgSpan overflow-hidden break-words">
                             {item?.msg}
                           </div>
                         </div>
@@ -581,7 +581,7 @@ const ChatView = () => {
                                   .local()
                                   .format("YYYY/MM/DD HH:mm")}
                               </div> */}
-                          <div className="msgText line-clamp-4 dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan break-words">
+                          <div className="msgText line-clamp-[20] dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan break-words">
                             {mediaSwitch(item?.msg, item?.msgId, item?.eventid)}
                           </div>
                         </div>
