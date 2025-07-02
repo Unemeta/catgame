@@ -200,10 +200,12 @@ const ChatView = () => {
       if (socket) {
         if (text?.length > 0) {
           setmessageList((preMsgList: any) => {
+            const chatId = `${new Date().getTime()}-${userData?.nickname}`;
             return [
               ...preMsgList,
               {
-                chatId: userData?.nickname,
+                chatId: chatId,
+                msgId: chatId,
                 msg: text,
                 role: "user",
                 time: Math.floor(new Date().getTime() / 1000),
