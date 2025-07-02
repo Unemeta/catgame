@@ -15,6 +15,25 @@ interface ProgressLoaderProps {
 const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
   const [account, setAccount] = useState("");
   const router = useRouter();
+  const getStep = async () => {
+    const res = await request({
+      url: "/api/cat/v1/survey/survey/step",
+      method: "get",
+    });
+    const { step } = res.data;
+    //0 代表未填写过基础信息
+    //1 代表填写过基础信息，未填写过mbti
+    //2 代表填写过基础信息和mbti
+    if (step === 0) {
+      router.push("/info");
+    }
+    if (step === 1) {
+      router.push("/question");
+    }
+    if (step === 2) {
+      router.push("/chat");
+    }
+  };
   const login = async () => {
     if (account) {
       try {
@@ -30,7 +49,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
           expires: new Date(res.data.accessExpire * 1000),
         });
         if (process.env.NEXT_PUBLIC_VERTICAL === "true") {
-          router.push("/info");
+          getStep();
         } else {
           router.push("/");
         }
