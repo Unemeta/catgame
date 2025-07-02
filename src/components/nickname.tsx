@@ -64,7 +64,7 @@ const NickName = ({ onClick }: iAnswerView) => {
         <div className="relative mt-[6rem]">
           <div
             className={cn(
-              "w-[full] h-[5rem] bg-cover flex justify-center items-center"
+              "w-[full] h-[6rem] bg-cover flex justify-center items-center"
               // {
               //   "bg-[url('/img/inormal.png')]": !basicInfo.nickname,
               //   "bg-[url('/img/ifocus.png')]": basicInfo.nickname,
@@ -99,7 +99,7 @@ const NickName = ({ onClick }: iAnswerView) => {
             />
           </div>
         </div>
-        <div className="flex justify-between w-[31rem] mt-[3rem]">
+        <div className="flex justify-between w-[full] mt-[3rem]">
           <div className="text-center justify-start text-stone-500 text-[1.8rem] font-medium font-['SF_Pro_Rounded'] leading-snug">
             Or randomly select one
           </div>
@@ -110,13 +110,13 @@ const NickName = ({ onClick }: iAnswerView) => {
             onClick={() => refreshName()}
           />
         </div>
-        <div className="flex gap-[1rem] flex-wrap mt-[2rem] overflow-auto justify-center py-[2rem]">
+        <div className="flex gap-[1rem] flex-wrap mt-[2rem] overflow-auto py-[2rem] justify-between">
           {randomNames.map((item) => {
             return (
               <div
                 key={item}
                 className={cn(
-                  "w-[15.2rem] px-[2rem] py-[1.3rem] rounded-[2rem] inline-flex justify-center items-center gap-[1rem]",
+                  "w-[43vw] px-[2rem] py-[1.3rem] rounded-[2rem] inline-flex justify-center items-center gap-[1rem]",
                   {
                     "bg-white": item !== basicInfo.nickname,
                     "bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)] rounded-[20px]":

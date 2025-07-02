@@ -27,7 +27,7 @@
     "q4_a2": "Just book a flight and go, enjoying the freedom to explore spontaneously",
     "This is your": "This is your",
     "Meet your cat": "Meet your cat",
-    "1活泼2高冷3疗愈4好奇":"1活泼2高冷3疗愈4好奇",
+    "1活泼2高冷3疗愈4好奇": "1活泼2高冷3疗愈4好奇",
     "cat_type1": "Cats",
     "cat_desc1": "",
     "cat_type2": "Aloof Cats",
@@ -36,12 +36,21 @@
     "cat_desc3": "Warm and caring, always offering gentle companionship that gradually brings peace to your heart.",
     "cat_type4": "Curious Cats",
     "cat_desc4": "With a lively spirit and a love for exploration, they roam freely, eyes shining with dreams of the world.",
-    "Reserved":"Reserved",
-    "Tsundere":"Tsundere",
-    "Soothing":"Soothing", 
-    "Tenderness":"Tenderness",
-    "Spirited":"Spirited", 
-    "Lively":"Lively",
+    "Reserved": "Reserved",
+    "Tsundere": "Tsundere",
+    "Soothing": "Soothing",
+    "Tenderness": "Tenderness",
+    "Spirited": "Spirited",
+    "Lively": "Lively",
     "test": "test"
+  },
+  "info": {
+    "wynickname": "What’s your nickname?",
+    "eynickname": "Enter your nickname",
+    "orsone": "Or randomly select one",
+    "howold": "How old are you?",
+    "wgender": "What’s your gender?",
+    "female": "Female",
+    "male": "Male"
   }
 }
