@@ -18,6 +18,7 @@ import LoveCollect from "@/components/LoveCollect";
 import Rewards from "@/components/dialog/rewards";
 import TalkSelect from "@/components/dialog/talkselect";
 import { useRouter } from "next/router";
+import { jwtHelper } from "@/utils/jwt";
 export default function Home() {
   const router = useRouter();
   const { fetchUser } = useFetchUser();
@@ -61,7 +62,13 @@ export default function Home() {
   };
   useEffect(() => {
     if (process.env.NEXT_PUBLIC_VERTICAL === "true") {
-      router.push("/chat");
+      const token = jwtHelper.getToken();
+      if (token) {
+        router.push("/chat");
+      } else {
+        router.push("/login");
+      }
+
       return;
     }
     if (typeof window === "undefined") return;
