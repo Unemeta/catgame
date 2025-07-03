@@ -4,7 +4,7 @@ import { ReactNode, useState } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from ".";
 import { toast } from "react-toastify";
 import IconView from "../IconView";
-
+import { shareUtil } from "@/lib/utils";
 interface iDialogShare {
   trigger?: ReactNode;
   // isOpen: boolean;
@@ -74,7 +74,14 @@ const DialogShare = ({ trigger }: iDialogShare) => {
               <div
                 className="flex justify-center items-center bg-[#FFF] shadow-[0px_3px_14px_0px_rgba(255,255,255,0.45);] rounded-[3.1rem] h-[3.8rem]"
                 onClick={() => {
-                  window.open("https://x.com/", "_blank");
+                  // window.open("https://x.com/", "_blank");
+                  window.open(
+                    shareUtil.getTwitterShareUrl({
+                      url: window.location.href,
+                      text: `🦊🎂 UneMeta is 1️⃣ year old! I'm participating in UneMeta's Anniversary Carnival, where you can share a total prize pool of $47,000 by completing simple tasks😍, and there are special rewards for New Users.🏃Event ending soon, let's go!!!👇`,
+                    }),
+                    "_blank"
+                  );
                 }}
               >
                 <IconView

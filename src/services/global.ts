@@ -24,6 +24,13 @@ export function getUserInfo() {
 //          EventTypeVideoInfo = 5
 // )
 /** 埋点数据上报 */
+
+
+//    FixedEventMsg  = "fixed_event"   = 1
+//         AiEventMsg2    = "ai_event2"     = 2
+//         AiEventMsg4    = "ai_event4"     = 3
+//         AiEventMsg6    = "ai_event6"     = 4
+//         FarewellLetter = "farewell_letter" = 5
 export enum eventType {
     EventTypeZoomIn = 1,
     EventTypeSaveImage = 2,

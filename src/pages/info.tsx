@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import NickName from "@/components/nickname";
 import Age from "@/components/age";
 import Gender from "@/components/gender";
-import ProgressBar from "@/components/progressbar";
+// import ProgressBar from "@/components/progressbar";
 import { cn } from "@/lib/utils";
 import { useUserBasicInfo } from "@/store/info";
 import { request } from "@/utils/request";
@@ -15,7 +15,7 @@ import { useRouter } from "next/router";
 
 const InfoView = () => {
   const [stepIndex, setstepIndex] = useState(0);
-  const [showQuestion, setShowQuestion] = useState(true);
+  // const [showQuestion, setShowQuestion] = useState(false);
   const [basicInfo] = useUserBasicInfo();
   const router = useRouter();
   const postInfo = async () => {
@@ -54,10 +54,8 @@ const InfoView = () => {
     <div
       className={cn(
         "w-full absolute inset-0 z-[2] px-[2rem] bg-[url('/img/infoback.jpg')] bg-cover overflow-scroll wrapHeight"
-        // styles.container
       )}
     >
-      {showQuestion ? (
         <>
           <div className="h-[3vh]"></div>
           <div className="w-full inline-flex justify-start items-center gap-1 space-x-[0.4rem]">
@@ -94,11 +92,6 @@ const InfoView = () => {
             />
           </div>
           {stepIndex === 0 && (
-            // <NickName
-            //   onClick={() => {
-            //     setstepIndex(1);
-            //   }}
-            // ></NickName>
             <Gender
               onClick={() => {
                 setstepIndex(1);
@@ -111,11 +104,6 @@ const InfoView = () => {
                 setstepIndex(2);
               }}
             ></NickName>
-            // <Age
-            //   onClick={() => {
-            //     setstepIndex(2);
-            //   }}
-            // ></Age>
           )}
           {stepIndex === 2 && (
             <Age
@@ -130,14 +118,7 @@ const InfoView = () => {
             ></Age>
           )}
         </>
-      ) : (
-        <ProgressBar
-          setShow={() => {
-            setShowQuestion(true);
-          }}
-        ></ProgressBar>
-      )}
-      {/* <DialogCheckIn></DialogCheckIn> */}
+      
     </div>
   );
 };

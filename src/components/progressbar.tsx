@@ -21,76 +21,139 @@ const ProgressBar = ({ setShow }: { setShow: () => void }) => {
   //   };
 
   // 更新进度
-  useEffect(() => {
-    if (isActive) {
-      intervalRef.current = setInterval(() => {
-        setProgress((prev) => {
-          if (prev >= 100) {
-            clearInterval(intervalRef.current);
-            setIsActive(false);
-            return 100;
-          }
-          return prev + 1;
-        });
-      }, speed);
-    } else {
-      clearInterval(intervalRef.current);
-    }
+  // useEffect(() => {
+  //   if (isActive) {
+  //     intervalRef.current = setInterval(() => {
+  //       setProgress((prev) => {
+  //         if (prev >= 100) {
+  //           clearInterval(intervalRef.current);
+  //           setIsActive(false);
+  //           return 100;
+  //         }
+  //         return prev + 1;
+  //       });
+  //     }, speed);
+  //   } else {
+  //     clearInterval(intervalRef.current);
+  //   }
 
-    return () => clearInterval(intervalRef.current);
-  }, [isActive, speed]);
+  //   return () => clearInterval(intervalRef.current);
+  // }, [isActive, speed]);
 
   useEffect(() => {
     toggleProgress();
   }, []);
 
+  // useEffect(() => {
+  //   if (progress >= 100) {
+  //     setShow();
+  //   }
+  // }, [progress, setShow]);
+
+  interface Resource {
+    type: "image" | "video";
+    url: string;
+  }
+  // 示例资源列表
+  const resources: Resource[] = [
+    // { type: "image", url: "/path/to/image1.jpg" },
+    { type: "image", url: "/img/1.jpg" },
+    { type: "video", url: "/videos/chat.mp4" },
+    // ... 添加更多资源
+  ];
   useEffect(() => {
-    if (progress >= 100) {
-      setShow();
-    }
-  }, [progress, setShow]);
+    let loaded = 0;
+    const totalResources = resources.length;
+    const updateProgress = () => {
+      loaded++;
+      const newProgress = (loaded / totalResources) * 100;
+      setProgress(Number(newProgress.toFixed(1)));
+      // setLoadedResources(loaded);
+      if (loaded === totalResources) {
+        setShow();
+        // if (newProgress >= 100) {
+        //   setTimeout(() => setLoading(false), 300); // 让进度条停留一下再消失
+        // }
+        // setTimeout(() => setIsLoading(false), 300); // 让进度条停留一下再消失
+      }
+    };
 
-  // 改变速度
-  //   const changeSpeed = (newSpeed: number) => {
-  //     setSpeed(newSpeed);
-  //   };
+    const loadResource = (resource: Resource) => {
+      return new Promise<void>((resolve) => {
+        if (resource.type === "image") {
+          const img = new Image();
+          img.onload = () => {
+            updateProgress();
+            resolve();
+          };
+          img.onerror = () => {
+            updateProgress(); // 即使加载失败也继续
+            resolve();
+          };
+          img.src = resource.url;
+        } else if (resource.type === "video") {
+          const video = document.createElement("video");
+          video.onloadeddata = () => {
+            updateProgress();
+            resolve();
+          };
+          video.onerror = () => {
+            updateProgress();
+            resolve();
+          };
+          video.src = resource.url;
+          video.load();
+        }
+      });
+    };
 
+    // 并行加载所有资源
+    Promise.all(resources.map(loadResource)).catch((error) => {
+      console.error("资源加载出错:", error);
+      // setIsLoading(false);
+    });
+  }, []);
   return (
-    <div className="flex items-center flex-col h-[100vh] justify-center relative">
-      <img src="/img/loadingicon.png" alt="" className="mb-[1.8rem]" />
-      {/* 进度条容器 */}
-      <div className="mb-10 w-[16.8rem]">
-        {/* 进度条轨道 */}
-        <div className="relative h-[1.6rem] bg-[#fff] rounded-full shadow-inner">
-          {/* 进度条填充 */}
-          <div
-            className="absolute top-0 left-0 h-full bg-[#E96856] rounded-full transition-all duration-300 ease-out"
-            style={{ width: `${progress}%` }}
-          >
-            {/* 移动的图标 */}
+    <div
+      className={
+        "w-full absolute inset-0 z-[2] px-[2rem] bg-[url('/img/infoback.jpg')] bg-cover overflow-scroll wrapHeight"
+      }
+    >
+      <div className="flex items-center flex-col h-[100vh] justify-center relative">
+        <img src="/img/loadingicon.png" alt="" className="mb-[1.8rem]" />
+        {/* 进度条容器 */}
+        <div className="mb-10 w-[16.8rem]">
+          {/* 进度条轨道 */}
+          <div className="relative h-[1.6rem] bg-[#fff] rounded-full shadow-inner">
+            {/* 进度条填充 */}
             <div
-              className="absolute -top-[1.3rem] w-[4rem] h-[4rem] flex items-center justify-center z-1"
-              style={{ left: `calc(${progress - 10}% - 1rem)` }}
+              className="absolute top-0 left-0 h-full bg-[#E96856] rounded-full transition-all duration-300 ease-out"
+              style={{ width: `${progress}%` }}
             >
-              <img src="/img/progressicon.png" alt="" className="w-full" />
+              {/* 移动的图标 */}
+              <div
+                className="absolute -top-[1.3rem] w-[4rem] h-[4rem] flex items-center justify-center z-1"
+                style={{ left: `calc(${progress - 10}% - 1rem)` }}
+              >
+                <img src="/img/progressicon.png" alt="" className="w-full" />
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-between mt-[1rem]">
+            <div className="text-center justify-start text-[#826662] text-[1.2rem] leading-none">
+              Checking for updates…
+            </div>
+            <div className="text-center justify-start text-[#EA8273] text-[1.2rem] font-bold font-['SF_Pro_Rounded'] leading-none">
+              {progress}%
             </div>
           </div>
         </div>
-        <div className="flex justify-between mt-[1rem]">
-          <div className="text-center justify-start text-[#826662] text-[1.2rem] leading-none">
-            Checking for updates…
-          </div>
-          <div className="text-center justify-start text-[#EA8273] text-[1.2rem] font-bold font-['SF_Pro_Rounded'] leading-none">
-            {progress}%
-          </div>
+        <div className="w-[18.8rem] opacity-50 text-center justify-start text-[#826662] text-[1.2rem] line-height-[1.2rem] absolute bottom-[3rem]">
+          Milk is not suitable for most cats and may cause diarrhea.
         </div>
-      </div>
-      <div className="w-[18.8rem] opacity-50 text-center justify-start text-[#826662] text-[1.2rem] line-height-[1.2rem] absolute bottom-[3rem]">
-        Milk is not suitable for most cats and may cause diarrhea.
-      </div>
 
-      {/* 控制面板 */}
-      {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* 控制面板 */}
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <h3 className="text-lg font-bold text-blue-300">控制</h3>
               <div className="flex flex-wrap gap-3">
@@ -136,6 +199,7 @@ const ProgressBar = ({ setShow }: { setShow: () => void }) => {
               </div>
             </div>
           </div> */}
+      </div>
     </div>
   );
 };

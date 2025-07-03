@@ -15,6 +15,7 @@
     "@types/lodash-es": "^4.17.12",
     "@types/nprogress": "^0.2.3",
     "add": "^2.0.6",
+    "animate.css": "^4.1.1",
     "axios": "^1.8.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

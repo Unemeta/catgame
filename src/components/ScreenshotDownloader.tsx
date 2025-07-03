@@ -4,7 +4,11 @@
 import React, { useState } from "react";
 import html2canvas from "html2canvas";
 
-const ScreenshotDownloader = ({ targetRef, fileName = "screenshot" }: any) => {
+const ScreenshotDownloader = ({
+  targetRef,
+  fileName = "screenshot",
+  callback,
+}: any) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [format, setFormat] = useState("png");
@@ -20,24 +24,28 @@ const ScreenshotDownloader = ({ targetRef, fileName = "screenshot" }: any) => {
     setPreviewUrl(null);
 
     try {
-      const canvas = await html2canvas(targetRef.current, {
-        scale: 2,
-        useCORS: true,
-        logging: false,
-        backgroundColor: "#FFFFFF",
-      });
+      callback(false);
+      setTimeout(async () => {
+        const canvas = await html2canvas(targetRef.current, {
+          scale: 2,
+          useCORS: true,
+          logging: false,
+          backgroundColor: "#FFFFFF",
+        });
 
-      const dataUrl =
-        format === "png"
-          ? canvas.toDataURL("image/png")
-          : canvas.toDataURL("image/jpeg", 0.9);
+        const dataUrl =
+          format === "png"
+            ? canvas.toDataURL("image/png")
+            : canvas.toDataURL("image/jpeg", 0.9);
 
-      const link = document.createElement("a");
-      link.download = `${fileName}-${new Date()
-        .toISOString()
-        .slice(0, 10)}.${format}`;
-      link.href = dataUrl;
-      link.click();
+        const link = document.createElement("a");
+        link.download = `${fileName}-${new Date()
+          .toISOString()
+          .slice(0, 10)}.${format}`;
+        link.href = dataUrl;
+        link.click();
+        callback(true);
+      }, 200);
     } catch (err) {
       console.error("截图失败:", err);
     } finally {

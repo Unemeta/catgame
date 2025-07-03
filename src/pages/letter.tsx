@@ -10,7 +10,7 @@ import Discord from "@/components/Discord";
 
 const LetterView = () => {
   const contentRef = useRef(null);
-
+  const [showDownLoad, setShowDownLoad] = useState(true);
   const router = useRouter();
   const handleShare = async () => {
     console.log("share");
@@ -46,7 +46,9 @@ const LetterView = () => {
       }
     })();
   }, [router.query]);
-
+  const downloadCallBack = (show: boolean) => {
+    setShowDownLoad(show);
+  };
   return (
     <div className="bg-[#F0E4DD] min-h-[100vh]" ref={contentRef}>
       <div className="fixed w-full bg-[#F0E4DD]">
@@ -92,7 +94,11 @@ const LetterView = () => {
               alt=""
             /> */}
             <img className="w-[28rem] h-[35rem]" src={letterInfo?.url} alt="" />
-            <img className="w-[13rem] h-[6.4rem] absolute top-[-4rem] right-0" src="/img/letter_m.png" alt="" />
+            <img
+              className="w-[13rem] h-[6.4rem] absolute top-[-4rem] right-0"
+              src="/img/letter_m.png"
+              alt=""
+            />
           </div>
           <div className="h-[1.6rem]"></div>
         </div>
@@ -164,10 +170,26 @@ const LetterView = () => {
         </div>
       </div>
       <div className="h-[2.3rem]"></div>
-      <div className="flex justify-center items-center gap-[4.1rem]">
-        <ScreenshotDownloader targetRef={contentRef} fileName="sharepage" />
-        <Discord></Discord>
-      </div>
+      {showDownLoad ? (
+        <div className="flex justify-around items-center gap-[4.1rem] w-full">
+          <ScreenshotDownloader
+            targetRef={contentRef}
+            fileName="sharepage"
+            callback={downloadCallBack}
+          />
+          <Discord></Discord>
+        </div>
+      ) : (
+        <div className="flex justify-around items-center  bg-white py-[1.8rem] gap-[1.5rem]">
+          <img src="/img/logonew.png" alt="" className="w-[5.5rem]" />
+          <div className="text-[#6C4937] text-[1.2rem] font-['SF_Pro_Rounded'] leading-none w-[15rem]">
+            You teach it to understand the world, it teaches you to understand
+            yourself
+          </div>
+          <img src="/img/tqrcode.png" alt="" className="w-[5.5rem]" />
+        </div>
+      )}
+
       <div className="h-[2.2rem]"></div>
     </div>
   );
