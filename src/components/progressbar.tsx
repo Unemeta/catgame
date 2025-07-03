@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 
 const ProgressBar = ({ setShow }: { setShow: () => void }) => {
   const [progress, setProgress] = useState(0);
   const [isActive, setIsActive] = useState(false);
-  const [speed] = useState(50); // 毫秒
-  const intervalRef = useRef<any>(null);
+  // const [speed] = useState(50); // 毫秒
+  // const intervalRef = useRef<any>(null);
 
   // 开始/暂停进度
   const toggleProgress = () => {
