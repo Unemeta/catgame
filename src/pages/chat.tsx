@@ -389,9 +389,9 @@ const ChatView = () => {
                     <img
                       src="/img/back.svg"
                       alt=""
-                      className="backIcon dw25 dh25"
+                      className="backIcon w-[3rem] h-[3rem]"
                     />
-                    <span className="text-white dtext25 font-[500] dml15 backText">
+                    <span className="text-white text-[1.6rem] font-[500]">
                       Back
                     </span>
                   </div>
@@ -403,11 +403,11 @@ const ChatView = () => {
                   }}
                 >
                   <img
-                    className="w-[2rem] h-[2rem] mr-[0.6rem]"
+                    className="w-[3rem] h-[3rem] mr-[0.6rem]"
                     src="/svg/fish.svg"
                     alt=""
                   />
-                  <span className="text-[#FFF] text-[1.4rem] font-[700]">
+                  <span className="text-[#FFF] text-[1.6rem] font-[700]">
                     {Number(userData?.fishAmount ?? 0).toLocaleString()}
                   </span>
                 </div>
@@ -474,11 +474,11 @@ const ChatView = () => {
                   trigger={
                     <div className="px-[0.8rem] h-[2.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(58,53,53,0.20)_0%,rgba(58,53,53,0.20)_100%),linear-gradient(180deg,rgba(255,152,146,0.60)_0%,rgba(255,185,181,0.60)_100%)]">
                       <img
-                        className="w-[1.6rem] h-[1.6rem] mr-[0.6rem]"
+                        className="w-[2rem] h-[2rem] mr-[0.6rem]"
                         src="/svg/check_ calendar.svg"
                         alt=""
                       />
-                      <span className="text-[#FFF] text-[1.4rem] font-[700]">
+                      <span className="text-[#FFF] text-[1.6rem] font-[700]">
                         day {userData?.day}
                       </span>
                     </div>
@@ -488,7 +488,7 @@ const ChatView = () => {
                 <DialogSetting
                   trigger={
                     <img
-                      className="w-[2.4rem] h-[2.4rem]"
+                      className="w-[3rem] h-[3rem]"
                       src="/img/setting.min.png"
                       alt=""
                     />
