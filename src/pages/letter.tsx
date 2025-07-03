@@ -42,7 +42,7 @@ const LetterView = () => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         console.error(error);
-        // toast.error(error?.msg || JSON.stringify(error));
+        // toast.error(error?.msg || error?.message || JSON.stringify(error));
       }
     })();
   }, [router.query]);
