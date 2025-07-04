@@ -24,6 +24,7 @@ import { useTranslation } from "react-i18next";
 import ProgressBar from "@/components/progressbar";
 
 let timerHistory: NodeJS.Timeout | null | undefined = null;
+let stream_msgs: string[] = [];
 const ChatView = () => {
   const { t } = useTranslation();
   const router = useRouter();
@@ -45,7 +46,7 @@ const ChatView = () => {
       role: string;
       time: number;
       msgId: string;
-      eventid: number;
+      eventid?: number;
     }[]
   >([]);
   const chatEndRef = useRef(null);
@@ -94,6 +95,9 @@ const ChatView = () => {
     window.addEventListener("load", setFullHeight);
   }, []);
 
+  function delay(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
   useEffect(() => {
     if (socket) {
       return;
@@ -104,7 +108,7 @@ const ChatView = () => {
     socketTemp.onopen = () => {
       console.log("Connected to the server22");
     };
-    socketTemp.onmessage = (event) => {
+    socketTemp.onmessage = async (event) => {
       if (event?.type === "message" && event?.data !== "pong") {
         const msgRes = JSON.parse(event?.data);
         if (msgRes?.type === "text") {
@@ -118,22 +122,38 @@ const ChatView = () => {
         } else {
           return;
         }
-        // getChatInfo();
-        setmessageList((pre: any) => {
-          const resArr = [
-            ...pre,
-            {
-              msg: msgRes?.message,
-              msgId: msgRes?.msgId,
-              role: "cat",
-              time: Math.floor(new Date().getTime() / 1000),
-            },
-          ];
-          const uniqueArr = Array.from(
-            new Set(resArr.map((message) => message.msgId))
-          ).map((msgId) => resArr.find((message) => message.msgId === msgId));
-          return uniqueArr;
-        });
+        if (msgRes?.type == "stream_start") {
+          stream_msgs = [];
+          setmessageList((pre) => {
+            return [
+              ...pre,
+              {
+                chatId: "",
+                msg: "",
+                role: "cat",
+                time: Math.floor(new Date().getTime() / 1000),
+                msgId: msgRes?.msgId,
+              },
+            ];
+          });
+        } else if (msgRes?.type == "stream_content") {
+          stream_msgs.push(msgRes?.message);
+          setmessageList((pre) => {
+            const tempMsgs = [...pre];
+            if (tempMsgs.length > 0) {
+              tempMsgs[tempMsgs.length - 1] = {
+                msg: stream_msgs.join(""),
+                msgId: msgRes?.msgId,
+                role: "cat",
+                time: Math.floor(new Date().getTime() / 1000),
+                chatId: "",
+              };
+            }
+            return tempMsgs;
+          });
+        } else if (msgRes?.type == "stream_end") {
+          stream_msgs = [];
+        }
         setshowCatLoading(false);
         if (msgRes.hasOwnProperty("chatCount")) {
           setchatCount(String(msgRes.chatCount));
@@ -256,10 +276,10 @@ const ChatView = () => {
       });
       if (data?.msgList) {
         const resArr = [...data.msgList.reverse()];
-        const uniqueArr = Array.from(
-          new Set(resArr.map((message) => message.msgId))
-        ).map((msgId) => resArr.find((message) => message.msgId === msgId));
-        setmessageList(uniqueArr);
+        // const uniqueArr = Array.from(
+        //   new Set(resArr.map((message) => message.msgId))
+        // ).map((msgId) => resArr.find((message) => message.msgId === msgId));
+        setmessageList(resArr);
       }
     } catch (error: any) {
       console.error(error);
