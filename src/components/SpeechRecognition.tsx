@@ -31,7 +31,7 @@ interface SpeechRecognitionProps {
 type RecordingState = "idle" | "recording" | "cancelled";
 
 const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
-  language = "zh_cn",
+  // language = "zh_cn",
   onResult,
   // onError,
   onCancel,
@@ -261,74 +261,79 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
   //连接websocket语音，初始和websocket断开后执行
   const connectWebSocket = () => {
     const url = generateWebSocketUrl();
-    if (!wsRef.current) {
-      wsRef.current = new WebSocket(url);
-      wsRef.current.onopen = () => {
-        console.log("WebSocket连接成功");
-        // 首次连接
-        const params = {
-          common: {
-            app_id: process.env.NEXT_PUBLIC_XF_APP_ID,
-          },
-          business: {
-            // language: "zh_cn",
-            language: language,
-            domain: "iat",
-            accent: "mandarin",
-            vad_eos: 5000,
-            dwa: "wpgs",
-          },
-          data: {
-            status: 0,
-            format: "audio/L16;rate=16000",
-            encoding: "raw",
-          },
-        };
-        wsRef.current?.send(JSON.stringify(params));
+    wsRef.current = new WebSocket(url);
+    wsRef.current.onopen = () => {
+      console.log("WebSocket连接成功");
+      // 语言设置
+      const lan = window.localStorage.getItem("locale") || "en"; // zh ja en
+      const lanMap = {
+        zh: "zh_cn",
+        ja: "ja_jp",
+        en: "en_us",
       };
-      wsRef.current.onerror = (err) => {
-        console.error("WebSocket错误:", err);
-        // wsRef.current = null;
+      const language = lanMap[lan as keyof typeof lanMap];
+      // 首次连接
+      const params = {
+        common: {
+          app_id: process.env.NEXT_PUBLIC_XF_APP_ID,
+        },
+        business: {
+          // language: "zh_cn",
+          language: language,
+          domain: "iat",
+          accent: "mandarin",
+          vad_eos: 5000,
+          dwa: "wpgs",
+        },
+        data: {
+          status: 0,
+          format: "audio/L16;rate=16000",
+          encoding: "raw",
+        },
       };
-
-      wsRef.current.onclose = (err) => {
-        console.log("WebSocket关闭:", err);
-        stopRecording();
-        wsRef.current = null;
-      };
-      wsRef.current.onmessage = (event) => {
-        // 识别结束
-        const jsonData = JSON.parse(event.data);
-        if (jsonData.data && jsonData.data.result) {
-          const data = jsonData.data.result;
-          let str = "";
-          const ws = data.ws;
-          for (let i = 0; i < ws.length; i++) {
-            str = str + ws[i].cw[0].w;
-          }
-          // 开启wpgs会有此字段(前提：在控制台开通动态修正功能)
-          // 取值为 "apd"时表示该片结果是追加到前面的最终结果；取值为"rpl" 时表示替换前面的部分结果，替换范围为rg字段
-          if (data.pgs) {
-            if (data.pgs === "apd") {
-              // 将resultTextTemp同步给resultText
-              resultTextRef.current = resultTextTempRef.current;
-            }
-            // 将结果存储在resultTextTemp中
-            resultTextTempRef.current = resultTextRef.current + str;
-          } else {
-            resultTextRef.current = resultTextRef.current + str;
-          }
-          const innerText =
-            resultTextTempRef.current || resultTextRef.current || "";
-          setMessage(innerText);
-          if (onResult) {
-            onResult(innerText);
-          }
-
-          console.log(innerText);
+      wsRef.current?.send(JSON.stringify(params));
+    };
+    wsRef.current.onerror = (err) => {
+      console.error("WebSocket错误:", err);
+      // wsRef.current = null;
+    };
+    wsRef.current.onclose = (err) => {
+      console.log("WebSocket关闭:", err);
+      stopRecording();
+      wsRef.current = null;
+    };
+    wsRef.current.onmessage = (event) => {
+      // 识别结束
+      const jsonData = JSON.parse(event.data);
+      if (jsonData.data && jsonData.data.result) {
+        const data = jsonData.data.result;
+        let str = "";
+        const ws = data.ws;
+        for (let i = 0; i < ws.length; i++) {
+          str = str + ws[i].cw[0].w;
         }
-      };
-    }
+        // 开启wpgs会有此字段(前提：在控制台开通动态修正功能)
+        // 取值为 "apd"时表示该片结果是追加到前面的最终结果；取值为"rpl" 时表示替换前面的部分结果，替换范围为rg字段
+        if (data.pgs) {
+          if (data.pgs === "apd") {
+            // 将resultTextTemp同步给resultText
+            resultTextRef.current = resultTextTempRef.current;
+          }
+          // 将结果存储在resultTextTemp中
+          resultTextTempRef.current = resultTextRef.current + str;
+        } else {
+          resultTextRef.current = resultTextRef.current + str;
+        }
+        const innerText =
+          resultTextTempRef.current || resultTextRef.current || "";
+        setMessage(innerText);
+        if (onResult) {
+          onResult(innerText);
+        }
+
+        console.log(innerText);
+      }
+    };
   };
 
   /**请求录音权限，Start调用前至少要调用一次RequestPermission**/
@@ -591,7 +596,7 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
       ) : (
         <></>
       )}
-       {/* <>
+      {/* <>
           <Player
             src={"/lottie/vnormal.json"}
             className={styles.vanimate}
@@ -611,7 +616,7 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
           </div>
           
         </> */}
-         {/* <div className={styles.status}>
+      {/* <div className={styles.status}>
           <img className={styles.statusIcon} alt="" src={`/img/cancelv.svg`} />
           <div className={styles.statusText}>Swipe up to cancel</div>
         </div> */}
