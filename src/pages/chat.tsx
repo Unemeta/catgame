@@ -154,7 +154,7 @@ const ChatView = () => {
             return tempMsgs;
           });
         } else if (msgRes?.type == "stream_end") {
-          stream_msgs = [];
+          // stream_msgs = [];
         }
         setshowCatLoading(false);
         if (msgRes.hasOwnProperty("chatCount")) {
