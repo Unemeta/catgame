@@ -46,7 +46,7 @@ const ChatView = () => {
       role: string;
       time: number;
       msgId: string;
-      eventid?: number;
+      eventid: number;
     }[]
   >([]);
   const chatEndRef = useRef(null);
@@ -133,6 +133,7 @@ const ChatView = () => {
                 role: "cat",
                 time: Math.floor(new Date().getTime() / 1000),
                 msgId: msgRes?.msgId,
+                eventid: msgRes.eventId,
               },
             ];
           });
@@ -142,6 +143,7 @@ const ChatView = () => {
             const tempMsgs = [...pre];
             if (tempMsgs.length > 0) {
               tempMsgs[tempMsgs.length - 1] = {
+                eventid: msgRes.eventId,
                 msg: stream_msgs.join(""),
                 msgId: msgRes?.msgId,
                 role: "cat",
