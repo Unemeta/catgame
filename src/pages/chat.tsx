@@ -130,7 +130,7 @@ const ChatView = () => {
               ...pre,
               {
                 chatId: "",
-                msg: "",
+                msg: "　",
                 role: "cat",
                 time: Math.floor(new Date().getTime() / 1000),
                 msgId: msgRes?.msgId,
@@ -139,23 +139,30 @@ const ChatView = () => {
             ];
           });
         } else if (msgRes?.type == "stream_content") {
+          // if (stream_index == 0) {
+          //   // 
+          // }else{
+          //   await delay(stream_index * 500);
+          // }
           stream_index = stream_index + 1;
-          await delay(stream_index * 300);
-          stream_msgs.push(msgRes?.message);
-          setmessageList((pre) => {
-            const tempMsgs = [...pre];
-            if (tempMsgs.length > 0) {
-              tempMsgs[tempMsgs.length - 1] = {
-                eventid: msgRes.eventId,
-                msg: stream_msgs.join(""),
-                msgId: msgRes?.msgId,
-                role: "cat",
-                time: Math.floor(new Date().getTime() / 1000),
-                chatId: "",
-              };
-            }
-            return tempMsgs;
-          });
+          await delay(stream_index * 200);
+          if (msgRes?.message.length > 0) {
+            stream_msgs.push(msgRes?.message);
+            setmessageList((pre) => {
+              const tempMsgs = [...pre];
+              if (tempMsgs.length > 0) {
+                tempMsgs[tempMsgs.length - 1] = {
+                  eventid: msgRes.eventId,
+                  msg: stream_msgs.join(""),
+                  msgId: msgRes?.msgId,
+                  role: "cat",
+                  time: Math.floor(new Date().getTime() / 1000),
+                  chatId: "",
+                };
+              }
+              return tempMsgs;
+            });
+          }
         } else if (msgRes?.type == "stream_end") {
           // stream_msgs = [];
           stream_index = 0;
