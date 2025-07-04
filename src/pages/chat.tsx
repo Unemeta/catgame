@@ -151,14 +151,15 @@ const ChatView = () => {
             setmessageList((pre) => {
               const tempMsgs = [...pre];
               if (tempMsgs.length > 0) {
-                tempMsgs[tempMsgs.length - 1] = {
-                  eventid: msgRes.eventId,
-                  msg: stream_msgs.join(""),
-                  msgId: msgRes?.msgId,
-                  role: "cat",
-                  time: Math.floor(new Date().getTime() / 1000),
-                  chatId: "",
-                };
+                // tempMsgs[tempMsgs.length - 1] = {
+                //   eventid: msgRes.eventId,
+                //   msg: stream_msgs.join(""),
+                //   msgId: msgRes?.msgId,
+                //   role: "cat",
+                //   time: Math.floor(new Date().getTime() / 1000),
+                //   chatId: "",
+                // };
+                tempMsgs[tempMsgs.length - 1]["msg"] = stream_msgs.join("");
               }
               return tempMsgs;
             });
