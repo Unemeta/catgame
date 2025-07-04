@@ -283,7 +283,7 @@ const ChatView = () => {
       }
     } catch (error: any) {
       console.error(error);
-      toast.error(error?.msg || JSON.stringify(error));
+      toast.error(error?.msg || error?.message || JSON.stringify(error));
     }
   };
   const scrollToBottom = () => {
