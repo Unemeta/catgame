@@ -5,7 +5,8 @@ import { Dialog, DialogContent, DialogTrigger, DialogTitle } from ".";
 import { useCheckInDia, useFetchUser } from "@/store";
 import { cn } from "@/lib/utils";
 import { request } from "@/utils/request";
-
+import LottieView from "@/components/lottie";
+import { FadeComponent } from "@/components/FadeComponent";
 interface iDialogCheckIn {
   trigger?: ReactNode;
 }
@@ -45,6 +46,11 @@ export const SignToast = () => {
 export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
   const [showCheckIn, setShowCheckIn] = useCheckInDia();
   const { fetchUser } = useFetchUser();
+  const [isVisible, setIsVisible] = useState(true);
+  // 当动画播放完成时调用的函数
+  const handleAnimationComplete = () => {
+    setIsVisible(false); // 播放完成后隐藏
+  };
 
   //   const [loading, setLoading] = useState(false);
   const [checkdays, setCheckdays] = useState([
@@ -167,7 +173,7 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
                           key={item.day}
                           onClick={checkIn}
                         >
-                          <div>
+                          <div className="relative">
                             <div
                               className={cn("relative w-[4rem]", {
                                 "opacity-50": item.checked,
@@ -185,6 +191,28 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
                             >
                               x20
                             </div>
+
+                            {isVisible && item.checked ? (
+                              <>
+                                {/* <LottieView
+                                  src={"/lottie/fishclick.json"}
+                                  loop={false}
+                                  className="absolute top-0"
+                                ></LottieView> */}
+                                <LottieView
+                                  src={"/lottie/fishpoint.json"}
+                                  loop={false}
+                                  className="absolute top-0"
+                                  onEvent={(event: string) => {
+                                    if (event === "complete") {
+                                      handleAnimationComplete();
+                                    }
+                                  }}
+                                ></LottieView>
+                              </>
+                            ) : (
+                              <></>
+                            )}
                           </div>
 
                           {item.day === 7 && (
@@ -212,14 +240,16 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
                             <img
                               src="/img/footcheck.png"
                               alt=""
-                              className="w-[2.7rem] h-[2.7rem] left-[-0.4rem] top-[-0.4rem] absolute"
+                              className="w-[2.7rem] h-[2.7rem] left-[-0.4rem] top-[-0.4rem] absolute animate__bounceIn"
                             />
                           ) : (
-                            <div className="px-[0.5rem] py-[0.3rem] left-[-0.4rem] top-[-0.4rem] absolute bg-white rounded-[2rem] outline-1 outline-white inline-flex justify-center items-center gap-2.5">
-                              <div className="justify-start text-red-400 text-[1.2rem] font-['SF_Pro_Rounded'] leading-3">
-                                Day {item.day}
+                            <FadeComponent show={!item.checked}>
+                              <div className="px-[0.5rem] py-[0.3rem] left-[-0.4rem] top-[-0.4rem] absolute bg-white rounded-[2rem] outline-1 outline-white inline-flex justify-center items-center gap-2.5">
+                                <div className="justify-start text-red-400 text-[1.2rem] font-['SF_Pro_Rounded'] leading-3">
+                                  Day {item.day}
+                                </div>
                               </div>
-                            </div>
+                            </FadeComponent>
                           )}
                         </div>
                       );

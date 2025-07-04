@@ -8,7 +8,7 @@ import Head from "next/head";
 import "react-photo-view/dist/react-photo-view.css";
 import "../i18n/configs";
 import { useTranslation } from "react-i18next";
-// import "animate.css/animate.min.css"; // 引入压缩版CSS
+import "animate.css/animate.min.css"; // 引入压缩版CSS
 
 // import Router from "next/router";
 // import NProgress from "nprogress";
