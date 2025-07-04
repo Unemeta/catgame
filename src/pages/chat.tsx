@@ -25,6 +25,8 @@ import ProgressBar from "@/components/progressbar";
 
 let timerHistory: NodeJS.Timeout | null | undefined = null;
 let stream_msgs: string[] = [];
+let stream_index = 0;
+let socket: any;
 const ChatView = () => {
   const { t } = useTranslation();
   const router = useRouter();
@@ -33,8 +35,6 @@ const ChatView = () => {
   // const { scrollTop, clientHeight,scrollHieght } = useScrollTop("chatWindow");
   const [, setShowCheckIn] = useCheckInDia();
   const [showSend, setshowSend] = useState(false);
-
-  const [socket, setSocket] = useState<WebSocket | null>(null);
   const [inputMsg, setinputMsg] = useState("");
   const [showExchange, setshowExchange] = useState(false);
   const [showChat, setShowChat] = useState(false);
@@ -124,6 +124,7 @@ const ChatView = () => {
         }
         if (msgRes?.type == "stream_start") {
           stream_msgs = [];
+          stream_index = 0;
           setmessageList((pre) => {
             return [
               ...pre,
@@ -138,6 +139,8 @@ const ChatView = () => {
             ];
           });
         } else if (msgRes?.type == "stream_content") {
+          stream_index = stream_index + 1;
+          await delay(stream_index * 300);
           stream_msgs.push(msgRes?.message);
           setmessageList((pre) => {
             const tempMsgs = [...pre];
@@ -155,6 +158,7 @@ const ChatView = () => {
           });
         } else if (msgRes?.type == "stream_end") {
           // stream_msgs = [];
+          stream_index = 0;
         }
         setshowCatLoading(false);
         if (msgRes.hasOwnProperty("chatCount")) {
@@ -165,18 +169,18 @@ const ChatView = () => {
     };
     socketTemp.onclose = () => {
       console.log("Disconnected from the server");
-      setSocket(null);
+      socket = null;
     };
     const heartbeatInterval = setInterval(() => {
       if (socketTemp.readyState === WebSocket.OPEN) {
         socketTemp.send("ping");
       }
     }, 30000);
-    setSocket(socketTemp);
+    socket = socketTemp;
     return () => {
       clearInterval(heartbeatInterval);
       socketTemp.close();
-      setSocket(null);
+      socket = null;
     };
   }, [toConnect]);
 
