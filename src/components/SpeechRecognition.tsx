@@ -53,6 +53,8 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
 
   const voicetimer = useRef<any>(null);
   const countDownTimer = useRef<any>(null);
+  const isStartingRef = useRef(false); // 防止重复触发 start
+
   // 常量配置
   const LONG_PRESS_DURATION = 700; // 长按判定时间
 
@@ -81,6 +83,8 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
 
   // 处理触摸开始
   const handleStart = useCallback((clientY: number) => {
+    if (isRecording || isStartingRef.current) return;
+
     setTouchStartY(clientY);
     longPressTimer.current = window.setTimeout(() => {
       setIsLongPress(true);
@@ -261,79 +265,81 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
   //连接websocket语音，初始和websocket断开后执行
   const connectWebSocket = () => {
     const url = generateWebSocketUrl();
-    wsRef.current = new WebSocket(url);
-    wsRef.current.onopen = () => {
-      console.log("WebSocket连接成功");
-      // 语言设置
-      const lan = window.localStorage.getItem("locale") || "en"; // zh ja en
-      const lanMap = {
-        zh: "zh_cn",
-        ja: "ja_jp",
-        en: "en_us",
+    if (!wsRef.current) {
+      wsRef.current = new WebSocket(url);
+      wsRef.current.onopen = () => {
+        console.log("WebSocket连接成功");
+        // 语言设置
+        const lan = window.localStorage.getItem("locale") || "zh"; // zh ja en
+        const lanMap = {
+          zh: "zh_cn",
+          ja: "ja_jp",
+          en: "en_us",
+        };
+        const language = lanMap[lan as keyof typeof lanMap];
+        // 首次连接
+        const params = {
+          common: {
+            app_id: process.env.NEXT_PUBLIC_XF_APP_ID,
+          },
+          business: {
+            // language: "zh_cn",
+            language: language,
+            domain: "iat",
+            accent: "mandarin",
+            vad_eos: 5000,
+            dwa: "wpgs",
+          },
+          data: {
+            status: 0,
+            format: "audio/L16;rate=16000",
+            encoding: "raw",
+          },
+        };
+        wsRef.current?.send(JSON.stringify(params));
       };
-      const language = lanMap[lan as keyof typeof lanMap];
-      // 首次连接
-      const params = {
-        common: {
-          app_id: process.env.NEXT_PUBLIC_XF_APP_ID,
-        },
-        business: {
-          // language: "zh_cn",
-          language: language,
-          domain: "iat",
-          accent: "mandarin",
-          vad_eos: 5000,
-          dwa: "wpgs",
-        },
-        data: {
-          status: 0,
-          format: "audio/L16;rate=16000",
-          encoding: "raw",
-        },
+      wsRef.current.onerror = (err) => {
+        console.error("WebSocket错误:", err);
+        // wsRef.current = null;
       };
-      wsRef.current?.send(JSON.stringify(params));
-    };
-    wsRef.current.onerror = (err) => {
-      console.error("WebSocket错误:", err);
-      // wsRef.current = null;
-    };
-    wsRef.current.onclose = (err) => {
-      console.log("WebSocket关闭:", err);
-      stopRecording();
-      wsRef.current = null;
-    };
-    wsRef.current.onmessage = (event) => {
-      // 识别结束
-      const jsonData = JSON.parse(event.data);
-      if (jsonData.data && jsonData.data.result) {
-        const data = jsonData.data.result;
-        let str = "";
-        const ws = data.ws;
-        for (let i = 0; i < ws.length; i++) {
-          str = str + ws[i].cw[0].w;
-        }
-        // 开启wpgs会有此字段(前提：在控制台开通动态修正功能)
-        // 取值为 "apd"时表示该片结果是追加到前面的最终结果；取值为"rpl" 时表示替换前面的部分结果，替换范围为rg字段
-        if (data.pgs) {
-          if (data.pgs === "apd") {
-            // 将resultTextTemp同步给resultText
-            resultTextRef.current = resultTextTempRef.current;
+      wsRef.current.onclose = (err) => {
+        console.log("WebSocket关闭:", err);
+        stopRecording();
+        wsRef.current = null;
+      };
+      wsRef.current.onmessage = (event) => {
+        // 识别结束
+        const jsonData = JSON.parse(event.data);
+        if (jsonData.data && jsonData.data.result) {
+          const data = jsonData.data.result;
+          let str = "";
+          const ws = data.ws;
+          for (let i = 0; i < ws.length; i++) {
+            str = str + ws[i].cw[0].w;
           }
-          // 将结果存储在resultTextTemp中
-          resultTextTempRef.current = resultTextRef.current + str;
-        } else {
-          resultTextRef.current = resultTextRef.current + str;
-        }
-        const innerText =
-          resultTextTempRef.current || resultTextRef.current || "";
-        setMessage(innerText);
-        if (onResult) {
-          onResult(innerText);
-        }
+          // 开启wpgs会有此字段(前提：在控制台开通动态修正功能)
+          // 取值为 "apd"时表示该片结果是追加到前面的最终结果；取值为"rpl" 时表示替换前面的部分结果，替换范围为rg字段
+          if (data.pgs) {
+            if (data.pgs === "apd") {
+              // 将resultTextTemp同步给resultText
+              resultTextRef.current = resultTextTempRef.current;
+            }
+            // 将结果存储在resultTextTemp中
+            resultTextTempRef.current = resultTextRef.current + str;
+          } else {
+            resultTextRef.current = resultTextRef.current + str;
+          }
+          const innerText =
+            resultTextTempRef.current || resultTextRef.current || "";
+          setMessage(innerText);
+          if (onResult) {
+            onResult(innerText);
+          }
 
-        console.log(innerText);
-      }
-    };
+          console.log(innerText);
+        }
+      };
+    }
   };
 
   /**请求录音权限，Start调用前至少要调用一次RequestPermission**/
@@ -342,6 +348,8 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
 
     RecordApp.RequestPermission(
       function () {
+        console.log("麦克风权限已获取");
+
         //注意：有使用到H5录音时，为了获得最佳兼容性，建议RequestPermission、Start至少有一个应当在用户操作（触摸、点击等）下进行调用
         if (success) {
           success();
@@ -352,82 +360,99 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
         console.log(
           (isUserNotAllow ? "UserNotAllow，" : "") + "无法录音:" + msg
         );
+        isStartingRef.current = false;
+        setIsRecording(false);
+        setRecordingState("idle");
       }
     );
   };
 
   /**开始录音**/
   const startRecording = function () {
-    recReq();
-    if (!wsRef.current) {
-      connectWebSocket();
+    if (isRecording || isStartingRef.current) {
+      console.warn("正在录音或已触发启动，忽略重复调用");
+      return;
     }
-    let processTime = 0;
-    let clearBufferIdx = 0;
-    RealTimeSendReset();
-    setRecordingState("recording");
-    handleCount();
-    setIsRecording(true);
-    //开始录音的参数和Recorder的初始化参数大部分相同
-    RecordApp.Start(
-      {
-        type: "mp3",
-        sampleRate: 16000,
-        bitRate: 16, //mp3格式，指定采样率hz、比特率kbps，其他参数使用默认配置；注意：是数字的参数必须提供数字，不要用字符串；需要使用的type类型，需提前把格式支持文件加载进来，比如使用wav格式需要提前加载wav.js编码引擎
-        /*,audioTrackSet:{ //可选，如果需要同时播放声音（比如语音通话），需要打开回声消除（打开后声音可能会从听筒播放，部分环境下（如小程序、uni-app原生接口）可调用接口切换成扬声器外放）
+    cancelText(); // ✅ 每次开始前清空旧文本
+
+    isStartingRef.current = true; // 设置锁
+
+    recReq(() => {
+      if (!wsRef.current) {
+        connectWebSocket();
+      }
+      let processTime = 0;
+      let clearBufferIdx = 0;
+      RealTimeSendReset();
+      setRecordingState("recording");
+      handleCount();
+      setIsRecording(true);
+      //开始录音的参数和Recorder的初始化参数大部分相同
+      RecordApp.Start(
+        {
+          type: "mp3",
+          sampleRate: 16000,
+          bitRate: 16, //mp3格式，指定采样率hz、比特率kbps，其他参数使用默认配置；注意：是数字的参数必须提供数字，不要用字符串；需要使用的type类型，需提前把格式支持文件加载进来，比如使用wav格式需要提前加载wav.js编码引擎
+          /*,audioTrackSet:{ //可选，如果需要同时播放声音（比如语音通话），需要打开回声消除（打开后声音可能会从听筒播放，部分环境下（如小程序、uni-app原生接口）可调用接口切换成扬声器外放）
           //注意：H5中需要在请求录音权限前进行相同配置RecordApp.RequestPermission_H5OpenSet后此配置才会生效
           echoCancellation:true,noiseSuppression:true,autoGainControl:true} */
-        onProcess: function (
-          buffers: null[],
-          powerLevel: any,
-          bufferDuration: any,
-          bufferSampleRate: any,
-          newBufferIdx: number
-          // asyncEnd: any
-        ) {
-          //录音实时回调，大约1秒调用12次本回调，buffers为开始到现在的所有录音pcm数据块(16位小端LE)
-          //可实时上传（发送）数据，可实时绘制波形，ASR语音识别，使用可参考Recorder
-          processTime = Date.now();
-          console.log(powerLevel, "powerLevel");
-          setVoiceVolume(powerLevel); // 设置音量
-          for (let i = clearBufferIdx; i < newBufferIdx; i++) {
-            buffers[i] = null;
-          }
-          clearBufferIdx = newBufferIdx;
-          RealTimeSendTry(buffers, bufferSampleRate, false);
-        },
-
-        //...  不同环境的专有配置，根据文档按需配置
-      },
-      function () {
-        //开始录音成功
-        console.log("开始录音成功");
-
-        //【稳如老狗WDT】可选的，监控是否在正常录音有onProcess回调，如果长时间没有回调就代表录音不正常
-        const this_ = RecordApp; //有this就用this，没有就用一个全局对象
-        if (RecordApp.Current.CanProcess()) {
-          const wdt = (this_.watchDogTimer = setInterval(function () {
-            if (wdt != this_.watchDogTimer) {
-              clearInterval(wdt);
-              return;
-            } //sync
-            if (Date.now() < this_.wdtPauseT) return; //如果暂停录音了就不检测：puase时赋值this_.wdtPauseT=Date.now()*2（永不监控），resume时赋值this_.wdtPauseT=Date.now()+1000（1秒后再监控）
-            if (Date.now() - (processTime || startTime) > 1500) {
-              clearInterval(wdt);
-              console.error(processTime ? "录音被中断" : "录音未能正常开始");
-              // ... 错误处理，关闭录音，提醒用户
+          onProcess: function (
+            buffers: null[],
+            powerLevel: any,
+            bufferDuration: any,
+            bufferSampleRate: any,
+            newBufferIdx: number
+            // asyncEnd: any
+          ) {
+            //录音实时回调，大约1秒调用12次本回调，buffers为开始到现在的所有录音pcm数据块(16位小端LE)
+            //可实时上传（发送）数据，可实时绘制波形，ASR语音识别，使用可参考Recorder
+            processTime = Date.now();
+            console.log(powerLevel, "powerLevel");
+            setVoiceVolume(powerLevel); // 设置音量
+            for (let i = clearBufferIdx; i < newBufferIdx; i++) {
+              buffers[i] = null;
             }
-          }, 1000));
-        } else {
-          console.warn("当前环境不支持onProcess回调，不启用watchDogTimer"); //目前都支持回调
+            clearBufferIdx = newBufferIdx;
+            RealTimeSendTry(buffers, bufferSampleRate, false);
+          },
+
+          //...  不同环境的专有配置，根据文档按需配置
+        },
+        function () {
+          //开始录音成功
+          console.log("开始录音成功");
+          isStartingRef.current = false;
+
+          //【稳如老狗WDT】可选的，监控是否在正常录音有onProcess回调，如果长时间没有回调就代表录音不正常
+          const this_ = RecordApp; //有this就用this，没有就用一个全局对象
+          if (RecordApp.Current.CanProcess()) {
+            const wdt = (this_.watchDogTimer = setInterval(function () {
+              if (wdt != this_.watchDogTimer) {
+                clearInterval(wdt);
+                return;
+              } //sync
+              if (Date.now() < this_.wdtPauseT) return; //如果暂停录音了就不检测：puase时赋值this_.wdtPauseT=Date.now()*2（永不监控），resume时赋值this_.wdtPauseT=Date.now()+1000（1秒后再监控）
+              if (Date.now() - (processTime || startTime) > 1500) {
+                clearInterval(wdt);
+                console.error(processTime ? "录音被中断" : "录音未能正常开始");
+                // ... 错误处理，关闭录音，提醒用户
+                stopRecording();
+              }
+            }, 1000));
+          } else {
+            console.warn("当前环境不支持onProcess回调，不启用watchDogTimer"); //目前都支持回调
+          }
+          const startTime = Date.now();
+          this_.wdtPauseT = 0;
+        },
+        function (msg: string) {
+          console.log("开始录音失败：" + msg);
+          isStartingRef.current = false;
+          setIsRecording(false);
+          setRecordingState("idle");
         }
-        const startTime = Date.now();
-        this_.wdtPauseT = 0;
-      },
-      function (msg: string) {
-        console.log("开始录音失败：" + msg);
-      }
-    );
+      );
+    });
   };
 
   //=====实时处理核心函数==========
@@ -546,6 +571,8 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
     const this_ = RecordApp;
     this_.watchDogTimer = 0; //停止监控onProcess超时
     setIsRecording(false);
+    isStartingRef.current = false;
+
     console.log(isRecording);
     console.log(isLongPress);
     // cancelText();

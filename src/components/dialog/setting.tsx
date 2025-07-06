@@ -17,7 +17,7 @@ interface iDialogSetting {
 }
 const DialogSetting = ({ trigger }: iDialogSetting) => {
   const [isOpen, setisOpen] = useState(false);
-  const [indexLanguase, setindexLanguase] = useState(0);
+  const [indexLanguase, setindexLanguase] = useState(1);
   const { userData } = useFetchUser();
   const router = useRouter();
   const { t,i18n } = useTranslation();
