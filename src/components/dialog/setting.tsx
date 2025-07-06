@@ -247,7 +247,7 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
           </div>
         </div>
         <DialogTrigger>
-          <div className="absolute top-[-0.4rem] right-[-1.6rem] flex  justify-center items-center cursor-pointer select-none">
+          <div className="absolute top-[-0.4rem] right-[-1.6rem] flex  justify-center items-center cursor-pointer select-none focus-visible:outline-none">
             <img
               className="w-[4.4rem] h-[4.4rem]"
               src="/img/close2.min.png"
