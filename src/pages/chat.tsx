@@ -261,6 +261,11 @@ const ChatView = () => {
   };
 
   const sendMessageByVoice = (text: string) => {
+    if (Number(chatCount) >= 20) {
+      // toast.info("Insufficient ability to send message, buy more chat opportunities");
+      setshowExchange(true);
+      return;
+    }
     try {
       if (socket) {
         if (text?.length > 0) {
