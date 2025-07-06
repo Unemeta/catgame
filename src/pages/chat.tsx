@@ -22,6 +22,7 @@ import { DialogCheckIn } from "@/components/dialog/checkIn";
 import VideoBackgroundChat from "@/components/VideoBackgroundChat";
 import { useTranslation } from "react-i18next";
 import ProgressBar from "@/components/progressbar";
+import VideoBackgroundEmotion from "@/components/VideoBackgroundEmotion";
 
 let timerHistory: NodeJS.Timeout | null | undefined = null;
 let stream_msgs: string[] = [];
@@ -38,6 +39,7 @@ const ChatView = () => {
   const [inputMsg, setinputMsg] = useState("");
   const [showExchange, setshowExchange] = useState(false);
   const [showChat, setShowChat] = useState(false);
+  const [indexEmotion, setindexEmotion] = useState<null | number>(null);
 
   const [messageList, setmessageList] = useState<
     {
@@ -122,6 +124,33 @@ const ChatView = () => {
         } else {
           return;
         }
+
+        if (msgRes?.type == "stream_emotion") {
+          // "/videos/emotion0_wuliao.mp4",
+          // "/videos/emotion1_anwei.mp4",
+          // "/videos/emotion2_kaixin.mp4",
+          // "/videos/emotion3_kongju.mp4",
+          // "/videos/emotion4_shangxin.mp4",
+          // "/videos/emotion5_shengqi.mp4",
+          console.log(msgRes?.message);
+          if (msgRes.message == "无聊") {
+            setindexEmotion(0);
+          } else if (msgRes.message == "安慰") {
+            setindexEmotion(1);
+          } else if (msgRes.message == "开心") {
+            setindexEmotion(2);
+          } else if (msgRes.message == "恐惧") {
+            setindexEmotion(3);
+          } else if (msgRes.message == "伤心") {
+            setindexEmotion(4);
+          } else if (msgRes.message == "生气") {
+            setindexEmotion(5);
+          } else if (msgRes.message == "鄙视") {
+            setindexEmotion(5);
+          } else {
+            console.log(`other emtontion ${msgRes?.message}`);
+          }
+        }
         if (msgRes?.type == "stream_start") {
           stream_msgs = [];
           stream_index = 0;
@@ -140,7 +169,7 @@ const ChatView = () => {
           });
         } else if (msgRes?.type == "stream_content") {
           // if (stream_index == 0) {
-          //   // 
+          //   //
           // }else{
           //   await delay(stream_index * 500);
           // }
@@ -760,6 +789,12 @@ const ChatView = () => {
               setShow={setshowExchange}
             ></DialogExchange>
             <VideoBackgroundChat />
+            {indexEmotion != null && (
+              <VideoBackgroundEmotion
+                playEnd={() => setindexEmotion(null)}
+                index={indexEmotion}
+              ></VideoBackgroundEmotion>
+            )}
           </div>
         </div>
       ) : (
