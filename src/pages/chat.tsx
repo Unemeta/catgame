@@ -40,6 +40,7 @@ const ChatView = () => {
   const [showExchange, setshowExchange] = useState(false);
   const [showChat, setShowChat] = useState(false);
   const [indexEmotion, setindexEmotion] = useState<null | number>(null);
+  const [isMsgFocus, setisMsgFocus] = useState(false);
 
   const [messageList, setmessageList] = useState<
     {
@@ -108,7 +109,7 @@ const ChatView = () => {
       `${process.env.NEXT_PUBLIC_WS_URL}?token=${jwtHelper.getToken()}`
     );
     socketTemp.onopen = () => {
-      console.log("Connected to the server22");
+      console.log("socket onopen");
     };
     socketTemp.onmessage = async (event) => {
       if (event?.type === "message" && event?.data !== "pong") {
@@ -179,8 +180,10 @@ const ChatView = () => {
             stream_msgs.push(msgRes?.message);
             setmessageList((pre) => {
               const tempMsgs = [...pre];
-              const lastAiRes = [...tempMsgs].reverse().find(item => item.role ==  "cat");
-              if(lastAiRes){
+              const lastAiRes = [...tempMsgs]
+                .reverse()
+                .find((item) => item.role == "cat");
+              if (lastAiRes) {
                 lastAiRes.msg = stream_msgs.join("");
               }
               return tempMsgs;
@@ -189,7 +192,7 @@ const ChatView = () => {
         } else if (msgRes?.type == "stream_end") {
           // stream_msgs = [];
           stream_index = 0;
-        }else{
+        } else {
           console.log("other type");
           console.log(msgRes);
         }
@@ -201,7 +204,7 @@ const ChatView = () => {
       // setMessages((prevMessages) => [...prevMessages, event.data]);
     };
     socketTemp.onclose = () => {
-      console.log("Disconnected from the server");
+      console.log("socker onclose");
       socket = null;
     };
     const heartbeatInterval = setInterval(() => {
@@ -305,7 +308,8 @@ const ChatView = () => {
     }
   };
   const handleBlur = () => {
-    console.log("输入完成，当前值:");
+    setisMsgFocus(false);
+    console.log("handleBlur");
     inputRef.current?.blur(); // 失去焦点，收起键盘
     window.scrollTo({
       top: 0,
@@ -747,6 +751,9 @@ const ChatView = () => {
                         onKeyDown={(e) => {
                           handleKeyDown(e);
                         }}
+                        onFocus={() => {
+                          setisMsgFocus(true);
+                        }}
                         onBlur={handleBlur}
                         value={inputMsg}
                         placeholder="What are you talking about?"
@@ -795,6 +802,17 @@ const ChatView = () => {
                 playEnd={() => setindexEmotion(null)}
                 index={indexEmotion}
               ></VideoBackgroundEmotion>
+            )}
+            {isMsgFocus && (
+              <div
+                className={"fixed top-0 left-0 w-[100vw] wrapHeight  z-[-1]"}
+              >
+                <img
+                  className="absolute top-0 left-0 w-[100%] h-[100%] object-cover"
+                  src="/img/bg_cat_focus.min.png"
+                  alt=""
+                />
+              </div>
             )}
           </div>
         </div>
