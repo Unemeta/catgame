@@ -70,9 +70,9 @@ const ChatView = () => {
         getHistory();
         getChatInfo();
       }, 3000);
-      setTimeout(async () => {
-        getChatInfo();
-      }, 30 * 1000);
+      // setTimeout(async () => {
+      //   getChatInfo();
+      // }, 30 * 1000);
       setTimeout(() => {
         if (inputRef?.current) {
           inputRef.current.tabIndex = 0;
@@ -179,16 +179,9 @@ const ChatView = () => {
             stream_msgs.push(msgRes?.message);
             setmessageList((pre) => {
               const tempMsgs = [...pre];
-              if (tempMsgs.length > 0) {
-                // tempMsgs[tempMsgs.length - 1] = {
-                //   eventid: msgRes.eventId,
-                //   msg: stream_msgs.join(""),
-                //   msgId: msgRes?.msgId,
-                //   role: "cat",
-                //   time: Math.floor(new Date().getTime() / 1000),
-                //   chatId: "",
-                // };
-                tempMsgs[tempMsgs.length - 1]["msg"] = stream_msgs.join("");
+              const lastAiRes = [...tempMsgs].reverse().find(item => item.role ==  "cat");
+              if(lastAiRes){
+                lastAiRes.msg = stream_msgs.join("");
               }
               return tempMsgs;
             });
@@ -196,6 +189,9 @@ const ChatView = () => {
         } else if (msgRes?.type == "stream_end") {
           // stream_msgs = [];
           stream_index = 0;
+        }else{
+          console.log("other type");
+          console.log(msgRes);
         }
         setshowCatLoading(false);
         if (msgRes.hasOwnProperty("chatCount")) {
