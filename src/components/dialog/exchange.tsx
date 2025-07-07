@@ -12,9 +12,8 @@ interface iDialogExchange {
   setShow: (val: boolean) => void;
   cb: () => void;
   trigger?: ReactNode;
-  id: number;
 }
-const DialogExchange = ({ id, show, setShow, cb }: iDialogExchange) => {
+const DialogExchange = ({ show, setShow, cb }: iDialogExchange) => {
   const [amountBuy, setamountBuy] = useState(1);
   const { t } = useTranslation();
   const handleConfirm = async () => {

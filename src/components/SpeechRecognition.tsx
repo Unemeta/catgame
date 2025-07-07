@@ -13,7 +13,6 @@ import LottieView from "@/components/lottie";
 import { cn } from "@/lib/utils";
 import { useShowVocie } from "@/store";
 import dynamic from "next/dynamic";
-import { display } from "html2canvas/dist/types/css/property-descriptors/display";
 
 // 动态导入禁用 SSR
 const Player = dynamic(
