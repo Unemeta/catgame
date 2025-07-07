@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils";
 import { request } from "@/utils/request";
 import LottieView from "@/components/lottie";
 import { FadeComponent } from "@/components/FadeComponent";
+import { useTranslation } from "react-i18next";
+
 interface iDialogCheckIn {
   trigger?: ReactNode;
 }
@@ -47,6 +49,8 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
   const [showCheckIn, setShowCheckIn] = useCheckInDia();
   const { fetchUser } = useFetchUser();
   const [isVisible, setIsVisible] = useState(true);
+  const { t } = useTranslation();
+
   // 当动画播放完成时调用的函数
   const handleAnimationComplete = () => {
     setIsVisible(false); // 播放完成后隐藏
@@ -146,12 +150,12 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
                     "linear-gradient(180deg, #E3BFA5 0%, #DDB293 100%",
                 }}
               >
-                Daily Check-in
+                {t("chat.DailyCheckin")}
               </div>
 
               <div className="self-stretch px-[2rem] flex flex-col justify-start items-center gap-2.5">
                 <div className="self-stretch text-white text-[1.2rem] leading-none [text-shadow:_0px_0px_8px_rgb(255_255_255_/_0.45)] text-center">
-                  Please visit every day to get better rewards.
+                  {t("chat.CheckinInfo")}
                 </div>
                 <div className="self-stretch inline-flex justify-start items-start gap-1.5">
                   {/* 左边的猫图 */}
