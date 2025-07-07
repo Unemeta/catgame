@@ -756,7 +756,7 @@ const ChatView = () => {
                         }}
                         onBlur={handleBlur}
                         value={inputMsg}
-                        placeholder="What are you talking about?"
+                        placeholder={t("chat.What are you talking about?")}
                       />
                       <img
                         onClick={() => {

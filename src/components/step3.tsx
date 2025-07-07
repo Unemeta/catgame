@@ -71,7 +71,7 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
     <div className="w-full h-full absolute inset-0 z-[2] ">
       <div className="h-[6vh]"></div>
       <div className="text-[#fff] text-[3rem] font-[700] text-center leading-[1] mb-[1rem]">
-        {t("hello")}, {mbtiRes?.nickname}.
+        {t("Hello")}, {mbtiRes?.nickname}.
       </div>
       <div className="text-[#fff] text-[2rem] font-[700] text-center leading-[1]">
         {t("qa.This is your")} {cats[index].type}.
