@@ -9,6 +9,7 @@ import { jwtHelper } from "@/utils/jwt";
 import { useRouter } from "next/router";
 import IconView from "../IconView";
 import { useTranslation } from "react-i18next";
+import { request } from "@/utils/request";
 
 interface iDialogSetting {
   trigger?: ReactNode;
@@ -20,21 +21,21 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
   const [indexLanguase, setindexLanguase] = useState(1);
   const { userData } = useFetchUser();
   const router = useRouter();
-  const { t,i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const language = localStorage.getItem("locale");
-    if(language == "ja"){
-      setindexLanguase(0);
+    // 1:中文, 2:英文, 3:日文
+    if (language == "ja") {
+      setindexLanguase(3 - 1);
     }
-    if(language == "zh"){
-      setindexLanguase(1);
+    if (language == "zh") {
+      setindexLanguase(1 - 1);
     }
-    if(language == "en"){
-      setindexLanguase(2);
+    if (language == "en") {
+      setindexLanguase(2 - 1);
     }
-  }, [])
-  
+  }, []);
 
   const copyToClipboard = (textToCopy: string | number) => {
     if (navigator.clipboard && window.isSecureContext) {
@@ -54,6 +55,21 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
         document.execCommand("copy") ? res() : rej();
         textArea.remove();
       });
+    }
+  };
+
+  const setLanguage = async (languageNum: number) => {
+    try {
+      // 1:中文, 2:英文, 3:日文
+      const { data } = await request({
+        url: `/api/cat/v1/user/language/set?language=${languageNum}`,
+        method: "get",
+      });
+      console.log(data);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.error(error);
+      // toast.error(error?.msg || JSON.stringify(error));
     }
   };
   return (
@@ -171,26 +187,10 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
                   }
                 )}
                 onClick={() => {
-                  setindexLanguase(0);
-                  i18n.changeLanguage("ja");
-                  localStorage.setItem("locale","ja")
-                }}
-              >
-                <span className="text-white text-[1.4rem] font-[700]">
-                  日本語
-                </span>
-              </div>
-              <div
-                className={cn(
-                  "bg-white/10 border-white/30 border-[0.2rem] rounded-[10rem] w-[6.4rem] h-[6.4rem] flex justify-center items-center",
-                  {
-                    "border-white/80": indexLanguase == 1,
-                  }
-                )}
-                onClick={() => {
                   setindexLanguase(1);
                   i18n.changeLanguage("zh");
-                  localStorage.setItem("locale","zh")
+                  localStorage.setItem("locale", "zh");
+                  setLanguage(1);
                 }}
               >
                 <span className="text-white text-[1.4rem] font-[700]">
@@ -201,16 +201,35 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
                 className={cn(
                   "bg-white/10 border-white/30 border-[0.2rem] rounded-[10rem] w-[6.4rem] h-[6.4rem] flex justify-center items-center",
                   {
-                    "border-white/80": indexLanguase == 2,
+                    "border-white/80": indexLanguase == 1,
                   }
                 )}
                 onClick={() => {
                   setindexLanguase(2);
                   i18n.changeLanguage("en");
-                  localStorage.setItem("locale","en")
+                  localStorage.setItem("locale", "en");
+                  setLanguage(2);
                 }}
               >
                 <span className="text-white text-[1.4rem] font-[700]">EN</span>
+              </div>
+              <div
+                className={cn(
+                  "bg-white/10 border-white/30 border-[0.2rem] rounded-[10rem] w-[6.4rem] h-[6.4rem] flex justify-center items-center",
+                  {
+                    "border-white/80": indexLanguase == 2,
+                  }
+                )}
+                onClick={() => {
+                  setindexLanguase(0);
+                  i18n.changeLanguage("ja");
+                  localStorage.setItem("locale", "ja");
+                  setLanguage(3);
+                }}
+              >
+                <span className="text-white text-[1.4rem] font-[700]">
+                  日本語
+                </span>
               </div>
             </div>
             <div className="h-[1.6rem]"></div>
