@@ -84,9 +84,15 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
             let languageNum = 2;
             if (navLanguage.startsWith("zh")) {
               languageNum = 1;
+              localStorage.setItem("locale", "zh");
+              i18n.changeLanguage("zh");
             } else if (navLanguage.startsWith("en")) {
               languageNum = 2;
+              localStorage.setItem("locale", "en");
+              i18n.changeLanguage("en");
             } else if (navLanguage.startsWith("ja")) {
+              localStorage.setItem("locale", "ja");
+              i18n.changeLanguage("ja");
               languageNum = 3;
             }else{
               languageNum = 2;
