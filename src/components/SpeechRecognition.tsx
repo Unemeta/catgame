@@ -13,6 +13,7 @@ import LottieView from "@/components/lottie";
 import { cn } from "@/lib/utils";
 import { useShowVocie } from "@/store";
 import dynamic from "next/dynamic";
+import { display } from "html2canvas/dist/types/css/property-descriptors/display";
 
 // 动态导入禁用 SSR
 const Player = dynamic(
@@ -595,34 +596,35 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
 
   return (
     <div>
-      {recordingState === "recording" ? (
-        <>
-          <Player
-            src={"/lottie/vnormal.json"}
-            className={styles.vanimate}
-            loop={true}
-            lottieRef={(instance) => {
-              lottieInstance.current = instance;
-            }}
-            autoplay={true}
-          ></Player>
+      <div
+        style={{ display: recordingState === "recording" ? "block" : "none" }}
+      >
+        <Player
+          src={"/lottie/vnormal.json"}
+          className={styles.vanimate}
+          loop={true}
+          lottieRef={(instance) => {
+            lottieInstance.current = instance;
+          }}
+          autoplay={true}
+        ></Player>
 
-          <div className={styles.vanimateText}>
-            Recording ends in {countdown} seconds.
-          </div>
-          <div className={styles.status}>
-            <img className={styles.statusIcon} alt="" src={`/img/sendv.svg`} />
-            <div className={styles.statusText}>Release to send</div>
-          </div>
-        </>
-      ) : recordingState === "cancelled" ? (
-        <div className={styles.status}>
-          <img className={styles.statusIcon} alt="" src={`/img/cancelv.svg`} />
-          <div className={styles.statusText}>Swipe up to cancel</div>
+        <div className={styles.vanimateText}>
+          Recording ends in {countdown} seconds.
         </div>
-      ) : (
-        <></>
-      )}
+        <div className={styles.status}>
+          <img className={styles.statusIcon} alt="" src={`/img/sendv.svg`} />
+          <div className={styles.statusText}>Release to send</div>
+        </div>
+      </div>
+      <div
+        className={styles.status}
+        style={{ display: recordingState === "cancelled" ? "block" : "none" }}
+      >
+        <img className={styles.statusIcon} alt="" src={`/img/cancelv.svg`} />
+        <div className={styles.statusText}>Swipe up to cancel</div>
+      </div>
+
       {/* <>
           <Player
             src={"/lottie/vnormal.json"}

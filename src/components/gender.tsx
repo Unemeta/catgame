@@ -5,13 +5,16 @@ interface iAnswerView {
 }
 import { useUserBasicInfo } from "@/store/info";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 const Age = ({ onClick }: iAnswerView) => {
   const [basicInfo, setBasicInfo] = useUserBasicInfo();
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-col items-center mt-[11rem] h-[58rem]">
       <div className="text-center justify-start text-[#EA8373] text-[2.4rem] font-[700] font-['SF_Pro_Rounded'] leading-9">
-        What’s your gender?
+        {t("info.wgender")}
       </div>
       <div className="h-[36rem]">
         <div className="flex gap-[3rem] mt-[6rem]">
@@ -65,7 +68,7 @@ const Age = ({ onClick }: iAnswerView) => {
                 }
               )}
             >
-              Male
+              {t("info.male")}
             </div>
           </div>
 
@@ -127,7 +130,7 @@ const Age = ({ onClick }: iAnswerView) => {
                 }
               )}
             >
-              Female
+              {t("info.female")}
             </div>
           </div>
         </div>

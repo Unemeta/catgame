@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { useFetchUser } from "@/store";
 import { useTranslation } from "react-i18next";
+// import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 
 interface ProgressLoaderProps {
   progress: number;
@@ -19,7 +20,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
   const { fetchUser } = useFetchUser();
   const { i18n } = useTranslation();
   const router = useRouter();
-
+  const [invalid, setInvalid] = useState(false);
   const getStep = async () => {
     const res = await request({
       url: "/api/cat/v1/survey/survey/step",
@@ -45,6 +46,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
         /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       if (!advancedEmailRegex.test(account)) {
         toast.error("Invalid email format");
+        setInvalid(true);
         return;
       }
       try {
@@ -53,7 +55,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
           method: "post",
           data: {
             username: account,
-            password: account,
+            source: 1,
           },
         });
         await jwtHelper.setToken(res.data.accessToken, {
@@ -94,7 +96,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
               localStorage.setItem("locale", "ja");
               i18n.changeLanguage("ja");
               languageNum = 3;
-            }else{
+            } else {
               languageNum = 2;
             }
             try {
@@ -123,33 +125,79 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
     }
   };
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-[url('/img/loadBg.png')] bg-cover bg-center">
+    <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-[#DE8D81]">
+      <img src="/img/loginlogo.png" alt="" className="w-[9rem] h-[9rem]" />
       <div
         className={cn(
-          "bg-[url('/img/bg/modelBg.jpg')] bg-cover",
-          styles.loginModel
+          "bg-[url('/img/modelBg1.png')] bg-cover w-[31rem] h-[29rem] p-[2rem] overflow-hidden relative"
         )}
       >
-        <div className={styles.title}>
-          <img src="/img/titlefoot.svg" alt="" />
-          <span>Account Login</span>
-          <img src="/img/titlefoot.svg" alt="" />
-        </div>
-        <input
-          type="text"
-          className={styles.input}
-          placeholder="Enter the account"
-          onKeyDown={handleKeyDown}
-          onChange={(e) => setAccount(e.target.value)}
-        />
         <div
           className={cn(
-            "bg-[url('/img/bg/btnbg.jpg')] bg-cover cursor-pointer select-none",
-            styles.btn
+            "flex gap-[1rem] border-[1px] border-solid border-[#EBD8D2] h-[4.5rem] rounded-[2rem] items-center mt-[4.5rem] p-[1.4rem]",
+            {
+              "bg-[#FDD]": invalid,
+            }
           )}
+        >
+          <img src="/img/mail.png" alt="" className="w-[1.8rem] h-[1.8rem]" />
+          <input
+            value={account}
+            placeholder="Enter the account"
+            onKeyDown={handleKeyDown}
+            onChange={(e) => setAccount(e.target.value)}
+            className={cn("", styles.input1)}
+            type="email"
+          />
+          {account ? (
+            <img
+              src="/img/x-circle.png"
+              alt=""
+              className="w-[1.8rem] h-[1.8rem] ml-[4rem]"
+              onClick={() => {
+                setAccount("");
+              }}
+            />
+          ) : (
+            <></>
+          )}
+        </div>
+        {invalid ? (
+          <div className="text-[#F33] font-[SF Pro Rounded] flex items-center gap-[0.5rem]">
+            <img
+              src="/img/info-circle.png"
+              alt=""
+              className="w-[1.8rem] h-[1.8rem]"
+            />
+            The format is incorrect, please modify it and try again
+          </div>
+        ) : (
+          <></>
+        )}
+
+        <div
+          className={cn(
+            "w-[27rem] px-[2rem] py-[1.3rem] rounded-[2rem] inline-flex justify-center items-center gap-[1rem] mt-[5rem]",
+            "bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)] rounded-[20px]"
+          )}
+          style={{
+            boxShadow:
+              "0px 3px 4px 0px rgba(255, 255, 255, 0.25), 0px 4px 24px 0px #ECA89E",
+          }}
           onClick={login}
         >
-          Log in
+          <div
+            className={cn(
+              "flex-1 text-center justify-start text-[1.6rem] font-bold font-['SF_Pro_Rounded'] leading-tight",
+              "text-white"
+            )}
+          >
+            Login
+          </div>
+        </div>
+        <div className="text-[#DE8D81] font-[SF Pro Rounded] text-center bottom-[1.8rem] absolute w-[100%] px-[2rem] -translate-x-[50%] left-[50%]">
+          Copyright© 2025 Meowster. <br />
+          All Rights Reserved.
         </div>
       </div>
     </div>

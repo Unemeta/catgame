@@ -7,6 +7,7 @@ import { useRef, useEffect, useState } from "react";
 import { useUserBasicInfo } from "@/store/info";
 import { request } from "@/utils/request";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 const NickName = ({ onClick }: iAnswerView) => {
   const inputref = useRef<HTMLInputElement>(null);
@@ -14,6 +15,8 @@ const NickName = ({ onClick }: iAnswerView) => {
   const [randomNames, setRandomNames] = useState<string[]>([]);
   const [namelist, setNameList] = useState<any[]>([]);
   const nameIndex = useRef(0);
+  const { t } = useTranslation();
+
   const getNickName = async () => {
     const res = await request({
       url: "/api/cat/v1/survey/nicknames",
@@ -58,7 +61,8 @@ const NickName = ({ onClick }: iAnswerView) => {
   return (
     <div className="flex flex-col items-center mt-[11rem] h-[58rem]">
       <div className="text-center justify-start text-[#EA8373] text-[2.4rem] font-[700] font-['SF_Pro_Rounded'] leading-9">
-        What’s your nickname?
+        {/* What’s your nickname? */}
+        {t("info.wynickname")}
       </div>
       <div className="h-[36rem]">
         <div className="relative mt-[6rem]">
@@ -90,7 +94,7 @@ const NickName = ({ onClick }: iAnswerView) => {
               className="w-[28rem] h-[2.4rem] text-[2.4rem] text-[#EA8373] placeholder:text-[#EA8373] outline-0 text-center
                      placeholder:font-['SF_Pro_Rounded']
                      placeholder:opacity-20"
-              placeholder="Enter your nickname"
+              placeholder={t("info.eynickname")}
               value={basicInfo.nickname}
               onChange={(e) => {
                 setBasicInfo({ ...basicInfo, nickname: e.target.value });
@@ -101,7 +105,7 @@ const NickName = ({ onClick }: iAnswerView) => {
         </div>
         <div className="flex justify-between w-[full] mt-[3rem]">
           <div className="text-center justify-start text-stone-500 text-[1.8rem] font-medium font-['SF_Pro_Rounded'] leading-snug">
-            Or randomly select one
+            {t("info.orsone")}
           </div>
           <img
             src="/img/refresh-name.svg"

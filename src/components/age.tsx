@@ -5,6 +5,7 @@ interface iAnswerView {
 }
 import { cn } from "@/lib/utils";
 import { useUserBasicInfo } from "@/store/info";
+import { useTranslation } from "react-i18next";
 
 const oldList: number[] = [];
 for (let i = 16; i < 101; i++) {
@@ -12,10 +13,12 @@ for (let i = 16; i < 101; i++) {
 }
 const Age = ({ onClick }: iAnswerView) => {
   const [basicInfo, setBasicInfo] = useUserBasicInfo();
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-col items-center mt-[11rem] h-[58rem]">
       <div className="text-center justify-start text-[#EA8373] text-[2.4rem] font-[700] font-['SF_Pro_Rounded'] leading-9">
-        How old are you?
+        {t("info.howold")}
       </div>
       <div className="h-[36rem]">
         <div className="relative mt-[6rem] w-[35rem] h-[28rem] overflow-auto py-[2rem] px-[2rem]">
