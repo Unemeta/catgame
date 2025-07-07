@@ -788,7 +788,6 @@ const ChatView = () => {
             </div> */}
             {/* <div className={cn(styles.mask, "w-[100vw] absolute bottom-0")}></div> */}
             <DialogExchange
-              id={1}
               cb={() => {
                 fetchUser();
                 getChatInfo();
