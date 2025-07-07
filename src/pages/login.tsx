@@ -7,6 +7,8 @@ import { request } from "@/utils/request";
 import { jwtHelper } from "@/utils/jwt";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
+import { useFetchUser } from "@/store";
+import { useTranslation } from "react-i18next";
 
 interface ProgressLoaderProps {
   progress: number;
@@ -14,7 +16,10 @@ interface ProgressLoaderProps {
 
 const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
   const [account, setAccount] = useState("");
+  const { fetchUser } = useFetchUser();
+  const { i18n } = useTranslation();
   const router = useRouter();
+
   const getStep = async () => {
     const res = await request({
       url: "/api/cat/v1/survey/survey/step",
@@ -59,6 +64,46 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
         // } else {
         //   router.push("/");
         // }
+        const userData = await fetchUser?.();
+        if (userData) {
+          // 1:中文, 2:英文, 3:日文
+          if (userData?.language == 1) {
+            i18n.changeLanguage("zh");
+            localStorage.setItem("locale", "zh");
+          } else if (userData?.language == 2) {
+            i18n.changeLanguage("en");
+            localStorage.setItem("locale", "en");
+          } else if (userData?.language == 3) {
+            i18n.changeLanguage("ja");
+            localStorage.setItem("locale", "ja");
+          } else {
+            console.log(`other locale ${userData?.language}`);
+            const navLanguage = navigator.language;
+            console.log(navLanguage);
+            //  1:中文, 2:英文, 3:日文
+            let languageNum = 2;
+            if (navLanguage.startsWith("zh")) {
+              languageNum = 1;
+            } else if (navLanguage.startsWith("en")) {
+              languageNum = 2;
+            } else if (navLanguage.startsWith("ja")) {
+              languageNum = 3;
+            }else{
+              languageNum = 2;
+            }
+            try {
+              const { data } = await request({
+                url: `/api/cat/v1/user/language/set?language=${languageNum}`,
+                method: "get",
+              });
+              console.log(data);
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            } catch (error: any) {
+              console.error(error);
+              // toast.error(error?.msg || JSON.stringify(error));
+            }
+          }
+        }
         getStep();
       } catch (error: any) {
         console.log(error);
