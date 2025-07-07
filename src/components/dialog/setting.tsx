@@ -187,7 +187,7 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
                   }
                 )}
                 onClick={() => {
-                  setindexLanguase(1);
+                  setindexLanguase(0);
                   i18n.changeLanguage("zh");
                   localStorage.setItem("locale", "zh");
                   setLanguage(1);
@@ -205,7 +205,7 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
                   }
                 )}
                 onClick={() => {
-                  setindexLanguase(2);
+                  setindexLanguase(1);
                   i18n.changeLanguage("en");
                   localStorage.setItem("locale", "en");
                   setLanguage(2);
@@ -221,7 +221,7 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
                   }
                 )}
                 onClick={() => {
-                  setindexLanguase(0);
+                  setindexLanguase(2);
                   i18n.changeLanguage("ja");
                   localStorage.setItem("locale", "ja");
                   setLanguage(3);
@@ -254,7 +254,8 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
                 }}
               >
                 <span className="text-[#FF2C3D] text-[1.6rem] font-[800]">
-                  Sign out
+                  
+                  {t("chat.Sign out")}
                 </span>
                 <IconView
                   className="w-[1.6rem] h-[1.6rem] ml-[1rem]"
