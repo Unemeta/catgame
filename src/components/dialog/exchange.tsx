@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import { ReactNode, useState } from "react";
-import { Dialog, DialogContent } from ".";
+import { Dialog, DialogContent, DialogTitle } from ".";
 import IconView from "../IconView";
 import { cn } from "@/lib/utils";
 import { request } from "@/utils/request";
@@ -48,6 +48,7 @@ const DialogExchange = ({ id, show, setShow, cb }: iDialogExchange) => {
       }}
     >
       <DialogContent className="p-0 h-auto w-[83vw]">
+        <DialogTitle></DialogTitle>
         <div className="relative bg-[linear-gradient(187deg,#B48471_-9.74%,rgba(212,204,195,0.60)_72.93%)] rounded-[3rem]  shadow-[0px_4px_20px_0px_rgba(0,0,0,0.55)] border-[#FFFFF7] border-[0.2rem]">
           <div className=" inline-flex flex-col justify-start items-center overflow-hidden w-full">
             <div
@@ -61,7 +62,6 @@ const DialogExchange = ({ id, show, setShow, cb }: iDialogExchange) => {
 
             <div className="self-stretch px-[2rem] flex flex-col justify-start items-center">
               <div className="mt-[1.6rem] mb-[1rem] self-stretch text-white text-[1.4rem] leading-none [text-shadow:_0px_0px_8px_rgb(255_255_255_/_0.45)] text-left">
-                
                 {t("chat.Would you like to exchange Fish for Chat Points?")}
               </div>
 
