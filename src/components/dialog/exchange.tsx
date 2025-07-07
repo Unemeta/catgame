@@ -17,8 +17,6 @@ interface iDialogExchange {
 const DialogExchange = ({ id, show, setShow, cb }: iDialogExchange) => {
   const [amountBuy, setamountBuy] = useState(1);
   const { t } = useTranslation();
-  console.log(id);
-
   const handleConfirm = async () => {
     try {
       const res = await request({

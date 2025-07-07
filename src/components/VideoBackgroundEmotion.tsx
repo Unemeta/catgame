@@ -66,7 +66,7 @@ export default function VideoBackgroundEmotion({
   }, [videoRef]);
 
   return (
-    <div className={"fixed top-0 left-0 w-[100vw] wrapHeight  z-[-1]"}>
+    <div className={"fixed top-0 left-0 w-[100vw] wrapHeight  z-[-2]"}>
       {/* <img
         className="absolute top-0 left-0 w-[100%] h-[100%] object-cover"
         src="/img/bg/bg_chat2.min.png"
