@@ -146,14 +146,15 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
             placeholder="Enter the account"
             onKeyDown={handleKeyDown}
             onChange={(e) => setAccount(e.target.value)}
-            className={cn("", styles.input1)}
+            className={cn("w-[20rem]", styles.input1)}
             type="email"
+            
           />
           {account ? (
             <img
               src="/img/x-circle.png"
               alt=""
-              className="w-[1.8rem] h-[1.8rem] ml-[4rem]"
+              className="w-[1.8rem] h-[1.8rem]"
               onClick={() => {
                 setAccount("");
               }}
