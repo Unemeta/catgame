@@ -45,7 +45,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
       const advancedEmailRegex =
         /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       if (!advancedEmailRegex.test(account)) {
-        toast.error("Invalid email format");
+        // toast.error("Invalid email format");
         setInvalid(true);
         return;
       }
@@ -146,7 +146,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
             placeholder="Enter the account"
             onKeyDown={handleKeyDown}
             onChange={(e) => setAccount(e.target.value)}
-            className={cn("w-[20rem]", styles.input1)}
+            className={cn("w-[17rem]", styles.input1)}
             type="email"
             
           />
