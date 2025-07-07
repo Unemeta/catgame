@@ -36,6 +36,12 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
   };
   const login = async () => {
     if (account) {
+      const advancedEmailRegex =
+        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!advancedEmailRegex.test(account)) {
+        toast.error("Invalid email format");
+        return;
+      }
       try {
         const res = await request({
           url: "/api/cat/v1/user/login",
@@ -48,11 +54,12 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
         await jwtHelper.setToken(res.data.accessToken, {
           expires: new Date(res.data.accessExpire * 1000),
         });
-        if (process.env.NEXT_PUBLIC_VERTICAL === "true") {
-          getStep();
-        } else {
-          router.push("/");
-        }
+        // if (process.env.NEXT_PUBLIC_VERTICAL === "true") {
+        //   getStep();
+        // } else {
+        //   router.push("/");
+        // }
+        getStep();
       } catch (error: any) {
         console.log(error);
         toast.error(error.message || JSON.stringify(error));
