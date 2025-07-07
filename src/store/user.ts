@@ -8,6 +8,7 @@ interface userInfo {
     nickname: string,
     nowExpPercent: number,
     fishAmount: number,
+    language: number | null,
     totalLevel: number,
     uuid: string,
     diamond: number,
@@ -26,6 +27,7 @@ const userDataAtom = atom<userInfo>(
         totalLevel: 0,
         diamond: 0,
         fishAmount: 0,
+        language: null,
         uuid: '',
         coin: 0,
         nowExp: 0,
@@ -41,6 +43,7 @@ export const useUserData = () => {
         nickname: '',
         nowExpPercent: 0,
         fishAmount: 0,
+        language: null,
         uuid: '',
         totalLevel: 0,
         diamond: 0,
@@ -58,6 +61,7 @@ export const useFetchUser = () => {
         try {
             const { data } = await globalApi.getUserInfo();
             setUserData(data);
+            return data;
         } catch (error) {
             console.log('🚀 ~ file: user.ts  fetchUser ~ error', error);
         }
