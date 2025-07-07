@@ -310,7 +310,6 @@ const ChatView = () => {
   };
   const handleBlur = () => {
     setisMsgFocus(false);
-    console.log("handleBlur");
     inputRef.current?.blur(); // 失去焦点，收起键盘
     window.scrollTo({
       top: 0,
