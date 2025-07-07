@@ -1,5 +1,5 @@
 {
-  "Hello": "Hello",
+  "Hello": "您好",
   "chat": {
     "Settings": "设置",
     "Photo Album": "相册",
@@ -9,7 +9,9 @@
     "Confirm": "确认",
     "ChatPoints": "聊天点数:",
     "DailyCheckin": "每日签到",
-    "CheckinInfo": "请每天打卡以获得更丰厚的奖励。"
+    "CheckinInfo": "请每天打卡以获得更丰厚的奖励。",
+    "What are you talking about?": "What are you talking about?",
+    "test": "test"
   },
   "qa": {
     "soul_title": "灵魂匹配",

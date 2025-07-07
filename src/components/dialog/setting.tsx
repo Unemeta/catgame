@@ -97,7 +97,7 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
           <div className="px-[2rem]">
             <div className="h-[1.6rem]"></div>
             <div className="mb-[1rem] text-white text-[1.4rem] font-[500]">
-              Hello, {userData?.nickname}
+              {t("Hello")}, {userData?.nickname}
             </div>
             <div className="flex justify-between items-center px-[1.6rem] py-[0.8rem] bg-white/10 border-white/30 border-[0.1rem] rounded-[1rem]">
               <div className="flex justify-start items-center">
@@ -135,7 +135,7 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
                   alt=""
                 />
                 <span className="text-white text-[1.4rem] font-[700]">
-                  Photo Album
+                  {t("chat.Photo Album")}
                 </span>
               </div>
               <div
@@ -254,7 +254,6 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
                 }}
               >
                 <span className="text-[#FF2C3D] text-[1.6rem] font-[800]">
-                  
                   {t("chat.Sign out")}
                 </span>
                 <IconView

@@ -1,5 +1,5 @@
 {
-  "Hello": "Hello",
+  "Hello": "こんにちは",
   "chat": {
     "Settings": "設定",
     "Photo Album": "アルバム",
@@ -8,9 +8,10 @@
     "Would you like to exchange Fish for Chat Points?": "小魚（おやつ）をチャットポイントに交換しますか？",
     "Confirm": "確認",
     "ChatPoints": "チャットポイント:",
-    "test": "test",
     "DailyCheckin": "デイリーログインボーナス",
-    "CheckinInfo": "毎日ログインして、より豪華な報酬をゲットしよう。"
+    "CheckinInfo": "毎日ログインして、より豪華な報酬をゲットしよう。",
+    "What are you talking about?": "What are you talking about?",
+    "test": "test"
   },
   "qa": {
     "soul_title": "ソウルマッチ（魂の相性診断）",
