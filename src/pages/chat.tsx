@@ -163,7 +163,7 @@ const ChatView = () => {
               ...pre,
               {
                 chatId: "",
-                msg: "　",
+                message: "　",
                 msgs: [],
                 role: "cat",
                 time: Math.floor(new Date().getTime() / 1000),
@@ -247,7 +247,7 @@ const ChatView = () => {
             {
               chatId: chatId,
               msgId: chatId,
-              msg: inputMsg,
+              message: inputMsg,
               role: "user",
               time: Math.floor(new Date().getTime() / 1000),
             },
@@ -281,7 +281,7 @@ const ChatView = () => {
               {
                 chatId: chatId,
                 msgId: chatId,
-                msg: text,
+                message: text,
                 role: "user",
                 time: Math.floor(new Date().getTime() / 1000),
               },
