@@ -270,9 +270,9 @@ const ChatView = () => {
             },
           ];
         });
+        setinputMsg("");
         socket?.send(inputMsg);
         setshowCatLoading(true);
-        setinputMsg("");
       } else {
         toast.info("Please enter msg");
       }
