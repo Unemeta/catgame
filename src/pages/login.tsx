@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-img-element */
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styles from "@/styles/Login.module.css"; // 确保有对应的 CSS 文件
 import { cn } from "@/lib/utils";
 import { request } from "@/utils/request";
@@ -18,9 +18,11 @@ interface ProgressLoaderProps {
 const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
   const [account, setAccount] = useState("");
   const { fetchUser } = useFetchUser();
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const router = useRouter();
   const [invalid, setInvalid] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const getStep = async () => {
     const res = await request({
       url: "/api/cat/v1/survey/survey/step",
@@ -124,6 +126,18 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
       login();
     }
   };
+  const handleFocus = () => {
+    // 确保inputRef.current存在
+    if (inputRef.current) {
+      // 使用scrollIntoView，可以配置参数
+      inputRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center", // 可以尝试 'start', 'center', 'end' 或 'nearest'
+      });
+      // 另一种方法是使用scrollIntoViewIfNeeded，但这不是标准方法，兼容性较差
+      // 所以还是用标准的scrollIntoView
+    }
+  };
   return (
     <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-[#DE8D81]">
       <img src="/img/loginlogo.png" alt="" className="w-[9rem] h-[9rem]" />
@@ -143,12 +157,13 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
           <img src="/img/mail.png" alt="" className="w-[1.8rem] h-[1.8rem]" />
           <input
             value={account}
-            placeholder="Enter the account"
+            placeholder={t("login.enter")}
             onKeyDown={handleKeyDown}
             onChange={(e) => setAccount(e.target.value)}
             className={cn("w-[17rem]", styles.input1)}
             type="email"
-            
+            ref={inputRef}
+            onFocus={handleFocus}
           />
           {account ? (
             <img
@@ -193,7 +208,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
               "text-white"
             )}
           >
-            Login
+            {t("login.login")}
           </div>
         </div>
         <div className="text-[#DE8D81] font-[SF Pro Rounded] text-center bottom-[1.8rem] absolute w-[100%] px-[2rem] -translate-x-[50%] left-[50%]">
