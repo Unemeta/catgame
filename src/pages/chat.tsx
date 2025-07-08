@@ -45,7 +45,7 @@ const ChatView = () => {
   const [messageList, setmessageList] = useState<
     {
       chatId: string;
-      msg: string;
+      message: string;
       msgs?: string[];
       role: string;
       time: number;
@@ -188,7 +188,7 @@ const ChatView = () => {
                 .reverse()
                 .find((item) => item.role == "cat");
               if (lastAiRes) {
-                lastAiRes.msg = stream_msgs.join("");
+                lastAiRes.message = stream_msgs.join("");
                 lastAiRes.msgs = stream_msgs;
               }
               return tempMsgs;
@@ -397,7 +397,7 @@ const ChatView = () => {
     );
   }
   const mediaSwitch = (msg: string, msgId: string, eventid: number) => {
-    if (msg.indexOf("http") > -1 || msg.indexOf("https") > -1) {
+    if (msg?.indexOf("http") > -1 || msg?.indexOf("https") > -1) {
       if (isImgEndUrl(msg)) {
         return <ImgView src={msg} eventid={eventid} />;
       }
@@ -609,7 +609,7 @@ const ChatView = () => {
                           >
                             <div className="send bg-[rgba(234,130,115,0.7)] flex justify-end items-start relative msgWrap">
                               <div className="msgText line-clamp-[20] dtext28 font-[500] text-[#F5F2FF]  text-wrap lmdMsgSpan overflow-hidden break-words">
-                                {item?.msg}
+                                {item?.message}
                               </div>
                             </div>
                             {/* <img
@@ -663,7 +663,7 @@ const ChatView = () => {
                               </div> */}
                               <div className="msgText line-clamp-[20] dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan break-words">
                                 {mediaSwitch(
-                                  item?.msg,
+                                  item?.message,
                                   item?.msgId,
                                   item?.eventid
                                 )}
