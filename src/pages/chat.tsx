@@ -28,6 +28,7 @@ let timerHistory: NodeJS.Timeout | null | undefined = null;
 let stream_msgs: string[] = [];
 let stream_index = 0;
 let socket: any;
+const separator = "。";
 const ChatView = () => {
   const { t } = useTranslation();
   const router = useRouter();
@@ -46,7 +47,7 @@ const ChatView = () => {
     {
       chatId: string;
       message: string;
-      msgs?: string[];
+      messageArr?: string[];
       role: string;
       time: number;
       msgId: string;
@@ -62,6 +63,12 @@ const ChatView = () => {
   useEffect(() => {
     fetchUser?.();
   }, []);
+
+  // useEffect(() => {
+  //   if (messageList) {
+  //     console.log(messageList);
+  //   }
+  // }, [messageList]);
 
   useEffect(() => {
     (() => {
@@ -127,11 +134,10 @@ const ChatView = () => {
           return;
         }
         if (msgRes?.type === "error") {
-          toast.warning(msgRes?.message ?? "---");
+          toast.warning(
+            "Meow-meow's a bit tangled up... just a little more time, please!"
+          );
         }
-        if(msgRes?.message === "繁忙,请稍后重试" || msgRes?.message === "繁忙,请稍后重试" || msgRes?.message === "繁忙,请稍后重试"){
-          toast.warning("The socket is busy, please try again later.");
-        } 
         if (msgRes?.type == "stream_emotion") {
           // "/videos/emotion0_wuliao.mp4",
           // "/videos/emotion1_anwei.mp4",
@@ -192,7 +198,15 @@ const ChatView = () => {
                 .find((item) => item.role == "cat");
               if (lastAiRes) {
                 lastAiRes.message = stream_msgs.join("");
-                lastAiRes.msgs = stream_msgs;
+                const tempArr = lastAiRes.message.split(separator);
+                if (
+                  tempArr.length > 0 &&
+                  (tempArr[tempArr.length - 1] === "" ||
+                    tempArr[tempArr.length - 1] === "")
+                ) {
+                  tempArr.pop();
+                }
+                lastAiRes.messageArr = tempArr;
               }
               return tempMsgs;
             });
@@ -332,10 +346,28 @@ const ChatView = () => {
       });
       if (data?.msgList) {
         const resArr = [...data.msgList.reverse()];
+        const splitedArr = resArr.map((item) => {
+          if (item.role === "user") {
+            return item;
+          } else {
+            const tempArr = item.message.split(separator);
+            if (
+              tempArr.length > 0 &&
+              (tempArr[tempArr.length - 1] === "" ||
+                tempArr[tempArr.length - 1] === "")
+            ) {
+              tempArr.pop();
+            }
+            return {
+              ...item,
+              messageArr: tempArr,
+            };
+          }
+        });
         // const uniqueArr = Array.from(
         //   new Set(resArr.map((message) => message.msgId))
         // ).map((msgId) => resArr.find((message) => message.msgId === msgId));
-        setmessageList(resArr);
+        setmessageList(splitedArr);
       }
     } catch (error: any) {
       console.error(error);
@@ -413,10 +445,10 @@ const ChatView = () => {
           ></VideoPlayView>
         );
       } else {
-        return <div className="">{msg}</div>;
+        return <div className="">{`${msg}${separator}`}</div>;
       }
     } else {
-      return <div className="">{msg}</div>;
+      return <div className="">{`${msg}${separator}`}</div>;
     }
   };
 
@@ -642,37 +674,39 @@ const ChatView = () => {
                               .format("YYYY/MM/DD HH:mm")}
                           </div>
                         )}
-                        <div
-                          className={cn("relative flex justify-start", {
-                            // "opacity-70": index + 3 < messageList.length,
-                          })}
-                        >
-                          <img
-                            className=" rounded-full dmr25 robotAvator"
-                            src="/img/avataCat.min.png"
-                            alt=""
-                          />
-                          <div className="receive bg-[rgba(32,_35,_42,_0.50)] flex justify-start items-start msgWrap">
-                            {/* <img
-                              className=" rounded-full dmr25 robotAvator"
-                              src="/img/avataCat.min.png"
-                              alt=""
-                            /> */}
-                            <div className="dmaxW460 lmdWfull">
-                              {/* <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 msgTime">
-                                {moment(item.time * 1000)
-                                  .local()
-                                  .format("YYYY/MM/DD HH:mm")}
-                              </div> */}
-                              <div className="msgText line-clamp-[20] dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan break-words">
-                                {mediaSwitch(
-                                  item?.message,
-                                  item?.msgId,
-                                  item?.eventid
-                                )}
-                              </div>
-                            </div>
-                          </div>
+                        <div className="">
+                          {item?.messageArr?.map(
+                            (itemSub, indexSub: number) => {
+                              return (
+                                <div
+                                  key={`${index}-${indexSub}`}
+                                  className={cn(
+                                    "relative flex justify-start mb-[1rem]",
+                                    {
+                                      // "opacity-70": index + 3 < messageList.length,
+                                    }
+                                  )}
+                                >
+                                  <img
+                                    className="rounded-full dmr25 robotAvator"
+                                    src="/img/avataCat.min.png"
+                                    alt=""
+                                  />
+                                  <div className="receive bg-[rgba(32,_35,_42,_0.50)] flex justify-start items-start msgWrap">
+                                    <div className="dmaxW460 lmdWfull">
+                                      <div className="msgText line-clamp-[20] dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan break-words">
+                                        {mediaSwitch(
+                                          itemSub,
+                                          item?.msgId,
+                                          item?.eventid
+                                        )}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              );
+                            }
+                          )}
                         </div>
                       </div>
                     );
