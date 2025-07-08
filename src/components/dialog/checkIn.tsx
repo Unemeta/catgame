@@ -8,6 +8,7 @@ import { request } from "@/utils/request";
 import LottieView from "@/components/lottie";
 import { FadeComponent } from "@/components/FadeComponent";
 import { useTranslation } from "react-i18next";
+import { useUserData } from "@/store/user";
 
 interface iDialogCheckIn {
   trigger?: ReactNode;
@@ -50,7 +51,7 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
   const { fetchUser } = useFetchUser();
   const [isVisible, setIsVisible] = useState(true);
   const { t } = useTranslation();
-
+  const [userInfo] = useUserData();
   // 当动画播放完成时调用的函数
   const handleAnimationComplete = () => {
     setIsVisible(false); // 播放完成后隐藏
@@ -122,9 +123,26 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
     }
     // setLoading(false);
   };
+  const initCheck = () => {
+    console.log(userInfo, "userInfouserInfouserInfouserInfo");
+    if (userInfo.day) {
+      setCheckdays(
+        checkdays.map((item) => {
+          if (item.day <= userInfo.day) {
+            return {
+              ...item,
+              checked: true,
+            };
+          }
+          return item;
+        })
+      );
+    }
+  };
   useEffect(() => {
-    checkIn();
-  }, []);
+    // checkIn();
+    initCheck();
+  }, [userInfo]);
   return (
     <>
       <Dialog open={showCheckIn} onOpenChange={setShowCheckIn}>
@@ -198,11 +216,11 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
 
                             {isVisible && item.checked ? (
                               <>
-                                {/* <LottieView
+                                <LottieView
                                   src={"/lottie/fishclick.json"}
                                   loop={false}
                                   className="absolute top-0"
-                                ></LottieView> */}
+                                ></LottieView>
                                 <LottieView
                                   src={"/lottie/fishpoint.json"}
                                   loop={false}
