@@ -254,7 +254,7 @@ const ChatView = () => {
       return;
     }
     if (socket) {
-      if (inputMsg.length > 0) {
+      if (inputMsg.trim().length > 0) {
         inputRef.current?.blur();
         setmessageList((preMsgList: any) => {
           const chatId = `${new Date().getTime()}-${userData?.nickname}`;
