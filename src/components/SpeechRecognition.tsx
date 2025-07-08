@@ -9,7 +9,7 @@ import RecordApp from "recorder-core/src/app-support/app";
 import CryptoJS from "crypto-js";
 
 import styles from "@/styles/Speech.module.css"; // 确保有对应的 CSS 文件
-import LottieView from "@/components/lottie";
+// import LottieView from "@/components/lottie";
 import { cn } from "@/lib/utils";
 import { useShowVocie } from "@/store";
 import dynamic from "next/dynamic";

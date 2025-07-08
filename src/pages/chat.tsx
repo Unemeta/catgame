@@ -11,7 +11,7 @@ import moment from "moment";
 import SpeechRecognition from "@/components/SpeechRecognition";
 import styles from "@/styles/Chat.module.css";
 import { cn } from "@/lib/utils";
-import LottieView from "@/components/lottie";
+// import LottieView from "@/components/lottie";
 import { useRouter } from "next/router";
 import CountdownTimer from "@/components/countDownReset";
 import ImgView from "@/components/photeView";
