@@ -741,11 +741,12 @@ const ChatView = () => {
                       )}
                     </div>
                     <div className="" onClick={() => setShowVoice(true)}>
-                      <LottieView
+                      {/* <LottieView
                         src={"/lottie/v1.json"}
                         className={styles.newIcon}
                         loop={true}
-                      ></LottieView>
+                      ></LottieView> */}
+                      <img src="/img/voice.png" alt=""  className={styles.newIcon}/>
                     </div>
                     <div className="relative sendInputWrap flex grow rounded-[2.2rem] overflow-hidden">
                       <textarea

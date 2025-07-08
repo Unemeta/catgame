@@ -651,7 +651,8 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
       {/* <div style={{ color: "red" }}>{y}</div> */}
       <div className={styles.container}>
         <div className={styles.newIcon} onClick={() => setShowVoice(false)}>
-          <LottieView src={"/lottie/v4.json"} loop={true}></LottieView>
+          {/* <LottieView src={"/lottie/v4.json"} loop={true}></LottieView> */}
+          <img src="/img/keyboard.png" alt="" />
         </div>
         <div
           onPointerDown={handleTouchStart}

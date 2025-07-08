@@ -78,7 +78,7 @@ const DialogShare = ({ trigger }: iDialogShare) => {
                   window.open(
                     shareUtil.getTwitterShareUrl({
                       url: window.location.href,
-                      text: `🦊🎂 UneMeta is 1️⃣ year old! I'm participating in UneMeta's Anniversary Carnival, where you can share a total prize pool of $47,000 by completing simple tasks😍, and there are special rewards for New Users.🏃Event ending soon, let's go!!!👇`,
+                      text: `📬 Just got a secret surprise from my AI cat @Meowster_io_ai Turns out it’s been quietly keeping a diary—every late-night visit, unspoken word, and mood shift, all remembered.🐾 Wonder what your cat might say to you?`,
                     }),
                     "_blank"
                   );
