@@ -126,6 +126,9 @@ const ChatView = () => {
         } else {
           return;
         }
+        if (msgRes?.type === "error") {
+          toast.warning(msgRes?.message ?? "---");
+        }
         if(msgRes?.message === "繁忙,请稍后重试" || msgRes?.message === "繁忙,请稍后重试" || msgRes?.message === "繁忙,请稍后重试"){
           toast.warning("The socket is busy, please try again later.");
         } 
