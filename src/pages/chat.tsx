@@ -445,10 +445,10 @@ const ChatView = () => {
           ></VideoPlayView>
         );
       } else {
-        return <div className="">{`${msg}${separator}`}</div>;
+        return <div className="">{`${msg}`}</div>;
       }
     } else {
-      return <div className="">{`${msg}${separator}`}</div>;
+      return <div className="">{`${msg}`}</div>;
     }
   };
 
