@@ -46,6 +46,7 @@ const ChatView = () => {
     {
       chatId: string;
       msg: string;
+      msgs?: string[];
       role: string;
       time: number;
       msgId: string;
@@ -125,7 +126,9 @@ const ChatView = () => {
         } else {
           return;
         }
-
+        if(msgRes?.message === "繁忙,请稍后重试" || msgRes?.message === "繁忙,请稍后重试" || msgRes?.message === "繁忙,请稍后重试"){
+          toast.warning("The socket is busy, please try again later.");
+        } 
         if (msgRes?.type == "stream_emotion") {
           // "/videos/emotion0_wuliao.mp4",
           // "/videos/emotion1_anwei.mp4",
@@ -161,6 +164,7 @@ const ChatView = () => {
               {
                 chatId: "",
                 msg: "　",
+                msgs: [],
                 role: "cat",
                 time: Math.floor(new Date().getTime() / 1000),
                 msgId: msgRes?.msgId,
@@ -174,8 +178,8 @@ const ChatView = () => {
           // }else{
           //   await delay(stream_index * 500);
           // }
-          stream_index = stream_index + 1;
-          await delay(stream_index * 200);
+          // stream_index = stream_index + 1;
+          // await delay(stream_index * 200);
           if (msgRes?.message.length > 0) {
             stream_msgs.push(msgRes?.message);
             setmessageList((pre) => {
@@ -185,6 +189,7 @@ const ChatView = () => {
                 .find((item) => item.role == "cat");
               if (lastAiRes) {
                 lastAiRes.msg = stream_msgs.join("");
+                lastAiRes.msgs = stream_msgs;
               }
               return tempMsgs;
             });
