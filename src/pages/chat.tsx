@@ -684,6 +684,7 @@ const ChatView = () => {
                                     "relative flex justify-start mb-[1rem]",
                                     {
                                       // "opacity-70": index + 3 < messageList.length,
+                                      "hidden": (itemSub?.indexOf("http") > -1 || itemSub?.indexOf("https") > -1) && (!isImgEndUrl(itemSub) && !isVideoEndUrl(itemSub))
                                     }
                                   )}
                                 >
