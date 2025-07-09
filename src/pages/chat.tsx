@@ -28,6 +28,7 @@ let timerHistory: NodeJS.Timeout | null | undefined = null;
 let stream_msgs: string[] = [];
 let stream_index = 0;
 let socket: any;
+const separator = "。";
 const ChatView = () => {
   const { t } = useTranslation();
   const router = useRouter();
@@ -46,7 +47,7 @@ const ChatView = () => {
     {
       chatId: string;
       message: string;
-      msgs?: string[];
+      messageArr?: string[];
       role: string;
       time: number;
       msgId: string;
@@ -62,6 +63,12 @@ const ChatView = () => {
   useEffect(() => {
     fetchUser?.();
   }, []);
+
+  // useEffect(() => {
+  //   if (messageList) {
+  //     console.log(messageList);
+  //   }
+  // }, [messageList]);
 
   useEffect(() => {
     (() => {
@@ -127,11 +134,10 @@ const ChatView = () => {
           return;
         }
         if (msgRes?.type === "error") {
-          toast.warning(msgRes?.message ?? "---");
+          toast.warning(
+            "Meow-meow's a bit tangled up... just a little more time, please!"
+          );
         }
-        if(msgRes?.message === "繁忙,请稍后重试" || msgRes?.message === "繁忙,请稍后重试" || msgRes?.message === "繁忙,请稍后重试"){
-          toast.warning("The socket is busy, please try again later.");
-        } 
         if (msgRes?.type == "stream_emotion") {
           // "/videos/emotion0_wuliao.mp4",
           // "/videos/emotion1_anwei.mp4",
@@ -192,7 +198,15 @@ const ChatView = () => {
                 .find((item) => item.role == "cat");
               if (lastAiRes) {
                 lastAiRes.message = stream_msgs.join("");
-                lastAiRes.msgs = stream_msgs;
+                const tempArr = lastAiRes.message.split(separator);
+                if (
+                  tempArr.length > 0 &&
+                  (tempArr[tempArr.length - 1] === "" ||
+                    tempArr[tempArr.length - 1] === "")
+                ) {
+                  tempArr.pop();
+                }
+                lastAiRes.messageArr = tempArr;
               }
               return tempMsgs;
             });
@@ -240,7 +254,7 @@ const ChatView = () => {
       return;
     }
     if (socket) {
-      if (inputMsg.length > 0) {
+      if (inputMsg.trim().length > 0) {
         inputRef.current?.blur();
         setmessageList((preMsgList: any) => {
           const chatId = `${new Date().getTime()}-${userData?.nickname}`;
@@ -256,9 +270,9 @@ const ChatView = () => {
             },
           ];
         });
+        setinputMsg("");
         socket?.send(inputMsg);
         setshowCatLoading(true);
-        setinputMsg("");
       } else {
         toast.info("Please enter msg");
       }
@@ -332,10 +346,28 @@ const ChatView = () => {
       });
       if (data?.msgList) {
         const resArr = [...data.msgList.reverse()];
+        const splitedArr = resArr.map((item) => {
+          if (item.role === "user") {
+            return item;
+          } else {
+            const tempArr = item.message.split(separator);
+            if (
+              tempArr.length > 0 &&
+              (tempArr[tempArr.length - 1] === "" ||
+                tempArr[tempArr.length - 1] === "")
+            ) {
+              tempArr.pop();
+            }
+            return {
+              ...item,
+              messageArr: tempArr,
+            };
+          }
+        });
         // const uniqueArr = Array.from(
         //   new Set(resArr.map((message) => message.msgId))
         // ).map((msgId) => resArr.find((message) => message.msgId === msgId));
-        setmessageList(resArr);
+        setmessageList(splitedArr);
       }
     } catch (error: any) {
       console.error(error);
@@ -413,10 +445,10 @@ const ChatView = () => {
           ></VideoPlayView>
         );
       } else {
-        return <div className="">{msg}</div>;
+        return <div className="">{`${msg}`}</div>;
       }
     } else {
-      return <div className="">{msg}</div>;
+      return <div className="">{`${msg}`}</div>;
     }
   };
 
@@ -473,13 +505,13 @@ const ChatView = () => {
                   </div>
                 )}
                 <div
-                  className="px-[0.8rem] h-[2.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(46,59,63,0.20)_0%,rgba(46,59,63,0.20)_100%),linear-gradient(180deg,rgba(146,207,236,0.60)_0%,rgba(172,224,249,0.60)_100%);]"
+                  className="pl-0 pr-[0.8rem] h-[2.2rem] flex justify-start items-center rounded-[10rem] border-[#ce8c82b3] border-[1px] bg-[#352e2b66] shadow-[0px_3px_5px_0px_rgba(0,0,0,0.25);]"
                   onClick={() => {
                     setshowExchange(true);
                   }}
                 >
                   <img
-                    className="w-[3rem] h-[3rem] mr-[0.6rem]"
+                    className="w-[2.6rem] h-[2.6rem] ml-[-0.5rem] mr-[0.6rem]"
                     src="/svg/fish.svg"
                     alt=""
                   />
@@ -530,7 +562,7 @@ const ChatView = () => {
             </div> */}
               <div className="flex justify-end items-center">
                 {/* 1 没发送 2 发送未读 3 发送已读 */}
-                {(farewellLetterStatus == "2" ||
+                {(farewellLetterStatus == "2" || 
                   farewellLetterStatus == "3") && (
                   <div
                     className="relative"
@@ -539,7 +571,8 @@ const ChatView = () => {
                     <div className="w-[0.8rem] h-[0.8rem] bg-[#E95658] absolute right-0 top-[-0.1rem] rounded-full"></div>
                     <img
                       className="w-[2.4rem] h-[2.4rem]"
-                      src="/img/emailBye.png"
+                      // src="/img/emailBye.png"
+                      src="/svg/emailBye.svg"
                       alt=""
                     />
                   </div>
@@ -554,7 +587,7 @@ const ChatView = () => {
                         src="/svg/check_ calendar.svg"
                         alt=""
                       />
-                      <span className="text-[#FFF] text-[1.6rem] font-[700]">
+                      <span className="text-[#FFF] text-[1.4rem] font-[700]">
                         day {userData?.day}
                       </span>
                     </div>
@@ -564,8 +597,8 @@ const ChatView = () => {
                 <DialogSetting
                   trigger={
                     <img
-                      className="w-[3rem] h-[3rem]"
-                      src="/img/setting.min.png"
+                      className="w-[2.2rem] h-[2.2rem]"
+                      src="/svg/setting.svg"
                       alt=""
                     />
                   }
@@ -642,37 +675,44 @@ const ChatView = () => {
                               .format("YYYY/MM/DD HH:mm")}
                           </div>
                         )}
-                        <div
-                          className={cn("relative flex justify-start", {
-                            // "opacity-70": index + 3 < messageList.length,
-                          })}
-                        >
-                          <img
-                            className=" rounded-full dmr25 robotAvator"
-                            src="/img/avataCat.min.png"
-                            alt=""
-                          />
-                          <div className="receive bg-[rgba(32,_35,_42,_0.50)] flex justify-start items-start msgWrap">
-                            {/* <img
-                              className=" rounded-full dmr25 robotAvator"
-                              src="/img/avataCat.min.png"
-                              alt=""
-                            /> */}
-                            <div className="dmaxW460 lmdWfull">
-                              {/* <div className="dtext24 font-[500] text-[#F5F2FF]/60 dmb8 msgTime">
-                                {moment(item.time * 1000)
-                                  .local()
-                                  .format("YYYY/MM/DD HH:mm")}
-                              </div> */}
-                              <div className="msgText line-clamp-[20] dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan break-words">
-                                {mediaSwitch(
-                                  item?.message,
-                                  item?.msgId,
-                                  item?.eventid
-                                )}
-                              </div>
-                            </div>
-                          </div>
+                        <div className="">
+                          {item?.messageArr?.map(
+                            (itemSub, indexSub: number) => {
+                              return (
+                                <div
+                                  key={`${index}-${indexSub}`}
+                                  className={cn(
+                                    "relative flex justify-start mb-[1rem]",
+                                    {
+                                      // "opacity-70": index + 3 < messageList.length,
+                                      hidden:
+                                        (itemSub?.indexOf("http") > -1 ||
+                                          itemSub?.indexOf("https") > -1) &&
+                                        !isImgEndUrl(itemSub) &&
+                                        !isVideoEndUrl(itemSub),
+                                    }
+                                  )}
+                                >
+                                  <img
+                                    className="rounded-full dmr25 robotAvator"
+                                    src="/img/avataCat.min.png"
+                                    alt=""
+                                  />
+                                  <div className="receive bg-[rgba(32,_35,_42,_0.50)] flex justify-start items-start msgWrap">
+                                    <div className="dmaxW460 lmdWfull">
+                                      <div className="msgText line-clamp-[20] dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan break-words">
+                                        {mediaSwitch(
+                                          itemSub,
+                                          item?.msgId,
+                                          item?.eventid
+                                        )}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              );
+                            }
+                          )}
                         </div>
                       </div>
                     );
@@ -746,7 +786,11 @@ const ChatView = () => {
                         className={styles.newIcon}
                         loop={true}
                       ></LottieView> */}
-                      <img src="/img/voice.png" alt=""  className={styles.newIcon}/>
+                      <img
+                        src="/img/voice.png"
+                        alt=""
+                        className={styles.newIcon}
+                      />
                     </div>
                     <div className="relative sendInputWrap flex grow rounded-[2.2rem] overflow-hidden">
                       <textarea
