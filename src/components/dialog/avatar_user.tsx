@@ -42,7 +42,7 @@ const DialogAvatarUser = ({ trigger }: iDialogSetting) => {
             <div className="flex justify-center items-center">
               <img
                 className="w-[9.2rem] h-[9.2rem]"
-                src="/img/bg_cat.min.png"
+                src="/img/bg_avatar.png"
                 alt=""
               />
             </div>
