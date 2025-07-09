@@ -4,6 +4,7 @@ import { ReactNode, useState } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from ".";
 import { useFetchUser } from "@/store";
 import { useTranslation } from "react-i18next";
+import { useRouter } from "next/router";
 
 interface iDialogSetting {
   trigger?: ReactNode;
@@ -14,7 +15,8 @@ const DialogAvatarUser = ({ trigger }: iDialogSetting) => {
   const [isOpen, setisOpen] = useState(false);
   const { userData } = useFetchUser();
   const { t } = useTranslation();
-  
+  const router = useRouter();
+
   return (
     <Dialog
       open={isOpen}
@@ -40,11 +42,20 @@ const DialogAvatarUser = ({ trigger }: iDialogSetting) => {
           <div className="px-[2rem]">
             <div className="h-[1.6rem]"></div>
             <div className="flex justify-center items-center">
-              <img
-                className="w-[9.2rem] h-[9.2rem]"
-                src="/img/bg_avatar.png"
-                alt=""
-              />
+              <div className="flex relative" onClick={()=>{
+                router.push("/upload");
+              }}>
+                <img
+                  className="w-[9.2rem] h-[9.2rem]"
+                  src="/img/bg_avatar.png"
+                  alt=""
+                />
+                <img
+                  className="w-[3.4rem] h-[3.4rem] absolute right-0 bottom-0"
+                  src="/svg/camera.svg"
+                  alt=""
+                />
+              </div>
             </div>
             <div className="h-[1rem]"></div>
             <div className="flex justify-between items-center bg-[#D3C2B8] border-[1px] border-[#E2CDC1] rounded-[1rem] p-[0.8rem]">
