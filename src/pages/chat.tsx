@@ -505,13 +505,13 @@ const ChatView = () => {
                   </div>
                 )}
                 <div
-                  className="px-[0.8rem] h-[2.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(46,59,63,0.20)_0%,rgba(46,59,63,0.20)_100%),linear-gradient(180deg,rgba(146,207,236,0.60)_0%,rgba(172,224,249,0.60)_100%);]"
+                  className="pl-0 pr-[0.8rem] h-[2.2rem] flex justify-start items-center rounded-[10rem] border-[#ce8c82b3] border-[1px] bg-[#352e2b66] shadow-[0px_3px_5px_0px_rgba(0,0,0,0.25);]"
                   onClick={() => {
                     setshowExchange(true);
                   }}
                 >
                   <img
-                    className="w-[3rem] h-[3rem] mr-[0.6rem]"
+                    className="w-[2.6rem] h-[2.6rem] ml-[-0.5rem] mr-[0.6rem]"
                     src="/svg/fish.svg"
                     alt=""
                   />
@@ -562,7 +562,7 @@ const ChatView = () => {
             </div> */}
               <div className="flex justify-end items-center">
                 {/* 1 没发送 2 发送未读 3 发送已读 */}
-                {(farewellLetterStatus == "2" ||
+                {(farewellLetterStatus == "2" || 
                   farewellLetterStatus == "3") && (
                   <div
                     className="relative"
@@ -571,7 +571,8 @@ const ChatView = () => {
                     <div className="w-[0.8rem] h-[0.8rem] bg-[#E95658] absolute right-0 top-[-0.1rem] rounded-full"></div>
                     <img
                       className="w-[2.4rem] h-[2.4rem]"
-                      src="/img/emailBye.png"
+                      // src="/img/emailBye.png"
+                      src="/svg/emailBye.svg"
                       alt=""
                     />
                   </div>
@@ -586,7 +587,7 @@ const ChatView = () => {
                         src="/svg/check_ calendar.svg"
                         alt=""
                       />
-                      <span className="text-[#FFF] text-[1.6rem] font-[700]">
+                      <span className="text-[#FFF] text-[1.4rem] font-[700]">
                         day {userData?.day}
                       </span>
                     </div>
@@ -596,8 +597,8 @@ const ChatView = () => {
                 <DialogSetting
                   trigger={
                     <img
-                      className="w-[3rem] h-[3rem]"
-                      src="/img/setting.min.png"
+                      className="w-[2.2rem] h-[2.2rem]"
+                      src="/svg/setting.svg"
                       alt=""
                     />
                   }
@@ -684,7 +685,11 @@ const ChatView = () => {
                                     "relative flex justify-start mb-[1rem]",
                                     {
                                       // "opacity-70": index + 3 < messageList.length,
-                                      "hidden": (itemSub?.indexOf("http") > -1 || itemSub?.indexOf("https") > -1) && (!isImgEndUrl(itemSub) && !isVideoEndUrl(itemSub))
+                                      hidden:
+                                        (itemSub?.indexOf("http") > -1 ||
+                                          itemSub?.indexOf("https") > -1) &&
+                                        !isImgEndUrl(itemSub) &&
+                                        !isVideoEndUrl(itemSub),
                                     }
                                   )}
                                 >
@@ -781,7 +786,11 @@ const ChatView = () => {
                         className={styles.newIcon}
                         loop={true}
                       ></LottieView> */}
-                      <img src="/img/voice.png" alt=""  className={styles.newIcon}/>
+                      <img
+                        src="/img/voice.png"
+                        alt=""
+                        className={styles.newIcon}
+                      />
                     </div>
                     <div className="relative sendInputWrap flex grow rounded-[2.2rem] overflow-hidden">
                       <textarea
