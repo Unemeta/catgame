@@ -216,11 +216,11 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
 
                             {isVisible && item.checked ? (
                               <>
-                                <LottieView
+                                {/* <LottieView
                                   src={"/lottie/fishclick.json"}
                                   loop={false}
                                   className="absolute top-0"
-                                ></LottieView>
+                                ></LottieView> */}
                                 <LottieView
                                   src={"/lottie/fishpoint.json"}
                                   loop={false}
