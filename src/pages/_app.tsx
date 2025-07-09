@@ -9,6 +9,7 @@ import "react-photo-view/dist/react-photo-view.css";
 import "../i18n/configs";
 import { useTranslation } from "react-i18next";
 import "animate.css/animate.min.css"; // 引入压缩版CSS
+import { useFetchUser } from "@/store";
 
 // import Router from "next/router";
 // import NProgress from "nprogress";
@@ -60,6 +61,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     if (language) {
       i18n.changeLanguage(language);
     }
+  }, []);
+
+  const { fetchUser } = useFetchUser();
+  useEffect(() => {
+    fetchUser();
   }, []);
 
   return (
