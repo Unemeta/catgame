@@ -572,9 +572,6 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
     this_.watchDogTimer = 0; //停止监控onProcess超时
     setIsRecording(false);
     isStartingRef.current = false;
-
-    console.log(isRecording);
-    console.log(isLongPress);
     // cancelText();
     RecordApp.Stop(
       function (arrayBuffer: BlobPart, duration: string, mime: any) {
@@ -591,6 +588,16 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
         console.log("录音失败:" + msg);
       }
     );
+
+    // 清除之前残留的文字
+    if (wsRef.current) {
+      wsRef.current.onmessage = null;
+      wsRef.current.onerror = null;
+      wsRef.current.onclose = null;
+      wsRef.current.close();
+      wsRef.current = null;
+      cancelText()
+    }
   };
 
   return (
@@ -623,32 +630,6 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
         <img className={styles.statusIcon} alt="" src={`/img/cancelv.svg`} />
         <div className={styles.statusText}>Swipe up to cancel</div>
       </div>
-
-      {/* <>
-          <Player
-            src={"/lottie/vnormal.json"}
-            className={styles.vanimate}
-            loop={true}
-            lottieRef={(instance) => {
-              lottieInstance.current = instance;
-            }}
-            autoplay={true}
-          ></Player>
-
-          <div className={styles.vanimateText}>
-            Recording ends in {countdown} seconds.
-          </div>
-          <div className={styles.status}>
-            <img className={styles.statusIcon} alt="" src={`/img/sendv.svg`} />
-            <div className={styles.statusText}>Release to send</div>
-          </div>
-          
-        </> */}
-      {/* <div className={styles.status}>
-          <img className={styles.statusIcon} alt="" src={`/img/cancelv.svg`} />
-          <div className={styles.statusText}>Swipe up to cancel</div>
-        </div> */}
-      {/* <div style={{ color: "red" }}>{y}</div> */}
       <div className={styles.container}>
         <div className={styles.newIcon} onClick={() => setShowVoice(false)}>
           {/* <LottieView src={"/lottie/v4.json"} loop={true}></LottieView> */}

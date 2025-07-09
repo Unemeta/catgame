@@ -5,50 +5,15 @@ import React, { useState, useEffect } from "react";
 const ProgressBar = ({ setShow }: { setShow: () => void }) => {
   const [progress, setProgress] = useState(0);
   const [isActive, setIsActive] = useState(false);
-  // const [speed] = useState(50); // 毫秒
-  // const intervalRef = useRef<any>(null);
 
   // 开始/暂停进度
   const toggleProgress = () => {
     setIsActive(!isActive);
   };
 
-  // 重置进度
-  //   const resetProgress = () => {
-  //     setIsActive(false);
-  //     setProgress(0);
-  //     clearInterval(intervalRef.current);
-  //   };
-
-  // 更新进度
-  // useEffect(() => {
-  //   if (isActive) {
-  //     intervalRef.current = setInterval(() => {
-  //       setProgress((prev) => {
-  //         if (prev >= 100) {
-  //           clearInterval(intervalRef.current);
-  //           setIsActive(false);
-  //           return 100;
-  //         }
-  //         return prev + 1;
-  //       });
-  //     }, speed);
-  //   } else {
-  //     clearInterval(intervalRef.current);
-  //   }
-
-  //   return () => clearInterval(intervalRef.current);
-  // }, [isActive, speed]);
-
   useEffect(() => {
     toggleProgress();
   }, []);
-
-  // useEffect(() => {
-  //   if (progress >= 100) {
-  //     setShow();
-  //   }
-  // }, [progress, setShow]);
 
   interface Resource {
     type: "image" | "video";
@@ -56,9 +21,15 @@ const ProgressBar = ({ setShow }: { setShow: () => void }) => {
   }
   // 示例资源列表
   const resources: Resource[] = [
-    // { type: "image", url: "/path/to/image1.jpg" },
-    { type: "image", url: "/img/1.jpg" },
     { type: "video", url: "/videos/chat.mp4" },
+    { type: "image", url: "/img/keyboard.png" },
+    { type: "image", url: "/img/voice.png" },
+    { type: "image", url: "/img/catexample.png" },
+    { type: "image", url: "/img/bg_cat_focus.min.png" },
+    { type: "image", url: "/img/loadinglogo.png" },
+    { type: "image", url: "/img/arrow_right.min.png" },
+    { type: "image", url: "/img/  arrow_rightdis.min.png" },
+
     // ... 添加更多资源
   ];
   useEffect(() => {
