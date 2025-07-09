@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useFetchUser } from "@/store";
 import { request } from "@/utils/request";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -8,6 +9,7 @@ import { toast } from "react-toastify";
 const UploadView = () => {
   const [image, setImage] = useState(null);
   const router = useRouter();
+  const { userData } = useFetchUser();
 
   const handleImageChange = (event: any) => {
     const file = event.target.files[0];
@@ -66,7 +68,8 @@ const UploadView = () => {
         ) : (
           <img
             className="w-[20rem] h-[20rem] rounded-[20rem]"
-            src="/img/bg/bgChat.min.png"
+            // src="/img/bg/bgChat.min.png"
+            src={userData?.avatar ?? "/img/avataUser.min.png"}
             alt=""
           />
         )}

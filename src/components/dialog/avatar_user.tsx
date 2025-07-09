@@ -42,14 +42,18 @@ const DialogAvatarUser = ({ trigger }: iDialogSetting) => {
           <div className="px-[2rem]">
             <div className="h-[1.6rem]"></div>
             <div className="flex justify-center items-center">
-              <div className="flex relative" onClick={()=>{
-                router.push("/upload");
-              }}>
-                <img
-                  className="w-[9.2rem] h-[9.2rem]"
-                  src="/img/bg_avatar.png"
-                  alt=""
-                />
+              <div
+                className="flex relative"
+                onClick={() => {
+                  router.push("/upload");
+                }}
+              >
+                <div className="w-[9.2rem] h-[9.2rem] bg-[url('/img/bg_avatar.png')] bg-cover">
+                  <img
+                    src={userData?.avatar ?? "/img/avataUser.min.png"}
+                    alt=""
+                  />
+                </div>
                 <img
                   className="w-[3.4rem] h-[3.4rem] absolute right-0 bottom-0"
                   src="/svg/camera.svg"
