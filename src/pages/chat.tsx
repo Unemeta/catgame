@@ -23,6 +23,7 @@ import VideoBackgroundChat from "@/components/VideoBackgroundChat";
 import { useTranslation } from "react-i18next";
 import ProgressBar from "@/components/progressbar";
 import VideoBackgroundEmotion from "@/components/VideoBackgroundEmotion";
+import DialogAvatarUser from "@/components/dialog/avatar_user";
 
 let timerHistory: NodeJS.Timeout | null | undefined = null;
 let stream_msgs: string[] = [];
@@ -570,7 +571,7 @@ const ChatView = () => {
                   >
                     <div className="w-[0.8rem] h-[0.8rem] bg-[#E95658] absolute right-0 top-[-0.1rem] rounded-full"></div>
                     <img
-                      className="w-[2.4rem] h-[2.4rem]"
+                      className="w-[2.5rem] h-[2.5rem]"
                       // src="/img/emailBye.png"
                       src="/svg/emailBye.svg"
                       alt=""
@@ -581,7 +582,7 @@ const ChatView = () => {
                 <div className="w-[0.6rem]"></div>
                 <DialogCheckIn
                   trigger={
-                    <div className="px-[0.8rem] h-[2.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(58,53,53,0.20)_0%,rgba(58,53,53,0.20)_100%),linear-gradient(180deg,rgba(255,152,146,0.60)_0%,rgba(255,185,181,0.60)_100%)]">
+                    <div className="mt-[-0.4rem] px-[0.8rem] h-[2.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(58,53,53,0.20)_0%,rgba(58,53,53,0.20)_100%),linear-gradient(180deg,rgba(255,152,146,0.60)_0%,rgba(255,185,181,0.60)_100%)]">
                       <img
                         className="w-[2rem] h-[2rem] mr-[0.6rem]"
                         src="/svg/check_ calendar.svg"
@@ -597,7 +598,7 @@ const ChatView = () => {
                 <DialogSetting
                   trigger={
                     <img
-                      className="w-[2.2rem] h-[2.2rem]"
+                      className="w-[2.4rem] h-[2.4rem]"
                       src="/svg/setting.svg"
                       alt=""
                     />
@@ -654,11 +655,20 @@ const ChatView = () => {
                               alt=""
                             /> */}
                           </div>
-                          <img
+                          {/* <img
                             className=" rounded-full  userAvator"
                             src="/img/avataUser.min.png"
                             alt=""
-                          />
+                          /> */}
+                          <DialogAvatarUser
+                            trigger={
+                              <img
+                                className=" rounded-full  userAvator"
+                                src="/img/avataUser.min.png"
+                                alt=""
+                              />
+                            }
+                          ></DialogAvatarUser>
                         </div>
                       </div>
                     );
