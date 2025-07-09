@@ -51,7 +51,7 @@ const LetterView = () => {
   };
   return (
     <div className="bg-[#F0E4DD] min-h-[100vh]" ref={contentRef}>
-      <div className="fixed w-full bg-[#F0E4DD]">
+      <div className="fixed w-full bg-[#F0E4DD] z-[100]">
         <div className="header flex justify-between items-center h-[4.6rem] px-[2rem]">
           <IconView
             className="w-[2rem] h-[2rem]"
