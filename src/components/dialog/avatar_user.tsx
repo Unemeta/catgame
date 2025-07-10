@@ -48,7 +48,7 @@ const DialogAvatarUser = ({ trigger }: iDialogSetting) => {
                   router.push("/upload");
                 }}
               >
-                <div className="w-[9.2rem] h-[9.2rem] bg-[url('/img/bg_avatar.png')] bg-cover">
+                <div className="w-[9.2rem] h-[9.2rem] bg-[url('/img/bg_avatar.png')] bg-cover flex justify-center items-center">
                   <img
                     // src={userData?.avatar ?? "/img/avataUser.min.png"}
                     src={"/img/avataUser.min.png"}
