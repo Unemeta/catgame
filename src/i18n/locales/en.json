@@ -11,12 +11,12 @@
     "DailyCheckin": "Daily Check-in",
     "CheckinInfo": "Please visit every day to get better rewards.",
     "What are you talking about?": "What are you talking about?",
-    "User Profile":"User Profile",
+    "User Profile": "User Profile",
     "test": "test"
   },
   "qa": {
-    "soul_title": "Soul Identification",
-    "soul_desc": "Meowster has prepared soul identification questions for you. Based on your answers, it will find a cat that matches you.",
+    "soul_title": "🐾 Meow… <br />Hello, future friend.",
+    "soul_desc": "📒 Before I came into this world, every answer you gave me would quietly influence my personality. <br />🎨 Maybe gentle, maybe slow to warm up, maybe aloof - I wonder what you will make me become? <br />💌 After seven days, I will write this journey into a letter that belongs only to you, and there are some small Easter eggs hidden in it. <br />🌟 If you want to meet more cats, come to the community and leave your footprints. Exclusive identities, mysterious rewards, and super cute emojis are waiting for you to take away!",
     "q1": "At a party, <br /> you’re more likely to",
     "q1_a1": "Chat enthusiastically with lots of people and feel energized",
     "q1_a2": "Find a quiet corner to talk with close friends and soon feel like heading home",
