@@ -46,7 +46,6 @@ const VideoPlayView = ({ msg_id, msg, eventid }: iVideoPlayView) => {
           };
           globalApi.eventRecord(
             eventid,
-            eventType.EventTypeVideoInfo,
             JSON.stringify(info)
           );
         }
@@ -64,10 +63,9 @@ const VideoPlayView = ({ msg_id, msg, eventid }: iVideoPlayView) => {
     };
   }, []);
 
-  const handlePlay = (id: string, eventid: number) => {
+  const handlePlay = (id: string) => {
     console.log(`视频 ${id} 开始播放`);
-    // globalApi.eventRecord(eventid, 3);
-    globalApi.eventRecord(eventid, eventType.EventTypePlayVideo);
+    globalApi.eventRecord('video_play');
   };
 
   const handlePause = (id: string) => {
@@ -121,7 +119,7 @@ const VideoPlayView = ({ msg_id, msg, eventid }: iVideoPlayView) => {
     document.body.removeChild(link);
     // const linkdecode = decodeURIComponent(msg);
     // downloadMp4(linkdecode, "video.mp4");
-    // globalApi.eventRecord(eventid, eventType.EventTypeSaveVideo);
+    globalApi.eventRecord('video_download');
     console.log("下载视频");
   };
   // const handlePlayPause = () => {
