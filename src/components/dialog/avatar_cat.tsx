@@ -2,9 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { ReactNode, useState } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from ".";
-import { useFetchUser } from "@/store";
 import { useTranslation } from "react-i18next";
-import { useRouter } from "next/router";
 import IconView from "../IconView";
 
 interface iDialogSetting {
@@ -16,9 +14,7 @@ interface iDialogSetting {
 }
 const DialogAvatarCat = ({ trigger, indexXingGe, catName }: iDialogSetting) => {
   const [isOpen, setisOpen] = useState(false);
-  const { userData } = useFetchUser();
   const { t } = useTranslation();
-  const router = useRouter();
 
   const cats = [
     {
