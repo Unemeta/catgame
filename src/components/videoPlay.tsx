@@ -2,7 +2,6 @@
 import { useEffect, useRef } from "react";
 import * as globalApi from "@/services/global";
 // import { downloadMp4 } from "@/utils/save";
-const eventType = globalApi.eventType;
 
 interface iVideoPlayView {
   msg_id: string;
@@ -44,10 +43,7 @@ const VideoPlayView = ({ msg_id, msg, eventid }: iVideoPlayView) => {
               (videoRef.current.currentTime / videoRef.current.duration) * 100 +
               "%",
           };
-          globalApi.eventRecord(
-            eventid,
-            JSON.stringify(info)
-          );
+          globalApi.eventRecord("video_exitfullscreen", JSON.stringify(info));
         }
       }
     };
@@ -65,7 +61,7 @@ const VideoPlayView = ({ msg_id, msg, eventid }: iVideoPlayView) => {
 
   const handlePlay = (id: string) => {
     console.log(`视频 ${id} 开始播放`);
-    globalApi.eventRecord('video_play');
+    globalApi.eventRecord("video_play");
   };
 
   const handlePause = (id: string) => {
@@ -119,7 +115,7 @@ const VideoPlayView = ({ msg_id, msg, eventid }: iVideoPlayView) => {
     document.body.removeChild(link);
     // const linkdecode = decodeURIComponent(msg);
     // downloadMp4(linkdecode, "video.mp4");
-    globalApi.eventRecord('video_download');
+    globalApi.eventRecord("video_download");
     console.log("下载视频");
   };
   // const handlePlayPause = () => {
@@ -134,7 +130,7 @@ const VideoPlayView = ({ msg_id, msg, eventid }: iVideoPlayView) => {
       <video
         ref={videoRef}
         controls
-        onPlay={() => handlePlay(msg_id, eventid)}
+        onPlay={() => handlePlay(msg_id)}
         onPause={() => handlePause(msg_id)}
         onEnded={() => handleEnded(msg_id)}
         onResize={() => onResizeCb(msg_id)}
