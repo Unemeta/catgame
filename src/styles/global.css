@@ -726,7 +726,10 @@ body {
 .PhotoView-Slider__toolbarIcon {
   display: none;
 }
-
+.qaSelectBg {
+  box-shadow: 0px 0.3rem 0.4rem 0px rgba(255, 255, 255, 0.25),
+    0px 0.4rem 2.4rem 0px #eca89e;
+}
 @media screen and (max-width: 768px) {
   .wrapHeight {
     /* height: 87vh; */

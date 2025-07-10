@@ -15,6 +15,7 @@ interface userInfo {
     coin: number,
     nowExp: number,
     totalLevelTotalExp: number,
+    meowname: string,
     day: number
 }
 
@@ -32,7 +33,8 @@ const userDataAtom = atom<userInfo>(
         coin: 0,
         nowExp: 0,
         totalLevelTotalExp: 0,
-        day: 0
+        day: 0,
+        meowname:''
     },
 );
 
@@ -51,6 +53,7 @@ export const useUserData = () => {
         nowExp: 0,
         totalLevelTotalExp: 0,
         day: 0,
+        meowname: '',
     }]] as const);
     return useAtom(userDataAtom);
 };

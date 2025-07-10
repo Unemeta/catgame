@@ -57,38 +57,47 @@ const PartyView = () => {
   };
   return (
     <div className="">
-      <div className="relative">
-        <img
+      <div className="relative w-[100vw] min-h-[100vh] bg-[linear-gradient(180deg,#F2ECE9_0%,#F5F0EE_100%)]">
+        {/* <img
           className={cn("w-[100vw] min-h-[100vh] absolute inset-0 z-[1]", {
             "blur-[20px]": stepIndex !== 0,
           })}
           src="/img/bg/bg_pop_rain.min.png"
           alt=""
-        />
+        /> */}
         {stepIndex == 0 && (
-          <div className="w-full wrapHeight absolute inset-0 z-[2] text-center">
+          <div className="w-full wrapHeight  text-center">
             <div className="flex flex-col h-full">
-              <div className="h-[9.3vh]"></div>
-              <div className="text-white text-[2.8rem] font-[700] mb-[3vh]">
-                {t("qa.soul_title")}
-              </div>
-              <div className="text-center text-white text-[1.6rem] font-[700]  flex justify-center items-center">
-                <div className="max-w-[31rem] leading-[1.4]">
-                  {" "}
-                  {t("qa.soul_desc")}
-                </div>
-              </div>
+              <div
+                className="text-[#EA8373] text-[2.8rem] font-[700] mb-[3vh] px-[3rem] leading-[1.2] pt-[5rem]"
+                dangerouslySetInnerHTML={{
+                  __html: t("qa.soul_title"),
+                }}
+              ></div>
 
+              <div className="flex justify-center items-end">
+                <div className="bg-[url('/img/cat_red.min.png')] w-[14rem] h-[14rem] bg-cover"></div>
+              </div>
               {/* <div
                 className="absolute bottom-[1rem] left-[50vw] translate-x-[-50%]"
                 onClick={() => {
                   setstepIndex(1);
                 }}
               > */}
-              <div className="flex justify-center items-center mt-[33rem]">
+              <div className="text-[#826662] text-[1.4rem] font-[500]  flex justify-center items-center text-left">
+                <div
+                  className="max-w-[31rem] leading-[1.4]"
+                  dangerouslySetInnerHTML={{
+                    __html: t("qa.soul_desc"),
+                  }}
+                >
+                  {/* {t("qa.soul_desc")} */}
+                </div>
+              </div>
+              <div className="flex justify-center items-center mt-[3rem]">
                 <img
                   src="/img/arrow_right.min.png"
-                  className="w-[27vw] h-[27vw]"
+                  className="w-[10rem] h-[10rem]"
                   alt=""
                   onClick={() => {
                     setstepIndex(1);
