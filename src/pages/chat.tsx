@@ -192,6 +192,7 @@ const ChatView = () => {
             ];
           });
         } else if (msgRes?.type == "stream_content") {
+          setshowCatLoading(false);
           // if (stream_index == 0) {
           //   //
           // }else{
@@ -212,7 +213,8 @@ const ChatView = () => {
                 if (
                   tempArr.length > 0 &&
                   (tempArr[tempArr.length - 1] === "" ||
-                    tempArr[tempArr.length - 1] === "")
+                    tempArr[tempArr.length - 1] === "" ||
+                    tempArr[tempArr.length - 1]?.length <= 1)
                 ) {
                   tempArr.pop();
                 }
@@ -228,7 +230,7 @@ const ChatView = () => {
           console.log("other type");
           console.log(msgRes);
         }
-        setshowCatLoading(false);
+
         if (msgRes.hasOwnProperty("chatCount")) {
           setchatCount(String(msgRes.chatCount));
         }
@@ -367,7 +369,8 @@ const ChatView = () => {
             if (
               tempArr.length > 0 &&
               (tempArr[tempArr.length - 1] === "" ||
-                tempArr[tempArr.length - 1] === "")
+                tempArr[tempArr.length - 1] === "" ||
+                tempArr[tempArr.length - 1]?.length <= 1)
             ) {
               tempArr.pop();
             }
