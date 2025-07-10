@@ -35,41 +35,39 @@ const AnswerView = ({ onClick }: iAnswerView) => {
     },
   ]);
   return (
-    <div className="w-full wrapHeight absolute inset-0 z-[2]">
+    <div className="w-full wrapHeight">
       <div className="flex flex-col h-full">
-        <div className="h-[3vh]"></div>
-        <div className="flex justify-center items-center space-x-[0.4rem] px-[2rem]">
+        <div className="flex justify-center items-center space-x-[0.4rem] px-[2rem] pt-[2rem]">
           <div
-            className={cn("bg-white/20 rounded-[3rem] flex-1 h-[1.1vh]", {
-              "bg-white": stepAnswerIndex == 0,
+            className={cn("bg-[#eca89e33] rounded-[3rem] flex-1 h-[1.1vh]", {
+              "bg-[#ECA89E]": stepAnswerIndex == 0,
             })}
           ></div>
           <div
-            className={cn("bg-white/20 rounded-[3rem] flex-1 h-[1.1vh]", {
-              "bg-white": stepAnswerIndex == 1,
+            className={cn("bg-[#eca89e33] rounded-[3rem] flex-1 h-[1.1vh]", {
+              "bg-[#ECA89E]": stepAnswerIndex == 1,
             })}
           ></div>
           <div
-            className={cn("bg-white/20 rounded-[3rem] flex-1 h-[1.1vh]", {
-              "bg-white": stepAnswerIndex == 2,
+            className={cn("bg-[#eca89e33] rounded-[3rem] flex-1 h-[1.1vh]", {
+              "bg-[#ECA89E]": stepAnswerIndex == 2,
             })}
           ></div>
           <div
-            className={cn("bg-white/20 rounded-[3rem] flex-1 h-[1.1vh]", {
-              "bg-white": stepAnswerIndex == 3,
+            className={cn("bg-[#eca89e33] rounded-[3rem] flex-1 h-[1.1vh]", {
+              "bg-[#ECA89E]": stepAnswerIndex == 3,
             })}
           ></div>
         </div>
-        <div className="h-[5.5vh]"></div>
         <div
-          className="text-[#fff] text-[2.4rem] font-[700] text-center leading-[1] mb-[0.5rem]"
+          className="text-[#EA8373] text-[2.4rem] font-[700] text-center leading-[1] mb-[0.5rem] px-[3rem] pt-[2.3rem]"
           dangerouslySetInnerHTML={{
             __html: questionArr[stepAnswerIndex]["q"],
           }}
         ></div>
         <div className="h-[4vh]"></div>
         <div className="flex justify-center items-end">
-          <div className="bg-[url('/img/cat_red.min.png')] w-[17.6rem] h-[17.6rem] bg-cover"></div>
+          <div className="bg-[url('/img/cat_red.min.png')] w-[14rem] h-[14rem] bg-cover"></div>
         </div>
         <div className="h-[2.6vh]"></div>
         <div className="flex justify-center items-center mb-[2rem]">
@@ -82,7 +80,7 @@ const AnswerView = ({ onClick }: iAnswerView) => {
             className={cn(
               "h-[7.6rem] w-[85vw] text-wrap rounded-[3.1rem] px-[2rem] py-[1.2rem] flex justify-center items-center bg-white/70",
               {
-                "bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)]  shadow-[0px,3px,4px,0px,rgba(255,255,255,0.25),0px,4px,24px,0px,#ECA89E] border-[#FF9A8B]F":
+                "bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)]  qaSelectBg border-[#FF9A8B]F":
                   selectIndexQuestionArr[stepAnswerIndex] == 0,
               }
             )}
@@ -126,7 +124,7 @@ const AnswerView = ({ onClick }: iAnswerView) => {
             className={cn(
               "h-[7.6rem] w-[85vw] text-wrap bg-white/70 rounded-[3.1rem] blur--[1rem] px-[2rem] py-[1.2rem] flex justify-center items-center",
               {
-                "bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)]  shadow-[0px,3px,4px,0px,rgba(255,255,255,0.25),0px,4px,24px,0px,#ECA89E] border-[#FF9A8B]F":
+                "bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)]  qaSelectBg border-[#FF9A8B]F":
                   selectIndexQuestionArr[stepAnswerIndex] == 1,
               }
             )}
@@ -172,10 +170,10 @@ const AnswerView = ({ onClick }: iAnswerView) => {
           }}
         > */}
         {/* opacity-50 */}
-        <div className="flex justify-center items-center mt-[2rem]">
+        <div className="flex justify-center items-center mt-[8rem]">
           <img
             src="/img/arrow_right.min.png"
-            className="w-[27vw] h-[27vw] "
+            className="w-[10rem] h-[10rem] "
             alt=""
             onClick={() => {
               if (stepAnswerIndex >= 3) {
