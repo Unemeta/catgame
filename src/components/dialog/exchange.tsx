@@ -19,7 +19,7 @@ const DialogExchange = ({ show, setShow, cb }: iDialogExchange) => {
   const handleConfirm = async () => {
     try {
       const res = await request({
-        url: `/api/cat/v1/chat/fish/swap`,
+        url: `/api/chat/fish/swap`,
         method: "post",
         data: {
           type: 0,

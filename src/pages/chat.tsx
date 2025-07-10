@@ -342,7 +342,7 @@ const ChatView = () => {
   const getHistory = async () => {
     try {
       const { data } = await request({
-        url: `/api/cat/v1/chat/history?page=1&pageSize=500`,
+        url: `/api/chat/history?page=1&pageSize=500`,
         method: "get",
       });
       if (data?.msgList) {
@@ -380,7 +380,7 @@ const ChatView = () => {
   const getChatInfo = async () => {
     try {
       const { data } = await request({
-        url: `/api/cat/v1/chat/info`,
+        url: `/api/chat/info`,
         method: "get",
       });
       console.log(data);

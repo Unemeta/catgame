@@ -93,7 +93,7 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
   const checkIn = async () => {
     try {
       const res = await request({
-        url: "/api/cat/v1/user/checkin",
+        url: "/api/user/checkin",
         method: "post",
       });
       console.log(res);

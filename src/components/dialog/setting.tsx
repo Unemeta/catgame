@@ -62,7 +62,7 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
     try {
       // 1:中文, 2:英文, 3:日文
       const { data } = await request({
-        url: `/api/cat/v1/user/language/set?language=${languageNum}`,
+        url: `/api/user/language/set?language=${languageNum}`,
         method: "get",
       });
       console.log(data);
