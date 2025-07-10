@@ -24,6 +24,7 @@ import { useTranslation } from "react-i18next";
 import ProgressBar from "@/components/progressbar";
 import VideoBackgroundEmotion from "@/components/VideoBackgroundEmotion";
 import DialogAvatarUser from "@/components/dialog/avatar_user";
+import DialogAvatarCat from "@/components/dialog/avatar_cat";
 
 let timerHistory: NodeJS.Timeout | null | undefined = null;
 let stream_msgs: string[] = [];
@@ -43,6 +44,12 @@ const ChatView = () => {
   const [showChat, setShowChat] = useState(false);
   const [indexEmotion, setindexEmotion] = useState<null | number>(null);
   const [isMsgFocus, setisMsgFocus] = useState(false);
+  const [chatInfo, setchatInfo] = useState({
+    chatCount: null,
+    disposition: null,
+    farewellLetterStatus: null,
+    favorability: null,
+  });
 
   const [messageList, setmessageList] = useState<
     {
@@ -387,6 +394,9 @@ const ChatView = () => {
         method: "get",
       });
       console.log(data);
+      if (data) {
+        setchatInfo(data);
+      }
       if (data.hasOwnProperty("chatCount")) {
         setchatCount(String(data.chatCount));
       }
@@ -707,11 +717,27 @@ const ChatView = () => {
                                     }
                                   )}
                                 >
-                                  <img
-                                    className="rounded-full dmr25 robotAvator"
-                                    src="/img/avataCat.min.png"
-                                    alt=""
-                                  />
+                                  {chatInfo.disposition != null &&
+                                  chatInfo.disposition > 0 ? (
+                                    <DialogAvatarCat
+                                      indexXingGe={chatInfo.disposition}
+                                      catName={userData?.meowname}
+                                      trigger={
+                                        <img
+                                          className="rounded-full dmr25 robotAvator click"
+                                          src="/img/avataCat.min.png"
+                                          alt=""
+                                        />
+                                      }
+                                    ></DialogAvatarCat>
+                                  ) : (
+                                    <img
+                                      className="rounded-full dmr25 robotAvator"
+                                      src="/img/avataCat.min.png"
+                                      alt=""
+                                    />
+                                  )}
+
                                   <div className="receive bg-[rgba(32,_35,_42,_0.50)] flex justify-start items-start msgWrap">
                                     <div className="dmaxW460 lmdWfull">
                                       <div className="msgText line-clamp-[20] dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan break-words">
