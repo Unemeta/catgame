@@ -25,6 +25,7 @@ import ProgressBar from "@/components/progressbar";
 import VideoBackgroundEmotion from "@/components/VideoBackgroundEmotion";
 import DialogAvatarUser from "@/components/dialog/avatar_user";
 import DialogAvatarCat from "@/components/dialog/avatar_cat";
+import DialogLetter from "@/components/dialog/letter";
 
 let timerHistory: NodeJS.Timeout | null | undefined = null;
 let stream_msgs: string[] = [];
@@ -50,6 +51,7 @@ const ChatView = () => {
     farewellLetterStatus: null,
     favorability: null,
   });
+  const [showDialogLetter, setshowDialogLetter] = useState(false);
 
   const [messageList, setmessageList] = useState<
     {
@@ -499,7 +501,7 @@ const ChatView = () => {
           >
             <div className="headerBackpack flex justify-between items-center  px-[2rem] pt-[1rem] pb-[1rem]">
               <div className="">
-                {process.env.NEXT_PUBLIC_VERTICAL === "true" ? (
+                {/* {process.env.NEXT_PUBLIC_VERTICAL === "true" ? (
                   <div className=""></div>
                 ) : (
                   <div
@@ -517,7 +519,7 @@ const ChatView = () => {
                       Back
                     </span>
                   </div>
-                )}
+                )} */}
                 <div
                   className="pl-0 pr-[0.8rem] h-[2.2rem] flex justify-start items-center rounded-[10rem] border-[#ce8c82b3] border-[1px] bg-[#352e2b66] shadow-[0px_3px_5px_0px_rgba(0,0,0,0.25);]"
                   onClick={() => {
@@ -576,11 +578,19 @@ const ChatView = () => {
             </div> */}
               <div className="flex justify-end items-center">
                 {/* 1 没发送 2 发送未读 3 发送已读 */}
-                {(farewellLetterStatus == "2" ||
-                  farewellLetterStatus == "3") && (
+                {
                   <div
                     className="relative"
-                    onClick={() => router.push(`/letter?id=${userData?.uuid}`)}
+                    onClick={() => {
+                      if (
+                        farewellLetterStatus == "2" ||
+                        farewellLetterStatus == "3"
+                      ) {
+                        router.push(`/letter?id=${userData?.uuid}`);
+                      } else {
+                        setshowDialogLetter(!showDialogLetter);
+                      }
+                    }}
                   >
                     <div className="w-[0.8rem] h-[0.8rem] bg-[#E95658] absolute right-0 top-[-0.1rem] rounded-full"></div>
                     <img
@@ -590,7 +600,7 @@ const ChatView = () => {
                       alt=""
                     />
                   </div>
-                )}
+                }
 
                 <div className="w-[0.6rem]"></div>
                 <DialogCheckIn
@@ -888,6 +898,11 @@ const ChatView = () => {
               show={showExchange}
               setShow={setshowExchange}
             ></DialogExchange>
+            <DialogLetter
+              cb={() => {}}
+              show={showDialogLetter}
+              setShow={setshowDialogLetter}
+            ></DialogLetter>
             <VideoBackgroundChat />
             {indexEmotion != null && (
               <VideoBackgroundEmotion
