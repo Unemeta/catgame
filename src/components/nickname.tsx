@@ -19,7 +19,7 @@ const NickName = ({ onClick }: iAnswerView) => {
 
   const getNickName = async () => {
     const res = await request({
-      url: "/api/cat/v1/survey/nicknames",
+      url: "/api/survey/nicknames",
       method: "get",
     });
     const { names } = res.data;

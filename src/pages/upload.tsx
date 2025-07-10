@@ -28,7 +28,7 @@ const UploadView = () => {
     formDataToken.append("file", file);
     try {
       const result: any = await request({
-        url: "/api/cat/v1/user/avatar",
+        url: "/api/user/avatar",
         method: "post",
         data: formDataToken,
       });

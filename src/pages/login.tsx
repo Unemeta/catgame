@@ -25,7 +25,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
 
   const getStep = async () => {
     const res = await request({
-      url: "/api/cat/v1/survey/survey/step",
+      url: "/api/survey/survey/step",
       method: "get",
     });
     const { step } = res.data;
@@ -53,7 +53,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
       }
       try {
         const res = await request({
-          url: "/api/cat/v1/user/login",
+          url: "/api/user/login",
           method: "post",
           data: {
             username: account,
@@ -103,7 +103,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
             }
             try {
               const { data } = await request({
-                url: `/api/cat/v1/user/language/set?language=${languageNum}`,
+                url: `/api/user/language/set?language=${languageNum}`,
                 method: "get",
               });
               console.log(data);

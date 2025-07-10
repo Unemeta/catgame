@@ -34,7 +34,7 @@ const LetterView = () => {
       console.log(router.query);
       try {
         const { data } = await request({
-          url: `/api/cat/v1/chat/farewellletter/info?uuid=${uuid}`,
+          url: `/api/chat/farewellletter/info?uuid=${uuid}`,
           method: "get",
         });
         if (data) {

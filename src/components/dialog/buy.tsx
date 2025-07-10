@@ -40,7 +40,7 @@ const DialogBuy = ({
           return false;
         }
         const { data } = await request({
-          url: "/api/cat/v1/shop/goods",
+          url: "/api/shop/goods",
           method: "post",
           data: {
             id,
