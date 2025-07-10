@@ -279,7 +279,9 @@ const ChatView = () => {
       }
     } else {
       console.log("sk null");
-      toast.info("Connection lost. Please check your network or try again later.");
+      toast.info(
+        "Connection lost. Please check your network or try again later."
+      );
       settoConnect((pre) => !pre);
     }
   };
@@ -564,7 +566,7 @@ const ChatView = () => {
             </div> */}
               <div className="flex justify-end items-center">
                 {/* 1 没发送 2 发送未读 3 发送已读 */}
-                {(farewellLetterStatus == "2" || 
+                {(farewellLetterStatus == "2" ||
                   farewellLetterStatus == "3") && (
                   <div
                     className="relative"
@@ -665,7 +667,8 @@ const ChatView = () => {
                             trigger={
                               <img
                                 className=" rounded-full  userAvator"
-                                src={userData?.avatar ?? "/img/avataUser.min.png"}
+                                // src={userData?.avatar ?? "/img/avataUser.min.png"}
+                                src={"/img/avataUser.min.png"}
                                 alt=""
                               />
                             }

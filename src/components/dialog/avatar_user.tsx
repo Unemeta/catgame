@@ -50,7 +50,8 @@ const DialogAvatarUser = ({ trigger }: iDialogSetting) => {
               >
                 <div className="w-[9.2rem] h-[9.2rem] bg-[url('/img/bg_avatar.png')] bg-cover">
                   <img
-                    src={userData?.avatar ?? "/img/avataUser.min.png"}
+                    // src={userData?.avatar ?? "/img/avataUser.min.png"}
+                    src={"/img/avataUser.min.png"}
                     alt=""
                   />
                 </div>
