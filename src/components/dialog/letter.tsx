@@ -10,7 +10,6 @@ interface iDialogExchange {
   trigger?: ReactNode;
 }
 const DialogLetter = ({ show, setShow }: iDialogExchange) => {
- 
   return (
     <Dialog
       open={show}
@@ -26,8 +25,10 @@ const DialogLetter = ({ show, setShow }: iDialogExchange) => {
             <div className="text-[#E96959] text-[1.8rem] font-[800] mb-[1.6rem]">
               Countdown X days
             </div>
-            <div className="text-[#826662] text-[1.4rem] font-[500] leading-[1.1]">
-              📬 I have something on my mind that I want to tell you slowly...
+            <div
+              className="text-[#826662] text-[1.4rem] font-[500] leading-[1.1]"
+              dangerouslySetInnerHTML={{
+                __html: ` 📬 I have something on my mind that I want to tell you slowly...
               Don't turn it off in a hurry, I am secretly recording every bit of
               interaction with you every day✍ <br />
               <br />
@@ -42,8 +43,9 @@ const DialogLetter = ({ show, setShow }: iDialogExchange) => {
               3. Join the{" "}
               <span className="text-[#E96959] font-[700]">discord</span>{" "}
               community and complete the questionnaire, then you will have a
-              chance to get a mysterious reward
-            </div>
+              chance to get a mysterious reward`,
+              }}
+            ></div>
             <div className="flex flex-col justify-center items-center">
               <Discord
                 text="Join in Discord"
