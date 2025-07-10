@@ -20,15 +20,15 @@ const DialogLetter = ({ show, setShow }: iDialogExchange) => {
     >
       <DialogContent className="p-0 h-auto w-[83vw]">
         <DialogTitle></DialogTitle>
-        <div className="bg-[url('/img/bg/bg_letter_dialog.png')] h-[48rem] bg-100100 p-[2.5rem] relative  rounded-[3rem]  shadow-[0px_4px_20px_0px_rgba(0,0,0,0.55)] border-[#FFFFF7] border-[0.2rem]">
+        <div className="bg-[url('/img/bg/bg_letter_dialog.png')] h-[48rem] bg-100100 py-[2.2rem] px-[2.5rem] relative  rounded-[3rem]  shadow-[0px_4px_20px_0px_rgba(0,0,0,0.55)] border-[#FFFFF7] border-[0.2rem]">
           <div className=" inline-flex flex-col justify-start items-center overflow-hidden w-full">
-            <div className="text-[#E96959] text-[1.8rem] font-[800] mb-[1.6rem]">
+            <div className="text-[#E96959] text-[1.8rem] font-[800] mb-[1.2rem]">
               Countdown X days
             </div>
             <div
               className="text-[#826662] text-[1.4rem] font-[500] leading-[1.1]"
               dangerouslySetInnerHTML={{
-                __html: ` 📬 I have something on my mind that I want to tell you slowly...
+                __html: ` <div className="">📬 I have something on my mind that I want to tell you slowly...
               Don't turn it off in a hurry, I am secretly recording every bit of
               interaction with you every day✍ <br />
               <br />
@@ -40,13 +40,14 @@ const DialogLetter = ({ show, setShow }: iDialogExchange) => {
               leave your footprints. Exclusive identity, mysterious rewards, and
               super cute emojis are waiting for you to take away! <br />
               <br />
-              3. Join the{" "}
-              <span className="text-[#E96959] font-[700]">discord</span>{" "}
+              3. Join the <span style="color: #E96959; font-weight: 700;">discord</span>
               community and complete the questionnaire, then you will have a
-              chance to get a mysterious reward`,
+              chance to get a mysterious reward</div>`,
               }}
             ></div>
-            <div className="flex flex-col justify-center items-center">
+            <div className=""></div>
+
+            <div className="flex flex-col justify-center items-center mt-[1.3rem]">
               <Discord
                 text="Join in Discord"
                 textColor="text-[#6E6E6E]"
