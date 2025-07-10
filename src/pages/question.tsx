@@ -29,7 +29,7 @@ const PartyView = () => {
       }
       setisLoading(true);
       const res = await request({
-        url: "/api/cat/v1/survey/survey/mbti",
+        url: "/api/survey/survey/mbti",
         method: "post",
         data: {
           ei: selectIndexs[0],

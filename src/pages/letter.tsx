@@ -7,10 +7,12 @@ import { useRouter } from "next/router";
 import { useEffect, useState, useRef } from "react";
 import ScreenshotDownloader from "@/components/ScreenshotDownloader";
 import Discord from "@/components/Discord";
+import { useQRCode } from "next-qrcode";
 
 const LetterView = () => {
   const contentRef = useRef(null);
   const [showDownLoad, setShowDownLoad] = useState(true);
+  const { Canvas } = useQRCode();
   const router = useRouter();
   const handleShare = async () => {
     console.log("share");
@@ -32,7 +34,7 @@ const LetterView = () => {
       console.log(router.query);
       try {
         const { data } = await request({
-          url: `/api/cat/v1/chat/farewellletter/info?uuid=${uuid}`,
+          url: `/api/chat/farewellletter/info?uuid=${uuid}`,
           method: "get",
         });
         if (data) {
@@ -189,7 +191,7 @@ const LetterView = () => {
             You teach it to understand the world, it teaches you to understand
             yourself
           </div>
-          <img src="/img/tqrcode.png" alt="" className="w-[5.5rem]" />
+          <Canvas text={window.location.host}></Canvas>
         </div>
       )}
     </div>

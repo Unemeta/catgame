@@ -5,7 +5,7 @@ import { request } from "@/utils/request";
 /** 获取用户信息 */
 export function getUserInfo() {
     return request({
-        url: "/api/cat/v1/user/info",
+        url: "/api/user/info",
         method: "post",
     });
 }
@@ -40,7 +40,7 @@ export enum eventType {
 }
 export function eventRecord(id: number, type: number, videoInfo?: string) {
     return request({
-        url: "/api/cat/v1/chat/event/record",
+        url: "/api/chat/event/record",
         method: "post",
         data: {
             eventId: id,

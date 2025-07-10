@@ -20,7 +20,7 @@ const InfoView = () => {
   const router = useRouter();
   const postInfo = async () => {
     const res = await request({
-      url: "/api/cat/v1/survey/survey/basic",
+      url: "/api/survey/survey/basic",
       method: "post",
       data: {
         ...basicInfo,
@@ -30,7 +30,7 @@ const InfoView = () => {
   };
   const getStep = async () => {
     const res = await request({
-      url: "/api/cat/v1/survey/survey/step",
+      url: "/api/survey/survey/step",
       method: "get",
     });
     const { step } = res.data;

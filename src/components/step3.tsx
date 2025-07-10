@@ -160,7 +160,7 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
                   return;
                 }
                 const { data } = await request({
-                  url: `/api/cat/v1/user/meow/name`,
+                  url: `/api/user/meow/name`,
                   method: "post",
                   data: {
                     name: inputMsg,
