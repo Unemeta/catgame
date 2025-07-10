@@ -279,6 +279,7 @@ const ChatView = () => {
       }
     } else {
       console.log("sk null");
+      toast.info("Connection lost. Please check your network or try again later.");
       settoConnect((pre) => !pre);
     }
   };
