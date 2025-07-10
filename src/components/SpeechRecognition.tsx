@@ -43,7 +43,7 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
   // const [y, setY] = useState(0);
 
   const longPressTimer = useRef<any>(null);
-  const [isLongPress, setIsLongPress] = useState(false);
+  const [, setIsLongPress] = useState(false);
 
   const [touchStartY, setTouchStartY] = useState<number>(0);
   const [messageContent, setMessage] = useState("");
@@ -596,7 +596,7 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
       wsRef.current.onclose = null;
       wsRef.current.close();
       wsRef.current = null;
-      cancelText()
+      cancelText();
     }
   };
 
