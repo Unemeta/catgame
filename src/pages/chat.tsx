@@ -53,7 +53,7 @@ const ChatView = () => {
     favorability: null,
   });
   const [showDialogLetter, setshowDialogLetter] = useState(false);
-
+  const [hasSetMessage, sethasSetMessage] = useState(false);
   const [messageList, setmessageList] = useState<
     {
       chatId: string;
@@ -223,6 +223,7 @@ const ChatView = () => {
               }
               return tempMsgs;
             });
+            sethasSetMessage(true);
           }
         } else if (msgRes?.type == "stream_end") {
           // stream_msgs = [];
@@ -265,17 +266,6 @@ const ChatView = () => {
   }, [messageList]);
 
   const sendMessage = () => {
-    const bool = false;
-    if (bool) {
-      //第一次
-      globalApi.eventRecord(`focus_chat_1`);
-      globalApi.eventRecord(`send_mes_1`);
-
-      // 第二次
-      globalApi.eventRecord(`focus_chat_2`);
-      globalApi.eventRecord(`send_mes_2`);
-    }
-
     if (Number(chatCount) >= 20) {
       // toast.info("Insufficient ability to send message, buy more chat opportunities");
       setshowExchange(true);
@@ -283,6 +273,24 @@ const ChatView = () => {
     }
     if (socket) {
       if (inputMsg.trim().length > 0) {
+        //第一次
+        if (
+          hasSetMessage &&
+          messageList.filter((item) => item.role == "user")?.length === 0
+        ) {
+          globalApi.eventRecord(`send_mes_1`);
+          console.log("send_mes_1");
+        }
+        // 第二次
+        globalApi.eventRecord(`send_mes_2`);
+        if (
+          hasSetMessage &&
+          messageList.filter((item) => item.role == "user")?.length === 1
+        ) {
+          globalApi.eventRecord(`send_mes_2`);
+          console.log("send_mes_2");
+        }
+
         inputRef.current?.blur();
         setmessageList((preMsgList: any) => {
           const chatId = `${new Date().getTime()}-${userData?.nickname}`;
@@ -299,6 +307,7 @@ const ChatView = () => {
           ];
         });
         setinputMsg("");
+        sethasSetMessage(true);
         socket?.send(inputMsg);
         setshowCatLoading(true);
       } else {
@@ -400,6 +409,7 @@ const ChatView = () => {
         //   new Set(resArr.map((message) => message.msgId))
         // ).map((msgId) => resArr.find((message) => message.msgId === msgId));
         setmessageList(splitedArr);
+        sethasSetMessage(true);
       }
     } catch (error: any) {
       console.error(error);
@@ -875,6 +885,22 @@ const ChatView = () => {
                         }}
                         onFocus={() => {
                           setisMsgFocus(true);
+                          if (
+                            hasSetMessage &&
+                            messageList.filter((item) => item.role == "user")
+                              ?.length === 0
+                          ) {
+                            console.log("focus_chat_1");
+                            globalApi.eventRecord(`focus_chat_1`);
+                          }
+                          if (
+                            hasSetMessage &&
+                            messageList.filter((item) => item.role == "user")
+                              ?.length === 1
+                          ) {
+                            console.log("focus_chat_2");
+                            globalApi.eventRecord(`focus_chat_2`);
+                          }
                         }}
                         onBlur={handleBlur}
                         value={inputMsg}
