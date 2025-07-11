@@ -73,7 +73,7 @@ export default function VideoBackgroundEmotion({
         alt=""
       /> */}
       <video
-        muted
+        // muted
         playsInline
         ref={videoRef}
         src={videos[indexVideo]}
