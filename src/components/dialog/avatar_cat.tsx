@@ -3,7 +3,6 @@
 import { ReactNode, useState } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from ".";
 import { useTranslation } from "react-i18next";
-import IconView from "../IconView";
 
 interface iDialogSetting {
   trigger?: ReactNode;
