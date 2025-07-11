@@ -113,10 +113,10 @@ const DialogAvatarCat = ({ trigger, indexXingGe, catName }: iDialogSetting) => {
                       className="border-[1px] focus:outline-none! border-[#E96856] rounded-full bg-white w-[21rem] h-[4rem] text-[#EA8273] text-[2rem] font-[700] px-[2rem] pr-[3.6rem] text-center"
                       type="text"
                     />
-                    <IconView
+                    {/* <IconView
                       className="w-[1.5rem] h-[1.5rem] absolute right-[1.8rem] top-[1.2rem]"
                       type="eduitCatName"
-                    ></IconView>
+                    ></IconView> */}
                   </div>
                 </div>
                 {indexXingGe != null && (
