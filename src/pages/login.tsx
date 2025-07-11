@@ -11,7 +11,7 @@ import { useFetchUser } from "@/store";
 import { useTranslation } from "react-i18next";
 import * as globalApi from "@/services/global";
 // import { debounce } from "lodash";
-import useDebouncelog from '@/hook/useDebounceLog'
+// import useDebouncelog from '@/hook/useDebounceLog'
 // import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 
 interface ProgressLoaderProps {
@@ -26,7 +26,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
   const [invalid, setInvalid] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   // 延迟埋点
-  const debouncedlog = useDebouncelog("account_input");
+  // const debouncedlog = useDebouncelog("account_input");
   // const debouncedSearch = useRef(
   //   debounce(() => {
   //     console.log("执行埋点:");
@@ -134,8 +134,8 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
     }
   };
   const handleKeyDown = (event: { key: string }) => {
-    console.log(event.key);
-    debouncedlog()
+    // console.log(event.key);
+    // debouncedlog()
     if (event?.key === "Enter") {
       login();
     }
