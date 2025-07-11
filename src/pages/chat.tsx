@@ -265,14 +265,14 @@ const ChatView = () => {
     scrollToBottom();
   }, [messageList]);
 
-  const sendMessage = () => {
+  const sendMesCommon = (text: string) => {
     if (Number(chatCount) >= 20) {
       // toast.info("Insufficient ability to send message, buy more chat opportunities");
       setshowExchange(true);
       return;
     }
     if (socket) {
-      if (inputMsg.trim().length > 0) {
+      if (text.trim().length > 0) {
         //第一次
         if (
           hasSetMessage &&
@@ -321,41 +321,10 @@ const ChatView = () => {
       settoConnect((pre) => !pre);
     }
   };
-
-  const sendMessageByVoice = (text: string) => {
-    if (Number(chatCount) >= 20) {
-      // toast.info("Insufficient ability to send message, buy more chat opportunities");
-      setshowExchange(true);
-      return;
-    }
-    try {
-      if (socket) {
-        if (text?.length > 0) {
-          setmessageList((preMsgList: any) => {
-            const chatId = `${new Date().getTime()}-${userData?.nickname}`;
-            return [
-              ...preMsgList,
-              {
-                chatId: chatId,
-                msgId: chatId,
-                message: text,
-                role: "user",
-                time: Math.floor(new Date().getTime() / 1000),
-              },
-            ];
-          });
-          socket?.send(text);
-        } else {
-          toast.info("Please enter msg");
-        }
-      } else {
-        console.log("sk null");
-        settoConnect((pre) => !pre);
-      }
-    } catch (error) {
-      console.log(error);
-    }
+  const sendMessage = () => {
+    sendMesCommon(inputMsg);
   };
+
   const handleKeyDown = (event: any) => {
     if (event?.key === "Enter") {
       if (inputMsg.length > 0) {
@@ -829,7 +798,7 @@ const ChatView = () => {
                 {showVoice ? (
                   <SpeechRecognition
                     language="zh_cn"
-                    onSend={(text) => sendMessageByVoice(text)}
+                    onSend={(text) => sendMesCommon(text)}
                   ></SpeechRecognition>
                 ) : (
                   <div className="textInput flex justify-center items-center sendSpeakerWrap relative">
