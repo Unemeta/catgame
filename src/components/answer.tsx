@@ -2,7 +2,7 @@
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-
+import * as globalApi from "@/services/global";
 interface iAnswerView {
   onClick: (selectIndexs: number[]) => void;
 }
@@ -183,6 +183,8 @@ const AnswerView = ({ onClick }: iAnswerView) => {
                 onClick(selectIndexQuestionArr);
               } else {
                 setstepAnswerIndex((stepAnswerIndex) => stepAnswerIndex + 1);
+                // 问卷埋点
+                globalApi.eventRecord(`q${stepAnswerIndex + 1}_click`);
               }
             }}
           />

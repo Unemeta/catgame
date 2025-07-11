@@ -9,6 +9,7 @@ import LottieView from "@/components/lottie";
 import { FadeComponent } from "@/components/FadeComponent";
 import { useTranslation } from "react-i18next";
 import { useUserData } from "@/store/user";
+import * as globalApi from "@/services/global";
 
 interface iDialogCheckIn {
   trigger?: ReactNode;
@@ -309,7 +310,12 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
             </div>
 
             <div className="flex absolute top-[2rem] right-[2.5rem] translate-x-[100%] translate-y-[-80%]">
-              <DialogTrigger className="outline-none">
+              <DialogTrigger
+                className="outline-none"
+                onClick={() => {
+                  globalApi.eventRecord("reward_close");
+                }}
+              >
                 <div className="flex justify-center items-center cursor-pointer select-none">
                   <img
                     className="w-[4rem] h-auto"

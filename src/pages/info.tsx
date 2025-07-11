@@ -12,6 +12,7 @@ import { useRouter } from "next/router";
 
 // import DialogCheckIn from "@/components/dialog/checkIn";
 // import DialogExchange from "@/components/dialog/exchange";
+import * as globalApi from "@/services/global";
 
 const InfoView = () => {
   const [stepIndex, setstepIndex] = useState(0);
@@ -56,69 +57,71 @@ const InfoView = () => {
         "w-full absolute inset-0 z-[2] px-[2rem] bg-[url('/img/infoback.jpg')] bg-cover overflow-scroll wrapHeight"
       )}
     >
-        <>
-          <div className="h-[3vh]"></div>
-          <div className="w-full inline-flex justify-start items-center gap-1 space-x-[0.4rem]">
-            <div
-              className={cn("flex-1 h-[1.1vh] bg-red-300 rounded-[3rem]", {
-                "bg-red-300": stepIndex === 0,
-                "bg-red-300/20": stepIndex !== 0,
-              })}
-              onClick={() => {
-                setstepIndex(0);
-              }}
-            />
-            <div
-              className={cn("flex-1 h-[1.1vh] rounded-[3rem]", {
-                "bg-red-300": stepIndex === 1,
-                "bg-red-300/20": stepIndex !== 1,
-              })}
-              onClick={() => {
-                if (basicInfo.nickname) {
-                  setstepIndex(1);
-                }
-              }}
-            />
-            <div
-              className={cn("flex-1 h-[1.1vh] rounded-[3rem]", {
-                "bg-red-300": stepIndex === 2,
-                "bg-red-300/20": stepIndex !== 2,
-              })}
-              onClick={() => {
-                if (basicInfo.age) {
-                  setstepIndex(2);
-                }
-              }}
-            />
-          </div>
-          {stepIndex === 0 && (
-            <Gender
-              onClick={() => {
+      <>
+        <div className="h-[3vh]"></div>
+        <div className="w-full inline-flex justify-start items-center gap-1 space-x-[0.4rem]">
+          <div
+            className={cn("flex-1 h-[1.1vh] bg-red-300 rounded-[3rem]", {
+              "bg-red-300": stepIndex === 0,
+              "bg-red-300/20": stepIndex !== 0,
+            })}
+            onClick={() => {
+              setstepIndex(0);
+            }}
+          />
+          <div
+            className={cn("flex-1 h-[1.1vh] rounded-[3rem]", {
+              "bg-red-300": stepIndex === 1,
+              "bg-red-300/20": stepIndex !== 1,
+            })}
+            onClick={() => {
+              if (basicInfo.nickname) {
                 setstepIndex(1);
-              }}
-            ></Gender>
-          )}
-          {stepIndex === 1 && (
-            <NickName
-              onClick={() => {
+              }
+            }}
+          />
+          <div
+            className={cn("flex-1 h-[1.1vh] rounded-[3rem]", {
+              "bg-red-300": stepIndex === 2,
+              "bg-red-300/20": stepIndex !== 2,
+            })}
+            onClick={() => {
+              if (basicInfo.age) {
                 setstepIndex(2);
-              }}
-            ></NickName>
-          )}
-          {stepIndex === 2 && (
-            <Age
-              onClick={async () => {
-                try {
-                  await postInfo();
-                } catch (error) {
-                  console.log(error);
-                }
-                router.push("/question");
-              }}
-            ></Age>
-          )}
-        </>
-      
+              }
+            }}
+          />
+        </div>
+        {stepIndex === 0 && (
+          <Gender
+            onClick={() => {
+              setstepIndex(1);
+              globalApi.eventRecord("gender_click");
+            }}
+          ></Gender>
+        )}
+        {stepIndex === 1 && (
+          <NickName
+            onClick={() => {
+              setstepIndex(2);
+              globalApi.eventRecord("nickname_click");
+            }}
+          ></NickName>
+        )}
+        {stepIndex === 2 && (
+          <Age
+            onClick={async () => {
+              try {
+                await postInfo();
+                globalApi.eventRecord("age_click");
+              } catch (error) {
+                console.log(error);
+              }
+              router.push("/question");
+            }}
+          ></Age>
+        )}
+      </>
     </div>
   );
 };

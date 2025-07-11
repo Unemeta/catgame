@@ -24,6 +24,7 @@ import { useTranslation } from "react-i18next";
 import ProgressBar from "@/components/progressbar";
 import VideoBackgroundEmotion from "@/components/VideoBackgroundEmotion";
 import DialogAvatarUser from "@/components/dialog/avatar_user";
+import * as globalApi from "@/services/global";
 
 let timerHistory: NodeJS.Timeout | null | undefined = null;
 let stream_msgs: string[] = [];
@@ -249,6 +250,17 @@ const ChatView = () => {
   }, [messageList]);
 
   const sendMessage = () => {
+    const bool = false;
+    if (bool) {
+      //第一次
+      globalApi.eventRecord(`focus_chat_1`);
+      globalApi.eventRecord(`send_mes_1`);
+
+      // 第二次
+      globalApi.eventRecord(`focus_chat_2`);
+      globalApi.eventRecord(`send_mes_2`);
+    }
+
     if (Number(chatCount) >= 20) {
       // toast.info("Insufficient ability to send message, buy more chat opportunities");
       setshowExchange(true);
@@ -563,11 +575,14 @@ const ChatView = () => {
             </div> */}
               <div className="flex justify-end items-center">
                 {/* 1 没发送 2 发送未读 3 发送已读 */}
-                {(farewellLetterStatus == "2" || 
+                {(farewellLetterStatus == "2" ||
                   farewellLetterStatus == "3") && (
                   <div
                     className="relative"
-                    onClick={() => router.push(`/letter?id=${userData?.uuid}`)}
+                    onClick={() => {
+                      globalApi.eventRecord("click_letter_icon");
+                      router.push(`/letter?id=${userData?.uuid}`);
+                    }}
                   >
                     <div className="w-[0.8rem] h-[0.8rem] bg-[#E95658] absolute right-0 top-[-0.1rem] rounded-full"></div>
                     <img
@@ -664,7 +679,9 @@ const ChatView = () => {
                             trigger={
                               <img
                                 className=" rounded-full  userAvator"
-                                src={userData?.avatar ?? "/img/avataUser.min.png"}
+                                src={
+                                  userData?.avatar ?? "/img/avataUser.min.png"
+                                }
                                 alt=""
                               />
                             }

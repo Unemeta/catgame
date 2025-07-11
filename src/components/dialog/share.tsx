@@ -5,6 +5,8 @@ import { Dialog, DialogContent, DialogTitle, DialogTrigger } from ".";
 import { toast } from "react-toastify";
 import IconView from "../IconView";
 import { shareUtil } from "@/lib/utils";
+import * as globalApi from "@/services/global";
+
 interface iDialogShare {
   trigger?: ReactNode;
   // isOpen: boolean;
@@ -45,6 +47,9 @@ const DialogShare = ({ trigger }: iDialogShare) => {
       open={isOpen}
       onOpenChange={(val) => {
         setisOpen(val);
+        if (val) {
+          globalApi.eventRecord("share_popup_show");
+        }
       }}
     >
       <DialogTrigger>{trigger}</DialogTrigger>

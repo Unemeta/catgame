@@ -5,6 +5,7 @@ import { request } from "@/utils/request";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import * as globalApi from "@/services/global";
 
 interface iStep3View {
   index: number;
@@ -167,7 +168,9 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
                   },
                 });
                 console.log(data);
+
                 router.push("/chat");
+                globalApi.eventRecord("meetcat_click");
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
               } catch (error: any) {
                 console.error(error);
@@ -175,7 +178,6 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
               }
             }}
           >
-            
             {t("qa.Meet your cat")}
           </span>
           <svg

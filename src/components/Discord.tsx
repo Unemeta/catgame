@@ -1,7 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
+import * as globalApi from "@/services/global";
 
 export default function Discord() {
   const handleDiscord = async () => {
+    globalApi.eventRecord("click_discord_link");
     window.open("https://discord.com/invite/YzztkC6ENe", "_blank");
   };
   return (
