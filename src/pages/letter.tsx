@@ -140,8 +140,8 @@ const LetterView = () => {
       {/* <div className="h-[1.5rem]"></div> */}
       <div className="px-[0rem]">
         <div
-          className=" bg-[url('/img/bg_letter.min.png')] "
-          style={{ backgroundSize: "100% auto" }}
+          className=" bg-[url('/img/bg_letter.min.png')] min-h-[70rem]"
+          style={{ backgroundSize: "100% 100%" }}
         >
           <div className="px-[5.7rem] pt-[7.7rem] pb-[2.9rem]">
             <span className="text-[#6C4937] text-[1.4rem] font-[500] leading-[1.5]">
