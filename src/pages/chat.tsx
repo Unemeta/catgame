@@ -529,7 +529,7 @@ const ChatView = () => {
                   }}
                 >
                   <img
-                    className="w-[2.6rem] h-[2.6rem] ml-[-0.5rem] mr-[0.6rem]"
+                    className="w-[2.8rem] h-[2.8rem] ml-[-0.5rem] mr-[0.6rem]"
                     src="/svg/fish.svg"
                     alt=""
                   />
