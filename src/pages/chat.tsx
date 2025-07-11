@@ -124,6 +124,14 @@ const ChatView = () => {
     if (socket) {
       return;
     }
+    if (jwtHelper.getToken()) {
+      //
+    } else {
+      toast.error(
+        "login first"
+      );
+      return;
+    }
     const socketTemp = new WebSocket(
       `${process.env.NEXT_PUBLIC_WS_URL}?token=${jwtHelper.getToken()}`
     );
@@ -761,7 +769,7 @@ const ChatView = () => {
                                   {chatInfo.disposition != null &&
                                   chatInfo.disposition > 0 ? (
                                     <DialogAvatarCat
-                                      indexXingGe={chatInfo.disposition}
+                                      indexXingGe={chatInfo.disposition-1}
                                       catName={userData?.meowname}
                                       trigger={
                                         <img
