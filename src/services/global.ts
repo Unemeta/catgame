@@ -16,7 +16,7 @@ export function eventRecord(event_type: string, event_comment?: string) {
         method: "post",
         data: {
             event_type,
-            event_comment
+            event_comment: event_comment || ''
         }
     });
 }
