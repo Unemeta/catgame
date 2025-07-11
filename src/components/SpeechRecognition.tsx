@@ -596,7 +596,6 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
       wsRef.current.onclose = null;
       wsRef.current.close();
       wsRef.current = null;
-      cancelText();
     }
   };
 

@@ -308,7 +308,7 @@ const ChatView = () => {
             {
               chatId: chatId,
               msgId: chatId,
-              message: inputMsg,
+              message: text,
               role: "user",
               time: Math.floor(new Date().getTime() / 1000),
             },
@@ -316,7 +316,7 @@ const ChatView = () => {
         });
         setinputMsg("");
         sethasSetMessage(true);
-        socket?.send(inputMsg);
+        socket?.send(text);
         setshowCatLoading(true);
       } else {
         toast.info("Please enter msg");
