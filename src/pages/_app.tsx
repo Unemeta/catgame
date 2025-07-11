@@ -10,6 +10,7 @@ import "../i18n/configs";
 import { useTranslation } from "react-i18next";
 import "animate.css/animate.min.css"; // 引入压缩版CSS
 import { useFetchUser } from "@/store";
+import { jwtHelper } from "@/utils/jwt";
 
 // import Router from "next/router";
 // import NProgress from "nprogress";
@@ -65,7 +66,13 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   const { fetchUser } = useFetchUser();
   useEffect(() => {
-    fetchUser();
+    (async () => {
+      setTimeout(() => {
+        if (jwtHelper.getToken()) {
+          fetchUser();
+        }
+      }, 500);
+    })();
   }, []);
 
   return (
