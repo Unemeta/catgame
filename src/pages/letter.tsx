@@ -8,13 +8,16 @@ import { useEffect, useState, useRef } from "react";
 import ScreenshotDownloader from "@/components/ScreenshotDownloader";
 import Discord from "@/components/Discord";
 import { useQRCode } from "next-qrcode";
+import * as globalApi from "@/services/global";
 
 const LetterView = () => {
   const contentRef = useRef(null);
   const [showDownLoad, setShowDownLoad] = useState(true);
   const { Canvas } = useQRCode();
   const router = useRouter();
+
   const handleShare = async () => {
+    globalApi.eventRecord("share_entry_click");
     console.log("share");
   };
 

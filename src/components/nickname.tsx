@@ -8,6 +8,7 @@ import { useUserBasicInfo } from "@/store/info";
 import { request } from "@/utils/request";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
+import useDebouncelog from '@/hook/useDebounceLog'
 
 const NickName = ({ onClick }: iAnswerView) => {
   const inputref = useRef<HTMLInputElement>(null);
@@ -16,6 +17,7 @@ const NickName = ({ onClick }: iAnswerView) => {
   const [namelist, setNameList] = useState<any[]>([]);
   const nameIndex = useRef(0);
   const { t } = useTranslation();
+    const debouncedlog = useDebouncelog("nickname_input");
 
   const getNickName = async () => {
     const res = await request({
@@ -97,6 +99,7 @@ const NickName = ({ onClick }: iAnswerView) => {
               placeholder={t("info.eynickname")}
               value={basicInfo.nickname}
               onChange={(e) => {
+                debouncedlog()
                 setBasicInfo({ ...basicInfo, nickname: e.target.value });
               }}
               ref={inputref}

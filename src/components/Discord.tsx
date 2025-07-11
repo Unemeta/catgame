@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import * as globalApi from "@/services/global";
 
 import { cn } from "@/lib/utils";
 
@@ -8,6 +9,7 @@ interface iDiscord {
 }
 export default function Discord({ text, textColor }: iDiscord) {
   const handleDiscord = async () => {
+    globalApi.eventRecord("click_discord_link");
     window.open("https://discord.com/invite/YzztkC6ENe", "_blank");
   };
   return (

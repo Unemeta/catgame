@@ -9,6 +9,9 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { useFetchUser } from "@/store";
 import { useTranslation } from "react-i18next";
+import * as globalApi from "@/services/global";
+// import { debounce } from "lodash";
+import useDebouncelog from '@/hook/useDebounceLog'
 // import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 
 interface ProgressLoaderProps {
@@ -22,6 +25,13 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
   const router = useRouter();
   const [invalid, setInvalid] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  // 延迟埋点
+  const debouncedlog = useDebouncelog("account_input");
+  // const debouncedSearch = useRef(
+  //   debounce(() => {
+  //     console.log("执行埋点:");
+  //   }, 3000) // 500ms 延迟
+  // ).current;
 
   const getStep = async () => {
     const res = await request({
@@ -63,6 +73,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
         await jwtHelper.setToken(res.data.accessToken, {
           expires: new Date(res.data.accessExpire * 1000),
         });
+        globalApi.eventRecord("account_login");
         // if (process.env.NEXT_PUBLIC_VERTICAL === "true") {
         //   getStep();
         // } else {
@@ -106,6 +117,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
                 url: `/api/user/language/set?language=${languageNum}`,
                 method: "get",
               });
+
               console.log(data);
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } catch (error: any) {
@@ -122,6 +134,8 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
     }
   };
   const handleKeyDown = (event: { key: string }) => {
+    console.log(event.key);
+    debouncedlog()
     if (event?.key === "Enter") {
       login();
     }
@@ -138,6 +152,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
       // 所以还是用标准的scrollIntoView
     }
   };
+
   return (
     <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-[#DE8D81]">
       <img src="/img/loginlogo.png" alt="" className="w-[9rem] h-[9rem]" />

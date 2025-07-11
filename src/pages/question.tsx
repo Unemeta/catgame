@@ -5,6 +5,7 @@ import { request } from "@/utils/request";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
+import * as globalApi from "@/services/global";
 
 /* eslint-disable @next/next/no-img-element */
 const PartyView = () => {
@@ -99,6 +100,7 @@ const PartyView = () => {
                   className="w-[10rem] h-[10rem]"
                   alt=""
                   onClick={() => {
+                    globalApi.eventRecord("soultest_click");
                     setstepIndex(1);
                   }}
                 />

@@ -26,6 +26,7 @@ import VideoBackgroundEmotion from "@/components/VideoBackgroundEmotion";
 import DialogAvatarUser from "@/components/dialog/avatar_user";
 import DialogAvatarCat from "@/components/dialog/avatar_cat";
 import DialogLetter from "@/components/dialog/letter";
+import * as globalApi from "@/services/global";
 
 let timerHistory: NodeJS.Timeout | null | undefined = null;
 let stream_msgs: string[] = [];
@@ -260,6 +261,17 @@ const ChatView = () => {
   }, [messageList]);
 
   const sendMessage = () => {
+    const bool = false;
+    if (bool) {
+      //第一次
+      globalApi.eventRecord(`focus_chat_1`);
+      globalApi.eventRecord(`send_mes_1`);
+
+      // 第二次
+      globalApi.eventRecord(`focus_chat_2`);
+      globalApi.eventRecord(`send_mes_2`);
+    }
+
     if (Number(chatCount) >= 20) {
       // toast.info("Insufficient ability to send message, buy more chat opportunities");
       setshowExchange(true);

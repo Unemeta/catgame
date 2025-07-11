@@ -6,6 +6,7 @@ interface iAnswerView {
 import { cn } from "@/lib/utils";
 import { useUserBasicInfo } from "@/store/info";
 import { useTranslation } from "react-i18next";
+import * as globalApi from "@/services/global";
 
 const oldList: number[] = [];
 for (let i = 16; i < 101; i++) {
@@ -35,6 +36,7 @@ const Age = ({ onClick }: iAnswerView) => {
                   }
                 )}
                 onClick={() => {
+                  globalApi.eventRecord("age_input");
                   setBasicInfo({ ...basicInfo, age: item });
                 }}
                 style={{

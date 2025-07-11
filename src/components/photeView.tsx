@@ -3,7 +3,6 @@ import { PhotoProvider, PhotoView } from "react-photo-view";
 // import { saveAs } from "file-saver";
 import * as globalApi from "@/services/global";
 import { downloadMedia } from "@/utils/save";
-const eventType = globalApi.eventType;
 interface iPhotoView {
   src: string;
   eventid: number;
@@ -13,12 +12,12 @@ const ImgView = ({ src, eventid }: iPhotoView) => {
     console.log("图片", src);
     // saveAs(src, "downloaded-image.jpg");
     downloadMedia(src, "downloaded-image.jpg");
-    globalApi.eventRecord(eventid, eventType.EventTypeSaveImage);
+    globalApi.eventRecord("img_download");
     console.log("图片已下载");
   };
   const handleZoomCb = () => {
     console.log("图片放大", eventid);
-    globalApi.eventRecord(eventid, eventType.EventTypeZoomIn);
+    globalApi.eventRecord("img_zoom");
   };
   return (
     <PhotoProvider
