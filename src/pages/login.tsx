@@ -53,6 +53,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
     }
   };
   const login = async () => {
+    const { from } = router.query;
     if (account) {
       const advancedEmailRegex =
         /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -67,7 +68,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
           method: "post",
           data: {
             username: account,
-            source: 1,
+            source: from || 1,
           },
         });
         await jwtHelper.setToken(res.data.accessToken, {
