@@ -13,12 +13,29 @@ const ImgView = ({ src, eventid, type }: iPhotoView) => {
     console.log("图片", src);
     // saveAs(src, "downloaded-image.jpg");
     downloadMedia(src, "downloaded-image.jpg");
-    globalApi.eventRecord("img_download");
+    if (type === "fixed_event") {
+      globalApi.eventRecord("fixed_save_img", src);
+    }
+    if (type === "ai_event") {
+      globalApi.eventRecord("ai_save_img", src);
+    }
+    if (type === "farewell_letter") {
+      globalApi.eventRecord("farewell_save_img", src);
+    }
     console.log("图片已下载");
   };
   const handleZoomCb = () => {
     console.log("图片放大", eventid);
-    globalApi.eventRecord("img_zoom");
+
+    if (type === "fixed_event") {
+      globalApi.eventRecord("fiexed_zoom_in", src);
+    }
+    if (type === "ai_event") {
+      globalApi.eventRecord("ai_zoom_in", src);
+    }
+    if (type === "farewell_letter") {
+      globalApi.eventRecord("farewell_zoom_in", src);
+    }
   };
   return (
     <PhotoProvider

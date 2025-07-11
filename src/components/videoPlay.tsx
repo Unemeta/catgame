@@ -44,7 +44,8 @@ const VideoPlayView = ({ msg_id, msg, eventid, type }: iVideoPlayView) => {
               (videoRef.current.currentTime / videoRef.current.duration) * 100 +
               "%",
           };
-          globalApi.eventRecord("video_exitfullscreen", JSON.stringify(info));
+          console.log(info);
+          // globalApi.eventRecord("video_exitfullscreen", JSON.stringify(info));
         }
       }
     };
@@ -62,7 +63,15 @@ const VideoPlayView = ({ msg_id, msg, eventid, type }: iVideoPlayView) => {
 
   const handlePlay = (id: string) => {
     console.log(`视频 ${id} 开始播放`);
-    globalApi.eventRecord("video_play");
+    if (type === "fixed_event") {
+      globalApi.eventRecord("fixed_play_video", msg);
+    }
+    if (type === "ai_event") {
+      globalApi.eventRecord("ai_play_video", msg);
+    }
+    if (type === "farewell_letter") {
+      globalApi.eventRecord("farewell_play_video", msg);
+    }
   };
 
   const handlePause = (id: string) => {
@@ -116,7 +125,16 @@ const VideoPlayView = ({ msg_id, msg, eventid, type }: iVideoPlayView) => {
     document.body.removeChild(link);
     // const linkdecode = decodeURIComponent(msg);
     // downloadMp4(linkdecode, "video.mp4");
-    globalApi.eventRecord("video_download");
+
+    if (type === "fixed_event") {
+      globalApi.eventRecord("fixed_save_video", msg);
+    }
+    if (type === "ai_event") {
+      globalApi.eventRecord("ai_save_video", msg);
+    }
+    if (type === "farewell_letter") {
+      globalApi.eventRecord("farewell_save_video", msg);
+    }
     console.log("下载视频");
   };
   // const handlePlayPause = () => {
