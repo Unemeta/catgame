@@ -12,7 +12,7 @@ export function getUserInfo() {
 
 export function eventRecord(event_type: string, event_comment?: string) {
     return request({
-        url: "/api/cat/v1/user/event",
+        url: "/api/user/event",
         method: "post",
         data: {
             event_type,
