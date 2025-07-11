@@ -417,7 +417,6 @@ const ChatView = () => {
     }
   };
   const [chatCount, setchatCount] = useState("");
-  const [farewellLetterStatus, setfarewellLetterStatus] = useState("");
   const getChatInfo = async () => {
     try {
       const { data } = await request({
@@ -430,9 +429,6 @@ const ChatView = () => {
       }
       if (data.hasOwnProperty("chatCount")) {
         setchatCount(String(data.chatCount));
-      }
-      if (data.hasOwnProperty("farewellLetterStatus")) {
-        setfarewellLetterStatus(String(data.farewellLetterStatus));
       }
     } catch (error: any) {
       console.error(error);
@@ -476,10 +472,15 @@ const ChatView = () => {
       url.toLocaleLowerCase().endsWith(extension)
     );
   }
-  const mediaSwitch = (msg: string, msgId: string, eventid: number) => {
+  const mediaSwitch = (
+    item: any,
+    msg: string,
+    msgId: string,
+    eventid: number
+  ) => {
     if (msg?.indexOf("http") > -1 || msg?.indexOf("https") > -1) {
       if (isImgEndUrl(msg)) {
-        return <ImgView src={msg} eventid={eventid} />;
+        return <ImgView src={msg} eventid={eventid} type={item?.type} />;
       }
       if (isVideoEndUrl(msg)) {
         return (
@@ -612,8 +613,8 @@ const ChatView = () => {
                     className="relative"
                     onClick={() => {
                       if (
-                        farewellLetterStatus == "2" ||
-                        farewellLetterStatus == "3"
+                        chatInfo?.farewellLetterStatus == 2 ||
+                        chatInfo?.farewellLetterStatus == 3
                       ) {
                         router.push(`/letter?id=${userData?.uuid}`);
                       } else {
@@ -781,6 +782,7 @@ const ChatView = () => {
                                     <div className="dmaxW460 lmdWfull">
                                       <div className="msgText line-clamp-[20] dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan break-words">
                                         {mediaSwitch(
+                                          item,
                                           itemSub,
                                           item?.msgId,
                                           item?.eventid

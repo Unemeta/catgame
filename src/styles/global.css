@@ -733,6 +733,15 @@ body {
 .bg-100100 {
   background-size: 100% 100%;
 }
+.PhotoView__PhotoBox {
+  display: flex;
+  justify-content: center;
+}
+.PhotoView__Photo {
+  width: 83% !important;
+  height: 43.4rem !important;
+  border-radius: 1.5rem !important;
+}
 @media screen and (max-width: 768px) {
   .wrapHeight {
     /* height: 87vh; */
