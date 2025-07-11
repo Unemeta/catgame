@@ -127,9 +127,7 @@ const ChatView = () => {
     if (jwtHelper.getToken()) {
       //
     } else {
-      toast.error(
-        "login first"
-      );
+      toast.error("login first");
       return;
     }
     const socketTemp = new WebSocket(
@@ -141,9 +139,6 @@ const ChatView = () => {
     socketTemp.onmessage = async (event) => {
       if (event?.type === "message" && event?.data !== "pong") {
         const msgRes = JSON.parse(event?.data);
-        if (msgRes?.type === "text") {
-          setchatCount(String(msgRes.chatCount));
-        }
         if (
           msgRes.hasOwnProperty("message") &&
           msgRes["message"] != "Msg received"
@@ -234,15 +229,14 @@ const ChatView = () => {
             sethasSetMessage(true);
           }
         } else if (msgRes?.type == "stream_end") {
+          if (msgRes.hasOwnProperty("chatCount")) {
+            setchatCount(String(msgRes.chatCount));
+          }
           // stream_msgs = [];
           stream_index = 0;
         } else {
           console.log("other type");
           console.log(msgRes);
-        }
-
-        if (msgRes.hasOwnProperty("chatCount")) {
-          setchatCount(String(msgRes.chatCount));
         }
       }
       // setMessages((prevMessages) => [...prevMessages, event.data]);
@@ -738,7 +732,7 @@ const ChatView = () => {
                                   {chatInfo.disposition != null &&
                                   chatInfo.disposition > 0 ? (
                                     <DialogAvatarCat
-                                      indexXingGe={chatInfo.disposition-1}
+                                      indexXingGe={chatInfo.disposition - 1}
                                       catName={userData?.meowname}
                                       trigger={
                                         <img
