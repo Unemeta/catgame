@@ -488,6 +488,7 @@ const ChatView = () => {
             msg={msg}
             msg_id={msgId}
             eventid={eventid}
+            type={item?.type}
           ></VideoPlayView>
         );
       } else {

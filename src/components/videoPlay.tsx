@@ -7,11 +7,12 @@ interface iVideoPlayView {
   msg_id: string;
   msg: string;
   eventid: number;
+  type: string;
 }
-const VideoPlayView = ({ msg_id, msg, eventid }: iVideoPlayView) => {
+const VideoPlayView = ({ msg_id, msg, eventid, type }: iVideoPlayView) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const videoRef = useRef<any>(null);
-
+  console.log(type);
   useEffect(() => {
     const handleControlClick = (event: any) => {
       // 判断是否点击了控件内的元素
