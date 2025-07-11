@@ -533,7 +533,7 @@ const ChatView = () => {
                     src="/svg/fish.svg"
                     alt=""
                   />
-                  <span className="text-[#FFF] text-[1.6rem] font-[700]">
+                  <span className="text-[#FFF] text-[1.4rem] font-[700]">
                     {Number(userData?.fishAmount ?? 0).toLocaleString()}
                   </span>
                 </div>
