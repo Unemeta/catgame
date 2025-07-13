@@ -4,6 +4,8 @@
 import { cn } from "@/lib/utils";
 import DialogImgView from "./dialog/img";
 import { useState } from "react";
+import * as globalApi from "@/services/global";
+
 interface iPhotoView {
   src: string;
   eventid: number;
@@ -12,7 +14,19 @@ interface iPhotoView {
 const ImgView = ({ src, eventid, type }: iPhotoView) => {
   const [showDialog, setshowDialog] = useState(false);
 
-  
+  const handleZoomCb = () => {
+    console.log("图片放大", eventid);
+
+    if (type === "fixed_event") {
+      globalApi.eventRecord("fiexed_zoom_in", src);
+    }
+    if (type === "ai_event") {
+      globalApi.eventRecord("ai_zoom_in", src);
+    }
+    if (type === "farewell_letter") {
+      globalApi.eventRecord("farewell_zoom_in", src);
+    }
+  };
 
   return (
     <DialogImgView
@@ -20,47 +34,15 @@ const ImgView = ({ src, eventid, type }: iPhotoView) => {
       cb={() => {}}
       setShow={setshowDialog}
       src={src}
-      eventid={eventid}
       trigger={
         <div className="">
-          {/* <div className="flex justify-between items-center w-[100vw] toolbarRender relative hidden">
-            <svg
-              className="imgClose"
-              onClick={() => setshowDialog(false)}
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <path
-                d="M18 6L6 18M6 6L18 18"
-                stroke="white"
-                stroke-width="2"
-                stroke-linecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-
-            <svg
-              className="imgDownload"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              onClick={handleDownload}
-            >
-              <path
-                d="M3 21L21 21M6 11L12 17M12 17L18 11M12 17L12 3"
-                stroke="white"
-                stroke-width="2"
-                stroke-linecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </div> */}
-          <div className="" onClick={() => setshowDialog(!showDialog)}>
+          <div
+            className=""
+            onClick={() => {
+              handleZoomCb();
+              setshowDialog(true);
+            }}
+          >
             <div
               className={cn(
                 "bg-[rgba(232,221,219,1)] rounded-[1rem] px-[1rem] pt-[1.4rem] pb-[2.8rem]",

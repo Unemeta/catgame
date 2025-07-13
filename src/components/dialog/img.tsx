@@ -6,7 +6,6 @@ import {
   DialogContent,
   DialogOverlay,
   DialogTitle,
-  DialogTrigger,
 } from ".";
 import { cn } from "@/lib/utils";
 import { downloadMedia } from "@/utils/save";
@@ -19,7 +18,6 @@ interface iDialogImgView {
   trigger?: ReactNode;
   type?: string;
   src: string;
-  eventid?: number;
 }
 const DialogImgView = ({
   show,
@@ -27,7 +25,6 @@ const DialogImgView = ({
   trigger,
   type,
   src,
-  eventid,
 }: iDialogImgView) => {
   const handleDownload = () => {
     console.log("图片", src);
@@ -44,19 +41,7 @@ const DialogImgView = ({
     }
     console.log("图片已下载");
   };
-  const handleZoomCb = () => {
-    console.log("图片放大", eventid);
-
-    if (type === "fixed_event") {
-      globalApi.eventRecord("fiexed_zoom_in", src);
-    }
-    if (type === "ai_event") {
-      globalApi.eventRecord("ai_zoom_in", src);
-    }
-    if (type === "farewell_letter") {
-      globalApi.eventRecord("farewell_zoom_in", src);
-    }
-  };
+ 
   return (
     <Dialog
       open={show}
@@ -65,7 +50,8 @@ const DialogImgView = ({
         setShow(val);
       }}
     >
-      <DialogTrigger>{trigger}</DialogTrigger>
+      {/* <DialogTrigger>{trigger}</DialogTrigger> */}
+      {trigger}
       <DialogOverlay className="bg-black">
         {/* w-[83vw] */}
         <DialogContent className="p-0 w-full  h-full max-w-[90vw]">
