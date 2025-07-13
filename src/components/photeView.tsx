@@ -91,12 +91,14 @@ const ImgView = ({ src, eventid, type }: iPhotoView) => {
     >
       <PhotoView key={src} src={src}>
         <div className="" onClick={handleZoomCb}>
-          <img
-            className="chatMedia"
-            src={src}
-            style={{ objectFit: "contain" }}
-            alt=""
-          />
+          <div className="bg-[rgba(232,221,219,1)] rounded-[1rem] px-[1rem] pt-[1.4rem] pb-[2.8rem]">
+            <img
+              className="chatMedia"
+              src={src}
+              style={{ objectFit: "contain" }}
+              alt=""
+            />
+          </div>
           {/*  */}
           {type === "farewell_letter" && (
             <div className="">

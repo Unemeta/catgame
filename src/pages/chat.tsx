@@ -580,7 +580,7 @@ const ChatView = () => {
             </div> */}
               <div className="flex justify-end items-center">
                 {/* 1 没发送 2 发送未读 3 发送已读 */}
-                {
+                {chatInfo?.farewellLetterStatus != null && (
                   <div
                     className="relative"
                     onClick={() => {
@@ -602,7 +602,7 @@ const ChatView = () => {
                       alt=""
                     />
                   </div>
-                }
+                )}
 
                 <div className="w-[0.6rem]"></div>
                 <DialogCheckIn
