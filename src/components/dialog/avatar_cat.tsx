@@ -87,7 +87,7 @@ const DialogAvatarCat = ({ trigger, indexXingGe, catName }: iDialogSetting) => {
               {indexXingGe != null && (
                 <div className="absolute right-[1.6rem] top-[1.6rem] bg-[#B4886D] border-[1px] border-[#DBB399] rounded-[5rem] flex justify-center items-center px-[1rem] h-[2.8rem]">
                   <span className="text-white text-[1.2rem] font-[700] text-center leading-[1]">
-                    {cats[indexXingGe].type}.
+                    {cats[indexXingGe].type}
                   </span>
                 </div>
               )}
