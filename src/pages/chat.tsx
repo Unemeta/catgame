@@ -33,6 +33,7 @@ let stream_msgs: string[] = [];
 let stream_index = 0;
 let socket: any;
 const separator = "。";
+let isFocusSend = false;
 const ChatView = () => {
   const { t } = useTranslation();
   const router = useRouter();
@@ -312,6 +313,11 @@ const ChatView = () => {
         sethasSetMessage(true);
         socket?.send(text);
         setshowCatLoading(true);
+        setTimeout(() => {
+          if(isFocusSend){
+            socket?.send("Signal Timer Reset");
+          }
+        }, 2 * 1000);
       } else {
         toast.info("Please enter msg");
       }
@@ -342,6 +348,7 @@ const ChatView = () => {
     }
   };
   const handleBlur = () => {
+    isFocusSend=false;
     setisMsgFocus(false);
     inputRef.current?.blur(); // 失去焦点，收起键盘
     window.scrollTo({
@@ -865,6 +872,7 @@ const ChatView = () => {
                         }}
                         onFocus={() => {
                           setisMsgFocus(true);
+                          isFocusSend=true;
                           if (
                             hasSetMessage &&
                             messageList.filter((item) => item.role == "user")
