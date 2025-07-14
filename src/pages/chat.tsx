@@ -316,7 +316,7 @@ const ChatView = () => {
         socket?.send(text);
         setshowCatLoading(true);
         setTimeout(() => {
-          if(isFocusSend){
+          if (isFocusSend) {
             socket?.send("Signal Timer Reset");
           }
         }, 2 * 1000);
@@ -350,7 +350,7 @@ const ChatView = () => {
     }
   };
   const handleBlur = () => {
-    isFocusSend=false;
+    isFocusSend = false;
     setisMsgFocus(false);
     inputRef.current?.blur(); // 失去焦点，收起键盘
     window.scrollTo({
@@ -874,7 +874,13 @@ const ChatView = () => {
                         }}
                         onFocus={() => {
                           setisMsgFocus(true);
-                          isFocusSend=true;
+                          isFocusSend = true;
+                          if (socket) {
+                            //
+                          } else {
+                            console.log('reconnect')
+                            settoConnect((pre) => !pre);
+                          }
                           if (
                             hasSetMessage &&
                             messageList.filter((item) => item.role == "user")
