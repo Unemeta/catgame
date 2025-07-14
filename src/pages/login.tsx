@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { useFetchUser } from "@/store";
 import { useTranslation } from "react-i18next";
 import * as globalApi from "@/services/global";
+import ToHomeStepView from "@/components/toHomeSteps";
 // import { debounce } from "lodash";
 // import useDebouncelog from '@/hook/useDebounceLog'
 // import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
@@ -156,7 +157,12 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
 
   return (
     <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-[#DE8D81]">
-      <img src="/img/loginlogo.png" alt="" className="w-[9rem] h-[9rem]" />
+      <ToHomeStepView></ToHomeStepView>
+      <img
+        src="/img/loginlogo.png"
+        alt=""
+        className="w-[9rem] h-[9rem] dtest"
+      />
       <div
         className={cn(
           "bg-[url('/img/modelBg1.png')] bg-cover w-[31rem] h-[29rem] p-[2rem] overflow-hidden relative"
