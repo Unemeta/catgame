@@ -1,17 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-img-element */
 import { useState, useEffect } from "react";
 import NickName from "@/components/nickname";
 import Age from "@/components/age";
 import Gender from "@/components/gender";
-// import ProgressBar from "@/components/progressbar";
 import { cn } from "@/lib/utils";
 import { useUserBasicInfo } from "@/store/info";
 import { request } from "@/utils/request";
 import { useRouter } from "next/router";
-// import styles from "@/styles/info.module.css";
-
-// import DialogCheckIn from "@/components/dialog/checkIn";
-// import DialogExchange from "@/components/dialog/exchange";
+import { toast } from "react-toastify";
 import * as globalApi from "@/services/global";
 
 const InfoView = () => {
@@ -20,14 +17,18 @@ const InfoView = () => {
   const [basicInfo] = useUserBasicInfo();
   const router = useRouter();
   const postInfo = async () => {
-    const res = await request({
-      url: "/api/survey/survey/basic",
-      method: "post",
-      data: {
-        ...basicInfo,
-      },
-    });
-    console.log(res);
+    try {
+      const res = await request({
+        url: "/api/survey/survey/basic",
+        method: "post",
+        data: {
+          ...basicInfo,
+        },
+      });
+      console.log(res);
+    } catch (error: any) {
+      toast.error(error.message || JSON.stringify(error));
+    }
   };
   const getStep = async () => {
     const res = await request({
@@ -114,7 +115,7 @@ const InfoView = () => {
               try {
                 await postInfo();
                 globalApi.eventRecord("age_click");
-              } catch (error) {
+              } catch (error: any) {
                 console.log(error);
               }
               router.push("/question");

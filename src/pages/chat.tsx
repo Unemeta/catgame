@@ -607,15 +607,18 @@ const ChatView = () => {
                 <div className="w-[0.6rem]"></div>
                 <DialogCheckIn
                   trigger={
-                    <div className="mt-[-0.4rem] px-[0.8rem] h-[2.4rem] flex justify-center items-center rounded-[10rem] border-white/30 border-[1px] bg-[linear-gradient(0deg,rgba(58,53,53,0.20)_0%,rgba(58,53,53,0.20)_100%),linear-gradient(180deg,rgba(255,152,146,0.60)_0%,rgba(255,185,181,0.60)_100%)]">
+                    <div className="relative">
+                      {userData.isCheckin ? (
+                        <></>
+                      ) : (
+                        <div className="w-[0.8rem] h-[0.8rem] bg-[#E95658] absolute right-0 top-[-0.1rem] rounded-full"></div>
+                      )}
                       <img
-                        className="w-[2rem] h-[2rem] mr-[0.6rem]"
+                        className="w-[2.5rem] h-[2.5rem] relative top-[-0.2rem]"
+                        // src="/img/emailBye.png"
                         src="/svg/check_ calendar.svg"
                         alt=""
                       />
-                      <span className="text-[#FFF] text-[1.4rem] font-[700]">
-                        day {userData?.day}
-                      </span>
                     </div>
                   }
                 ></DialogCheckIn>

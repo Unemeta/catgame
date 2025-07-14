@@ -183,7 +183,7 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
                     src="/img/catexample.png"
                   />
                   <div className="flex-1 flex justify-around items-start gap-[0.5rem] flex-wrap">
-                    {checkdays.map((item) => {
+                    {checkdays.map((item, index) => {
                       return (
                         <div
                           className={cn(
@@ -194,7 +194,11 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
                             }
                           )}
                           key={item.day}
-                          onClick={checkIn}
+                          onClick={() => {
+                            if (index === userInfo.day && !userInfo.isCheckin) {
+                              checkIn();
+                            }
+                          }}
                         >
                           <div className="relative">
                             <div
@@ -214,6 +218,9 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
                             >
                               x20
                             </div>
+                            {index === userInfo.day && !userInfo.isCheckin && (
+                              <div className="w-[0.8rem] h-[0.8rem] bg-[#E95658] absolute right-[-0.7rem] top-[-1.1rem] rounded-full"></div>
+                            )}
 
                             {isVisible && item.checked ? (
                               <>

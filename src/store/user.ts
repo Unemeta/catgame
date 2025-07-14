@@ -16,7 +16,8 @@ interface userInfo {
     nowExp: number,
     totalLevelTotalExp: number,
     meowname: string,
-    day: number
+    day: number,
+    isCheckin: boolean
 }
 
 const userDataAtom = atom<userInfo>(
@@ -34,7 +35,9 @@ const userDataAtom = atom<userInfo>(
         nowExp: 0,
         totalLevelTotalExp: 0,
         day: 0,
-        meowname:''
+        meowname: '',
+        isCheckin: false
+
     },
 );
 
@@ -46,6 +49,7 @@ export const useUserData = () => {
         nowExpPercent: 0,
         fishAmount: 0,
         language: null,
+        isCheckin: false,
         uuid: '',
         totalLevel: 0,
         diamond: 0,
