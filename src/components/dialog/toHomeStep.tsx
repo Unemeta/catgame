@@ -20,7 +20,7 @@ const DialogToHomeStep = ({ trigger }: iDialogToHomeStep) => {
               }}
             >
               {/* {t("chat.Exchange")} */}
-              <div className="max-w-[19rem]">
+              <div className="max-w-[19rem] leading-[1.2] font-['SF_Pro_Rounded'] iosAddtohomeTitle">
                 {"iOS add to home screen detailed steps"}
               </div>
             </div>
@@ -41,8 +41,7 @@ const DialogToHomeStep = ({ trigger }: iDialogToHomeStep) => {
                 </span>
               </div>
               <div className="">
-                4. On the new confirmation page, click the <span>"Add"</span>
-                button in the upper right corner
+                4. On the new confirmation page, click the <span className="text-[#1E00FF] font-[700]">"Add"</span> button in the upper right corner
               </div>
             </div>
             <DialogTrigger>
