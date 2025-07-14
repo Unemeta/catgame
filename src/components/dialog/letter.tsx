@@ -3,6 +3,7 @@
 import { ReactNode } from "react";
 import { Dialog, DialogContent, DialogTitle } from ".";
 import Discord from "../Discord";
+import { useFetchUser } from "@/store";
 interface iDialogExchange {
   show: boolean;
   setShow: (val: boolean) => void;
@@ -10,6 +11,7 @@ interface iDialogExchange {
   trigger?: ReactNode;
 }
 const DialogLetter = ({ show, setShow }: iDialogExchange) => {
+  const { userData } = useFetchUser();
   return (
     <Dialog
       open={show}
@@ -23,7 +25,7 @@ const DialogLetter = ({ show, setShow }: iDialogExchange) => {
         <div className="bg-[url('/img/bg/bg_letter_dialog.png')] h-[48rem] bg-100100 py-[2.2rem] px-[2.5rem] relative  rounded-[3rem]  shadow-[0px_4px_20px_0px_rgba(0,0,0,0.55)] border-[#FFFFF7] border-[0.2rem]">
           <div className=" inline-flex flex-col justify-start items-center overflow-hidden w-full">
             <div className="text-[#E96959] text-[1.8rem] font-[800] mb-[1.2rem]">
-              Countdown X days
+              Countdown {userData?.day >= 0 ? 7 - userData.day : "X"} days
             </div>
             <div
               className="text-[#826662] text-[1.4rem] font-[500] leading-[1.1]"
