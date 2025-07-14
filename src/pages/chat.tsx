@@ -594,7 +594,9 @@ const ChatView = () => {
                       }
                     }}
                   >
-                    <div className="w-[0.8rem] h-[0.8rem] bg-[#E95658] absolute right-0 top-[-0.1rem] rounded-full"></div>
+                    {chatInfo && chatInfo?.farewellLetterStatus == 2 && (
+                      <div className="w-[0.8rem] h-[0.8rem] bg-[#E95658] absolute right-0 top-[-0.1rem] rounded-full"></div>
+                    )}
                     <img
                       className="w-[2.5rem] h-[2.5rem]"
                       // src="/img/emailBye.png"
@@ -613,7 +615,7 @@ const ChatView = () => {
                       ) : (
                         <div className="w-[0.8rem] h-[0.8rem] bg-[#E95658] absolute right-0 top-[-0.1rem] rounded-full z-1"></div>
                       )}
-                      
+
                       <img
                         className="w-[2.5rem] h-[2.5rem] relative top-[-0.2rem]"
                         // src="/img/emailBye.png"
