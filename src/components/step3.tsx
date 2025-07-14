@@ -123,7 +123,7 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
                 ></IconView>
               </div>
             </div>
-            <div className="mt-[1rem] text-[#826662] text-[1.3rem] font-[700] flex justify-center items-center px-[2.5rem] text-center h-[5.1rem]">
+            <div className="mt-[1rem] text-[#826662] text-[1.4rem] font-[500] flex justify-center items-center px-[2.5rem] text-center h-[5.1rem]">
               {/* They have a natural aura, prefer their <br /> space, but once they
               trust you, they’ll <br /> quietly stay by your side for the long{" "}
               <br /> run. */}
