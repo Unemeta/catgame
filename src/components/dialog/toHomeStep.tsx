@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import { ReactNode } from "react";
@@ -26,23 +27,53 @@ const DialogToHomeStep = ({ trigger }: iDialogToHomeStep) => {
             </div>
 
             <div className="text-white text-[1.4rem] font-[500] px-[2rem] py-[1.6rem] leading-[1.2]">
-              <div className="mb-[1.5rem]">
-                1. Open the Default browser and visit this page
-              </div>
-              <div className="mb-[1.5rem]">
-                2. Find the{" "}
-                <span className="text-[#1E00FF] font-[700]">"Share"</span>{" "}
-                button at the bottom or top of the browser{" "}
-              </div>
-              <div className="mb-[1.5rem]">
-                3. In the pop-up menu, slide to find and click{" "}
-                <span className="text-[#1E00FF] font-[700]">
-                  "Add to Home Screen"
-                </span>
-              </div>
-              <div className="">
-                4. On the new confirmation page, click the <span className="text-[#1E00FF] font-[700]">"Add"</span> button in the upper right corner
-              </div>
+              <div
+                className="mb-[1.5rem]"
+                dangerouslySetInnerHTML={{
+                  __html: "1. Open the Default browser and visit this page",
+                }}
+              ></div>
+              <div
+                className="mb-[1.5rem]"
+                dangerouslySetInnerHTML={{
+                  __html: (
+                    <div className="">
+                      2. Find the{" "}
+                      <span className="text-[#1E00FF] font-[700]">"Share"</span>{" "}
+                      button at the bottom or top of the browser{" "}
+                    </div>
+                  ),
+                }}
+              ></div>
+              <div
+                className="mb-[1.5rem]"
+                dangerouslySetInnerHTML={{
+                  __html: (
+                    <div className="">
+                      {" "}
+                      3. In the pop-up menu, slide to find and click{" "}
+                      <span className="text-[#1E00FF] font-[700]">
+                        "Add to Home Screen"
+                      </span>
+                    </div>
+                  ),
+                }}
+              ></div>
+              <div
+                className=""
+                dangerouslySetInnerHTML={{
+                  __html: (
+                    <div className="">
+                      {" "}
+                      4. On the new confirmation page, click the{" "}
+                      <span className="text-[#1E00FF] font-[700]">
+                        "Add"
+                      </span>{" "}
+                      button in the upper right corner
+                    </div>
+                  ),
+                }}
+              ></div>
             </div>
             <DialogTrigger>
               {" "}
