@@ -128,7 +128,9 @@ const ChatView = () => {
     if (jwtHelper.getToken()) {
       //
     } else {
-      toast.error("login first");
+      // toast.error("login first");
+      console.error("login first");
+      router.push("/login");
       return;
     }
     const socketTemp = new WebSocket(
