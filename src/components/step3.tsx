@@ -38,7 +38,7 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
   //     type: "Aloof Cats",
   //     name: "YOYO",
   //     keys: ["Independent", "reserved", "intelligent"],
-  //     desc: "They have a natural aura, prefer their space, but once they trust you, they’ll quietly stay by your side for the long run.",
+  //     desc: "They have a natural aura, prefer their space, but once they trust you, they’ll quietly stay by your side for the long run",
   //   },
   // ];
   const cats = [
@@ -71,10 +71,10 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
   return (
     <div className="w-full h-full">
       <div className="text-[#EA8373] text-[2.2rem] font-[700] text-center leading-[1] mb-[0.4rem] pt-[3rem]">
-        {t("Hello")}, {mbtiRes?.nickname}.
+        {t("Hello")}, {mbtiRes?.nickname}
       </div>
       <div className="text-[#EA8373] text-[2.2rem] font-[700] text-center leading-[1] mb-[2.5rem]">
-        {t("qa.This is your")} {cats[index].type}.
+        {t("qa.This is your")} {cats[index].type}
       </div>
       <div className="px-[3rem]">
         <div
