@@ -161,7 +161,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
       <img
         src="/img/loginlogo.png"
         alt=""
-        className="w-[9rem] h-[9rem] dtest"
+        className="w-[9rem] h-[9rem]"
       />
       <div
         className={cn(
