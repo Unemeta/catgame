@@ -69,7 +69,7 @@ const PartyView = () => {
           <div className="w-full wrapHeight  text-center">
             <div className="flex flex-col h-full">
               <div
-                className="text-[#EA8373] text-[2.8rem] font-[700] mb-[3vh] px-[3rem] leading-[1.2] pt-[5rem]"
+                className="text-[#EA8373] text-[2.8rem] font-[700] mb-[3vh] px-[3rem] leading-[1.2] pt-[4rem]"
                 dangerouslySetInnerHTML={{
                   __html: t("qa.soul_title"),
                 }}
@@ -94,7 +94,7 @@ const PartyView = () => {
                   {/* {t("qa.soul_desc")} */}
                 </div>
               </div>
-              <div className="flex justify-center items-center mt-[3rem]">
+              <div className="flex justify-center items-center mt-[2rem]">
                 <img
                   src="/img/arrow_right.min.png"
                   className="w-[10rem] h-[10rem]"
