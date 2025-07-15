@@ -78,38 +78,37 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
       </div>
       <div className="px-[3rem]">
         <div
-          className="px-[1.6rem] py-[1.6rem] relative h-[55vh] bg-[url('/img/bg/bg_card_cat.min.png')]"
+          className="pt-[1.6rem] relative bg-[url('/img/bg/bg_card_cat.min.png')]"
           style={{ backgroundSize: "100% 100%" }}
         >
-          <div className="">
-            <div className="px-[1rem] py-2 text-white text-[1.6rem] font-[700] bg-[#F4738D99] rounded-[5rem] border-[#E397BC] border-w-[0.1rem] inline-block">
-              {cats[index].keys[0]}
-            </div>
-          </div>
-          <div className="">
-            <div className="px-[1rem] py-2 text-white text-[1.6rem] font-[700] bg-[#2278C199] rounded-[5rem] border-[#6D9FDA] border-w-[0.1rem] inline-block my-[0.6rem]">
-              {cats[index].keys[1]}
-            </div>
-          </div>
-          {cats[index].keys.length > 2 && (
+          <div className="px-[1.6rem] bg-[url('/img/bg/bg_card_cat_top.min.png') h-[26rem] relative">
             <div className="">
-              <div className="px-[1rem] py-2 text-white text-[1.6rem] font-[700] bg-[#4A5F7799] rounded-[5rem] border-[#95A1C1] border-w-[0.1rem] inline-block">
-                {cats[index].keys[2]}
+              <div className="px-[1rem] py-2 text-white text-[1.6rem] font-[700] bg-[#F4738D99] rounded-[5rem] border-[#E397BC] border-w-[0.1rem] inline-block">
+                {cats[index].keys[0]}
               </div>
             </div>
-          )}
-          <div className="absolute left-[0] top-[4rem] w-full flex justify-center">
-            <img
-              src="/img/bg_cat.min.png"
-              className="w-[auto] h-[34vh]"
-              alt=""
-            />
+            <div className="">
+              <div className="px-[1rem] py-2 text-white text-[1.6rem] font-[700] bg-[#2278C199] rounded-[5rem] border-[#6D9FDA] border-w-[0.1rem] inline-block my-[0.6rem]">
+                {cats[index].keys[1]}
+              </div>
+            </div>
+            {cats[index].keys.length > 2 && (
+              <div className="">
+                <div className="px-[1rem] py-2 text-white text-[1.6rem] font-[700] bg-[#4A5F7799] rounded-[5rem] border-[#95A1C1] border-w-[0.1rem] inline-block">
+                  {cats[index].keys[2]}
+                </div>
+              </div>
+            )}
+            <div className="absolute left-[0] bottom-[-1rem]  w-full flex justify-center">
+              <img
+                src="/img/bg_cat.min.png"
+                className="w-[auto] h-[34vh]"
+                alt=""
+              />
+            </div>
           </div>
-          <div className="absolute bottom-0 left-0 w-full h-[38%]">
-            <div className="flex justify-center items-center">
-              {/* <div className="bg-[url('/img/bg/bg_aloof_cat.min.png')] bg-cover bg-no-repeat text-white text-[2.8rem] font-[700] h-[5.3rem] px-[5rem] flex justify-center items-center">
-                {cats[index].type}
-              </div> */}
+          <div className=" w-full relative bg-white rounded-bl-[3rem] rounded-br-[3rem]">
+            <div className="absolute top-[-2rem] left-0 w-full flex justify-center items-center">
               <div className="relative">
                 <input
                   onChange={(e) => setinputMsg(e.target.value)}
@@ -123,11 +122,13 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
                 ></IconView>
               </div>
             </div>
-            <div className="mt-[1rem] text-[#826662] text-[1.4rem] font-[500] flex justify-center items-center px-[2.5rem] text-center h-[5.1rem]">
+            <div className="text-[#826662] text-[1.4rem] font-[500] flex flex-col justify-center items-start px-[2rem] text-left">
               {/* They have a natural aura, prefer their <br /> space, but once they
               trust you, they’ll <br /> quietly stay by your side for the long{" "}
               <br /> run. */}
-              {cats[index].desc}
+              <div className="h-[3.3rem]"></div>
+              <div className="">{cats[index].desc}</div>
+              <div className="h-[3.3rem]"></div>
             </div>
           </div>
         </div>
