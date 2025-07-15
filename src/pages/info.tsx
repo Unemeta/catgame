@@ -10,6 +10,7 @@ import { request } from "@/utils/request";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import * as globalApi from "@/services/global";
+import ToHomeStepView from "@/components/toHomeSteps";
 
 const InfoView = () => {
   const [stepIndex, setstepIndex] = useState(0);
@@ -58,6 +59,7 @@ const InfoView = () => {
         "w-full absolute inset-0 z-[2] px-[2rem] bg-[url('/img/infoback.jpg')] bg-cover overflow-scroll wrapHeight"
       )}
     >
+      <ToHomeStepView></ToHomeStepView>
       <>
         <div className="h-[3vh]"></div>
         <div className="w-full inline-flex justify-start items-center gap-1 space-x-[0.4rem]">

@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
 import DialogToHomeStep from "./dialog/toHomeStep";
+import { cn } from "@/lib/utils";
 
 /* eslint-disable @next/next/no-img-element */
-const ToHomeStepView = () => {
+
+interface iToHomeStepView {
+  isOtherPageNotLogin?: boolean;
+}
+const ToHomeStepView = ({ isOtherPageNotLogin = true }: iToHomeStepView) => {
   const [showStepView, setshowStepView] = useState(false);
 
   useEffect(() => {
@@ -21,11 +26,22 @@ const ToHomeStepView = () => {
   return (
     <div className="">
       {showStepView && (
-        <div className="absolute left-0 top-0 w-full flex justify-between items-center bg-[#F3EDEA] px-[1.6rem] py-[0.8rem]">
+        <div
+          className={cn(
+            "absolute left-0 top-0 w-full flex justify-between items-center bg-[#F3EDEA] px-[1.6rem] py-[0.8rem]",
+            {
+              "bg-[#DE8D81]": isOtherPageNotLogin,
+            }
+          )}
+        >
           <img
             onClick={handleCloseStep}
-            className="w-[2rem] h-[2rem]"
-            src="/img/pwd_close.png"
+            className={cn("w-[2rem] h-[2rem]", {})}
+            src={
+              isOtherPageNotLogin
+                ? "/svg/pwd_close_white.svg"
+                : "/svg/pwd_close_black.svg"
+            }
             alt=""
           />
           <div className="grow px-[1rem] flex justify-start items-center">
@@ -34,16 +50,26 @@ const ToHomeStepView = () => {
               src="/img/pwd_cat.png"
               alt=""
             />
-            <div className="">
+            <div
+              className={cn("text-[#5E4D4B]", {
+                "text-white!": isOtherPageNotLogin,
+              })}
+            >
               Get your free app. it won’t take up space on your phone
             </div>
           </div>
           <DialogToHomeStep
             trigger={
-              <div className="bg-[#EB9588] rounded-[2rem] px-[2rem] py-[0.6rem]">
-                <span className="text-white font-[700] text-[1.2rem]">
-                  Install
-                </span>
+              <div
+                className={cn(
+                  "bg-[#EB9588] rounded-[2rem] px-[2rem] py-[0.6rem] text-white font-[700] text-[1.2rem]",
+                  {
+                    "bg-[linear-gradient(180deg,#FFF_0%,#FBE8DE_101.43%)] text-[#DE8D81]":
+                      isOtherPageNotLogin,
+                  }
+                )}
+              >
+                <span>Install</span>
               </div>
             }
           ></DialogToHomeStep>

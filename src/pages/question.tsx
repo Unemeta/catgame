@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import * as globalApi from "@/services/global";
+import ToHomeStepView from "@/components/toHomeSteps";
 
 /* eslint-disable @next/next/no-img-element */
 const PartyView = () => {
@@ -58,6 +59,7 @@ const PartyView = () => {
   return (
     <div className="">
       <div className="relative w-[100vw] min-h-[100vh] bg-[linear-gradient(180deg,#F2ECE9_0%,#F5F0EE_100%)]">
+        <ToHomeStepView></ToHomeStepView>
         {/* <img
           className={cn("w-[100vw] min-h-[100vh] absolute inset-0 z-[1]", {
             "blur-[20px]": stepIndex !== 0,

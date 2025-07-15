@@ -157,7 +157,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
 
   return (
     <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-[#DE8D81]">
-      <ToHomeStepView></ToHomeStepView>
+      <ToHomeStepView isOtherPageNotLogin={false}></ToHomeStepView>
       <img
         src="/img/loginlogo.png"
         alt=""
