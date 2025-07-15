@@ -219,7 +219,7 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
                               x20
                             </div>
                             {index === userInfo.day && !userInfo.isCheckin && (
-                              <div className="w-[0.8rem] h-[0.8rem] bg-[#E95658] absolute right-[-0.7rem] top-[-1.1rem] rounded-full"></div>
+                              <div className="w-[0.8rem] h-[0.8rem] bg-[#E95658] absolute right-[-0.5rem] top-[-1.1rem] rounded-full"></div>
                             )}
 
                             {isVisible && item.checked ? (
