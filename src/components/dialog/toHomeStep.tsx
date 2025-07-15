@@ -36,42 +36,19 @@ const DialogToHomeStep = ({ trigger }: iDialogToHomeStep) => {
               <div
                 className="mb-[1.5rem]"
                 dangerouslySetInnerHTML={{
-                  __html: (
-                    <div className="">
-                      2. Find the{" "}
-                      <span className="text-[#1E00FF] font-[700]">"Share"</span>{" "}
-                      button at the bottom or top of the browser{" "}
-                    </div>
-                  ),
+                  __html: `<div className="">2. Find the<span className="text-[#1E00FF] font-[700]">"Share"</span>button at the bottom or top of the browser</div>`,
                 }}
               ></div>
               <div
                 className="mb-[1.5rem]"
                 dangerouslySetInnerHTML={{
-                  __html: (
-                    <div className="">
-                      {" "}
-                      3. In the pop-up menu, slide to find and click{" "}
-                      <span className="text-[#1E00FF] font-[700]">
-                        "Add to Home Screen"
-                      </span>
-                    </div>
-                  ),
+                  __html: ` <div className="">3. In the pop-up menu, slide to find and click<span className="text-[#1E00FF] font-[700]">"Add to Home Screen"</span></div>`,
                 }}
               ></div>
               <div
                 className=""
                 dangerouslySetInnerHTML={{
-                  __html: (
-                    <div className="">
-                      {" "}
-                      4. On the new confirmation page, click the{" "}
-                      <span className="text-[#1E00FF] font-[700]">
-                        "Add"
-                      </span>{" "}
-                      button in the upper right corner
-                    </div>
-                  ),
+                  __html: `<div className="">4. On the new confirmation page, click the<span className="text-[#1E00FF] font-[700]">"Add"</span>button in the upper right corner</div>`,
                 }}
               ></div>
             </div>
