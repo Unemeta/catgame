@@ -8,10 +8,10 @@ import { useUserBasicInfo } from "@/store/info";
 import { useTranslation } from "react-i18next";
 import * as globalApi from "@/services/global";
 
-const oldList: number[] = [];
-for (let i = 16; i < 101; i++) {
-  oldList.push(i);
-}
+const oldList = ["16~19", "20~24", "25~34", "35~49", "50~69", "70~99"];
+// for (let i = 16; i < 101; i++) {
+//   oldList.push(i);
+// }
 const Age = ({ onClick }: iAnswerView) => {
   const [basicInfo, setBasicInfo] = useUserBasicInfo();
   const { t } = useTranslation();
@@ -23,25 +23,25 @@ const Age = ({ onClick }: iAnswerView) => {
       </div>
       <div className="h-[36rem]">
         <div className="relative mt-[6rem] w-[35rem] h-[28rem] overflow-auto py-[2rem] px-[2rem]">
-          {oldList.map((item) => {
+          {oldList.map((item, index) => {
             return (
               <div
                 key={item}
                 className={cn(
                   "w-[30rem] py-[1.2rem] rounded-[5rem] inline-flex justify-center items-center gap-[1rem] mb-[2rem]",
                   {
-                    "bg-white": item !== basicInfo.age,
+                    "bg-white": index !== basicInfo.age,
                     "bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)] rounded-[20px]":
-                      item === basicInfo.age,
+                      index === basicInfo.age,
                   }
                 )}
                 onClick={() => {
                   globalApi.eventRecord("age_input");
-                  setBasicInfo({ ...basicInfo, age: item });
+                  setBasicInfo({ ...basicInfo, age: index });
                 }}
                 style={{
                   boxShadow:
-                    item === basicInfo.age
+                    index === basicInfo.age
                       ? "0px 3px 4px 0px rgba(255, 255, 255, 0.25), 0px 4px 24px 0px #ECA89E"
                       : "",
                 }}
@@ -59,8 +59,8 @@ const Age = ({ onClick }: iAnswerView) => {
                   className={cn(
                     "flex-1 text-center justify-start text-[#826662] text-[1.6rem] font-bold font-['SF_Pro_Rounded'] leading-tight",
                     {
-                      "text-[#826662]": item !== basicInfo.age,
-                      "text-[#FFFAFA]": item === basicInfo.age,
+                      "text-[#826662]": index !== basicInfo.age,
+                      "text-[#FFFAFA]": index === basicInfo.age,
                     }
                   )}
                 >
