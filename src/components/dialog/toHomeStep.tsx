@@ -53,8 +53,7 @@ const DialogToHomeStep = ({ trigger }: iDialogToHomeStep) => {
               ></div>
             </div>
             <DialogTrigger>
-              {" "}
-              <div className="">
+              <div className="select-none">
                 <div className="bg-white rounded-[3rem] shadow-[0px_3px_14px_0px_rgba(255,255,255,0.45)] w-[13.2rem] h-[3.8rem] flex justify-center items-center">
                   <span className="text-[#E96856] text-[1.6rem] font-[800]">
                     knew
@@ -67,7 +66,6 @@ const DialogToHomeStep = ({ trigger }: iDialogToHomeStep) => {
 
           <div className="flex absolute top-[1.5rem] right-[2.5rem] translate-x-[100%] translate-y-[-80%]">
             <DialogTrigger>
-              {" "}
               <div className="flex justify-center items-center cursor-pointer select-none">
                 <img className="w-[4rem] h-auto" src="/img/close.png" alt="" />
               </div>
