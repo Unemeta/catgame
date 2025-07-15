@@ -34,6 +34,7 @@ const ImgView = ({ src, eventid, type }: iPhotoView) => {
       cb={() => {}}
       setShow={setshowDialog}
       src={src}
+      type={type}
       trigger={
         <div className="">
           <div
