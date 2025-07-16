@@ -713,8 +713,8 @@ const ChatView = () => {
                             trigger={
                               <img
                                 className=" rounded-full  userAvator"
-                                // src={userData?.avatar ?? "/img/avataUser.min.png"}
-                                src={"/img/avataUser.min.png"}
+                                src={userData?.avatar ?? "/img/avataUser.min.png"}
+                                // src={"/img/avataUser.min.png"}
                                 alt=""
                               />
                             }
