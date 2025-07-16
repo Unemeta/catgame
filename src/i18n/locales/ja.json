@@ -20,6 +20,9 @@
     "LoveLetterTitle": "告白のお手紙",
     "LetterDesc": "あなただけに宛てた、特別な告白のお手紙",
     "chatLetterDesc": "あなたにだけ届く、心あたたまる告白のお手紙です。にゃんにゃんからのささやかな気持ち、ちょっと覗いてみませんか？🐾",
+    "timeRange":"統計期間",
+    "chatCountAll":"メッセージ総数",
+    "chatCountContinuous":"連続チャット日数",
     "teste": "test"
   },
   "qa": {
