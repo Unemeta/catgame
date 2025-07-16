@@ -80,12 +80,7 @@ const PartyView = () => {
               <div className="flex justify-center items-end">
                 <div className="bg-[url('/img/cat_red.min.png')] w-[14rem] h-[14rem] bg-cover"></div>
               </div>
-              {/* <div
-                className="absolute bottom-[1rem] left-[50vw] translate-x-[-50%]"
-                onClick={() => {
-                  setstepIndex(1);
-                }}
-              > */}
+
               <div className="text-[#826662] text-[1.4rem] font-[500]  flex justify-center items-center text-left">
                 <div
                   className="max-w-[31rem] leading-[1.4]"
@@ -96,6 +91,7 @@ const PartyView = () => {
                   {/* {t("qa.soul_desc")} */}
                 </div>
               </div>
+              <div className="grow"></div>
               <div className="flex justify-center items-center mt-[2rem]">
                 <img
                   src="/img/arrow_right.min.png"

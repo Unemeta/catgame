@@ -170,6 +170,7 @@ const AnswerView = ({ onClick }: iAnswerView) => {
           }}
         > */}
         {/* opacity-50 */}
+        <div className="grow"></div>
         <div className="flex justify-center items-center mt-[8rem]">
           <img
             src="/img/arrow_right.min.png"
