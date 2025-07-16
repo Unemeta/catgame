@@ -10,7 +10,7 @@ interface iDiscord {
 export default function Discord({ text, textColor }: iDiscord) {
   const handleDiscord = async () => {
     globalApi.eventRecord("click_discord_link");
-    window.open("https://discord.com/invite/YzztkC6ENe", "_blank");
+    window.open("https://discord.gg/HBm6qxn4dM", "_blank");
   };
   return (
     <div

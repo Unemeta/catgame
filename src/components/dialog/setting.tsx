@@ -169,7 +169,7 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
                   alt=""
                   onClick={() => {
                     window.open(
-                      "https://discord.com/invite/YzztkC6ENe",
+                      "https://discord.gg/HBm6qxn4dM",
                       // "https://discord.com",
                       "_blank"
                     );
