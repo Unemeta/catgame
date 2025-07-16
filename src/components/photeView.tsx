@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 import DialogImgView from "./dialog/img";
 import { useState } from "react";
 import * as globalApi from "@/services/global";
+import { useRouter } from "next/router";
+import { useFetchUser } from "@/store";
 
 interface iPhotoView {
   src: string;
@@ -12,8 +14,9 @@ interface iPhotoView {
   type: string;
 }
 const ImgView = ({ src, eventid, type }: iPhotoView) => {
+  const { userData } = useFetchUser();
   const [showDialog, setshowDialog] = useState(false);
-
+  const router = useRouter();
   const handleZoomCb = () => {
     console.log("图片放大", eventid);
 
@@ -41,7 +44,11 @@ const ImgView = ({ src, eventid, type }: iPhotoView) => {
             className=""
             onClick={() => {
               handleZoomCb();
-              setshowDialog(true);
+              if (type === "farewell_letter") {
+                router.push(`/letter?id=${userData?.uuid}`);
+              } else {
+                setshowDialog(true);
+              }
             }}
           >
             <div
