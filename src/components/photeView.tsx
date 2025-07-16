@@ -80,7 +80,7 @@ const ImgView = ({ src, eventid, type }: iPhotoView) => {
                 />
                 <div className="flex justify-center items-center">
                   <span className="text-[#E96856] text-[1.2rem] font-[500]">
-                    ${"NOW GO >"}
+                    {"NOW GO >"}
                   </span>
                 </div>
               </div>
