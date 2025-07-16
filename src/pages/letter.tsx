@@ -168,7 +168,7 @@ const LetterView = () => {
           className=" bg-[url('/img/bg_letter.min.png')] min-h-[70rem]"
           style={{ backgroundSize: "100% 100%" }}
         >
-          <div className="px-[5.7rem] pt-[7.7rem] pb-[2.9rem] dtest">
+          <div className="px-[5.7rem] pt-[7.7rem] pb-[2.9rem]">
             <div className="text-[#6C4937] text-[1.4rem] font-[500] mb-[1rem]">
               {t("letter.timeRange")}： {letterInfo?.start}-{letterInfo?.end}
             </div>
