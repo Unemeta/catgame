@@ -45,7 +45,7 @@ const UploadView = () => {
   };
 
   return (
-    <div className="bg-[#25211F] w-[100vw] h-[100vh] flex flex-col">
+    <div className="bg-[#25211F] w-[100vw] h-[100vh] flex flex-col wrapHeight">
       <div className="fixed top-0 left-0 w-full h-[3.6rem] px-[2rem] flex justify-between items-center">
         <img
           className="w-[2rem] h-[2rem]"
