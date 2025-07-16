@@ -750,6 +750,9 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+:focus-visible {
+  outline: none;
+}
 @media screen and (max-width: 768px) {
   .wrapHeight {
     /* height: 87vh; */
