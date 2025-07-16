@@ -141,7 +141,14 @@ const ChatView = () => {
       console.log("socket onopen");
     };
     socketTemp.onmessage = async (event) => {
-      if (event?.type === "message" && event?.data !== "pong") {
+      // event?.type === "message" || event?.type === "ai_event"
+      // Error = "error"; // 聊天次数超限，繁忙
+      // Receive = "receive"; // 接受到消息
+      // StartMsg = "start_msg"; // 每日的启动开场白
+      // FixedEventMsg = "fixed_event"; // 固定推送
+      // AiEventMsg = "ai_event"; // ai推送
+      // FarewellLetter = "farewell_letter"; // 告别信
+      if (event?.data !== "pong") {
         const msgRes = JSON.parse(event?.data);
         if (
           msgRes.hasOwnProperty("message") &&
