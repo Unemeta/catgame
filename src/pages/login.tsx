@@ -25,6 +25,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
   const { i18n, t } = useTranslation();
   const router = useRouter();
   const [invalid, setInvalid] = useState(false);
+  const [invalidText, setInvalidText] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   // 延迟埋点
   // const debouncedlog = useDebouncelog("account_input");
@@ -60,6 +61,9 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
         /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       if (!advancedEmailRegex.test(account)) {
         // toast.error("Invalid email format");
+        setInvalidText(
+          "The format is incorrect, please modify it and try again"
+        );
         setInvalid(true);
         return;
       }
@@ -72,6 +76,15 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
             source: from || 1,
           },
         });
+        const { notInWhitelist } = res.data;
+        console.log(notInWhitelist);
+        if (notInWhitelist) {
+          setInvalid(true);
+          setInvalidText(
+            "Please fill in the application questionnaire and we will notify you of the application result of the internal test by email later."
+          );
+          return false
+        }
         await jwtHelper.setToken(res.data.accessToken, {
           expires: new Date(res.data.accessExpire * 1000),
         });
@@ -158,11 +171,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
   return (
     <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-[#DE8D81]">
       <ToHomeStepView isOtherPageNotLogin={false}></ToHomeStepView>
-      <img
-        src="/img/loginlogo.png"
-        alt=""
-        className="w-[9rem] h-[9rem]"
-      />
+      <img src="/img/loginlogo.png" alt="" className="w-[9rem] h-[9rem]" />
       <div
         className={cn(
           "bg-[url('/img/modelBg1.png')] bg-cover w-[31rem] h-[29rem] p-[2rem] overflow-hidden relative"
@@ -207,7 +216,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
               alt=""
               className="w-[1.8rem] h-[1.8rem]"
             />
-            The format is incorrect, please modify it and try again
+            {invalidText}
           </div>
         ) : (
           <></>
@@ -215,7 +224,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
 
         <div
           className={cn(
-            "w-[27rem] px-[2rem] py-[1.3rem] rounded-[2rem] inline-flex justify-center items-center gap-[1rem] mt-[5rem]",
+            "w-[27rem] px-[2rem] py-[1.3rem] rounded-[2rem] inline-flex justify-center items-center gap-[1rem] mt-[2rem]",
             "bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)] rounded-[20px]"
           )}
           style={{
