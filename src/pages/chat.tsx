@@ -27,6 +27,7 @@ import DialogAvatarUser from "@/components/dialog/avatar_user";
 import DialogAvatarCat from "@/components/dialog/avatar_cat";
 import DialogLetter from "@/components/dialog/letter";
 import * as globalApi from "@/services/global";
+import VideoBackgroundNewLogin from "@/components/VideoBackgroundNewLogin";
 
 let timerHistory: NodeJS.Timeout | null | undefined = null;
 let stream_msgs: string[] = [];
@@ -350,6 +351,7 @@ const ChatView = () => {
     }
   };
   const handleBlur = () => {
+    localStorage.setItem("sendMsgFocus", "1");
     isFocusSend = false;
     setisMsgFocus(false);
     inputRef.current?.blur(); // 失去焦点，收起键盘
@@ -878,7 +880,7 @@ const ChatView = () => {
                           if (socket) {
                             //
                           } else {
-                            console.log('reconnect')
+                            console.log("reconnect");
                             settoConnect((pre) => !pre);
                           }
                           if (
@@ -944,6 +946,10 @@ const ChatView = () => {
               show={showDialogLetter}
               setShow={setshowDialogLetter}
             ></DialogLetter>
+
+            {localStorage.getItem("sendMsgFocus") === "0" && (
+              <VideoBackgroundNewLogin></VideoBackgroundNewLogin>
+            )}
             <VideoBackgroundChat />
             {indexEmotion != null && (
               <VideoBackgroundEmotion

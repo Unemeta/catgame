@@ -2,8 +2,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useRef, useEffect, useState } from "react";
 
-const videoUrl = "/videos/chat.mp4";
-export default function VideoBackgroundChat() {
+const videos = [
+  "/videos/emotion2_kaixin.mp4",
+  "/videos/emotion1_anwei.mp4",
+];
+export default function VideoBackgroundNewLogin() {
   const videoRef = useRef<HTMLVideoElement>(null);
   useEffect(() => {
     const video = videoRef.current;
@@ -17,7 +20,7 @@ export default function VideoBackgroundChat() {
   };
 
   return (
-    <div className={"fixed top-0 left-0 w-[100vw] wrapHeight  z-[-10]"}>
+    <div className={"fixed top-0 left-0 w-[100vw] wrapHeight  z-[-4]"}>
       {/* <img
         className="absolute top-0 left-0 w-[100%] h-[100%] object-cover"
         src="/img/bg/bg_chat2.min.png"
@@ -27,7 +30,7 @@ export default function VideoBackgroundChat() {
         muted
         playsInline
         ref={videoRef}
-        src={videoUrl}
+        src={videos[ Math.floor(Math.random() * 2)]}
         autoPlay
         loop
         preload="auto"
