@@ -11,8 +11,8 @@ export default function Document() {
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="CatGame Next.js App" />
-        <link rel="icon" href="/img/hi.png" />
-        <link rel="apple-touch-icon" href="/img/hi.png" />
+        <link rel="icon" href="/img/appicon.png" />
+        <link rel="apple-touch-icon" href="/img/appicon.png" />
       </Head>
       <body>
         <Main />
