@@ -17,6 +17,12 @@
     "rte": "recording ends in {{sec}} seconds",
     "pts": "press and hold to speak"
   },
+  "letter": {
+    "LoveLetterTitle": "Love Letter",
+    "LetterDesc": "A special love letter just for you",
+    "chatLetterDesc": "A heartwarming love letter made just for you! Tap to see what little surprise Meow Meow has for you 🐾",
+    "teste": "test"
+  },
   "qa": {
     "soul_title": "🐾 Meow… <br />Hello, future friend.",
     "soul_desc": "📒 Before I came into this world, every answer you gave me would quietly influence my personality. <br />🎨 Maybe gentle, maybe slow to warm up, maybe aloof - I wonder what you will make me become? <br />💌 After seven days, I will write this journey into a letter that belongs only to you, and there are some small Easter eggs hidden in it. <br />🌟 If you want to meet more cats, come to the community and leave your footprints. Exclusive identities, mysterious rewards, and super cute emojis are waiting for you to take away!",

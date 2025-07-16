@@ -7,6 +7,7 @@ import { useState } from "react";
 import * as globalApi from "@/services/global";
 import { useRouter } from "next/router";
 import { useFetchUser } from "@/store";
+import { useTranslation } from "react-i18next";
 
 interface iPhotoView {
   src: string;
@@ -17,6 +18,8 @@ const ImgView = ({ src, eventid, type }: iPhotoView) => {
   const { userData } = useFetchUser();
   const [showDialog, setshowDialog] = useState(false);
   const router = useRouter();
+  const { t } = useTranslation();
+
   const handleZoomCb = () => {
     console.log("图片放大", eventid);
 
@@ -69,12 +72,7 @@ const ImgView = ({ src, eventid, type }: iPhotoView) => {
             </div>
             {type === "farewell_letter" && (
               <div className="">
-                <div className="mt-[0.6rem]">
-                  $
-                  {
-                    "A heartwarming confession letter just for you is waiting! Click me to see Meow Meow's little thoughts 🐾"
-                  }
-                </div>
+                <div className="mt-[0.6rem]">{t("letter.LetterDesc")}</div>
                 <img
                   className="w-full h-[1px] my-[0.6rem]"
                   src="/img/letter_line.png"

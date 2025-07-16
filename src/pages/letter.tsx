@@ -9,12 +9,14 @@ import ScreenshotDownloader from "@/components/ScreenshotDownloader";
 import Discord from "@/components/Discord";
 import { useQRCode } from "next-qrcode";
 import * as globalApi from "@/services/global";
+import { useTranslation } from "react-i18next";
 
 const LetterView = () => {
   const contentRef = useRef(null);
   const [showDownLoad, setShowDownLoad] = useState(true);
   const { Canvas } = useQRCode();
   const router = useRouter();
+  const { t } = useTranslation();
 
   const handleShare = async () => {
     globalApi.eventRecord("share_entry_click");
@@ -66,7 +68,7 @@ const LetterView = () => {
           ></IconView>
           <div className="flex justify-center items-center grow">
             <span className="text-[#6C4734] text-[1.8rem] font-[800]">
-              Farewell letter
+              {t("letter.LoveLetterTitle")}
             </span>
           </div>
           <DialogShare
@@ -90,7 +92,7 @@ const LetterView = () => {
         <div className="px-[5.4rem]">
           <div className="w-[17rem] mb-[1.4rem]">
             <span className="text-[#E96959] text-[2rem] font-[800] leading-[1.1]">
-              A heart warming farewell letter just for you
+              {t("letter.LetterDesc")}
             </span>
           </div>
           <div className="flex justify-center items-center relative">
