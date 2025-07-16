@@ -21,6 +21,9 @@
     "LoveLetterTitle": "Love Letter",
     "LetterDesc": "A special love letter just for you",
     "chatLetterDesc": "A heartwarming love letter made just for you! Tap to see what little surprise Meow Meow has for you 🐾",
+    "timeRange":"Tracking Period",
+    "chatCountAll":"Total Conversations",
+    "chatCountContinuous":"Streak of Daily Chats",
     "teste": "test"
   },
   "qa": {

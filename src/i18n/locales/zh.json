@@ -18,8 +18,11 @@
   },
   "letter": {
     "LoveLetterTitle": "告白信",
-    "LetterDesc": "一封专属于你的告白信",
+    "LetterDesc": "一封专属于你的暖心告白信！点我看看喵喵的小心意吧 🐾",
     "chatLetterDesc": "一封专属于你的暖心告白信！点我看看喵喵的小心意吧 🐾",
+    "timeRange":"统计时间周期",
+    "chatCountAll":"沟通总句数",
+    "chatCountContinuous":"连续沟通天数",
     "teste": "test"
   },
   "qa": {

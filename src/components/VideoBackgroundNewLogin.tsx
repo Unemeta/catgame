@@ -3,11 +3,12 @@
 import React, { useRef, useEffect, useState } from "react";
 
 const videos = [
-  "/videos/emotion2_kaixin.mp4",
-  "/videos/emotion1_anwei.mp4",
+  "/videos/random1.mp4",
+  "/videos/random2.mp4",
 ];
 export default function VideoBackgroundNewLogin() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [randomIndex, setrandomIndex] = useState(Math.floor(Math.random() * 2))
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -30,7 +31,7 @@ export default function VideoBackgroundNewLogin() {
         muted
         playsInline
         ref={videoRef}
-        src={videos[ Math.floor(Math.random() * 2)]}
+        src={videos[randomIndex]}
         autoPlay
         loop
         preload="auto"

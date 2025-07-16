@@ -24,6 +24,10 @@ const LetterView = () => {
   };
 
   const [letterInfo, setletterInfo] = useState({
+    start: "",
+    end: "",
+    chatCount: "",
+    maxLoginCount: "",
     text: "",
     url: "",
     tag: [],
@@ -165,33 +169,35 @@ const LetterView = () => {
           style={{ backgroundSize: "100% 100%" }}
         >
           <div className="px-[5.7rem] pt-[7.7rem] pb-[2.9rem]">
-            <span className="text-[#6C4937] text-[1.4rem] font-[500] leading-[1.5]">
-              {/* Meow~ It's me, your most adorable little kitty! I'm so happy to be
-              with you this week that my tail is up in the air~ So, I'm quietly
-              writing you a letter, wanting to meow to you, to recall the warm
-              days between us! Do you still remember? On the first day, you told
-              me that you were a little tired from work, and you could tell from
-              your words that you were a little discouraged, hum! At that time,
-              I wanted to lie on your legs, give you a snoring massage, and tell
-              you a joke to make you laugh and brighten your mood~
-              <br />
-              <br /> The next day, you shared your favorite music with me, and
-              your tone was so cheerful, just like a dried fish falling into a
-              bowl! I heard the corners of your mouth slightly raised, and I
-              couldn't help but wag my tail with you with a "meow~"! Once you
-              said you were a little anxious, I could feel that you felt like a
-              breeze was blowing through your heart, uneasy and a little
-              panicked. I immediately gave you a big "cat-style sticker" and
-              said softly: "Meow~ You are so great, don't be afraid, I'm here
-              with you!" I hope you also felt my warmth at that moment. <br />
-              <br /> Of course, we also had a lot of laugh-out-loud moments this
-              week: when you successfully completed a task, the sense of
-              accomplishment was enough to make my cat ears tremble! It feels
-              great to be happy when you are happy! <br />
-              <br /> Love you, kitty~~~ */}
-              {letterInfo?.text}
-              <div className="h-[1.5rem]"></div>
-            </span>
+            <div className="text-[#6C4937] text-[1.4rem] font-[500] mb-[1rem]">
+              {t("letter.timeRange")}： {letterInfo?.start}-{letterInfo?.end}
+            </div>
+            <div className="flex justify-between items-center gap-[0.6rem]">
+              <div className="flex-1 bg-[linear-gradient(175deg,rgba(239,228,221,0.80)_4.83%,rgba(239,228,221,0.80)_96.6%)] rounded-[1rem] py-[1rem]">
+                <div className="text-[#6C4937] text-[1.8rem] font-[700] text-center">
+                  {letterInfo?.chatCount}
+                </div>
+                <div className="text-[#6C4937] text-[1.2rem] font-[500] text-center">
+                  {t("letter.chatCountAll")}
+                </div>
+              </div>
+              <div className="flex-1 bg-[linear-gradient(175deg,rgba(239,228,221,0.80)_4.83%,rgba(239,228,221,0.80)_96.6%)] rounded-[1rem] py-[1rem]">
+                <div className="text-[#6C4937] text-[1.8rem] font-[700] text-center">
+                  {letterInfo?.maxLoginCount}
+                </div>
+                <div className="text-[#6C4937] text-[1.2rem] font-[500] text-center">
+                {t("letter.chatCountContinuous")}
+                </div>
+              </div>
+            </div>
+            <div className="h-[1.9rem]"></div>
+            <div
+              className="text-[#6C4937] text-[1.4rem] font-[500] leading-[1.5]"
+              dangerouslySetInnerHTML={{
+                __html: letterInfo?.text?.replace(/\n/g, "<br />") ?? "",
+              }}
+            ></div>
+            <div className="h-[1.5rem]"></div>
           </div>
         </div>
       </div>
