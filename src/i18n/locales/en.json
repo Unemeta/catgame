@@ -12,7 +12,10 @@
     "CheckinInfo": "Please visit every day to get better rewards.",
     "What are you talking about?": "What are you talking about?",
     "User Profile": "User Profile",
-    "test": "test"
+    "test": "test",
+    "rts": "Release to send",
+    "rte": "recording ends in {{sec}} seconds",
+    "pts": "press and hold to speak"
   },
   "qa": {
     "soul_title": "🐾 Meow… <br />Hello, future friend.",

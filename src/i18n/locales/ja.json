@@ -11,7 +11,10 @@
     "DailyCheckin": "デイリーログインボーナス",
     "CheckinInfo": "毎日ログインして、より豪華な報酬をゲットしよう。",
     "What are you talking about?": "あなたは何について話しているのですか?",
-    "test": "test"
+    "test": "test",
+    "rts": "指を離すと送信されます",
+    "rte": "録音はあと{{sec}}秒で終了します",
+    "pts": "押し続けて話すs"
   },
   "qa": {
     "soul_title": "にゃあ……こんにちは、<br />未来のともだち",

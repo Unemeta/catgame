@@ -7,6 +7,7 @@ import "recorder-core/src/engine/mp3-engine"; //如果此格式有额外的编�
 import "recorder-core/src/extensions/waveview";
 import RecordApp from "recorder-core/src/app-support/app";
 import CryptoJS from "crypto-js";
+import { useTranslation } from "react-i18next";
 
 import styles from "@/styles/Speech.module.css"; // 确保有对应的 CSS 文件
 // import LottieView from "@/components/lottie";
@@ -39,6 +40,7 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
 }) => {
   const [, setShowVoice] = useShowVocie();
   const [recordingState, setRecordingState] = useState<RecordingState>("idle");
+  const { t } = useTranslation();
   // const [, setError] = useState<string | null>(null);
   // const [y, setY] = useState(0);
 
@@ -615,11 +617,12 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
         ></Player>
 
         <div className={styles.vanimateText}>
-          Recording ends in {countdown} seconds.
+          {t("chat.rte", { sec: `${countdown}` })}
+          {/* Recording ends in {countdown} seconds. */}
         </div>
         <div className={styles.status}>
           <img className={styles.statusIcon} alt="" src={`/img/sendv.svg`} />
-          <div className={styles.statusText}>Release to send</div>
+          <div className={styles.statusText}>{t("chat.rts")}</div>
         </div>
       </div>
       <div
@@ -631,7 +634,6 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
       </div>
       <div className={styles.container}>
         <div className={styles.newIcon} onClick={() => setShowVoice(false)}>
-          {/* <LottieView src={"/lottie/v4.json"} loop={true}></LottieView> */}
           <img src="/img/keyboard.png" alt="" />
         </div>
         <div
@@ -663,7 +665,7 @@ const AudioRecorder: React.FC<SpeechRecognitionProps> = ({
             </div>
           ) : (
             <div>
-              <div className={styles.recordText}>Press and hold to speak</div>
+              <div className={styles.recordText}>{t("chat.pts")}</div>
             </div>
           )}
         </div>
