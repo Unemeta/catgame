@@ -24,6 +24,7 @@ const LetterView = () => {
   const [letterInfo, setletterInfo] = useState({
     text: "",
     url: "",
+    tag: [],
   });
 
   useEffect(() => {
@@ -110,32 +111,50 @@ const LetterView = () => {
 
         <div className="px-[5rem]">
           <div className="flex justify-between items-center gap-[0.6rem]">
-            <div className="bg-[rgba(244,115,141,0.60);] flex-1 h-[2.2rem] flex justify-center items-center rounded-[5rem] border-[#E397BC] border-[0.1rem]">
-              <span className="text-white text-[1.2rem] font-[700]">
-                Independent
-              </span>
+            <div className="flex-1">
+              {letterInfo?.tag.length > 0 && (
+                <div className="bg-[rgba(244,115,141,0.60);]  h-[2.2rem] flex justify-center items-center rounded-[5rem] border-[#E397BC] border-[0.1rem]">
+                  <span className="text-white text-[1.2rem] font-[700]">
+                    {letterInfo?.tag[0]}
+                  </span>
+                </div>
+              )}
             </div>
-            <div className="bg-[rgba(34,120,193,0.60);] flex-1 h-[2.2rem] flex justify-center items-center rounded-[5rem] border-[#6D9FDA] border-[0.1rem]">
-              <span className="text-white text-[1.2rem] font-[700]">
-                Reserved
-              </span>
+            <div className="flex-1">
+              {letterInfo?.tag.length > 1 && (
+                <div className="bg-[rgba(34,120,193,0.60);] h-[2.2rem] flex justify-center items-center rounded-[5rem] border-[#6D9FDA] border-[0.1rem]">
+                  <span className="text-white text-[1.2rem] font-[700]">
+                    {letterInfo?.tag[1]}
+                  </span>
+                </div>
+              )}
             </div>
           </div>
           <div className="h-[0.7rem]"></div>
-          <div className="flex justify-between items-center gap-[0.6rem]">
-            <div className="bg-[rgba(133,91,184,0.60);] flex-1 h-[2.2rem] flex justify-center items-center rounded-[5rem] border-[#9184B7] border-[0.1rem]">
-              <span className="text-white text-[1.2rem] font-[700]">
-                Camping
-              </span>
+          {letterInfo?.tag.length > 2 && (
+            <div className="flex justify-between items-center gap-[0.6rem]">
+              <div className="flex-1 ">
+                {letterInfo?.tag.length > 2 && (
+                  <div className="bg-[rgba(133,91,184,0.60);] h-[2.2rem] flex justify-center items-center rounded-[5rem] border-[#9184B7] border-[0.1rem]">
+                    <span className="text-white text-[1.2rem] font-[700]">
+                      {letterInfo?.tag[2] ?? ""}
+                    </span>
+                  </div>
+                )}
+              </div>
+              <div className="flex-1 ">
+                {letterInfo?.tag.length > 3 && (
+                  <div className="bg-[rgba(61,142,108,0.60);] h-[2.2rem] flex justify-center items-center rounded-[5rem] border-[#5EA98A] border-[0.1rem]">
+                    <span className="text-white text-[1.2rem] font-[700]">
+                      {letterInfo?.tag[3] ?? ""}
+                    </span>
+                  </div>
+                )}
+              </div>
             </div>
-            <div className="bg-[rgba(61,142,108,0.60);] flex-1 h-[2.2rem] flex justify-center items-center rounded-[5rem] border-[#5EA98A] border-[0.1rem]">
-              <span className="text-white text-[1.2rem] font-[700]">
-                Intelligent
-              </span>
-            </div>
-          </div>
+          )}
         </div>
-        <div className="h-[3rem]"></div>
+        <div className="h-[2rem]"></div>
       </div>
       {/* <div className="h-[1.5rem]"></div> */}
       <div className="px-[0rem]">
