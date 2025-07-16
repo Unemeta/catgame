@@ -198,7 +198,7 @@ const LetterView = () => {
       <div className="h-[2.3rem]"></div>
       {showDownLoad ? (
         <>
-          <div className="flex justify-around items-center gap-[4.1rem] w-full">
+          <div className="flex justify-around items-center gap-[4.1rem] w-full h-[12rem]">
             <ScreenshotDownloader
               targetRef={contentRef}
               fileName="sharepage"
@@ -209,7 +209,7 @@ const LetterView = () => {
           <div className="h-[2.2rem]"></div>
         </>
       ) : (
-        <div className="flex justify-around items-center  bg-white py-[1.8rem] gap-[1.5rem]">
+        <div className="flex justify-around items-center  bg-white py-[1.8rem] gap-[1.5rem] h-[12rem]">
           <img src="/img/logonew.png" alt="" className="w-[5.5rem]" />
           <div className="text-[#6C4937] text-[1.2rem] font-['SF_Pro_Rounded'] leading-none w-[15rem]">
             You teach it to understand the world, it teaches you to understand

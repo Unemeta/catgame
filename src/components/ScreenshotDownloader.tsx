@@ -25,6 +25,7 @@ const ScreenshotDownloader = ({
 
     try {
       callback(false);
+      await new Promise((resolve) => setTimeout(resolve, 500)); // 保留小延迟（可选）
       setTimeout(async () => {
         const canvas = await html2canvas(targetRef.current, {
           scale: 2,

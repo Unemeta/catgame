@@ -125,7 +125,6 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
     // setLoading(false);
   };
   const initCheck = () => {
-    console.log(userInfo, "userInfouserInfouserInfouserInfo");
     if (userInfo.day) {
       setCheckdays(
         checkdays.map((item) => {

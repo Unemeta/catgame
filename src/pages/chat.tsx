@@ -77,6 +77,12 @@ const ChatView = () => {
     fetchUser?.();
   }, []);
 
+  useEffect(() => {
+    if (!userData.isCheckin) {
+      setShowCheckIn(true);
+    }
+  }, [userData]);
+
   // useEffect(() => {
   //   if (messageList) {
   //     console.log(messageList);

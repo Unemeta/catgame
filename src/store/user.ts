@@ -38,7 +38,7 @@ const userDataAtom = atom<userInfo>(
         totalLevelTotalExp: 0,
         day: 0,
         meowname: '',
-        isCheckin: false
+        isCheckin: true
 
     },
 );
@@ -51,7 +51,7 @@ export const useUserData = () => {
         nowExpPercent: 0,
         fishAmount: 0,
         language: null,
-        isCheckin: false,
+        isCheckin: true,
         uuid: '',
         totalLevel: 0,
         loginDays: 0,
