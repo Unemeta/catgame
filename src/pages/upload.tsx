@@ -3,6 +3,7 @@ import { useFetchUser } from "@/store";
 import { request } from "@/utils/request";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 
 /* eslint-disable @next/next/no-img-element */
@@ -10,6 +11,7 @@ const UploadView = () => {
   const [image, setImage] = useState(null);
   const router = useRouter();
   const { userData } = useFetchUser();
+  const { t } = useTranslation();
 
   const handleImageChange = (event: any) => {
     const file = event.target.files[0];
@@ -55,7 +57,9 @@ const UploadView = () => {
             router.push("/chat");
           }}
         />
-        <span className="text-white text-[1.8rem] font-[800]">查看头像</span>
+        <span className="text-white text-[1.8rem] font-[800]">
+          {t("chat.View Avatar")}
+        </span>
         <span>　</span>
       </div>
       <div className="grow flex justify-center items-center">
@@ -63,7 +67,7 @@ const UploadView = () => {
           <img
             className="w-[20rem] h-[20rem] rounded-[20rem]"
             src={image}
-            alt="图片预览"
+            alt=""
           />
         ) : (
           <img
@@ -85,7 +89,9 @@ const UploadView = () => {
               />
               <div className="h-[0.6rem]"></div>
               <div className="text-white text-[1.4rem] font-[500]">
-                Upload a new avatar
+                
+                {t("chat.Upload a new avatar")}
+
               </div>
             </div>
           </label>

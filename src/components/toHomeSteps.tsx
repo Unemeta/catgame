@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import DialogToHomeStep from "./dialog/toHomeStep";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 /* eslint-disable @next/next/no-img-element */
 
@@ -9,6 +10,7 @@ interface iToHomeStepView {
 }
 const ToHomeStepView = ({ isOtherPageNotLogin = true }: iToHomeStepView) => {
   const [showStepView, setshowStepView] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (localStorage.getItem("showStep")) {
@@ -55,21 +57,21 @@ const ToHomeStepView = ({ isOtherPageNotLogin = true }: iToHomeStepView) => {
                 "text-white!": isOtherPageNotLogin,
               })}
             >
-              Get your free app. it won’t take up space on your phone
+              {t("login.pwaDesc")}
             </div>
           </div>
           <DialogToHomeStep
             trigger={
               <div
                 className={cn(
-                  "bg-[#EB9588] rounded-[2rem] px-[2rem] py-[0.6rem] text-white font-[700] text-[1.2rem]",
+                  "bg-[#EB9588] rounded-[2rem] w-[8.3rem] py-[0.6rem] text-white font-[700] text-[1.2rem]",
                   {
                     "bg-[linear-gradient(180deg,#FFF_0%,#FBE8DE_101.43%)] text-[#DE8D81]":
                       isOtherPageNotLogin,
                   }
                 )}
               >
-                <span>Install</span>
+                <span>{t("login.Install")}</span>
               </div>
             }
           ></DialogToHomeStep>

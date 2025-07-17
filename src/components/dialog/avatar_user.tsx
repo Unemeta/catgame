@@ -72,7 +72,7 @@ const DialogAvatarUser = ({ trigger }: iDialogSetting) => {
                   alt=""
                 />
                 <span className="text-[#6C4734] text-[1.4rem] font-[500]">
-                  Nickname
+                  {t("chat.Nickname")}
                 </span>
               </div>
               <div className="text-[#6C4734] text-[1.4rem] font-[700]">

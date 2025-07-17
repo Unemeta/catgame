@@ -12,6 +12,9 @@
     "CheckinInfo": "Please visit every day to get better rewards.",
     "What are you talking about?": "What are you talking about?",
     "User Profile": "User Profile",
+    "Nickname":"Nickname",
+    "View Avatar":"View Avatar",
+    "Upload a new avatar":"Upload a new avatar",
     "test": "test",
     "rts": "Release to send",
     "rte": "recording ends in {{sec}} seconds",
@@ -71,6 +74,9 @@
   },
   "login": {
     "login": "Sign Up / Log In",
+    "pwaDesc": "Get your free app. it won’t take up space on your phone",
+    "Install":"Install",
+
     "enter": "Enter Your Email Address"
   }
 }
