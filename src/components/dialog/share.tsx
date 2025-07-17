@@ -115,7 +115,7 @@ const DialogShare = ({
             <div className="h-[1.6rem]"></div>
             <div className="p-[1rem] bg-white/30 rounded-[1.5rem] border-white/20 border-[1px]">
               <div className="text-[1.4rem] font-[500] text-white leading-[1.3] text-nowrap">
-                Meow Meow and my 7-day memoir~~~
+                {t("letter.shareText")}
               </div>
               <div className="text-[1.4rem] font-[500] text-[#2F52FF] leading-[1.3] mb-[1rem]">
                 {link}

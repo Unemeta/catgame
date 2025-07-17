@@ -199,7 +199,11 @@ const ChatView = () => {
           } else if (msgRes.message == "生气") {
             setindexEmotion(5);
           } else if (msgRes.message == "鄙视") {
-            setindexEmotion(5);
+            setindexEmotion(6);
+          } else if (msgRes.message == "惊讶") {
+            setindexEmotion(7);
+          } else if (msgRes.message == "冷静") {
+            setindexEmotion(8);
           } else {
             console.log(`other emtontion ${msgRes?.message}`);
           }

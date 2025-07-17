@@ -13,6 +13,9 @@ const videos = [
   "/videos/emotion3_kongju.mp4",
   "/videos/emotion4_shangxin.mp4",
   "/videos/emotion5_shengqi.mp4",
+  "/videos/emotion6_bishi.mp4",
+  "/videos/emotion7_jingya.mp4",
+  "/videos/emotion8_lengjing.mp4",
 ];
 export default function VideoBackgroundEmotion({
   index,
