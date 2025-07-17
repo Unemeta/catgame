@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import IconView from "../IconView";
 import { shareUtil } from "@/lib/utils";
 import * as globalApi from "@/services/global";
+import { useTranslation } from "react-i18next";
 
 interface iDialogShare {
   trigger?: ReactNode;
@@ -15,6 +16,7 @@ interface iDialogShare {
 const DialogShare = ({ trigger }: iDialogShare) => {
   const [isOpen, setisOpen] = useState(false);
   const [link] = useState("https://discord.gg/HBm6qxn4dM");
+  const { t } = useTranslation();
 
   const copyToClipboard = (textToCopy: string | number) => {
     if (navigator.clipboard && window.isSecureContext) {
@@ -64,14 +66,14 @@ const DialogShare = ({ trigger }: iDialogShare) => {
         >
           <div className="flex justify-center items-center bg-[linear-gradient(180deg,#E3BFA5_0%,#DDB293_100%)] rounded-tl-[3rem] rounded-tr-[3rem] py-[1rem]">
             <span className="bg-gradient-to-t from-[#6C4734] to-[#6C4B3A] bg-clip-text text-transparent text-[1.8rem] font-[800]">
-              Share
+              {t("letter.Share")}
             </span>
           </div>
           <div className="px-[2rem]">
             <div className="h-[1.6rem]"></div>
             <div className="p-[1rem] bg-white/30 rounded-[1.5rem] border-white/20 border-[1px]">
               <div className="text-[1.4rem] font-[500] text-white leading-[1.3] text-nowrap">
-                Meow Meow and my 7-day memoir~~~
+                {t("letter.shareText")}
               </div>
               <div className="text-[1.4rem] font-[500] text-[#2F52FF] leading-[1.3] mb-[1rem]">
                 {link}
@@ -94,7 +96,7 @@ const DialogShare = ({ trigger }: iDialogShare) => {
                   type="x"
                 ></IconView>
                 <span className="text-[#E96856] text-[1.6rem] font-[800]">
-                  前往Twiiter分享
+                  {t("letter.ShareonTwitter")}
                 </span>
               </div>
             </div>
@@ -117,7 +119,7 @@ const DialogShare = ({ trigger }: iDialogShare) => {
                 />
                 <div className="h-[0.6rem]"></div>
                 <span className="text-white text-[1.4rem] font-[500]">
-                  Copy
+                  {t("letter.Copy")}
                 </span>
               </div>
               <div
@@ -131,7 +133,7 @@ const DialogShare = ({ trigger }: iDialogShare) => {
                 />
                 <div className="h-[0.6rem]"></div>
                 <span className="text-white text-[1.4rem] font-[500]">
-                  Download
+                  {t("letter.Download")}
                 </span>
               </div>
               <div
