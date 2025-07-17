@@ -85,7 +85,7 @@ const LetterView = () => {
 
   const widthPx = useRemToPx(6); // 10rem → px
   return (
-    <div className="bg-[#F0E4DD] min-h-[100vh]" ref={contentRef}>
+    <div className="bg-[#F0E4DD] min-h-[100vh]">
       <div className="w-full bg-[#F0E4DD] z-[100]">
         <div className="header flex justify-between items-center h-[4.6rem] px-[2rem]">
           <IconView
@@ -106,152 +106,157 @@ const LetterView = () => {
                 onClick={handleShare}
               ></IconView>
             }
+            targetRef={contentRef}
+            fileName="sharepage"
+            callback={downloadCallBack}
           ></DialogShare>
         </div>
       </div>
-      {/* <div className="h-[4.6rem]"></div> */}
-      {/* dtest */}
-      <div
-        className="px-[0rem] pb-[2.5rem] bg-[url('/img/bg_letter_bye.min.png')]"
-        style={{ backgroundSize: "100% 100%" }}
-      >
-        <div className="h-[6.6rem]"></div>
-        <div className="px-[5.4rem]">
-          <div className="w-[17rem] mb-[1.4rem]">
-            <span className="text-[#E96959] text-[2rem] font-[800] leading-[1.1]">
-              {t("letter.LetterDesc")}
-            </span>
-          </div>
-          <div className="flex justify-center items-center relative">
-            {/* <img
+      <div ref={contentRef}>
+        {/* <div className="h-[4.6rem]"></div> */}
+        {/* dtest */}
+        <div
+          className="px-[0rem] pb-[2.5rem] bg-[url('/img/bg_letter_bye.min.png')]"
+          style={{ backgroundSize: "100% 100%" }}
+        >
+          <div className="h-[6.6rem]"></div>
+          <div className="px-[5.4rem]">
+            <div className="w-[17rem] mb-[1.4rem]">
+              <span className="text-[#E96959] text-[2rem] font-[800] leading-[1.1]">
+                {t("letter.LetterDesc")}
+              </span>
+            </div>
+            <div className="flex justify-center items-center relative">
+              {/* <img
               className="w-[28rem] h-[35rem]"
               src="/img/letter_cat.png"
               alt=""
             /> */}
-            <img className="w-[28rem] h-[35rem]" src={localImg} alt="" />
-            <img
-              className="w-[13rem] h-[6.4rem] absolute top-[-4rem] right-0"
-              src="/img/letter_m.png"
-              alt=""
-            />
+              <img className="w-[28rem] h-[35rem]" src={localImg} alt="" />
+              <img
+                className="w-[13rem] h-[6.4rem] absolute top-[-4rem] right-0"
+                src="/img/letter_m.png"
+                alt=""
+              />
+            </div>
+            <div className="h-[1.6rem]"></div>
           </div>
-          <div className="h-[1.6rem]"></div>
-        </div>
 
-        <div className="px-[5rem]">
-          <div className="flex justify-between items-center gap-[0.6rem]">
-            <div className="flex-1">
-              {letterInfo?.tag.length > 0 && (
-                <div className="bg-[rgba(244,115,141,0.60);]  h-[2.2rem] flex justify-center items-center rounded-[5rem] border-[#E397BC] border-[0.1rem]">
-                  <span className="text-white text-[1.2rem] font-[700]">
-                    {letterInfo?.tag[0]}
-                  </span>
-                </div>
-              )}
+          <div className="px-[5rem]">
+            <div className="flex justify-between items-center gap-[0.6rem]">
+              <div className="flex-1">
+                {letterInfo?.tag.length > 0 && (
+                  <div className="bg-[rgba(244,115,141,0.60);]  h-[2.2rem] flex justify-center items-center rounded-[5rem] border-[#E397BC] border-[0.1rem]">
+                    <span className="text-white text-[1.2rem] font-[700]">
+                      {letterInfo?.tag[0]}
+                    </span>
+                  </div>
+                )}
+              </div>
+              <div className="flex-1">
+                {letterInfo?.tag.length > 1 && (
+                  <div className="bg-[rgba(34,120,193,0.60);] h-[2.2rem] flex justify-center items-center rounded-[5rem] border-[#6D9FDA] border-[0.1rem]">
+                    <span className="text-white text-[1.2rem] font-[700]">
+                      {letterInfo?.tag[1]}
+                    </span>
+                  </div>
+                )}
+              </div>
             </div>
-            <div className="flex-1">
-              {letterInfo?.tag.length > 1 && (
-                <div className="bg-[rgba(34,120,193,0.60);] h-[2.2rem] flex justify-center items-center rounded-[5rem] border-[#6D9FDA] border-[0.1rem]">
-                  <span className="text-white text-[1.2rem] font-[700]">
-                    {letterInfo?.tag[1]}
-                  </span>
+            <div className="h-[0.7rem]"></div>
+            {letterInfo?.tag.length > 2 && (
+              <div className="flex justify-between items-center gap-[0.6rem]">
+                <div className="flex-1 ">
+                  {letterInfo?.tag.length > 2 && (
+                    <div className="bg-[rgba(133,91,184,0.60);] h-[2.2rem] flex justify-center items-center rounded-[5rem] border-[#9184B7] border-[0.1rem]">
+                      <span className="text-white text-[1.2rem] font-[700]">
+                        {letterInfo?.tag[2] ?? ""}
+                      </span>
+                    </div>
+                  )}
                 </div>
-              )}
+                <div className="flex-1 ">
+                  {letterInfo?.tag.length > 3 && (
+                    <div className="bg-[rgba(61,142,108,0.60);] h-[2.2rem] flex justify-center items-center rounded-[5rem] border-[#5EA98A] border-[0.1rem]">
+                      <span className="text-white text-[1.2rem] font-[700]">
+                        {letterInfo?.tag[3] ?? ""}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+          <div className="h-[2rem]"></div>
+        </div>
+        {/* <div className="h-[1.5rem]"></div> */}
+        <div className="px-[0rem]">
+          <div
+            className="bg-[url('/img/bg_letter.min.png')] min-h-[70rem]"
+            style={{ backgroundSize: "100% 100%" }}
+          >
+            <div className="px-[5.7rem] pt-[7.7rem] pb-[2.9rem]">
+              <div className="text-[#6C4937] text-[1.4rem] font-[500] mb-[1rem]">
+                {t("letter.timeRange")}： {letterInfo?.start}-{letterInfo?.end}
+              </div>
+              <div className="flex justify-between items-center gap-[0.6rem]">
+                <div className="flex-1 bg-[linear-gradient(175deg,rgba(239,228,221,0.80)_4.83%,rgba(239,228,221,0.80)_96.6%)] rounded-[1rem] py-[1rem]">
+                  <div className="text-[#6C4937] text-[1.8rem] font-[700] text-center">
+                    {letterInfo?.chatCount}
+                  </div>
+                  <div className="text-[#6C4937] text-[1.2rem] font-[500] text-center">
+                    {t("letter.chatCountAll")}
+                  </div>
+                </div>
+                <div className="flex-1 bg-[linear-gradient(175deg,rgba(239,228,221,0.80)_4.83%,rgba(239,228,221,0.80)_96.6%)] rounded-[1rem] py-[1rem]">
+                  <div className="text-[#6C4937] text-[1.8rem] font-[700] text-center">
+                    {letterInfo?.maxLoginCount}
+                  </div>
+                  <div className="text-[#6C4937] text-[1.2rem] font-[500] text-center">
+                    {t("letter.chatCountContinuous")}
+                  </div>
+                </div>
+              </div>
+              <div className="h-[1.9rem]"></div>
+              <div
+                className="text-[#6C4937] text-[1.4rem] font-[500] leading-[1.5]"
+                dangerouslySetInnerHTML={{
+                  __html: letterInfo?.text?.replace(/\n/g, "<br />") ?? "",
+                }}
+              ></div>
+              <div className="h-[1.5rem]"></div>
             </div>
           </div>
-          <div className="h-[0.7rem]"></div>
-          {letterInfo?.tag.length > 2 && (
-            <div className="flex justify-between items-center gap-[0.6rem]">
-              <div className="flex-1 ">
-                {letterInfo?.tag.length > 2 && (
-                  <div className="bg-[rgba(133,91,184,0.60);] h-[2.2rem] flex justify-center items-center rounded-[5rem] border-[#9184B7] border-[0.1rem]">
-                    <span className="text-white text-[1.2rem] font-[700]">
-                      {letterInfo?.tag[2] ?? ""}
-                    </span>
-                  </div>
-                )}
-              </div>
-              <div className="flex-1 ">
-                {letterInfo?.tag.length > 3 && (
-                  <div className="bg-[rgba(61,142,108,0.60);] h-[2.2rem] flex justify-center items-center rounded-[5rem] border-[#5EA98A] border-[0.1rem]">
-                    <span className="text-white text-[1.2rem] font-[700]">
-                      {letterInfo?.tag[3] ?? ""}
-                    </span>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
         </div>
-        <div className="h-[2rem]"></div>
-      </div>
-      {/* <div className="h-[1.5rem]"></div> */}
-      <div className="px-[0rem]">
-        <div
-          className=" bg-[url('/img/bg_letter.min.png')] min-h-[70rem]"
-          style={{ backgroundSize: "100% 100%" }}
-        >
-          <div className="px-[5.7rem] pt-[7.7rem] pb-[2.9rem]">
-            <div className="text-[#6C4937] text-[1.4rem] font-[500] mb-[1rem]">
-              {t("letter.timeRange")}： {letterInfo?.start}-{letterInfo?.end}
+        <div className="h-[2.3rem]"></div>
+        {showDownLoad ? (
+          <>
+            <div className="flex justify-around items-center gap-[4.1rem] w-full h-[10rem]">
+              <ScreenshotDownloader
+                targetRef={contentRef}
+                fileName="sharepage"
+                callback={downloadCallBack}
+              />
+              <Discord></Discord>
             </div>
-            <div className="flex justify-between items-center gap-[0.6rem]">
-              <div className="flex-1 bg-[linear-gradient(175deg,rgba(239,228,221,0.80)_4.83%,rgba(239,228,221,0.80)_96.6%)] rounded-[1rem] py-[1rem]">
-                <div className="text-[#6C4937] text-[1.8rem] font-[700] text-center">
-                  {letterInfo?.chatCount}
-                </div>
-                <div className="text-[#6C4937] text-[1.2rem] font-[500] text-center">
-                  {t("letter.chatCountAll")}
-                </div>
-              </div>
-              <div className="flex-1 bg-[linear-gradient(175deg,rgba(239,228,221,0.80)_4.83%,rgba(239,228,221,0.80)_96.6%)] rounded-[1rem] py-[1rem]">
-                <div className="text-[#6C4937] text-[1.8rem] font-[700] text-center">
-                  {letterInfo?.maxLoginCount}
-                </div>
-                <div className="text-[#6C4937] text-[1.2rem] font-[500] text-center">
-                  {t("letter.chatCountContinuous")}
-                </div>
-              </div>
+            <div className="h-[2.2rem]"></div>
+          </>
+        ) : (
+          <div className="flex justify-around items-center  bg-white py-[1.8rem] gap-[1.5rem] h-[10rem]">
+            <img src="/img/logonew.png" alt="" className="w-[5.5rem]" />
+            <div className="text-[#6C4937] text-[1.2rem] font-['SF_Pro_Rounded'] leading-none w-[15rem]">
+              You teach it to understand the world, it teaches you to understand
+              yourself
             </div>
-            <div className="h-[1.9rem]"></div>
-            <div
-              className="text-[#6C4937] text-[1.4rem] font-[500] leading-[1.5]"
-              dangerouslySetInnerHTML={{
-                __html: letterInfo?.text?.replace(/\n/g, "<br />") ?? "",
+            <Canvas
+              text={window.location.host}
+              options={{
+                width: widthPx, // 设置较大的基础尺寸（确保清晰）
               }}
-            ></div>
-            <div className="h-[1.5rem]"></div>
+            ></Canvas>
           </div>
-        </div>
+        )}
       </div>
-      <div className="h-[2.3rem]"></div>
-      {showDownLoad ? (
-        <>
-          <div className="flex justify-around items-center gap-[4.1rem] w-full h-[10rem]">
-            <ScreenshotDownloader
-              targetRef={contentRef}
-              fileName="sharepage"
-              callback={downloadCallBack}
-            />
-            <Discord></Discord>
-          </div>
-          <div className="h-[2.2rem]"></div>
-        </>
-      ) : (
-        <div className="flex justify-around items-center  bg-white py-[1.8rem] gap-[1.5rem] h-[10rem]">
-          <img src="/img/logonew.png" alt="" className="w-[5.5rem]" />
-          <div className="text-[#6C4937] text-[1.2rem] font-['SF_Pro_Rounded'] leading-none w-[15rem]">
-            You teach it to understand the world, it teaches you to understand
-            yourself
-          </div>
-          <Canvas
-            text={window.location.host}
-            options={{
-              width: widthPx, // 设置较大的基础尺寸（确保清晰）
-            }}
-          ></Canvas>
-        </div>
-      )}
     </div>
   );
 };

@@ -3,9 +3,9 @@
 import React, { useRef, useEffect, useState } from "react";
 
 const videos = {
-  zh: "https://oss.meowster.io/une_cat_world/animate-zh.mp4",
-  en: "https://oss.meowster.io/une_cat_world/animate-en.mp4",
-  ja: "https://oss.meowster.io/une_cat_world/animate-ja.mp4",
+  zh: "https://oss.meowster.io/une_cat_world/animate1-zh.mp4",
+  en: "https://oss.meowster.io/une_cat_world/animate1-en.mp4",
+  ja: "https://oss.meowster.io/une_cat_world/animate1-ja.mp4",
 };
 export default function VideoBackgroundNewLoginStart({
   playEnd,

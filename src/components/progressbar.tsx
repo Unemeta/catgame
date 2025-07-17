@@ -28,7 +28,9 @@ const ProgressBar = ({ setShow }: { setShow: () => void }) => {
     { type: "image", url: "/img/bg_cat_focus.min.png" },
     { type: "image", url: "/img/loadinglogo.png" },
     { type: "image", url: "/img/arrow_right.min.png" },
-    { type: "image", url: "/img/  arrow_rightdis.min.png" },
+    { type: "image", url: "/img/arrow_rightdis.min.png" },
+    { type: "image", url: "/img/catexample.png" },
+    { type: "image", url: "/img/fishitem.png" },
 
     // ... 添加更多资源
   ];

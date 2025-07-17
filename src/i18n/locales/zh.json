@@ -30,13 +30,11 @@
     "chatCountContinuous": "连续沟通天数",
     "Countdown": "倒计时",
     "days": "日",
-    "shareText": "喵喵和我的快乐旅程～～～",
-    "Copy": "复制",
-    "Download": "下载",
-    "Discord": "Discord",
-    "Share":"分享",
-    "ShareonTwitter": "前往Twitter分享",
-    "teste": "test"
+    "shareText": "前往Twitter分享",
+    "teste": "test",
+    "copy": "复制",
+    "download": "下载",
+    "share": "分享"
   },
   "qa": {
     "soul_title": "🐾 喵。。。<br />你好呀，未来的朋友",
