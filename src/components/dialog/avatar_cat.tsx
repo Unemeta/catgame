@@ -136,12 +136,15 @@ const DialogAvatarCat = ({ trigger, indexXingGe, catName }: iDialogSetting) => {
               <div className=" w-full relative bg-white rounded-bl-[3rem] rounded-br-[3rem]">
                 <div className="absolute top-[-2rem] left-0 w-full flex justify-center items-center">
                   <div className="relative">
-                    <input
+                    {/* <input
                       readOnly
                       value={catName}
                       className="border-[1px] focus:outline-[#E96856]! border-[#E96856] rounded-full bg-white w-[21rem] h-[4rem] text-[#EA8273] text-[2rem] font-[700] px-[2rem] pr-[3.6rem] text-center"
                       type="text"
-                    />
+                    /> */}
+                    <div className="border-[1px]  border-[#E96856] rounded-full bg-white w-[21rem] h-[4rem] text-[#EA8273] text-[2rem] font-[700] px-[2rem] flex justify-center items-center overflow-hidden overflow-ellipsis">
+                      {catName}
+                    </div>
                   </div>
                 </div>
                 <div className="text-[#826662] text-[1.4rem] font-[500] flex flex-col justify-center items-start px-[2rem] text-left">
