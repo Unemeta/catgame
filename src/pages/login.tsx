@@ -11,6 +11,7 @@ import { useFetchUser } from "@/store";
 import { useTranslation } from "react-i18next";
 import * as globalApi from "@/services/global";
 import ToHomeStepView from "@/components/toHomeSteps";
+import VideoBackgroundNewLoginStart from "@/components/VideoBackgroundNewLoginStart";
 // import { debounce } from "lodash";
 // import useDebouncelog from '@/hook/useDebounceLog'
 // import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
@@ -27,6 +28,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
   const [invalid, setInvalid] = useState(false);
   const [invalidText, setInvalidText] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const [showVideo, setShowVideo] = useState(false);
   // 延迟埋点
   // const debouncedlog = useDebouncelog("account_input");
   // const debouncedSearch = useRef(
@@ -88,10 +90,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
         await jwtHelper.setToken(res.data.accessToken, {
           expires: new Date(res.data.accessExpire * 1000),
         });
-        // 新用户登陆埋点
-        if (isNewUser) {
-          globalApi.eventRecord("account_login");
-        }
+
         localStorage.setItem("sendMsgFocus", "0");
         // if (process.env.NEXT_PUBLIC_VERTICAL === "true") {
         //   getStep();
@@ -145,7 +144,13 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
             }
           }
         }
-        getStep();
+        // 新用户登陆埋点
+        if (isNewUser) {
+          globalApi.eventRecord("account_login");
+          setShowVideo(true);
+        } else {
+          getStep();
+        }
       } catch (error: any) {
         console.log(error);
         toast.error(error.message || JSON.stringify(error));
@@ -179,89 +184,106 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
       window.open("https://forms.gle/33AynPDAq9uwbkrc6", "_blank");
     }
   };
+  const playEnd = () => {
+    // setShowVideo(false);
+    globalApi.eventRecord("account_login");
+    getStep();
+  };
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-[#DE8D81]">
-      <ToHomeStepView isOtherPageNotLogin={false}></ToHomeStepView>
-      <img src="/img/loginlogo.png" alt="" className="w-[9rem] h-[9rem]" />
-      <div
-        className={cn(
-          "bg-[url('/img/modelBg1.png')] bg-cover w-[31rem] h-[29rem] p-[2rem] overflow-hidden relative"
-        )}
-      >
-        <div
-          className={cn(
-            "flex gap-[1rem] border-[1px] border-solid border-[#EBD8D2] h-[4.5rem] rounded-[2rem] items-center mt-[4.5rem] p-[1.4rem]",
-            {
-              "bg-[#FDD]": invalid,
-            }
-          )}
-        >
-          <img src="/img/mail.png" alt="" className="w-[1.8rem] h-[1.8rem]" />
-          <input
-            value={account}
-            placeholder={t("login.enter")}
-            onKeyDown={handleKeyDown}
-            onChange={(e) => setAccount(e.target.value)}
-            className={cn("w-[17rem]", styles.input1)}
-            type="email"
-            ref={inputRef}
-            onFocus={handleFocus}
-          />
-          {account ? (
-            <img
-              src="/img/x-circle.png"
-              alt=""
-              className="w-[1.8rem] h-[1.8rem]"
-              onClick={() => {
-                setAccount("");
-              }}
-            />
-          ) : (
-            <></>
-          )}
-        </div>
-        {invalid ? (
-          <div
-            className="text-[#F33] font-[SF Pro Rounded] flex items-center gap-[0.5rem]"
-            onClick={getWhiteList}
-          >
-            <img
-              src="/img/info-circle.png"
-              alt=""
-              className="w-[1.8rem] h-[1.8rem]"
-            />
-            {invalidText}
-          </div>
-        ) : (
-          <></>
-        )}
-
-        <div
-          className={cn(
-            "w-[27rem] px-[2rem] py-[1.3rem] rounded-[2rem] inline-flex justify-center items-center gap-[1rem] mt-[2rem]",
-            "bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)] rounded-[20px]"
-          )}
-          style={{
-            boxShadow:
-              "0px 3px 4px 0px rgba(255, 255, 255, 0.25), 0px 4px 24px 0px #ECA89E",
-          }}
-          onClick={login}
-        >
+    <>
+      {showVideo ? (
+        <VideoBackgroundNewLoginStart
+          playEnd={playEnd}
+        ></VideoBackgroundNewLoginStart>
+      ) : (
+        <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-[#DE8D81]">
+          <ToHomeStepView isOtherPageNotLogin={false}></ToHomeStepView>
+          <img src="/img/loginlogo.png" alt="" className="w-[9rem] h-[9rem]" />
           <div
             className={cn(
-              "flex-1 text-center justify-start text-[1.6rem] font-bold font-['SF_Pro_Rounded'] leading-tight",
-              "text-white"
+              "bg-[url('/img/modelBg1.png')] bg-cover w-[31rem] h-[29rem] p-[2rem] overflow-hidden relative"
             )}
           >
-            {t("login.login")}
+            <div
+              className={cn(
+                "flex gap-[1rem] border-[1px] border-solid border-[#EBD8D2] h-[4.5rem] rounded-[2rem] items-center mt-[4.5rem] p-[1.4rem]",
+                {
+                  "bg-[#FDD]": invalid,
+                }
+              )}
+            >
+              <img
+                src="/img/mail.png"
+                alt=""
+                className="w-[1.8rem] h-[1.8rem]"
+              />
+              <input
+                value={account}
+                placeholder={t("login.enter")}
+                onKeyDown={handleKeyDown}
+                onChange={(e) => setAccount(e.target.value)}
+                className={cn("w-[17rem]", styles.input1)}
+                type="email"
+                ref={inputRef}
+                onFocus={handleFocus}
+              />
+              {account ? (
+                <img
+                  src="/img/x-circle.png"
+                  alt=""
+                  className="w-[1.8rem] h-[1.8rem]"
+                  onClick={() => {
+                    setAccount("");
+                  }}
+                />
+              ) : (
+                <></>
+              )}
+            </div>
+            {invalid ? (
+              <div
+                className="text-[#F33] font-[SF Pro Rounded] flex items-center gap-[0.5rem]"
+                onClick={getWhiteList}
+              >
+                <img
+                  src="/img/info-circle.png"
+                  alt=""
+                  className="w-[1.8rem] h-[1.8rem]"
+                />
+                {invalidText}
+              </div>
+            ) : (
+              <></>
+            )}
+
+            <div
+              className={cn(
+                "w-[27rem] px-[2rem] py-[1.3rem] rounded-[2rem] inline-flex justify-center items-center gap-[1rem] mt-[2rem]",
+                "bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)] rounded-[20px]"
+              )}
+              style={{
+                boxShadow:
+                  "0px 3px 4px 0px rgba(255, 255, 255, 0.25), 0px 4px 24px 0px #ECA89E",
+              }}
+              onClick={login}
+            >
+              <div
+                className={cn(
+                  "flex-1 text-center justify-start text-[1.6rem] font-bold font-['SF_Pro_Rounded'] leading-tight",
+                  "text-white"
+                )}
+              >
+                {t("login.login")}
+              </div>
+            </div>
+            <div className="text-[#DE8D81] font-[SF Pro Rounded] text-center bottom-[1.8rem] absolute w-[100%] px-[2rem] -translate-x-[50%] left-[50%]">
+              Copyright© 2025 Meowster. <br />
+              All Rights Reserved.
+            </div>
           </div>
         </div>
-        <div className="text-[#DE8D81] font-[SF Pro Rounded] text-center bottom-[1.8rem] absolute w-[100%] px-[2rem] -translate-x-[50%] left-[50%]">
-          Copyright© 2025 Meowster. <br />
-          All Rights Reserved.
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 
