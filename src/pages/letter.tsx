@@ -49,6 +49,7 @@ const LetterView = () => {
     url: "",
     tag: [],
   });
+  const [localImg, setLocalImg] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -67,6 +68,9 @@ const LetterView = () => {
         if (data) {
           console.log(data);
           setletterInfo(data);
+          const imageUrl =
+            "/api/proxy-image?url=" + encodeURIComponent(data.url);
+          setLocalImg(imageUrl);
         }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
@@ -124,7 +128,7 @@ const LetterView = () => {
               src="/img/letter_cat.png"
               alt=""
             /> */}
-            <img className="w-[28rem] h-[35rem]" src={letterInfo?.url} alt="" />
+            <img className="w-[28rem] h-[35rem]" src={localImg} alt="" />
             <img
               className="w-[13rem] h-[6.4rem] absolute top-[-4rem] right-0"
               src="/img/letter_m.png"
