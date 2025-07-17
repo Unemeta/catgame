@@ -46,7 +46,7 @@ const DialogExchange = ({ show, setShow, cb }: iDialogExchange) => {
     >
       <DialogContent className="p-0 h-auto w-[83vw]">
         <DialogTitle></DialogTitle>
-        <div className="relative bg-[linear-gradient(187deg,#B48471_-9.74%,rgba(212,204,195,0.60)_72.93%)] rounded-[3rem]  shadow-[0px_4px_20px_0px_rgba(0,0,0,0.55)] border-[#FFFFF7] border-[0.2rem]">
+        <div className="relative bg-[linear-gradient(187deg,#B48471_-9.74%,rgba(212,204,195,0.80)_100%)] rounded-[3rem]  shadow-[0px_4px_20px_0px_rgba(0,0,0,0.55)] border-[#FFFFF7] border-[0.2rem]">
           <div className=" inline-flex flex-col justify-start items-center overflow-hidden w-full">
             <div
               className="text-center justify-start text-yellow-900 text-[1.8rem] font-extrabold font-['SF_Pro_Rounded'] leading-snug p-[1rem] rounded-tl-[3rem] rounded-tr-[3rem] w-full"

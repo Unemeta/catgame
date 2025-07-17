@@ -9,24 +9,25 @@
     "Confirm": "Confirm",
     "ChatPoints": "ChatPoints:",
     "DailyCheckin": "Daily Check-in",
-    "CheckinInfo": "Please visit every day to get better rewards.",
-    "What are you talking about?": "What are you talking about?",
-    "User Profile": "User Profile",
+    "CheckinInfo": "Please check in daily for rewards",
+    "What are you talking about?": "Huh? What are you talking about, human?",
+    "User Profile": "Profile",
     "Nickname": "Nickname",
     "View Avatar": "View Avatar",
-    "Upload a new avatar": "Upload a new avatar",
+    "Upload a new avatar": "Upload New Avatar",
+    "View Now":"View Now",
     "test": "test",
     "rts": "Release to send",
     "rte": "recording ends in {{sec}} seconds",
     "pts": "press and hold to speak"
   },
   "letter": {
-    "LoveLetterTitle": "Love Letter",
-    "LetterDesc": "A special love letter just for you",
-    "chatLetterDesc": "A heartwarming love letter made just for you! Tap to see what little surprise Meow Meow has for you 🐾",
+    "LoveLetterTitle": "Meow Letter",
+    "LetterDesc": "A Special Meow Letter Just For You",
+    "chatLetterDesc": "A warm Meow Letter just for you! Tap to see the small surprise Meow Meow made for you 🐾",
     "timeRange": "Tracking Period",
     "chatCountAll": "Total Conversations",
-    "chatCountContinuous": "Streak of Daily Chats",
+    "chatCountContinuous": "Daily Streakscore",
     "Countdown":"Countdown",
     "days":"days",
     "teste": "test"
@@ -68,8 +69,8 @@
   "info": {
     "wynickname": "What’s your nickname?",
     "eynickname": "Enter your nickname",
-    "orsone": "Or randomly select one",
-    "howold": "How old are you?",
+    "orsone": "Or Randomly Select One",
+    "howold": "Your Age",
     "wgender": "What’s your gender?",
     "female": "Female",
     "male": "Male"
@@ -78,7 +79,8 @@
     "login": "Sign Up / Log In",
     "pwaDesc": "Get your free app. it won’t take up space on your phone",
     "Install": "Install",
-    "addToScreen": "iOS add to home screen detailed steps",
+    "addToScreen": "How to add to home screen on iOS ",
+    "Know":"Know",
     "enter": "Enter Your Email Address"
   }
 }
