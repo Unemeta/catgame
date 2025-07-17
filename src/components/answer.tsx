@@ -177,13 +177,13 @@ const AnswerView = ({ onClick }: iAnswerView) => {
             className="w-[10rem] h-[10rem] "
             alt=""
             onClick={() => {
+              // 问卷埋点
+              globalApi.eventRecord(`q${stepAnswerIndex + 1}_click`);
               if (stepAnswerIndex >= 3) {
                 console.log(selectIndexQuestionArr);
                 onClick(selectIndexQuestionArr);
               } else {
                 setstepAnswerIndex((stepAnswerIndex) => stepAnswerIndex + 1);
-                // 问卷埋点
-                globalApi.eventRecord(`q${stepAnswerIndex + 1}_click`);
               }
             }}
           />
