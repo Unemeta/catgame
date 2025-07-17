@@ -28,6 +28,9 @@
     "timeRange":"统计时间周期",
     "chatCountAll":"沟通总句数",
     "chatCountContinuous":"连续沟通天数",
+    "Countdown":"倒计时",
+    "days":"日",
+
     "teste": "test"
   },
   "qa": {

@@ -27,6 +27,8 @@
     "timeRange":"統計期間",
     "chatCountAll":"メッセージ総数",
     "chatCountContinuous":"連続チャット日数",
+    "Countdown":"あとX",
+    "days":"日",
     "teste": "test"
   },
   "qa": {

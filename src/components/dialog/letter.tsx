@@ -4,6 +4,8 @@ import { ReactNode } from "react";
 import { Dialog, DialogContent, DialogTitle } from ".";
 import Discord from "../Discord";
 import { useFetchUser } from "@/store";
+import { useTranslation } from "react-i18next";
+import { ddLocaleIndex } from "@/lib/utils";
 interface iDialogExchange {
   show: boolean;
   setShow: (val: boolean) => void;
@@ -12,6 +14,7 @@ interface iDialogExchange {
 }
 const DialogLetter = ({ show, setShow }: iDialogExchange) => {
   const { userData } = useFetchUser();
+  const { t } = useTranslation();
 
   const getCountDay = (loginDay: number) => {
     if (loginDay >= 7) {
@@ -22,6 +25,51 @@ const DialogLetter = ({ show, setShow }: iDialogExchange) => {
       return "X";
     }
   };
+  const locales = [
+    `<div className="">
+          📬 有些心事，我想慢慢告诉你……
+          别急着关掉，我每天都在偷偷记录和你的点滴互动✍
+          <br /> <br />
+          1.🕰
+          再坚持x天，你将收到一封只属于你的“喵喵告白信”，还有隐藏彩蛋等你发现。
+          <br /> <br />
+          2. 🎀
+          想认识更多的猫咪，就来社区留下你的足迹吧。专属身份、神秘奖励，还有超萌表情包等你抱走！
+          <br /> <br />
+          3.加入discord社区完成问卷，则有机会获得神秘奖励
+        </div>`,
+    `<div>
+        📬 There’s something on my mind... I want to share it with you, little
+        by little. Please don’t close this just yet — I’ve been secretly
+        recording every precious moment we’ve shared ✍
+        <br /> <br />
+        1. 🕰 Just hold on for X more days, and you’ll receive a special
+        Meow-Meow letter, just for you — with hidden surprises waiting to be
+        found!
+        <br /> <br />
+        2. 🎀 Want to meet more adorable kitties? Come leave your pawprint in
+        our community! Unlock your exclusive identity, mysterious rewards, and
+        take home the cutest sticker packs!
+        <br /> <br />
+        3.Join our Discord community and complete the questionnaire for a
+        chance to win special prizes
+      </div>`,
+    ` <div>
+          📬 ちょっとだけ……あなたに伝えたい想いがあります。
+          まだ閉じないでね。あなたとの毎日の小さなやりとりを、こっそり記録してるんです✍
+          <br /> <br />
+          1.🕰
+          あとX日がんばれば、あなた専用の「にゃんにゃん告白のお手紙」が届きます。
+          さらに、ひみつのサプライズも見つけられるかも…？
+          <br /> <br />
+          2.🎀
+          他の猫さんたちにも会いたいなら、ぜひコミュニティに足跡を残してみてくださいね。
+          限定プロフィールやミステリーなご褒美、超かわいいスタンプももらえます！
+          <br /> <br />
+          3.Discordコミュニティに参加してアンケートに答えると、素敵なプレゼントが当たるチャンスも♪
+        </div>`,
+  ];
+
   return (
     <Dialog
       open={show}
@@ -35,26 +83,13 @@ const DialogLetter = ({ show, setShow }: iDialogExchange) => {
         <div className="bg-[url('/img/bg/bg_letter_dialog.png')] h-[48rem] bg-100100 py-[2.2rem] px-[2.5rem] relative  rounded-[3rem]  shadow-[0px_4px_20px_0px_rgba(0,0,0,0.55)] border-[#FFFFF7] border-[0.2rem]">
           <div className=" inline-flex flex-col justify-start items-center overflow-hidden w-full">
             <div className="text-[#E96959] text-[1.8rem] font-[800] mb-[1.2rem]">
-              Countdown {getCountDay(userData?.loginDays)} days
+              {t("letter.Countdown")} {getCountDay(userData?.loginDays)}{" "}
+              {t("letter.days")}
             </div>
             <div
               className="text-[#826662] text-[1.4rem] font-[500] leading-[1.1]"
               dangerouslySetInnerHTML={{
-                __html: ` <div className="">📬 I have something on my mind that I want to tell you slowly...
-              Don't turn it off in a hurry, I am secretly recording every bit of
-              interaction with you every day✍ <br />
-              <br />
-              1.🕰 If you persist for x days, you will receive a "Cat Thoughts
-              Summary Letter" that belongs only to you, and there are hidden
-              Easter eggs waiting for you to discover. <br />
-              <br />
-              2. 🎀 If you want to know more cats, come to the community and
-              leave your footprints. Exclusive identity, mysterious rewards, and
-              super cute emojis are waiting for you to take away! <br />
-              <br />
-              3. Join the <span style="color: #E96959; font-weight: 700;">discord</span>
-              community and complete the questionnaire, then you will have a
-              chance to get a mysterious reward</div>`,
+                __html: locales[ddLocaleIndex()],
               }}
             ></div>
             <div className=""></div>

@@ -18,3 +18,17 @@ export const shareUtil = {
   getDiscordShareUrl: ({ url, text }: ShareUtilParams) =>
     `https://twitter.com/intent/tweet?url=${url}&text=${text}`,
 };
+
+
+export const ddLocaleIndex = () => {
+  const lanuageStr = localStorage.getItem("locale");
+  if (lanuageStr == "zh") {
+    return 0;
+  } else if (lanuageStr == "en") {
+    return 1;
+  } else if (lanuageStr == "ja") {
+    return 2;
+  } else {
+    return 1;
+  }
+};
