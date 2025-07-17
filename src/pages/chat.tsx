@@ -203,6 +203,7 @@ const ChatView = () => {
           } else {
             console.log(`other emtontion ${msgRes?.message}`);
           }
+          return;
         }
         if (msgRes?.type == "stream_start") {
           stream_msgs = [];
@@ -320,7 +321,6 @@ const ChatView = () => {
           console.log("send_mes_1");
         }
         // 第二次
-        globalApi.eventRecord(`send_mes_2`);
         if (
           hasSetMessage &&
           messageList.filter((item) => item.role == "user")?.length === 1
