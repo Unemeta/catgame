@@ -81,7 +81,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
         if (notInWhitelist) {
           setInvalid(true);
           setInvalidText(
-            "Please fill in the application questionnaire and we will notify you of the application result of the internal test by email later."
+            "Please fill in the application questionnaire and we will notify you of the application result of the internal test by email later. →"
           );
           return false
         }
@@ -168,7 +168,12 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
       // 所以还是用标准的scrollIntoView
     }
   };
-
+  const getWhiteList = ()=>{
+    const ifto = invalidText.includes('Please fill in the application questionnaire')
+    if(invalid && ifto){
+      window.open('https://forms.gle/33AynPDAq9uwbkrc6','_blank')
+    }
+  }
   return (
     <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-[#DE8D81]">
       <ToHomeStepView isOtherPageNotLogin={false}></ToHomeStepView>
@@ -211,7 +216,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
           )}
         </div>
         {invalid ? (
-          <div className="text-[#F33] font-[SF Pro Rounded] flex items-center gap-[0.5rem]">
+          <div className="text-[#F33] font-[SF Pro Rounded] flex items-center gap-[0.5rem]" onClick={getWhiteList}>
             <img
               src="/img/info-circle.png"
               alt=""
