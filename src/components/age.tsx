@@ -9,9 +9,6 @@ import { useTranslation } from "react-i18next";
 import * as globalApi from "@/services/global";
 
 const oldList = ["16~19", "20~24", "25~34", "35~49", "50~69", "70~99"];
-// for (let i = 16; i < 101; i++) {
-//   oldList.push(i);
-// }
 const Age = ({ onClick }: iAnswerView) => {
   const [basicInfo, setBasicInfo] = useUserBasicInfo();
   const { t } = useTranslation();
@@ -87,7 +84,7 @@ const Age = ({ onClick }: iAnswerView) => {
         </div>
       </div>
       <div className="mt-[3rem]">
-        {basicInfo.age ? (
+        {/* {basicInfo.age ? (
           <img
             src="/img/arrow_right.min.png"
             alt=""
@@ -100,7 +97,13 @@ const Age = ({ onClick }: iAnswerView) => {
             alt=""
             className="w-[10rem] h-[10rem]"
           />
-        )}
+        )} */}
+        <img
+          src="/img/arrow_right.min.png"
+          alt=""
+          className="w-[10rem] h-[10rem]"
+          onClick={onClick}
+        />
       </div>
     </div>
   );
