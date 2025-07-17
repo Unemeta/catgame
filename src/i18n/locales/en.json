@@ -15,7 +15,7 @@
     "Nickname": "Nickname",
     "View Avatar": "View Avatar",
     "Upload a new avatar": "Upload New Avatar",
-    "View Now":"View Now",
+    "View Now": "View Now",
     "test": "test",
     "rts": "Release to send",
     "rte": "recording ends in {{sec}} seconds",
@@ -28,9 +28,13 @@
     "timeRange": "Tracking Period",
     "chatCountAll": "Total Conversations",
     "chatCountContinuous": "Daily Streakscore",
-    "Countdown":"Countdown",
-    "days":"days",
-    "teste": "test"
+    "Countdown": "Countdown",
+    "days": "days",
+    "teste": "test",
+    "shareText": "Share on Twitter",
+    "copy": "Copy ",
+    "download": "Download",
+    "share": "Share"
   },
   "qa": {
     "soul_title": "🐾 Mew... <br />Hi there, Future Friend",
@@ -80,7 +84,7 @@
     "pwaDesc": "Get your free app. it won’t take up space on your phone",
     "Install": "Install",
     "addToScreen": "How to add to home screen on iOS ",
-    "Know":"Know",
+    "Know": "Know",
     "enter": "Enter Your Email Address"
   }
 }

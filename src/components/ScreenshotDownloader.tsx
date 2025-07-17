@@ -9,20 +9,13 @@ const ScreenshotDownloader = ({
   fileName = "screenshot",
   callback,
 }: any) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [format, setFormat] = useState("png");
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [format, ] = useState("png");
 
   const downloadScreenshot = async () => {
     if (!targetRef.current) {
-      setError("未找到目标元素");
+      console.error("未找到目标元素");
       return;
     }
-    setIsLoading(true);
-    setError(null);
-    setPreviewUrl(null);
-
     try {
       callback(false);
       await new Promise((resolve) => setTimeout(resolve, 500)); // 保留小延迟（可选）
@@ -49,8 +42,6 @@ const ScreenshotDownloader = ({
       }, 200);
     } catch (err) {
       console.error("截图失败:", err);
-    } finally {
-      setIsLoading(false);
     }
   };
 

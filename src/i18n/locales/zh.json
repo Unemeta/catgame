@@ -12,10 +12,10 @@
     "CheckinInfo": "请每天打卡以获得更丰厚的奖励。",
     "What are you talking about?": "你在说什么？",
     "User Profile": "个人档案",
-    "Nickname":"昵称",
-    "View Avatar":"查看头像",
-    "Upload a new avatar":"上传新头像",
-    "View Now":"立即查看",
+    "Nickname": "昵称",
+    "View Avatar": "查看头像",
+    "Upload a new avatar": "上传新头像",
+    "View Now": "立即查看",
     "test": "test",
     "rts": "松开发送",
     "rte": "录制将在{{sec}}秒后结束",
@@ -25,13 +25,16 @@
     "LoveLetterTitle": "告白信",
     "LetterDesc": "一封专属于你的暖心告白信！点我看看喵喵的小心意吧 🐾",
     "chatLetterDesc": "一封专属于你的暖心告白信！点我看看喵喵的小心意吧 🐾",
-    "timeRange":"统计时间周期",
-    "chatCountAll":"沟通总句数",
-    "chatCountContinuous":"连续沟通天数",
-    "Countdown":"倒计时",
-    "days":"日",
-
-    "teste": "test"
+    "timeRange": "统计时间周期",
+    "chatCountAll": "沟通总句数",
+    "chatCountContinuous": "连续沟通天数",
+    "Countdown": "倒计时",
+    "days": "日",
+    "shareText": "前往Twitter分享",
+    "teste": "test",
+    "copy": "复制",
+    "download": "下载",
+    "share": "分享"
   },
   "qa": {
     "soul_title": "🐾 喵。。。<br />你好呀，未来的朋友",
@@ -79,9 +82,9 @@
   "login": {
     "login": "账号注册登录",
     "pwaDesc": "获取你的免费应用，它不会占用你手机的存储空间",
-    "Install":"安装",
+    "Install": "安装",
     "addToScreen": "iOS添加到主屏幕详细步骤",
-    "Know":"知道啦",
+    "Know": "知道啦",
     "enter": "请输入你的邮箱地址"
   }
 }

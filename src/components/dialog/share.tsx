@@ -1,21 +1,58 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-img-element */
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from ".";
 import { toast } from "react-toastify";
 import IconView from "../IconView";
 import { shareUtil } from "@/lib/utils";
 import * as globalApi from "@/services/global";
+import html2canvas from "html2canvas";
+import { useTranslation } from "react-i18next";
 
-interface iDialogShare {
-  trigger?: ReactNode;
-  // isOpen: boolean;
-  // setIsOpen: (bool: boolean) => void;
-}
-const DialogShare = ({ trigger }: iDialogShare) => {
+const DialogShare = ({
+  trigger,
+  targetRef,
+  fileName = "screenshot",
+  callback,
+}: any) => {
   const [isOpen, setisOpen] = useState(false);
   const [link] = useState("https://discord.gg/HBm6qxn4dM");
+  const [format] = useState("png");
+  const { t } = useTranslation();
 
+  const downloadScreenshot = async () => {
+    if (!targetRef.current) {
+      console.error("未找到目标元素");
+      return;
+    }
+    try {
+      callback(false);
+      await new Promise((resolve) => setTimeout(resolve, 500)); // 保留小延迟（可选）
+      setTimeout(async () => {
+        const canvas = await html2canvas(targetRef.current, {
+          scale: 2,
+          useCORS: true,
+          logging: false,
+          backgroundColor: "#FFFFFF",
+        });
+
+        const dataUrl =
+          format === "png"
+            ? canvas.toDataURL("image/png")
+            : canvas.toDataURL("image/jpeg", 0.9);
+
+        const link = document.createElement("a");
+        link.download = `${fileName}-${new Date()
+          .toISOString()
+          .slice(0, 10)}.${format}`;
+        link.href = dataUrl;
+        link.click();
+        callback(true);
+      }, 200);
+    } catch (err) {
+      console.error("截图失败:", err);
+    }
+  };
   const copyToClipboard = (textToCopy: string | number) => {
     if (navigator.clipboard && window.isSecureContext) {
       return navigator.clipboard.writeText(textToCopy.toString());
@@ -37,10 +74,17 @@ const DialogShare = ({ trigger }: iDialogShare) => {
     }
   };
   const handleDownload = async () => {
-    console.log("handleDownload");
+    // console.log("handleDownload");
+    downloadScreenshot();
   };
   const handleDiscord = async () => {
-    console.log("handleDiscord");
+    globalApi.eventRecord("click_discord_link");
+    window.open("https://discord.gg/HBm6qxn4dM", "_blank");
+  };
+  const text = {
+    zh: "喵喵和我的快乐旅程～～～",
+    en: "My joyful journey with Meow Meow~",
+    ja: "ニャンコとの楽しい旅～～～",
   };
   return (
     <Dialog
@@ -64,7 +108,7 @@ const DialogShare = ({ trigger }: iDialogShare) => {
         >
           <div className="flex justify-center items-center bg-[linear-gradient(180deg,#E3BFA5_0%,#DDB293_100%)] rounded-tl-[3rem] rounded-tr-[3rem] py-[1rem]">
             <span className="bg-gradient-to-t from-[#6C4734] to-[#6C4B3A] bg-clip-text text-transparent text-[1.8rem] font-[800]">
-              Share
+              {t("letter.share")}
             </span>
           </div>
           <div className="px-[2rem]">
@@ -80,10 +124,11 @@ const DialogShare = ({ trigger }: iDialogShare) => {
                 className="flex justify-center items-center bg-[#FFF] shadow-[0px_3px_14px_0px_rgba(255,255,255,0.45);] rounded-[3.1rem] h-[3.8rem]"
                 onClick={() => {
                   // window.open("https://x.com/", "_blank");
+                  const lan = localStorage.getItem("locale") || "en";
                   window.open(
                     shareUtil.getTwitterShareUrl({
                       url: window.location.href,
-                      text: `📬 Just got a secret surprise from my AI cat @Meowster_io_ai Turns out it’s been quietly keeping a diary—every late-night visit, unspoken word, and mood shift, all remembered.🐾 Wonder what your cat might say to you?`,
+                      text: `${text[lan as keyof typeof text]}`,
                     }),
                     "_blank"
                   );
@@ -94,7 +139,7 @@ const DialogShare = ({ trigger }: iDialogShare) => {
                   type="x"
                 ></IconView>
                 <span className="text-[#E96856] text-[1.6rem] font-[800]">
-                  前往Twiiter分享
+                  {t("letter.shareText")}
                 </span>
               </div>
             </div>
@@ -117,7 +162,7 @@ const DialogShare = ({ trigger }: iDialogShare) => {
                 />
                 <div className="h-[0.6rem]"></div>
                 <span className="text-white text-[1.4rem] font-[500]">
-                  Copy
+                  {t("letter.copy")}
                 </span>
               </div>
               <div
@@ -131,7 +176,7 @@ const DialogShare = ({ trigger }: iDialogShare) => {
                 />
                 <div className="h-[0.6rem]"></div>
                 <span className="text-white text-[1.4rem] font-[500]">
-                  Download
+                  {t("letter.download")}
                 </span>
               </div>
               <div

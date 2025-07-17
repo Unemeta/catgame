@@ -12,10 +12,10 @@
     "CheckinInfo": "毎日ログインして、より豪華な報酬をゲットしよう。",
     "What are you talking about?": "何を言ってるの？",
     "User Profile": "プロフィール",
-    "Nickname":"表示名",
-    "View Avatar":"プロフィール画像を確認する",
-    "Upload a new avatar":"プロフィール画像を変更する",
-    "View Now":"今すぐ確認",
+    "Nickname": "表示名",
+    "View Avatar": "プロフィール画像を確認する",
+    "Upload a new avatar": "プロフィール画像を変更する",
+    "View Now": "今すぐ確認",
     "test": "test",
     "rts": "指を離すと送信されます",
     "rte": "録音はあと{{sec}}秒で終了します",
@@ -25,12 +25,16 @@
     "LoveLetterTitle": "告白のお手紙",
     "LetterDesc": "あなただけに宛てた、特別な告白のお手紙",
     "chatLetterDesc": "あなたにだけ届く、心あたたまる告白のお手紙です。にゃんにゃんからのささやかな気持ち、ちょっと覗いてみませんか？🐾",
-    "timeRange":"統計期間",
-    "chatCountAll":"メッセージ総数",
-    "chatCountContinuous":"連続チャット日数",
-    "Countdown":"あとX",
-    "days":"日",
-    "teste": "test"
+    "timeRange": "統計期間",
+    "chatCountAll": "メッセージ総数",
+    "chatCountContinuous": "連続チャット日数",
+    "Countdown": "あとX",
+    "days": "日",
+    "teste": "test",
+    "shareText": "Twitterで共有しよう！",
+    "copy": "コピー",
+    "download": "ダウンロード",
+    "share": "シェア"
   },
   "qa": {
     "soul_title": "🐾 にゃあ……こんにちは、<br />未来のともだち",
@@ -79,9 +83,9 @@
     "login": "アカウント登録・ログイン",
     "enter": "メールアドレスを入力してください",
     "pwaDesc": "無料アプリを入手しよう。スマホの容量を使いません",
-    "Install":"インストール",
+    "Install": "インストール",
     "addToScreen": "iOSのホーム画面に追加する手順",
-    "Know":"知る",
-    "test":"test"
+    "Know": "知る",
+    "test": "test"
   }
 }
