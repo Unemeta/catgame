@@ -86,7 +86,7 @@ const LetterView = () => {
   const widthPx = useRemToPx(6); // 10rem → px
   return (
     <div className="bg-[#F0E4DD] min-h-[100vh]" ref={contentRef}>
-      <div className="fixed w-full bg-[#F0E4DD] z-[100]">
+      <div className="w-full bg-[#F0E4DD] z-[100]">
         <div className="header flex justify-between items-center h-[4.6rem] px-[2rem]">
           <IconView
             className="w-[2rem] h-[2rem]"
@@ -109,7 +109,7 @@ const LetterView = () => {
           ></DialogShare>
         </div>
       </div>
-      <div className="h-[4.6rem]"></div>
+      {/* <div className="h-[4.6rem]"></div> */}
       {/* dtest */}
       <div
         className="px-[0rem] pb-[2.5rem] bg-[url('/img/bg_letter_bye.min.png')]"
