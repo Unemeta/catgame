@@ -11,6 +11,23 @@ import { useQRCode } from "next-qrcode";
 import * as globalApi from "@/services/global";
 import { useTranslation } from "react-i18next";
 
+function useRemToPx(remValue: number) {
+  const [px, setPx] = useState(remValue * 10); // 默认 1rem = 10px
+
+  useEffect(() => {
+    const updatePx = () => {
+      const rootFontSize = parseFloat(
+        getComputedStyle(document.documentElement).fontSize
+      );
+      setPx(remValue * rootFontSize);
+    };
+    updatePx();
+    window.addEventListener("resize", updatePx); // 响应式调整
+    return () => window.removeEventListener("resize", updatePx);
+  }, [remValue]);
+
+  return px;
+}
 const LetterView = () => {
   const contentRef = useRef(null);
   const [showDownLoad, setShowDownLoad] = useState(true);
@@ -61,6 +78,8 @@ const LetterView = () => {
   const downloadCallBack = (show: boolean) => {
     setShowDownLoad(show);
   };
+
+  const widthPx = useRemToPx(6); // 10rem → px
   return (
     <div className="bg-[#F0E4DD] min-h-[100vh]" ref={contentRef}>
       <div className="fixed w-full bg-[#F0E4DD] z-[100]">
@@ -186,7 +205,7 @@ const LetterView = () => {
                   {letterInfo?.maxLoginCount}
                 </div>
                 <div className="text-[#6C4937] text-[1.2rem] font-[500] text-center">
-                {t("letter.chatCountContinuous")}
+                  {t("letter.chatCountContinuous")}
                 </div>
               </div>
             </div>
@@ -204,7 +223,7 @@ const LetterView = () => {
       <div className="h-[2.3rem]"></div>
       {showDownLoad ? (
         <>
-          <div className="flex justify-around items-center gap-[4.1rem] w-full h-[12rem]">
+          <div className="flex justify-around items-center gap-[4.1rem] w-full h-[10rem]">
             <ScreenshotDownloader
               targetRef={contentRef}
               fileName="sharepage"
@@ -215,13 +234,18 @@ const LetterView = () => {
           <div className="h-[2.2rem]"></div>
         </>
       ) : (
-        <div className="flex justify-around items-center  bg-white py-[1.8rem] gap-[1.5rem] h-[12rem]">
+        <div className="flex justify-around items-center  bg-white py-[1.8rem] gap-[1.5rem] h-[10rem]">
           <img src="/img/logonew.png" alt="" className="w-[5.5rem]" />
           <div className="text-[#6C4937] text-[1.2rem] font-['SF_Pro_Rounded'] leading-none w-[15rem]">
             You teach it to understand the world, it teaches you to understand
             yourself
           </div>
-          <Canvas text={window.location.host}></Canvas>
+          <Canvas
+            text={window.location.host}
+            options={{
+              width: widthPx, // 设置较大的基础尺寸（确保清晰）
+            }}
+          ></Canvas>
         </div>
       )}
     </div>
