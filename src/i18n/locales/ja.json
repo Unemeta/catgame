@@ -10,11 +10,12 @@
     "ChatPoints": "チャットポイント:",
     "DailyCheckin": "デイリーログインボーナス",
     "CheckinInfo": "毎日ログインして、より豪華な報酬をゲットしよう。",
-    "What are you talking about?": "あなたは何について話しているのですか?",
+    "What are you talking about?": "何を言ってるの？",
     "User Profile": "プロフィール",
     "Nickname":"表示名",
     "View Avatar":"プロフィール画像を確認する",
     "Upload a new avatar":"プロフィール画像を変更する",
+    "View Now":"今すぐ確認",
     "test": "test",
     "rts": "指を離すと送信されます",
     "rte": "録音はあと{{sec}}秒で終了します",
@@ -80,6 +81,7 @@
     "pwaDesc": "無料アプリを入手しよう。スマホの容量を使いません",
     "Install":"インストール",
     "addToScreen": "iOSのホーム画面に追加する手順",
+    "Know":"知る",
     "test":"test"
   }
 }
