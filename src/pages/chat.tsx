@@ -637,9 +637,7 @@ const ChatView = () => {
                       }
                     }}
                   >
-                    {chatInfo && chatInfo?.farewellLetterStatus == 3 ? (
-                      <div></div>
-                    ) : (
+                    {chatInfo && chatInfo?.farewellLetterStatus == 2 && (
                       <div className="w-[0.8rem] h-[0.8rem] bg-[#E95658] absolute right-0 top-[-0.1rem] rounded-full"></div>
                     )}
                     <img
