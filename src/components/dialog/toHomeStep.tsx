@@ -3,10 +3,98 @@
 /* eslint-disable @next/next/no-img-element */
 import { ReactNode } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from ".";
+import { useTranslation } from "react-i18next";
 interface iDialogToHomeStep {
   trigger?: ReactNode;
 }
 const DialogToHomeStep = ({ trigger }: iDialogToHomeStep) => {
+  const { t } = useTranslation();
+  //
+  const localeIndex = () => {
+    const lanuageStr = localStorage.getItem("locale");
+    if (lanuageStr == "zh") {
+      return 0;
+    } else if (lanuageStr == "en") {
+      return 1;
+    } else if (lanuageStr == "ja") {
+      return 2;
+    } else {
+      return 1;
+    }
+  };
+  const dataArr = [
+    {
+      step1: <div className="">1.打开chrome浏览器，访问本页面</div>,
+      step2: (
+        <div className="">
+          2.在浏览器底部或顶部找到{" "}
+          <span className="text-[#1E00FF] font-[700]">"“分享”</span>
+          按钮
+        </div>
+      ),
+      step3: (
+        <div className="">
+          <span>3.在弹出的菜单中，滑动找到并点击</span>
+          <span className="text-[#1E00FF] font-[700]">"“添加到主屏幕”"</span>
+        </div>
+      ),
+      step4: (
+        <div className="">
+          4.在新的确认页面，点击右上角的
+          <span className="text-[#1E00FF] font-[700]">"添加"</span> button in
+          the 按钮
+        </div>
+      ),
+    },
+    {
+      step1: (
+        <div className="">1. Open the Default browser and visit this page</div>
+      ),
+      step2: (
+        <div className="">
+          2. Find the <span className="text-[#1E00FF] font-[700]">"Share"</span>
+          button at the bottom or top of the browser
+        </div>
+      ),
+      step3: (
+        <div className="">
+          <span>3. In the pop-up menu, slide to find and click</span>
+          <span className="text-[#1E00FF] font-[700]">
+            "Add to Home Screen"
+          </span>
+        </div>
+      ),
+      step4: (
+        <div className="">
+          4. On the new confirmation page, click the{" "}
+          <span className="text-[#1E00FF] font-[700]">"Add"</span> button in the
+          upper right corner
+        </div>
+      ),
+    },
+    {
+      step1: (
+        <div className="">
+          1.Chromeブラウザを開き、このページにアクセスしてください。
+        </div>
+      ),
+      step2: (
+        <div className="">
+          2.画面の下部または上部にある**「共有」ボタン**をタップします。
+        </div>
+      ),
+      step3: (
+        <div className="">
+          3.表示されたメニューの中からスクロールして**「ホーム画面に追加」**を選択してください。
+        </div>
+      ),
+      step4: (
+        <div className="">
+          4.確認画面が表示されたら、右上の**「追加」ボタン**をタップしてください。
+        </div>
+      ),
+    },
+  ];
   return (
     <Dialog>
       <DialogTrigger>{trigger}</DialogTrigger>
@@ -22,35 +110,15 @@ const DialogToHomeStep = ({ trigger }: iDialogToHomeStep) => {
             >
               {/* {t("chat.Exchange")} */}
               <div className="max-w-[24rem] leading-[1.2] font-['SF_Pro_Rounded'] iosAddtohomeTitle">
-                {"iOS add to home screen detailed steps"}
+                {t("login.addToScreen")}
               </div>
             </div>
 
             <div className="text-white text-[1.4rem] font-[500] px-[2rem] py-[1.6rem] leading-[1.2]">
-              <div
-                className="mb-[1.5rem]"
-                dangerouslySetInnerHTML={{
-                  __html: "1. Open the Default browser and visit this page",
-                }}
-              ></div>
-              <div
-                className="mb-[1.5rem]"
-                dangerouslySetInnerHTML={{
-                  __html: `<div className="">2. Find the<span className="text-[#1E00FF] font-[700]">"Share"</span>button at the bottom or top of the browser</div>`,
-                }}
-              ></div>
-              <div
-                className="mb-[1.5rem]"
-                dangerouslySetInnerHTML={{
-                  __html: ` <div className="">3. In the pop-up menu, slide to find and click<span className="text-[#1E00FF] font-[700]">"Add to Home Screen"</span></div>`,
-                }}
-              ></div>
-              <div
-                className=""
-                dangerouslySetInnerHTML={{
-                  __html: `<div className="">4. On the new confirmation page, click the<span className="text-[#1E00FF] font-[700]">"Add"</span>button in the upper right corner</div>`,
-                }}
-              ></div>
+              <div className="mb-[1.5rem]">{dataArr[localeIndex()].step1}</div>
+              <div className="mb-[1.5rem]">{dataArr[localeIndex()].step2}</div>
+              <div className="mb-[1.5rem]">{dataArr[localeIndex()].step3}</div>
+              <div className="">{dataArr[localeIndex()].step4}</div>
             </div>
             <DialogTrigger>
               <div className="select-none">

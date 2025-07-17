@@ -12,9 +12,9 @@
     "CheckinInfo": "Please visit every day to get better rewards.",
     "What are you talking about?": "What are you talking about?",
     "User Profile": "User Profile",
-    "Nickname":"Nickname",
-    "View Avatar":"View Avatar",
-    "Upload a new avatar":"Upload a new avatar",
+    "Nickname": "Nickname",
+    "View Avatar": "View Avatar",
+    "Upload a new avatar": "Upload a new avatar",
     "test": "test",
     "rts": "Release to send",
     "rte": "recording ends in {{sec}} seconds",
@@ -24,9 +24,9 @@
     "LoveLetterTitle": "Love Letter",
     "LetterDesc": "A special love letter just for you",
     "chatLetterDesc": "A heartwarming love letter made just for you! Tap to see what little surprise Meow Meow has for you 🐾",
-    "timeRange":"Tracking Period",
-    "chatCountAll":"Total Conversations",
-    "chatCountContinuous":"Streak of Daily Chats",
+    "timeRange": "Tracking Period",
+    "chatCountAll": "Total Conversations",
+    "chatCountContinuous": "Streak of Daily Chats",
     "teste": "test"
   },
   "qa": {
@@ -75,8 +75,8 @@
   "login": {
     "login": "Sign Up / Log In",
     "pwaDesc": "Get your free app. it won’t take up space on your phone",
-    "Install":"Install",
-
+    "Install": "Install",
+    "addToScreen": "iOS add to home screen detailed steps",
     "enter": "Enter Your Email Address"
   }
 }
