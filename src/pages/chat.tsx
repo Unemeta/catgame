@@ -154,8 +154,17 @@ const ChatView = () => {
       // FixedEventMsg = "fixed_event"; // 固定推送
       // AiEventMsg = "ai_event"; // ai推送
       // FarewellLetter = "farewell_letter"; // 告别信
+
       if (event?.data !== "pong") {
         const msgRes = JSON.parse(event?.data);
+        // msgRes = {
+        //   chatCount: 0,
+        //   message:
+        //     "https://unemeta-1322481783.cos.ap-tokyo.myqcloud.com/store-AI/%E4%B8%8A%E4%BC%A0%E8%85%BE%E8%AE%AF%E6%A1%B6%E8%B5%84%E6%BA%90%E5%BA%93/output%20%285%29.png",
+        //   msgId: "68788ca60e70eff78d05c2ef",
+        //   time: 1752730790,
+        //   type: "ai_event",
+        // };
         if (
           msgRes.hasOwnProperty("message") &&
           msgRes["message"] != "Msg received"
@@ -254,6 +263,16 @@ const ChatView = () => {
         } else {
           console.log("other type");
           console.log(msgRes);
+          setmessageList((pre) => {
+            return [
+              ...pre,
+              {
+                ...msgRes,
+                messageArr: [msgRes.message],
+                role: "cat",
+              },
+            ];
+          });
         }
       }
       // setMessages((prevMessages) => [...prevMessages, event.data]);
@@ -719,7 +738,9 @@ const ChatView = () => {
                             trigger={
                               <img
                                 className=" rounded-full  userAvator"
-                                src={userData?.avatar ?? "/img/avataUser.min.png"}
+                                src={
+                                  userData?.avatar ?? "/img/avataUser.min.png"
+                                }
                                 // src={"/img/avataUser.min.png"}
                                 alt=""
                               />
