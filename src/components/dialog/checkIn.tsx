@@ -223,11 +223,6 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
 
                             {isVisible && item.checked ? (
                               <>
-                                {/* <LottieView
-                                  src={"/lottie/fishclick.json"}
-                                  loop={false}
-                                  className="absolute top-0"
-                                ></LottieView> */}
                                 <LottieView
                                   src={"/lottie/fishpoint.json"}
                                   loop={false}
@@ -245,13 +240,13 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
                           </div>
 
                           {item.day === 7 && (
-                            <div>
+                            <div className="flex items-center flex-col">
                               <div
                                 className={cn("relative w-[4rem]", {
                                   "opacity-50": item.checked,
                                 })}
                               >
-                                <img className="" src="/img/fishitem.png" />
+                                <img className="text-center" src="/img/xin.png" />
                               </div>
                               <div
                                 className={cn(
@@ -261,7 +256,7 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
                                   }
                                 )}
                               >
-                                x20
+                                Love Letter
                               </div>
                             </div>
                           )}

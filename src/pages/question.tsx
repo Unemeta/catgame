@@ -7,7 +7,13 @@ import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import * as globalApi from "@/services/global";
 import ToHomeStepView from "@/components/toHomeSteps";
+import dynamic from "next/dynamic";
 
+// 动态导入禁用 SSR
+const Player = dynamic(
+  () => import("@lottiefiles/react-lottie-player").then((mod) => mod.Player),
+  { ssr: false }
+);
 /* eslint-disable @next/next/no-img-element */
 const PartyView = () => {
   const [stepIndex, setstepIndex] = useState(0);
@@ -78,7 +84,13 @@ const PartyView = () => {
               ></div>
 
               <div className="flex justify-center items-end">
-                <div className="bg-[url('/img/cat_red.min.png')] w-[14rem] h-[14rem] bg-cover"></div>
+                {/* <div className="bg-[url('/img/cat_red.min.png')] w-[14rem] h-[14rem] bg-cover"></div> */}
+                <Player
+                  src={"/lottie/maotoudongxiao.json"}
+                  loop={true}
+                  autoplay={true}
+                  className="w-[14rem] h-[14rem]"
+                ></Player>
               </div>
 
               <div className="text-[#826662] text-[1.4rem] font-[500]  flex justify-center items-center text-left">

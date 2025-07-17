@@ -3,6 +3,14 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import * as globalApi from "@/services/global";
+
+import dynamic from "next/dynamic";
+
+// 动态导入禁用 SSR
+const Player = dynamic(
+  () => import("@lottiefiles/react-lottie-player").then((mod) => mod.Player),
+  { ssr: false }
+);
 interface iAnswerView {
   onClick: (selectIndexs: number[]) => void;
 }
@@ -67,7 +75,12 @@ const AnswerView = ({ onClick }: iAnswerView) => {
         ></div>
         <div className="h-[4vh]"></div>
         <div className="flex justify-center items-end">
-          <div className="bg-[url('/img/cat_red.min.png')] w-[14rem] h-[14rem] bg-cover"></div>
+          <Player
+            src={"/lottie/maotoudongxiao.json"}
+            loop={true}
+            autoplay={true}
+            className="w-[14rem] h-[14rem]"
+          ></Player>
         </div>
         <div className="h-[2.6vh]"></div>
         <div className="flex justify-center items-center mb-[2rem]">
