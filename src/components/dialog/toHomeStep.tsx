@@ -124,7 +124,7 @@ const DialogToHomeStep = ({ trigger }: iDialogToHomeStep) => {
               <div className="select-none">
                 <div className="bg-white rounded-[3rem] shadow-[0px_3px_14px_0px_rgba(255,255,255,0.45)] w-[13.2rem] h-[3.8rem] flex justify-center items-center">
                   <span className="text-[#E96856] text-[1.6rem] font-[800]">
-                    knew
+                    {t("login.Know")}
                   </span>
                 </div>
               </div>
