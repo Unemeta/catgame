@@ -42,7 +42,7 @@ const UploadView = () => {
         toast.error("Upload avatar error");
       }
     } catch (error) {
-      throw error;
+      console.log(error);
     }
   };
 

@@ -28,14 +28,14 @@ const DialogToHomeStep = ({ trigger }: iDialogToHomeStep) => {
       step2: (
         <div className="">
           2.在浏览器底部或顶部找到{" "}
-          <span className="text-[#1E00FF] font-[700]">"“分享”</span>
+          <span className="text-[#1E00FF] font-[700]">"分享"</span>
           按钮
         </div>
       ),
       step3: (
         <div className="">
           <span>3.在弹出的菜单中，滑动找到并点击</span>
-          <span className="text-[#1E00FF] font-[700]">"“添加到主屏幕”"</span>
+          <span className="text-[#1E00FF] font-[700]">"添加到主屏幕"</span>
         </div>
       ),
       step4: (
