@@ -28,14 +28,14 @@ const DialogToHomeStep = ({ trigger }: iDialogToHomeStep) => {
       step2: (
         <div className="">
           2.在浏览器底部或顶部找到{" "}
-          <span className="text-[#1E00FF] font-[700]">"“分享”</span>
+          <span className="text-[#1E00FF] font-[700]">"分享"</span>
           按钮
         </div>
       ),
       step3: (
         <div className="">
           <span>3.在弹出的菜单中，滑动找到并点击</span>
-          <span className="text-[#1E00FF] font-[700]">"“添加到主屏幕”"</span>
+          <span className="text-[#1E00FF] font-[700]">"添加到主屏幕"</span>
         </div>
       ),
       step4: (
@@ -80,17 +80,17 @@ const DialogToHomeStep = ({ trigger }: iDialogToHomeStep) => {
       ),
       step2: (
         <div className="">
-          2.画面の下部または上部にある**「共有」ボタン**をタップします。
+          2.画面の下部または上部にある「共有」ボタンをタップします。
         </div>
       ),
       step3: (
         <div className="">
-          3.表示されたメニューの中からスクロールして**「ホーム画面に追加」**を選択してください。
+          3.表示されたメニューの中からスクロールして「ホーム画面に追加」を選択してください。
         </div>
       ),
       step4: (
         <div className="">
-          4.確認画面が表示されたら、右上の**「追加」ボタン**をタップしてください。
+          4.確認画面が表示されたら、右上の「追加」ボタンをタップしてください。
         </div>
       ),
     },
