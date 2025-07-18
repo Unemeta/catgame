@@ -72,9 +72,26 @@ const ChatView = () => {
   // const inputRef = useRef<HTMLInputElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const [showCatLoading, setshowCatLoading] = useState(false);
-
+  // chat页面拦截
+  const getStep = async () => {
+    const res = await request({
+      url: "/api/survey/survey/step",
+      method: "get",
+    });
+    const { step } = res.data;
+    //0 代表未填写过基础信息
+    //1 代表填写过基础信息，未填写过mbti
+    //2 代表填写过基础信息和mbti
+    if (step === 0) {
+      router.push("/info");
+    }
+    if (step === 1) {
+      router.push("/question");
+    }
+  };
   useEffect(() => {
     fetchUser?.();
+    getStep()
   }, []);
 
   useEffect(() => {
