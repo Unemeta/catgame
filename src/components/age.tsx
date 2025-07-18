@@ -27,18 +27,18 @@ const Age = ({ onClick }: iAnswerView) => {
                 className={cn(
                   "w-[30rem] py-[1.2rem] rounded-[5rem] inline-flex justify-center items-center gap-[1rem] mb-[2rem]",
                   {
-                    "bg-white": index !== basicInfo.age,
+                    "bg-white": index + 1 !== basicInfo.age,
                     "bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)] rounded-[20px]":
-                      index === basicInfo.age,
+                      index + 1 === basicInfo.age,
                   }
                 )}
                 onClick={() => {
                   globalApi.eventRecord("age_input");
-                  setBasicInfo({ ...basicInfo, age: index });
+                  setBasicInfo({ ...basicInfo, age: index + 1 });
                 }}
                 style={{
                   boxShadow:
-                    index === basicInfo.age
+                    index + 1 === basicInfo.age
                       ? "0px 3px 4px 0px rgba(255, 255, 255, 0.25), 0px 4px 24px 0px #ECA89E"
                       : "",
                 }}
@@ -56,8 +56,8 @@ const Age = ({ onClick }: iAnswerView) => {
                   className={cn(
                     "flex-1 text-center justify-start text-[#826662] text-[1.6rem] font-bold font-['SF_Pro_Rounded'] leading-tight",
                     {
-                      "text-[#826662]": index !== basicInfo.age,
-                      "text-[#FFFAFA]": index === basicInfo.age,
+                      "text-[#826662]": index + 1 !== basicInfo.age,
+                      "text-[#FFFAFA]": index + 1 === basicInfo.age,
                     }
                   )}
                 >

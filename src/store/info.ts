@@ -10,7 +10,7 @@ interface basicInfo {
 const userBasicInfo = atom<basicInfo>(
     {
         nickname: '',
-        age: 0,
+        age: 1,
         gender: 0
     },
 );
@@ -18,7 +18,7 @@ const userBasicInfo = atom<basicInfo>(
 export const useUserBasicInfo = () => {
     useHydrateAtoms([[userBasicInfo, {
         nickname: '',
-        age: 0,
+        age: 1,
         gender: 0
     }]] as const);
     return useAtom(userBasicInfo);
