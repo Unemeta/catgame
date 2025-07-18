@@ -91,7 +91,7 @@ const ChatView = () => {
   };
   useEffect(() => {
     fetchUser?.();
-    getStep()
+    getStep();
   }, []);
 
   useEffect(() => {
@@ -869,114 +869,95 @@ const ChatView = () => {
             {/* fixed bottom-0 left-0 */}
             {showSend && (
               <div className=" w-full">
-                {showVoice ? (
-                  <SpeechRecognition
-                    language="zh_cn"
-                    onSend={(text) => sendMesCommon(text)}
-                  ></SpeechRecognition>
-                ) : (
-                  <div className="textInput flex justify-center items-center sendSpeakerWrap relative">
-                    <div className="absolute top-[-3rem] right-[1rem]">
-                      {Number(chatCount) >= 20 ? (
-                        <div className="flex justify-center items-center px-[1rem] py-[0.6rem] bg-[rgba(58,53,53,0.50)] border-white/20 border-[1px] rounded-[11rem]">
-                          {/* <img
+                <div className="textInput flex justify-center items-center sendSpeakerWrap relative">
+                  <div className="absolute top-[-3rem] right-[1rem]">
+                    {Number(chatCount) >= 20 ? (
+                      <div className="flex justify-center items-center px-[1rem] py-[0.6rem] bg-[rgba(58,53,53,0.50)] border-white/20 border-[1px] rounded-[11rem]">
+                        {/* <img
                           className="chatNumLeft"
                           src="/img/clock.png"
                           alt=""
                         /> */}
-                          <span className="text-white text-[1rem] font-[500] mr-[0.4rem]">
-                            Update
-                          </span>
-                          <div className="text-white text-[1rem] font-[800]">
-                            <CountdownTimer></CountdownTimer>
-                          </div>
+                        <span className="text-white text-[1rem] font-[500] mr-[0.4rem]">
+                          Update
+                        </span>
+                        <div className="text-white text-[1rem] font-[800]">
+                          <CountdownTimer></CountdownTimer>
                         </div>
-                      ) : (
-                        <div className="px-[1rem] py-[0.6rem] bg-[rgba(58,53,53,0.50)] border-white/20 border-[1px] rounded-[11rem]">
-                          <span className="text-white text-[1rem] font-[500]">
-                            {t("chat.ChatPoints")}
-                            {chatCount != "" && Number(chatCount) >= 0
-                              ? 20 - (Number(chatCount) || 0) >= 0
-                                ? 20 - (Number(chatCount) || 0)
-                                : 0
-                              : "--"}
-                            /20
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                    <div className="" onClick={() => setShowVoice(true)}>
-                      {/* <LottieView
-                        src={"/lottie/v1.json"}
-                        className={styles.newIcon}
-                        loop={true}
-                      ></LottieView> */}
-                      <img
-                        src="/img/voice.png"
-                        alt=""
-                        className={styles.newIcon}
-                      />
-                    </div>
-                    <div className="relative sendInputWrap flex grow rounded-[2.2rem] overflow-hidden">
-                      <textarea
-                        tabIndex={-1}
-                        ref={inputRef}
-                        className="sendInput w-full bg-[#0f040f82] text-[1.4rem] text-white outline-none  font-[500] pl-[2rem] pr-[6rem] py-[0.6rem] flex justify-center items-center leading-[1.5]"
-                        // type="text"
-                        // rows={1}
-                        onChange={(e) => setinputMsg(e.target.value)}
-                        onInput={handleInput}
-                        onKeyDown={(e) => {
-                          handleKeyDown(e);
-                        }}
-                        onFocus={() => {
-                          setisMsgFocus(true);
-                          isFocusSend = true;
-                          if (socket) {
-                            //
-                          } else {
-                            console.log("reconnect");
-                            settoConnect((pre) => !pre);
-                          }
-                          if (
-                            hasSetMessage &&
-                            messageList.filter((item) => item.role == "user")
-                              ?.length === 0
-                          ) {
-                            console.log("focus_chat_1");
-                            globalApi.eventRecord(`focus_chat_1`);
-                          }
-                          if (
-                            hasSetMessage &&
-                            messageList.filter((item) => item.role == "user")
-                              ?.length === 1
-                          ) {
-                            console.log("focus_chat_2");
-                            globalApi.eventRecord(`focus_chat_2`);
-                          }
-                        }}
-                        onBlur={handleBlur}
-                        value={inputMsg}
-                        placeholder={t("chat.What are you talking about?")}
-                      />
-                      <img
-                        onClick={() => {
-                          sendMessage();
-                        }}
-                        className="w-[4.6rem] h-[2.8rem] absolute right-[0.4rem] bottom-[0.5rem]"
-                        src="/img/sendMsg.min.png"
-                        alt=""
-                      />
-                      {/* <div
+                      </div>
+                    ) : (
+                      <div className="px-[1rem] py-[0.6rem] bg-[rgba(58,53,53,0.50)] border-white/20 border-[1px] rounded-[11rem]">
+                        <span className="text-white text-[1rem] font-[500]">
+                          {t("chat.ChatPoints")}
+                          {chatCount != "" && Number(chatCount) >= 0
+                            ? 20 - (Number(chatCount) || 0) >= 0
+                              ? 20 - (Number(chatCount) || 0)
+                              : 0
+                            : "--"}
+                          /20
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                  <div className="relative sendInputWrap flex grow rounded-[2.2rem] overflow-hidden">
+                    <textarea
+                      tabIndex={-1}
+                      ref={inputRef}
+                      className="sendInput w-full bg-[#0f040f82] text-[1.4rem] text-white outline-none  font-[500] pl-[2rem] pr-[6rem] py-[0.6rem] flex justify-center items-center leading-[1.5]"
+                      // type="text"
+                      // rows={1}
+                      onChange={(e) => setinputMsg(e.target.value)}
+                      onInput={handleInput}
+                      onKeyDown={(e) => {
+                        handleKeyDown(e);
+                      }}
+                      onFocus={() => {
+                        setisMsgFocus(true);
+                        isFocusSend = true;
+                        if (socket) {
+                          //
+                        } else {
+                          console.log("reconnect");
+                          settoConnect((pre) => !pre);
+                        }
+                        if (
+                          hasSetMessage &&
+                          messageList.filter((item) => item.role == "user")
+                            ?.length === 0
+                        ) {
+                          console.log("focus_chat_1");
+                          globalApi.eventRecord(`focus_chat_1`);
+                        }
+                        if (
+                          hasSetMessage &&
+                          messageList.filter((item) => item.role == "user")
+                            ?.length === 1
+                        ) {
+                          console.log("focus_chat_2");
+                          globalApi.eventRecord(`focus_chat_2`);
+                        }
+                      }}
+                      onBlur={handleBlur}
+                      value={inputMsg}
+                      placeholder={t("chat.What are you talking about?")}
+                    />
+                    <img
+                      onClick={() => {
+                        sendMessage();
+                      }}
+                      className="w-[4.6rem] h-[2.8rem] absolute right-[0.4rem] bottom-[0.5rem]"
+                      src="/img/sendMsg.min.png"
+                      alt=""
+                    />
+                    {/* <div
                       className="lmdSend absolute dright80 top-[50%] dtranslateYF50 bg-[linear-gradient(0deg,_#BE6FFF_0%,_#6C8AFF_100%)] drounded20 dpx30 dpy20 text-white dtext24 font-[800] cursor-pointer select-none"
                       onClick={sendMessage}
                       onKeyDown={handleKeyDown}
                     >
                       Send
                     </div> */}
-                    </div>
                   </div>
-                )}
+                </div>
                 <div className="h-[1rem]"></div>
               </div>
             )}
