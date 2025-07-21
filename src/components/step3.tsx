@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import * as globalApi from "@/services/global";
+import { cn } from "@/lib/utils";
 
 interface iStep3View {
   index: number;
@@ -136,7 +137,14 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
       </div>
       <div className="h-[5vh]"></div>
       <div className="flex justify-center items-center">
-        <div className="flex justify-center items-center rounded-[3.1rem] text-white qaSelectBg bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)] shadow-[0px,3px,14px,0px,rgba(255,255,255,0.45)] h-[7vh] w-[74vw]">
+        <div
+          className={cn(
+            "flex justify-center items-center rounded-[3.1rem] text-white qaSelectBg bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)] shadow-[0px,3px,14px,0px,rgba(255,255,255,0.45)] h-[7vh] w-[74vw]",
+            {
+              "opacity-60": isLoading,
+            }
+          )}
+        >
           <svg
             className="w-[2rem] h-[1.8rem]"
             xmlns="http://www.w3.org/2000/svg"
