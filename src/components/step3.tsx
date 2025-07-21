@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import * as globalApi from "@/services/global";
+import { cn } from "@/lib/utils";
 
 interface iStep3View {
   index: number;
@@ -17,6 +18,7 @@ interface iStep3View {
 }
 const Step3View = ({ index, mbtiRes }: iStep3View) => {
   const [inputMsg, setinputMsg] = useState(mbtiRes?.meowname ?? "");
+  const [isLoading, setisLoading] = useState(false);
   const { t } = useTranslation();
   useEffect(() => {
     if (mbtiRes?.meowname && mbtiRes?.meowname?.length > 0) {
@@ -135,7 +137,14 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
       </div>
       <div className="h-[5vh]"></div>
       <div className="flex justify-center items-center">
-        <div className="flex justify-center items-center rounded-[3.1rem] text-white qaSelectBg bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)] shadow-[0px,3px,14px,0px,rgba(255,255,255,0.45)] h-[7vh] w-[74vw]">
+        <div
+          className={cn(
+            "flex justify-center items-center rounded-[3.1rem] text-white qaSelectBg bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)] shadow-[0px,3px,14px,0px,rgba(255,255,255,0.45)] h-[7vh] w-[74vw]",
+            {
+              "opacity-60": isLoading,
+            }
+          )}
+        >
           <svg
             className="w-[2rem] h-[1.8rem]"
             xmlns="http://www.w3.org/2000/svg"
@@ -159,6 +168,10 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
                   toast.info("Please enter the cat's name");
                   return;
                 }
+                if (isLoading) {
+                  return;
+                }
+                setisLoading(true);
                 const { data } = await request({
                   url: `/api/user/meow/name`,
                   method: "post",
@@ -170,10 +183,12 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
 
                 router.push("/chat");
                 globalApi.eventRecord("meetcat_click");
+                setisLoading(false);
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
               } catch (error: any) {
                 console.error(error);
                 toast.error(error?.response?.data || JSON.stringify(error));
+                setisLoading(false);
               }
             }}
           >
