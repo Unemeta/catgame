@@ -185,7 +185,6 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
     }
   };
   const playEnd = () => {
-    // globalApi.eventRecord("account_login");
     getStep();
   };
   return (

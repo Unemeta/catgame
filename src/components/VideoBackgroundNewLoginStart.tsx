@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useRef, useEffect, useState } from "react";
+import * as globalApi from "@/services/global";
 
 const videos = {
   zh: "https://oss.meowster.io/une_cat_world/animate1-zh.mp4",
@@ -29,10 +30,13 @@ export default function VideoBackgroundNewLoginStart({
   const handleLoadedData = () => {
     console.log("视频加载完成");
     videoRef?.current?.play();
+    globalApi.eventRecord("intro_animation_load");
   };
   const handleVideoEnd = () => {
     console.log("视频播放完成");
-    playEnd()
+    globalApi.eventRecord("intro_animation_complete");
+
+    playEnd();
     // 在这里添加播放完成后的逻辑
     // 例如：
     // 1. 重新播放视频
