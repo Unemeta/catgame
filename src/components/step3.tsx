@@ -17,6 +17,7 @@ interface iStep3View {
 }
 const Step3View = ({ index, mbtiRes }: iStep3View) => {
   const [inputMsg, setinputMsg] = useState(mbtiRes?.meowname ?? "");
+  const [isLoading, setisLoading] = useState(false);
   const { t } = useTranslation();
   useEffect(() => {
     if (mbtiRes?.meowname && mbtiRes?.meowname?.length > 0) {
@@ -159,6 +160,10 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
                   toast.info("Please enter the cat's name");
                   return;
                 }
+                if (isLoading) {
+                  return;
+                }
+                setisLoading(true);
                 const { data } = await request({
                   url: `/api/user/meow/name`,
                   method: "post",
@@ -170,10 +175,12 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
 
                 router.push("/chat");
                 globalApi.eventRecord("meetcat_click");
+                setisLoading(false);
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
               } catch (error: any) {
                 console.error(error);
                 toast.error(error?.response?.data || JSON.stringify(error));
+                setisLoading(false);
               }
             }}
           >
