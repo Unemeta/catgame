@@ -185,8 +185,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
     }
   };
   const playEnd = () => {
-    // setShowVideo(false);
-    globalApi.eventRecord("account_login");
+    // globalApi.eventRecord("account_login");
     getStep();
   };
   return (
