@@ -47,7 +47,8 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
     //1 代表填写过基础信息，未填写过mbti
     //2 代表填写过基础信息和mbti
     if (step === 0) {
-      router.push("/info");
+      // router.push("/info");
+      router.push("/question");
     }
     if (step === 1) {
       router.push("/question");
