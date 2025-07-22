@@ -180,7 +180,7 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
                 }}
               >
                 <div className="custom-pagination">
-                  {[0, 1, 2, 3].map((item, index) => (
+                  {cats.map((item, index) => (
                     <button
                       key={index}
                       className={cn("swiper-pagination-item", {
