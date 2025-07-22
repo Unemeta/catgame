@@ -16,7 +16,7 @@ const Player = dynamic(
 );
 /* eslint-disable @next/next/no-img-element */
 const PartyView = () => {
-  const [stepIndex, setstepIndex] = useState(0);
+  const [stepIndex, setstepIndex] = useState(2);
   const router = useRouter();
   const { t } = useTranslation();
 
@@ -129,7 +129,7 @@ const PartyView = () => {
         {stepIndex == 2 && (
           <Step3View
             mbtiRes={mbtiRes}
-            index={mbtiRes.disposition ? mbtiRes.disposition - 1 : 0}
+            index={mbtiRes.disposition > 0 ? mbtiRes.disposition - 1 : 0}
           ></Step3View>
         )}
       </div>

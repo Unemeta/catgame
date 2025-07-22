@@ -172,6 +172,214 @@ const svgMap = {
       </defs>
     </svg>
   ),
+  swiperArrowRight: (
+    <svg
+      width="59"
+      height="63"
+      viewBox="0 0 59 63"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g filter="url(#filter0_dd_2_31)">
+        <rect
+          x="19"
+          y="16.4932"
+          width="24"
+          height="24"
+          rx="12"
+          fill="url(#paint0_linear_2_31)"
+          shape-rendering="crispEdges"
+        />
+        <rect
+          x="19.3901"
+          y="16.8833"
+          width="23.2199"
+          height="23.2199"
+          rx="11.6099"
+          stroke="#FF9A8B"
+          stroke-width="0.780142"
+          shape-rendering="crispEdges"
+        />
+        <path
+          d="M28 33.1432L32.65 28.4932L28 23.8432"
+          stroke="white"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </g>
+      <defs>
+        <filter
+          id="filter0_dd_2_31"
+          x="0.276596"
+          y="0.890358"
+          width="61.4468"
+          height="61.4468"
+          filterUnits="userSpaceOnUse"
+          color-interpolation-filters="sRGB"
+        >
+          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dy="3.12057" />
+          <feGaussianBlur stdDeviation="9.3617" />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0.92549 0 0 0 0 0.658824 0 0 0 0 0.619608 0 0 0 1 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="BackgroundImageFix"
+            result="effect1_dropShadow_2_31"
+          />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dy="2.34043" />
+          <feGaussianBlur stdDeviation="1.56028" />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.25 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="effect1_dropShadow_2_31"
+            result="effect2_dropShadow_2_31"
+          />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="effect2_dropShadow_2_31"
+            result="shape"
+          />
+        </filter>
+        <linearGradient
+          id="paint0_linear_2_31"
+          x1="31"
+          y1="40.4932"
+          x2="31"
+          y2="16.4932"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#EA8273" />
+          <stop offset="1" stop-color="#ECA89E" />
+        </linearGradient>
+      </defs>
+    </svg>
+  ),
+  swiperArrowLeft: (
+    <svg
+      width="59"
+      height="63"
+      viewBox="0 0 59 63"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g filter="url(#filter0_dd_2_31)">
+        <rect
+          x="19"
+          y="16.4932"
+          width="24"
+          height="24"
+          rx="12"
+          fill="url(#paint0_linear_2_31)"
+          shape-rendering="crispEdges"
+        />
+        <rect
+          x="19.3901"
+          y="16.8833"
+          width="23.2199"
+          height="23.2199"
+          rx="11.6099"
+          stroke="#FF9A8B"
+          stroke-width="0.780142"
+          shape-rendering="crispEdges"
+        />
+        <path
+          d="M28 33.1432L32.65 28.4932L28 23.8432"
+          stroke="white"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </g>
+      <defs>
+        <filter
+          id="filter0_dd_2_31"
+          x="0.276596"
+          y="0.890358"
+          width="61.4468"
+          height="61.4468"
+          filterUnits="userSpaceOnUse"
+          color-interpolation-filters="sRGB"
+        >
+          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dy="3.12057" />
+          <feGaussianBlur stdDeviation="9.3617" />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0.92549 0 0 0 0 0.658824 0 0 0 0 0.619608 0 0 0 1 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="BackgroundImageFix"
+            result="effect1_dropShadow_2_31"
+          />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dy="2.34043" />
+          <feGaussianBlur stdDeviation="1.56028" />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.25 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="effect1_dropShadow_2_31"
+            result="effect2_dropShadow_2_31"
+          />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="effect2_dropShadow_2_31"
+            result="shape"
+          />
+        </filter>
+        <linearGradient
+          id="paint0_linear_2_31"
+          x1="31"
+          y1="40.4932"
+          x2="31"
+          y2="16.4932"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#EA8273" />
+          <stop offset="1" stop-color="#ECA89E" />
+        </linearGradient>
+      </defs>
+    </svg>
+  ),
   sub: (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -234,7 +442,16 @@ const svgMap = {
 
 export interface iconProps extends React.HTMLAttributes<HTMLButtonElement> {
   className?: string;
-  type?: "eduitCatName" | "back" | "share" | "add" | "sub" | "x" | "loginOUT";
+  type?:
+    | "eduitCatName"
+    | "back"
+    | "share"
+    | "add"
+    | "sub"
+    | "x"
+    | "loginOUT"
+    | "swiperArrowLeft"
+    | "swiperArrowRight";
 }
 
 const IconView = (props: iconProps) => {
