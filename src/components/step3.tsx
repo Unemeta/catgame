@@ -79,14 +79,16 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
   const router = useRouter();
 
   const [activeSlide, setActiveSlide] = useState(0);
-  const swiperRef = useRef(null);
+  const swiperRef = useRef<any>(null);
   useEffect(() => {
     // 当幻灯片切换时，更新当前激活的索引
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current!.swiper!.on("slideChange", () => {
+    const curSwip =
+      swiperRef.current != null ? swiperRef.current!.swiper : null;
+    if (curSwip) {
+      curSwip.on("slideChange", () => {
         console.log("slideChange");
-        console.log(swiperRef.current!.swiper.realIndex);
-        setActiveSlide(swiperRef.current!.swiper.realIndex);
+        console.log(curSwip.realIndex);
+        setActiveSlide(curSwip.realIndex);
       });
     }
   }, []);
