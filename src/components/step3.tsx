@@ -293,7 +293,6 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
                     name: inputMsg,
                   },
                 });
-                console.log(data);
                 if (data?.already_filled === true) {
                   toast.info("already_filled");
                 }else{
