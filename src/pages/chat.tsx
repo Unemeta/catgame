@@ -332,6 +332,10 @@ const ChatView = () => {
       setshowExchange(true);
       return;
     }
+    if (text.trim().length > 100) {
+      toast.info("Max 100 characters");
+      return;
+    }
     if (socket) {
       if (text.trim().length > 0) {
         //第一次
