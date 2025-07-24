@@ -15,6 +15,7 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
+import { useFetchUser } from "@/store";
 interface iStep3View {
   index: number;
   mbtiRes: {
@@ -23,10 +24,12 @@ interface iStep3View {
     meowname?: string;
   };
 }
-const Step3View = ({ index, mbtiRes }: iStep3View) => {
-  const [inputMsg, setinputMsg] = useState(mbtiRes?.meowname ?? "");
+const Step3View = ({ mbtiRes }: iStep3View) => {
+  const [inputMsg, setinputMsg] = useState("Luna");
   const [isLoading, setisLoading] = useState(false);
   const { t } = useTranslation();
+  const { userData } = useFetchUser();
+
   useEffect(() => {
     if (mbtiRes?.meowname && mbtiRes?.meowname?.length > 0) {
       setinputMsg(mbtiRes?.meowname);
@@ -102,10 +105,10 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
   return (
     <div className="w-full h-full">
       <div className="text-[#EA8373] text-[2.2rem] font-[700] text-center leading-[1] mb-[0.4rem] pt-[3rem]">
-        {t("Hello")}, {mbtiRes?.nickname}
+        {t("Hello")}, {userData?.nickname}
       </div>
       <div className="text-[#EA8373] text-[2.2rem] font-[700] text-center leading-[1] mb-[2.5rem]">
-        {t("qa.This is your")} {cats[index].type}
+        {t("qa.meet_cat")}
       </div>
       <div className="px-[3rem]">
         <div
