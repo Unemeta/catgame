@@ -224,10 +224,18 @@ const LetterView = () => {
                   __html: letterInfo?.text?.replace(/\n/g, "<br />") ?? "",
                 }}
               ></div>
+              <div className="h-[1px] bg-[#EE8E82] my-[2rem]"></div>
+              <div className="flex justify-center items-center gap-[1.7rem]">
+                <img src="/img/letterbottom.png" alt="" className="w-[8rem]" />
+                <div className="text-[#6C4937] text-[1.4rem] font-[500] leading-[1.5]">
+                  {t("letter.caidan")}
+                </div>
+              </div>
               <div className="h-[1.5rem]"></div>
             </div>
           </div>
         </div>
+
         <div className="h-[2.3rem]"></div>
         {showDownLoad ? (
           <>
