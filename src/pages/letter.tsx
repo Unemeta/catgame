@@ -116,7 +116,7 @@ const LetterView = () => {
         {/* <div className="h-[4.6rem]"></div> */}
         {/* dtest */}
         <div
-          className="px-[0rem] pb-[2.5rem] bg-[url('/img/bg_letter_bye.min.png')] dtest"
+          className="px-[0rem] pb-[2.5rem] bg-[url('/img/bg_letter_bye.min.png')]"
           style={{ backgroundSize: "100% 100%" }}
         >
           <div className="h-[6.6rem]"></div>
@@ -190,7 +190,7 @@ const LetterView = () => {
           <div className="h-[2rem]"></div>
         </div>
         {/* <div className="h-[1.5rem]"></div> */}
-        <div className="px-[0rem] dtest">
+        <div className="px-[0rem]">
           <div
             className="bg-[url('/img/bg_letter.min.png')] min-h-[70rem]"
             style={{ backgroundSize: "100% 100%" }}
