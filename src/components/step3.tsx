@@ -35,6 +35,13 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
     return () => {};
   }, [mbtiRes]);
 
+  useEffect(() => {
+    const step = localStorage.getItem("step");
+    if (Number(step) === 2) {
+      router?.push("/chat");
+    }
+  }, []);
+
   // 1活泼2高冷3疗愈4好奇
   // const cats = [
   //   {
@@ -295,7 +302,7 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
                 });
                 if (data?.already_filled === true) {
                   toast.info("already_filled");
-                }else{
+                } else {
                   globalApi.eventRecord("meetcat_click");
                 }
                 router.push("/chat");
