@@ -1,13 +1,20 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from "next/router";
 import IconView from "./IconView";
 import { request } from "@/utils/request";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import * as globalApi from "@/services/global";
 import { cn } from "@/lib/utils";
-
+import { Mousewheel, Navigation, Pagination, Scrollbar } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "swiper/css/scrollbar";
 interface iStep3View {
   index: number;
   mbtiRes: {
@@ -28,6 +35,13 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
     return () => {};
   }, [mbtiRes]);
 
+  useEffect(() => {
+    const step = localStorage.getItem("step");
+    if (Number(step) === 2) {
+      router?.push("/chat");
+    }
+  }, []);
+
   // 1活泼2高冷3疗愈4好奇
   // const cats = [
   //   {
@@ -44,12 +58,12 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
   //   },
   // ];
   const cats = [
-    {
-      type: t("qa.cat_type1"),
-      name: "",
-      keys: [" ", " "],
-      desc: " ",
-    },
+    // {
+    //   type: t("qa.cat_type1"),
+    //   name: "",
+    //   keys: [" ", " "],
+    //   desc: " ",
+    // },
     {
       type: t("qa.cat_type2"),
       name: "",
@@ -70,6 +84,21 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
     },
   ];
   const router = useRouter();
+
+  const [activeSlide, setActiveSlide] = useState(0);
+  const swiperRef = useRef<any>(null);
+  useEffect(() => {
+    // 当幻灯片切换时，更新当前激活的索引
+    const curSwip =
+      swiperRef.current != null ? swiperRef.current!.swiper : null;
+    if (curSwip) {
+      curSwip.on("slideChange", () => {
+        console.log("slideChange");
+        console.log(curSwip.realIndex);
+        setActiveSlide(curSwip.realIndex);
+      });
+    }
+  }, []);
   return (
     <div className="w-full h-full">
       <div className="text-[#EA8373] text-[2.2rem] font-[700] text-center leading-[1] mb-[0.4rem] pt-[3rem]">
@@ -84,7 +113,7 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
           style={{ backgroundSize: "100% 100%" }}
         >
           <div className="px-[1.6rem] bg-[url('/img/bg/bg_card_cat_top.min.png') h-[26rem] relative">
-            <div className="">
+            {/* <div className="">
               <div className="px-[1rem] py-2 text-white text-[1.6rem] font-[700] bg-[#F4738D99] rounded-[5rem] border-[#E397BC] border-w-[0.1rem] inline-block">
                 {cats[index].keys[0]}
               </div>
@@ -100,7 +129,7 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
                   {cats[index].keys[2]}
                 </div>
               </div>
-            )}
+            )} */}
             <div className="absolute left-[0] bottom-[-1rem]  w-full flex justify-center">
               <img
                 src="/img/bg_cat.min.png"
@@ -115,7 +144,7 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
                 <input
                   onChange={(e) => setinputMsg(e.target.value)}
                   value={inputMsg}
-                  className="border-[1px] focus:outline-[#E96856]! border-[#E96856] rounded-full bg-white w-[21rem] h-[4rem] text-[#EA8273] text-[2rem] font-[700] px-[2rem] pr-[3.6rem] text-center"
+                  className="border-[1px] focus:outline-[#E96856]! border-[#E96856] rounded-full bg-white w-full h-[4rem] text-[#EA8273] text-[2rem] font-[700] px-[2rem] pr-[3.6rem] text-center"
                   type="text"
                 />
                 <IconView
@@ -124,13 +153,96 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
                 ></IconView>
               </div>
             </div>
-            <div className="text-[#826662] text-[1.4rem] font-[500] flex flex-col justify-center items-start px-[2rem] text-left">
+            <div className="text-[#826662] text-[1.4rem] font-[500] flex flex-col justify-center items-start text-left">
               {/* They have a natural aura, prefer their <br /> space, but once they
               trust you, they’ll <br /> quietly stay by your side for the long{" "}
               <br /> run. */}
               <div className="h-[3.3rem]"></div>
-              <div className="">{cats[index].desc}</div>
-              <div className="h-[3.3rem]"></div>
+              {/* <div className="">{cats[2].desc}</div> */}
+              {/* <div className="h-[3.3rem]"></div> */}
+
+              <Swiper
+                ref={swiperRef}
+                modules={[Pagination, Mousewheel, Navigation, Scrollbar]}
+                onSwiper={(swiper) => ((window as any).swiper = swiper)}
+                threshold={1}
+                spaceBetween={10}
+                scrollbar
+                // autoPlay
+                className="w-full  rounded-[2rem] relative"
+                slidesPerView={1}
+                navigation={{
+                  prevEl: ".swiper-button-prev",
+                  nextEl: ".swiper-button-next",
+                }}
+                pagination={{
+                  clickable: true,
+                  el: ".custom-pagination",
+                  type: "custom",
+                }}
+                mousewheel={{
+                  forceToAxis: true,
+                  sensitivity: 0.1,
+                  releaseOnEdges: true,
+                }}
+              >
+                <div className="custom-pagination">
+                  {cats.map((item, index) => (
+                    <button
+                      key={index}
+                      className={cn("swiper-pagination-item", {
+                        "swiper-pagination-item-active": activeSlide == index,
+                      })}
+                    >
+                      {index + 1}
+                    </button>
+                  ))}
+                </div>
+                {cats?.map((item: any, index: number) => {
+                  return (
+                    <SwiperSlide
+                      className={cn("w-full h-full px-[5.8rem]")}
+                      key={index}
+                    >
+                      <div className="text-[#EB8779] text-[1.9rem] font-[700] mb-[1.5rem] text-center">
+                        {item?.type}
+                      </div>
+                      <div className="flex justify-start items-center gap-[0.6rem]">
+                        <div className="">
+                          <div className="px-[1rem] py-[0.2rem] text-white text-[1.4rem] font-[700] bg-[#F4738D99] rounded-[1rem] border-[#E397BC] border-w-[0.1rem] inline-block">
+                            {item.keys[0]}
+                          </div>
+                        </div>
+                        <div className="">
+                          <div className="px-[1rem] py-[0.2rem] text-white text-[1.4rem] font-[700] bg-[#2278C199] rounded-[1rem] border-[#6D9FDA] border-w-[0.1rem] inline-block">
+                            {item.keys[1]}
+                          </div>
+                        </div>
+                        {item.keys.length > 2 && (
+                          <div className="">
+                            <div className="px-[1rem] py-[0.2rem] text-white text-[1.4rem] font-[700] bg-[#4A5F7799] rounded-[1rem] border-[#95A1C1] border-w-[0.1rem] inline-block">
+                              {item.keys[2]}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                      <div className="mt-[0.9rem] text-[#826662] text-[1.4rem] font-[500]">
+                        {item?.desc}
+                      </div>
+                      <div className="h-[1rem]"></div>
+                    </SwiperSlide>
+                  );
+                })}
+                <IconView
+                  className="swiper-button-prev w-[6.4rem]! h-[6.4rem]! relative mt-[-4rem]!"
+                  type="swiperArrowLeft"
+                ></IconView>
+                <IconView
+                  className="swiper-button-next w-[6.4rem]! h-[6.4rem]! relative mt-[-4rem]!"
+                  type="swiperArrowRight"
+                ></IconView>
+              </Swiper>
+              <div className="h-[2rem]"></div>
             </div>
           </div>
         </div>
@@ -139,7 +251,7 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
       <div className="flex justify-center items-center">
         <div
           className={cn(
-            "flex justify-center items-center rounded-[3.1rem] text-white qaSelectBg bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)] shadow-[0px,3px,14px,0px,rgba(255,255,255,0.45)] h-[7vh] w-[74vw]",
+            "flex justify-center items-center rounded-[3.1rem] text-white qaSelectBg bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)] shadow-[0px,3px,14px,0px,rgba(255,255,255,0.45)] py-[1.6rem] px-[3.2rem]",
             {
               "opacity-60": isLoading,
             }
@@ -159,7 +271,7 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
             />
           </svg>
           <span
-            className="px-[1rem]  text-[2rem] font-[700]"
+            className="px-[1rem]  text-[1.8rem] font-[700]"
             onClick={async () => {
               try {
                 if (inputMsg.length > 0) {
@@ -172,17 +284,28 @@ const Step3View = ({ index, mbtiRes }: iStep3View) => {
                   return;
                 }
                 setisLoading(true);
+                // const { data } = await request({
+                //   url: `/api/user/meow/name`,
+                //   method: "post",
+                //   data: {
+                //     name: inputMsg,
+                //   },
+                // });
+                // 2高冷3疗愈4好奇
                 const { data } = await request({
-                  url: `/api/user/meow/name`,
+                  url: `/api/user/meow/disposition`,
                   method: "post",
                   data: {
+                    disposition: activeSlide + 2,
                     name: inputMsg,
                   },
                 });
-                console.log(data);
-
+                if (data?.already_filled === true) {
+                  toast.info("already_filled");
+                } else {
+                  globalApi.eventRecord("meetcat_click");
+                }
                 router.push("/chat");
-                globalApi.eventRecord("meetcat_click");
                 setisLoading(false);
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
               } catch (error: any) {

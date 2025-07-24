@@ -37,6 +37,7 @@ const InfoView = () => {
       method: "get",
     });
     const { step } = res.data;
+    localStorage.setItem("step", step)
     console.log(step);
     //0 代表未填写过基础信息
     //1 代表填写过基础信息，未填写过mbti

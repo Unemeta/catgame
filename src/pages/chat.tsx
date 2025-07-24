@@ -82,6 +82,7 @@ const ChatView = () => {
     //0 代表未填写过基础信息
     //1 代表填写过基础信息，未填写过mbti
     //2 代表填写过基础信息和mbti
+    localStorage.setItem("step", step)
     if (step === 0) {
       router.push("/info");
     }
@@ -329,6 +330,10 @@ const ChatView = () => {
     if (Number(chatCount) >= 20) {
       // toast.info("Insufficient ability to send message, buy more chat opportunities");
       setshowExchange(true);
+      return;
+    }
+    if (text.trim().length > 100) {
+      toast.info("Max 100 characters");
       return;
     }
     if (socket) {

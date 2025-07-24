@@ -46,6 +46,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
     //0 代表未填写过基础信息
     //1 代表填写过基础信息，未填写过mbti
     //2 代表填写过基础信息和mbti
+    localStorage.setItem("step", step)
     if (step === 0) {
       router.push("/info");
     }
