@@ -19,6 +19,7 @@
     "test": "test",
     "rts": "Release to send",
     "rte": "recording ends in {{sec}} seconds",
+    "image_large": "Image exceeds 1.5MB. Please re-upload.",
     "pts": "press and hold to speak"
   },
   "letter": {
