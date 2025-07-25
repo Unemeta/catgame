@@ -12,7 +12,6 @@ const UploadView = () => {
   const router = useRouter();
   const { userData } = useFetchUser();
   const { t } = useTranslation();
-  const [isLoading, setisLoading] = useState(false);
 
   const handleImageChange = (event: any) => {
     const file = event.target.files[0];
@@ -30,7 +29,7 @@ const UploadView = () => {
     const formDataToken = new FormData();
     formDataToken.append("file", file);
     try {
-      setisLoading(true);
+      // setisLoading(true);
       const result: any = await request({
         url: "/api/user/avatar",
         method: "post",
@@ -46,7 +45,7 @@ const UploadView = () => {
     } catch (error) {
       console.log(error);
     }
-    setisLoading(false);
+    // setisLoading(false);
   };
 
   return (
