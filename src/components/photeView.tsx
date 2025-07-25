@@ -56,7 +56,7 @@ const ImgView = ({ src, eventid, type }: iPhotoView) => {
           >
             <div
               className={cn(
-                "bg-[rgba(232,221,219,1)] rounded-[1rem] px-[1rem] pt-[1.4rem] pb-[2.8rem]",
+                "bg-[rgba(232,221,219,1)] rounded-[0.8rem] px-[0.8rem] pt-[1.2rem] pb-[1.8rem]",
                 {
                   "bg-[url('/img/bg/bg_letter_dialog.png')] bg-100100":
                     type === "farewell_letter",

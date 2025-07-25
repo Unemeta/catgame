@@ -52,9 +52,9 @@ const DialogImgView = ({
     >
       {/* <DialogTrigger>{trigger}</DialogTrigger> */}
       {trigger}
-      <DialogOverlay className="bg-black">
+      <DialogOverlay className="bg-black/30">
         {/* w-[83vw] */}
-        <DialogContent className="p-0 w-full  h-full max-w-[90vw]">
+        <DialogContent className="p-0 w-full  h-full max-w-[90vw] ">
           <div className="flex justify-between items-center absolute left-0 right-0 top-0 z-[100] mt-[2rem]">
             <img
               className="imgClose w-[3.8rem] h-[3.8rem]"
