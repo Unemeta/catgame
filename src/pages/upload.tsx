@@ -14,14 +14,19 @@ const UploadView = () => {
   const { t } = useTranslation();
 
   const handleImageChange = (event: any) => {
-    const file = event.target.files[0];
-    if (file) {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      const MAX_FILE_SIZE = 1.2 * 1024 * 1024;
+      if (selectedFile.size > MAX_FILE_SIZE) {
+        toast.info(t("chat.image_large"));
+        return;
+      }
       const reader: any = new FileReader();
       reader.onloadend = () => {
         setImage(reader.result); // 设置图片预览的 src
       };
-      reader.readAsDataURL(file); // 读取文件为 Data URL
-      upload(file);
+      reader.readAsDataURL(selectedFile); // 读取文件为 Data URL
+      upload(selectedFile);
     }
   };
 
