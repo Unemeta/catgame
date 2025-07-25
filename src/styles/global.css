@@ -786,7 +786,7 @@ body {
 .swiper-scrollbar {
   display: none !important;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
   .wrapHeight {
     /* height: 87vh; */
     /* height: 100vh; */

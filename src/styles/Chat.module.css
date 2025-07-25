@@ -23,7 +23,7 @@
   max-height: 100%;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
   .contentBgChat {
     /* background-image: url("/img/bg/bgChat.min.png"); */
     
