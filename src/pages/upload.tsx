@@ -29,6 +29,7 @@ const UploadView = () => {
     const formDataToken = new FormData();
     formDataToken.append("file", file);
     try {
+      // setisLoading(true);
       const result: any = await request({
         url: "/api/user/avatar",
         method: "post",
@@ -44,6 +45,7 @@ const UploadView = () => {
     } catch (error) {
       console.log(error);
     }
+    // setisLoading(false);
   };
 
   return (
@@ -89,9 +91,7 @@ const UploadView = () => {
               />
               <div className="h-[0.6rem]"></div>
               <div className="text-white text-[1.4rem] font-[500]">
-                
                 {t("chat.Upload a new avatar")}
-
               </div>
             </div>
           </label>
