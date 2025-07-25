@@ -13,7 +13,7 @@ const UploadView = () => {
   const router = useRouter();
   const { userData } = useFetchUser();
   const { t } = useTranslation();
-  const [isLoading, setisLoading] = useState(false)
+  const [isLoading, setisLoading] = useState(false);
 
   const handleImageChange = async (event: any) => {
     const selectedFile = event.target.files[0];
@@ -131,7 +131,7 @@ const UploadView = () => {
           />
         </div>
       </div>
-      <DialogLoading isOpen={isLoading} setIsOpen={setisLoading}></DialogLoading>
+      {isLoading && <DialogLoading></DialogLoading>}
     </div>
   );
 };
