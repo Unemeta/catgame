@@ -302,11 +302,11 @@ const ChatView = () => {
     };
     socketTemp.onclose = () => {
       console.log("socker onclose");
-      if (location.href.indexOf("/chat") > -1) {
-        toast.error(
-          "The socket has been disconnected,Please check the network"
-        );
-      }
+      // if (location.href.indexOf("/chat") > -1) {
+      //   toast.error(
+      //     "The socket has been disconnected,Please check the network"
+      //   );
+      // }
       socket = null;
     };
     const heartbeatInterval = setInterval(() => {
