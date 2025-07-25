@@ -385,7 +385,7 @@ const ChatView = () => {
     } else {
       console.log("sk null");
       toast.info(
-        "Connection lost. Please check your network or try again later."
+        "Connection lost. Please try again"
       );
       settoConnect((pre) => !pre);
     }
