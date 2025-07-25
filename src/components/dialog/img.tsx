@@ -82,7 +82,7 @@ const DialogImgView = ({
               )}
             >
               <img
-                className="chatMedia w-full h-[35rem] max-h-[50vh]"
+                className="chatMedia w-full max-h-[50vh]"
                 src={src}
                 style={{ objectFit: "fill" }}
                 alt=""
