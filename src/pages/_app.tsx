@@ -54,7 +54,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       const vh = window.innerHeight;
       document.documentElement.style.setProperty("--vh", `${vh}px`);
     }
-
+    setFullHeight();
     window.addEventListener("resize", setFullHeight);
     window.addEventListener("load", setFullHeight);
   }, []);
