@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import DialogLoading from "@/components/dialog/loading";
 import { useFetchUser } from "@/store";
 import { request } from "@/utils/request";
 import { useRouter } from "next/router";
@@ -12,23 +13,50 @@ const UploadView = () => {
   const router = useRouter();
   const { userData } = useFetchUser();
   const { t } = useTranslation();
+  const [isLoading, setisLoading] = useState(false);
 
-  const handleImageChange = (event: any) => {
-    const file = event.target.files[0];
-    if (file) {
+  const handleImageChange = async (event: any) => {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      const MAX_FILE_SIZE = 1.5 * 1024 * 1024;
+      if (selectedFile.size > MAX_FILE_SIZE) {
+        toast.info(t("chat.image_large"));
+        return;
+      }
       const reader: any = new FileReader();
       reader.onloadend = () => {
         setImage(reader.result); // 设置图片预览的 src
       };
-      reader.readAsDataURL(file); // 读取文件为 Data URL
-      upload(file);
+      reader.readAsDataURL(selectedFile); // 读取文件为 Data URL
+      // const compressedFile = await compressImage(selectedFile);
+      // const compressedImageUrl = URL.createObjectURL(compressedFile);
+      // setCompressedImageUrl(compressedImageUrl);
+      upload(selectedFile);
     }
   };
+
+  // const compressImage = async (file: any) => {
+  //   const options = {
+  //     maxSizeMB: 0.5, // 设置最大文件大小
+  //     maxWidthOrHeight: 800, // 设置最大宽度或高度
+  //     useWebWorker: true, // 启用 Web Worker
+  //   };
+
+  //   try {
+  //     const compressedFile = await imageCompression(file, options);
+  //     console.log('Compressed Image Size:', compressedFile.size / 1024 / 1024, 'MB');
+  //     return compressedFile;
+  //   } catch (error) {
+  //     console.error('Compression Error:', error);
+  //     throw error;
+  //   }
+  // };
 
   const upload = async (file: any) => {
     const formDataToken = new FormData();
     formDataToken.append("file", file);
     try {
+      setisLoading(true);
       const result: any = await request({
         url: "/api/user/avatar",
         method: "post",
@@ -44,6 +72,7 @@ const UploadView = () => {
     } catch (error) {
       console.log(error);
     }
+    setisLoading(false);
   };
 
   return (
@@ -89,9 +118,7 @@ const UploadView = () => {
               />
               <div className="h-[0.6rem]"></div>
               <div className="text-white text-[1.4rem] font-[500]">
-                
                 {t("chat.Upload a new avatar")}
-
               </div>
             </div>
           </label>
@@ -104,6 +131,7 @@ const UploadView = () => {
           />
         </div>
       </div>
+      {isLoading && <DialogLoading></DialogLoading>}
     </div>
   );
 };

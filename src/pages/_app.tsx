@@ -3,6 +3,7 @@
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import "@/styles/global.css";
+import "@/styles/scssBase.scss";
 import { ToastContainer } from "react-toastify";
 import Head from "next/head";
 import "react-photo-view/dist/react-photo-view.css";
@@ -53,7 +54,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       const vh = window.innerHeight;
       document.documentElement.style.setProperty("--vh", `${vh}px`);
     }
-
+    setFullHeight();
     window.addEventListener("resize", setFullHeight);
     window.addEventListener("load", setFullHeight);
   }, []);

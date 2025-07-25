@@ -6,6 +6,7 @@ import {
     JWT_HEADER_KEY,
 } from './jwt';
 import Router from 'next/router'; // 注意不是 useRouter
+import { toast } from "react-toastify";
 
 /** 创建请求实例 */
 function createService() {
@@ -84,6 +85,10 @@ function createService() {
                 case 408:
                     error.message = "Request timeout"
                     break
+                case 413:
+                    error.message = "Request Entity Too Large";
+                    toast.error("Request Entity Too Large");
+                    break;
                 case 500:
                     error.message = "Internal server error"
                     break
@@ -112,6 +117,7 @@ function createService() {
     return service
 }
 
+
 /** 创建请求方法 */
 function createRequestFunction(service: AxiosInstance) {
     return function (config: AxiosRequestConfig & { requiresAuth?: boolean }) {
@@ -127,6 +133,6 @@ function createRequestFunction(service: AxiosInstance) {
 }
 
 /** 用于网络请求的实例 */
-export const service = createService()
+export const service = createService();
 /** 用于网络请求的方法 */
-export const request = createRequestFunction(service)
+export const request = createRequestFunction(service);

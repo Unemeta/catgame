@@ -82,7 +82,7 @@ const ChatView = () => {
     //0 代表未填写过基础信息
     //1 代表填写过基础信息，未填写过mbti
     //2 代表填写过基础信息和mbti
-    localStorage.setItem("step", step)
+    localStorage.setItem("step", step);
     if (step === 0) {
       router.push("/info");
     }
@@ -302,11 +302,11 @@ const ChatView = () => {
     };
     socketTemp.onclose = () => {
       console.log("socker onclose");
-      if (location.href.indexOf("/chat") > -1) {
-        toast.error(
-          "The socket has been disconnected,Please check the network"
-        );
-      }
+      // if (location.href.indexOf("/chat") > -1) {
+      //   toast.error(
+      //     "The socket has been disconnected,Please check the network"
+      //   );
+      // }
       socket = null;
     };
     const heartbeatInterval = setInterval(() => {
@@ -385,7 +385,7 @@ const ChatView = () => {
     } else {
       console.log("sk null");
       toast.info(
-        "Connection lost. Please check your network or try again later."
+        "Connection lost. Please try again"
       );
       settoConnect((pre) => !pre);
     }

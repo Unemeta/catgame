@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-img-element */
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import styles from "@/styles/Login.module.css"; // 确保有对应的 CSS 文件
 import { cn } from "@/lib/utils";
 import { request } from "@/utils/request";
@@ -46,7 +46,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
     //0 代表未填写过基础信息
     //1 代表填写过基础信息，未填写过mbti
     //2 代表填写过基础信息和mbti
-    localStorage.setItem("step", step)
+    localStorage.setItem("step", step);
     if (step === 0) {
       router.push("/info");
     }
@@ -188,6 +188,11 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
   const playEnd = () => {
     getStep();
   };
+  useEffect(() => {
+    if (jwtHelper.getToken()) {
+      router.replace("/chat");
+    }
+  }, []);
   return (
     <>
       {showVideo ? (
