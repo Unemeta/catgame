@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { get } from "lodash-es"
 import {
@@ -6,35 +7,27 @@ import {
 } from './jwt';
 import Router from 'next/router'; // 注意不是 useRouter
 
-
-
-// export const instance = axios.create({
-//     timeout: 60000,
-//     headers: {
-//         [JWT_HEADER_KEY]: `Bearer ${jwtHelper.getToken()}`
-//     },
-// });
-
-// // 添加响应拦截器
-// instance.interceptors.response.use(function (response) {
-//     // const { data } = response
-//     // 2xx 范围内的状态码都会触发该函数。
-//     // 对响应数据做点什么
-//     return response;
-// }, function (error) {
-//     // 超出 2xx 范围的状态码都会触发该函数。
-//     // 对响应错误做点什么
-//     console.log(error)
-//     return Promise.reject(error);
-// });
-
 /** 创建请求实例 */
 function createService() {
     // 创建一个 axios 实例
     const service = axios.create()
     // 请求拦截
     service.interceptors.request.use(
-        (config) => config,
+        (config) => {
+            // 检查请求是否需要认证（默认需要）
+            const requiresAuth = (config as any).requiresAuth !== false;
+
+            if (requiresAuth) {
+                const token = jwtHelper.getToken();
+
+                // 只有存在有效 token 时才添加认证头
+                if (token) {
+                    config.headers = config.headers || {};
+                    config.headers[JWT_HEADER_KEY] = `Bearer ${token}`;
+                }
+            }
+            return config;
+        },
         // 发送失败
         (error) => Promise.reject(error)
     )
@@ -75,7 +68,10 @@ function createService() {
                 case 401:
                     error.message = "Not authorized, please log in"
                     jwtHelper.clearToken()
-                    Router.replace('/login')
+                    // 避免重定向循环：只在当前不是登录页时才跳转
+                    if (Router.pathname !== '/login') {
+                        Router.replace('/login');
+                    }
                     break
                 case 403:
                     // token 过期时，直接退出登录并强制刷新页面（会重定向到登录页）
@@ -118,14 +114,13 @@ function createService() {
 
 /** 创建请求方法 */
 function createRequestFunction(service: AxiosInstance) {
-    return function (config: AxiosRequestConfig) {
+    return function (config: AxiosRequestConfig & { requiresAuth?: boolean }) {
         const configDefault = {
-            headers: {
-                // 携带 token
-                [JWT_HEADER_KEY]: "Bearer " + jwtHelper.getToken(),
-            },
+            headers: {},
+            // 默认所有请求都需要认证
+            requiresAuth: true,
             timeout: 300000,
-            data: {},
+            ...config
         }
         return service(Object.assign(configDefault, config))
     }
