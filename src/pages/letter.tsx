@@ -67,6 +67,11 @@ const LetterView = () => {
         });
         if (data) {
           console.log(data);
+          if(data?.tag){
+            // 
+          }else{
+            data["tag"] = []
+          }
           setletterInfo(data);
           const imageUrl =
             "/api/proxy-image?url=" + encodeURIComponent(data.url);

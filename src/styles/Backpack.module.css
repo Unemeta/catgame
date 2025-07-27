@@ -5,7 +5,7 @@
   background-image: url("/img/bg/backpackCttBg.min.png");
   background-size: cover;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
   .backpackBg {
     background-image: url("/img/bg/bgChat.min.png");
   }
