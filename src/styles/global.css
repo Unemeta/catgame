@@ -831,7 +831,7 @@ body {
     /* height: 1560px; */
   }
   .msgText {
-    max-height: 500rem;
+    max-height: 2000rem;
   }
   .chatNumTipText {
     text-align: center;
