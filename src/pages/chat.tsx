@@ -384,9 +384,7 @@ const ChatView = () => {
       }
     } else {
       console.log("sk null");
-      toast.info(
-        "Connection lost. Please try again"
-      );
+      toast.info("Connection lost. Please try again");
       settoConnect((pre) => !pre);
     }
   };
@@ -430,19 +428,26 @@ const ChatView = () => {
           if (item.role === "user") {
             return item;
           } else {
-            const tempArr = item.message.split(separator);
-            if (
-              tempArr.length > 0 &&
-              (tempArr[tempArr.length - 1] === "" ||
-                tempArr[tempArr.length - 1] === "" ||
-                tempArr[tempArr.length - 1]?.length <= 1)
-            ) {
-              tempArr.pop();
+            if (item.type === "easter_egg") {
+              return {
+                ...item,
+                messageArr: [item.message],
+              };
+            } else {
+              const tempArr = item.message.split(separator);
+              if (
+                tempArr.length > 0 &&
+                (tempArr[tempArr.length - 1] === "" ||
+                  tempArr[tempArr.length - 1] === "" ||
+                  tempArr[tempArr.length - 1]?.length <= 1)
+              ) {
+                tempArr.pop();
+              }
+              return {
+                ...item,
+                messageArr: tempArr,
+              };
             }
-            return {
-              ...item,
-              messageArr: tempArr,
-            };
           }
         });
         // const uniqueArr = Array.from(
