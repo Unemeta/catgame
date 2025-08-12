@@ -286,12 +286,21 @@ const ChatView = () => {
         } else {
           console.log("other type");
           console.log(msgRes);
+          const tempArr = msgRes.message.split(separator);
+          if (
+            tempArr.length > 0 &&
+            (tempArr[tempArr.length - 1] === "" ||
+              tempArr[tempArr.length - 1] === "" ||
+              tempArr[tempArr.length - 1]?.length <= 1)
+          ) {
+            tempArr.pop();
+          }
           setmessageList((pre) => {
             return [
               ...pre,
               {
                 ...msgRes,
-                messageArr: [msgRes.message],
+                messageArr: [...tempArr],
                 role: "cat",
               },
             ];
