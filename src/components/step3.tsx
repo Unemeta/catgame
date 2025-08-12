@@ -28,7 +28,13 @@ const Step3View = ({ mbtiRes }: iStep3View) => {
   const [inputMsg, setinputMsg] = useState("Luna");
   const [isLoading, setisLoading] = useState(false);
   const { t } = useTranslation();
-  const { userData } = useFetchUser();
+  const { userData, fetchUser } = useFetchUser();
+
+  useEffect(() => {
+    if (fetchUser) {
+      fetchUser();;
+    }
+  }, [fetchUser]);
 
   useEffect(() => {
     if (mbtiRes?.meowname && mbtiRes?.meowname?.length > 0) {
