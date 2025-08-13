@@ -393,7 +393,7 @@ const ChatView = () => {
       }
     } else {
       console.log("sk null");
-      toast.info("Connection lost. Please try again");
+      toast.info("Socket connection lost. Attempting to reconnect…");
       settoConnect((pre) => !pre);
     }
   };
@@ -845,8 +845,8 @@ const ChatView = () => {
                                     <div className="dmaxW460 lmdWfull">
                                       <div className="msgText line-clamp-[20] dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan break-words">
                                         {mediaSwitch(
-                                          item,
-                                          itemSub,
+                                          item, 
+                                          itemSub,   
                                           item?.msgId,
                                           item?.eventid
                                         )}
