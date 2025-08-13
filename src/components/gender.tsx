@@ -7,7 +7,7 @@ import { useUserBasicInfo } from "@/store/info";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
 
-const Age = ({ onClick }: iAnswerView) => {
+const Gender = ({ onClick }: iAnswerView) => {
   const [basicInfo, setBasicInfo] = useUserBasicInfo();
   const { t } = useTranslation();
 
@@ -147,4 +147,4 @@ const Age = ({ onClick }: iAnswerView) => {
   );
 };
 
-export default Age;
+export default Gender;
