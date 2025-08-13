@@ -12,9 +12,7 @@ import { useTranslation } from "react-i18next";
 import * as globalApi from "@/services/global";
 import ToHomeStepView from "@/components/toHomeSteps";
 import VideoBackgroundNewLoginStart from "@/components/VideoBackgroundNewLoginStart";
-// import { debounce } from "lodash";
-// import useDebouncelog from '@/hook/useDebounceLog'
-// import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
+import type { GetServerSidePropsContext } from "next";
 
 interface ProgressLoaderProps {
   progress: number;
@@ -29,6 +27,8 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
   const [invalidText, setInvalidText] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const [showVideo, setShowVideo] = useState(false);
+  const [isvertical, setisvertical] = useState(false);
+
   // 延迟埋点
   // const debouncedlog = useDebouncelog("account_input");
   // const debouncedSearch = useRef(
@@ -37,6 +37,22 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
   //   }, 3000) // 500ms 延迟
   // ).current;
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const handleOrientation = () => {
+      // setIsPortrait(window.innerHeight > window.innerWidth);
+      setisvertical(window.innerHeight < window.innerWidth);
+      const top = getComputedStyle(document.documentElement).getPropertyValue(
+        "--safe-area-inset-top"
+      );
+      document.body.style.paddingTop = top;
+    };
+
+    handleOrientation(); // 初始检查
+    window.addEventListener("resize", handleOrientation);
+
+    return () => window.removeEventListener("resize", handleOrientation);
+  }, []);
   const getStep = async () => {
     const res = await request({
       url: "/api/survey/survey/step",
@@ -188,17 +204,22 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
   const playEnd = () => {
     getStep();
   };
-  useEffect(() => {
-    if (jwtHelper.getToken()) {
-      router.replace("/chat");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (jwtHelper.getToken()) {
+  //     router.replace("/chat");
+  //   }
+  // }, []);
   return (
     <>
       {showVideo ? (
         <VideoBackgroundNewLoginStart
           playEnd={playEnd}
         ></VideoBackgroundNewLoginStart>
+      ) : process.env.NEXT_PUBLIC_VERTICAL === "true" && isvertical ? (
+        <div className="rotate-screen">
+          <img src="/img/rotate.svg" alt="" className="w-[4rem]" />
+          <div>Please install your device in portrait mode</div>
+        </div>
       ) : (
         <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-[#DE8D81]">
           <ToHomeStepView isOtherPageNotLogin={false}></ToHomeStepView>
@@ -292,3 +313,18 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
 };
 
 export default ProgressLoader;
+export async function getServerSideProps({ req }: GetServerSidePropsContext) {
+  const token = req.cookies.Authorization;
+  // // 已认证用户直接重定向
+  if (token) {
+    return {
+      redirect: {
+        destination: "/chat",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+}
