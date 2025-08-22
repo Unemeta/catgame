@@ -16,14 +16,18 @@ const DialogLetter = ({ show, setShow }: iDialogExchange) => {
   const { userData } = useFetchUser();
   const { t } = useTranslation();
 
-  const getCountDay = (loginDay: number) => {
-    if (loginDay >= 7) {
-      return "0";
-    } else if (loginDay >= 0) {
-      return `${7 - loginDay}`;
-    } else {
-      return "X";
+  const getCountDay = (day: number) => {
+    // if (loginDay >= 7) {
+    //   return "0";
+    // } else if (loginDay >= 0) {
+    //   return `${7 - loginDay}`;
+    // } else {
+    //   return "X";
+    // }
+    if (day >= 0) {
+      return 7 - (day % 7);
     }
+    return "--";
   };
   const locales = [
     `<div className="">
@@ -83,7 +87,7 @@ const DialogLetter = ({ show, setShow }: iDialogExchange) => {
         <div className="bg-[url('/img/bg/bg_letter_dialog.png')] h-[48rem] bg-100100 py-[2.2rem] px-[2.5rem] relative rounded-[3rem]  shadow-[0px_4px_20px_0px_rgba(0,0,0,0.55)] border-[#FFFFF7] border-[0.2rem]">
           <div className=" inline-flex flex-col justify-start items-center overflow-hidden w-full">
             <div className="text-[#E96959] text-[1.8rem] font-[800] mb-[1.2rem]">
-              {t("letter.Countdown")} {getCountDay(userData?.loginDays)}{" "}
+              {t("letter.Countdown")} {getCountDay(userData?.day)}{" "}
               {t("letter.days")}
             </div>
             <div
