@@ -57,6 +57,17 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     })();
   }, []);
 
+  useEffect(() => {
+    (async () => {
+      window.addEventListener("storage", function (event) {
+        console.log(`${event.key} ${event.newValue}`);
+        if (event.key === "tabnin" || event.key === "tabnout") {
+          this.location.reload();
+        }
+      });
+    })();
+  }, []);
+
   return (
     <>
       <Head>

@@ -249,6 +249,7 @@ const DialogSetting = ({ trigger }: iDialogSetting) => {
               <div
                 className="bg-white shadow-[0px_3px_14px_0px_rgba(255,255,255,0.45)] rounded-[3.1rem] w-[13.2rem] h-[3.8rem] flex justify-center items-center"
                 onClick={() => {
+                  localStorage.setItem("tabnout","tabnout");
                   jwtHelper.clearToken();
                   router.push("/login");
                 }}
