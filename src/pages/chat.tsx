@@ -317,6 +317,9 @@ const ChatView = () => {
       //   );
       // }
       socket = null;
+      setTimeout(() => {
+        settoConnect((pre) => !pre);
+      }, 10000);
     };
     const heartbeatInterval = setInterval(() => {
       if (socketTemp.readyState === WebSocket.OPEN) {
@@ -845,8 +848,8 @@ const ChatView = () => {
                                     <div className="dmaxW460 lmdWfull">
                                       <div className="msgText line-clamp-[20] dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan break-words">
                                         {mediaSwitch(
-                                          item, 
-                                          itemSub,   
+                                          item,
+                                          itemSub,
                                           item?.msgId,
                                           item?.eventid
                                         )}
