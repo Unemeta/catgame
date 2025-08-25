@@ -61,7 +61,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     (async () => {
       window.addEventListener("storage", function (event) {
         console.log(`${event.key} ${event.newValue}`);
-        if (event.key === "tabn" && event.newValue === "tabnout") {
+        if (event.key === "tabnin" || event.key === "tabnout") {
           this.location.reload();
         }
       });

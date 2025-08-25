@@ -107,7 +107,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
         await jwtHelper.setToken(res.data.accessToken, {
           expires: new Date(res.data.accessExpire * 1000),
         });
-
+        localStorage.setItem("tabnin", "tabnin");
         localStorage.setItem("sendMsgFocus", "0");
         // if (process.env.NEXT_PUBLIC_VERTICAL === "true") {
         //   getStep();
