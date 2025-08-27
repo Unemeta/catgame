@@ -183,6 +183,14 @@ const ChatView = () => {
         //   time: 1752730790,
         //   type: "ai_event",
         // };
+        // msgRes = {
+        //   chatCount: 0,
+        //   message:
+        //     "嗨，你好呀。\n我是旅行喵喵，一只还没来得及自我介绍，就已经踏上旅程的猫。\n最近我在意大利的街头跟着小吃车跑，装作听得懂人话，好骗一口奶酪披萨。也去过一座会下猫毛雨的小镇，在月台边和一只老猫下了两小时的围棋（我输了，他输了一撮胡须）。\n我睡过花园的屋檐、火车顶的铁皮、甚至是一位流浪画家的背包。但你知道吗？在所有这些地方，我最念念不忘的，是那个“可能会遇见你的未来”。\n等我旅程结束，我会踩着月光跳回来，可能还带着一双偷来的袜子和一首写给你的诗。\n别把我忘了喔。",
+        //   msgId: "68788ca60e70eff78d05c2ef",
+        //   time: 1752730790,
+        //   type: "easter_egg",
+        // };
         if (
           msgRes.hasOwnProperty("message") &&
           msgRes["message"] != "Msg received"
@@ -286,25 +294,38 @@ const ChatView = () => {
         } else {
           console.log("other type");
           console.log(msgRes);
-          const tempArr = msgRes.message.split(separator);
-          if (
-            tempArr.length > 0 &&
-            (tempArr[tempArr.length - 1] === "" ||
-              tempArr[tempArr.length - 1] === "" ||
-              tempArr[tempArr.length - 1]?.length <= 1)
-          ) {
-            tempArr.pop();
+          if (msgRes.type === "easter_egg") {
+            setmessageList((pre) => {
+              return [
+                ...pre,
+                {
+                  ...msgRes,
+                  messageArr: [msgRes.message],
+                  role: "cat",
+                },
+              ];
+            });
+          } else {
+            const tempArr = msgRes.message.split(separator);
+            if (
+              tempArr.length > 0 &&
+              (tempArr[tempArr.length - 1] === "" ||
+                tempArr[tempArr.length - 1] === "" ||
+                tempArr[tempArr.length - 1]?.length <= 1)
+            ) {
+              tempArr.pop();
+            }
+            setmessageList((pre) => {
+              return [
+                ...pre,
+                {
+                  ...msgRes,
+                  messageArr: [...tempArr],
+                  role: "cat",
+                },
+              ];
+            });
           }
-          setmessageList((pre) => {
-            return [
-              ...pre,
-              {
-                ...msgRes,
-                messageArr: [...tempArr],
-                role: "cat",
-              },
-            ];
-          });
         }
       }
       // setMessages((prevMessages) => [...prevMessages, event.data]);
