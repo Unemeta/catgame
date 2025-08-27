@@ -309,8 +309,8 @@ const ChatView = () => {
       }
       // setMessages((prevMessages) => [...prevMessages, event.data]);
     };
-    socketTemp.onclose = () => {
-      console.log("socker onclose");
+    socketTemp.onclose = (e) => {
+      console.log("socket onclose", e);
       // if (location.href.indexOf("/chat") > -1) {
       //   toast.error(
       //     "The socket has been disconnected,Please check the network"
