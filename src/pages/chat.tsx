@@ -35,6 +35,7 @@ let stream_index = 0;
 let socket: any;
 const separator = "。";
 let isFocusSend = false;
+let timerReconnect: NodeJS.Timeout | null | undefined = null;
 const ChatView = () => {
   const { t } = useTranslation();
   const router = useRouter();
@@ -74,20 +75,24 @@ const ChatView = () => {
   const [showCatLoading, setshowCatLoading] = useState(false);
   // chat页面拦截
   const getStep = async () => {
-    const res = await request({
-      url: "/api/survey/survey/step",
-      method: "get",
-    });
-    const { step } = res.data;
-    //0 代表未填写过基础信息
-    //1 代表填写过基础信息，未填写过mbti
-    //2 代表填写过基础信息和mbti
-    localStorage.setItem("step", step);
-    if (step === 0) {
-      router.push("/info");
-    }
-    if (step === 1) {
-      router.push("/question");
+    try {
+      const res = await request({
+        url: "/api/survey/survey/step",
+        method: "get",
+      });
+      const { step } = res.data;
+      //0 代表未填写过基础信息
+      //1 代表填写过基础信息，未填写过mbti
+      //2 代表填写过基础信息和mbti
+      localStorage.setItem("step", step);
+      if (step === 0) {
+        router.push("/info");
+      }
+      if (step === 1) {
+        router.push("/question");
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
   useEffect(() => {
@@ -147,130 +152,184 @@ const ChatView = () => {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
   useEffect(() => {
-    if (socket) {
-      return;
-    }
-    if (jwtHelper.getToken()) {
-      //
-    } else {
-      // toast.error("login first");
-      console.error("login first");
-      router.push("/login");
-      return;
-    }
-    const socketTemp = new WebSocket(
-      `${process.env.NEXT_PUBLIC_WS_URL}?token=${jwtHelper.getToken()}`
-    );
-    socketTemp.onopen = () => {
-      console.log("socket onopen");
-    };
-    socketTemp.onmessage = async (event) => {
-      // event?.type === "message" || event?.type === "ai_event"
-      // Error = "error"; // 聊天次数超限，繁忙
-      // Receive = "receive"; // 接受到消息
-      // StartMsg = "start_msg"; // 每日的启动开场白
-      // FixedEventMsg = "fixed_event"; // 固定推送
-      // AiEventMsg = "ai_event"; // ai推送
-      // FarewellLetter = "farewell_letter"; // 告别信
-
-      if (event?.data !== "pong") {
-        const msgRes = JSON.parse(event?.data);
-        // msgRes = {
-        //   chatCount: 0,
-        //   message:
-        //     "https://unemeta-1322481783.cos.ap-tokyo.myqcloud.com/store-AI/%E4%B8%8A%E4%BC%A0%E8%85%BE%E8%AE%AF%E6%A1%B6%E8%B5%84%E6%BA%90%E5%BA%93/output%20%285%29.png",
-        //   msgId: "68788ca60e70eff78d05c2ef",
-        //   time: 1752730790,
-        //   type: "ai_event",
-        // };
-        // msgRes = {
-        //   chatCount: 0,
-        //   message:
-        //     "嗨，你好呀。\n我是旅行喵喵，一只还没来得及自我介绍，就已经踏上旅程的猫。\n最近我在意大利的街头跟着小吃车跑，装作听得懂人话，好骗一口奶酪披萨。也去过一座会下猫毛雨的小镇，在月台边和一只老猫下了两小时的围棋（我输了，他输了一撮胡须）。\n我睡过花园的屋檐、火车顶的铁皮、甚至是一位流浪画家的背包。但你知道吗？在所有这些地方，我最念念不忘的，是那个“可能会遇见你的未来”。\n等我旅程结束，我会踩着月光跳回来，可能还带着一双偷来的袜子和一首写给你的诗。\n别把我忘了喔。",
-        //   msgId: "68788ca60e70eff78d05c2ef",
-        //   time: 1752730790,
-        //   type: "easter_egg",
-        // };
-        if (
-          msgRes.hasOwnProperty("message") &&
-          msgRes["message"] != "Msg received"
-        ) {
+    let socketTemp: any;
+    let heartbeatInterval: string | number | NodeJS.Timeout | null | undefined =
+      null;
+    (async () => {
+      try {
+        if (socket) {
+          return;
+        }
+        if (jwtHelper.getToken()) {
           //
         } else {
+          // toast.error("login first");
+          console.error("login first");
+          router.push("/login");
           return;
         }
-        if (msgRes?.type === "error") {
-          toast.warning(
-            "Meow-meow's a bit tangled up... just a little more time, please!"
-          );
-        }
-        if (msgRes?.type == "stream_emotion") {
-          // "/videos/emotion0_wuliao.mp4",
-          // "/videos/emotion1_anwei.mp4",
-          // "/videos/emotion2_kaixin.mp4",
-          // "/videos/emotion3_kongju.mp4",
-          // "/videos/emotion4_shangxin.mp4",
-          // "/videos/emotion5_shengqi.mp4",
-          console.log(msgRes?.message);
-          if (msgRes.message == "无聊") {
-            setindexEmotion(0);
-          } else if (msgRes.message == "安慰") {
-            setindexEmotion(1);
-          } else if (msgRes.message == "开心") {
-            setindexEmotion(2);
-          } else if (msgRes.message == "恐惧") {
-            setindexEmotion(3);
-          } else if (msgRes.message == "伤心") {
-            setindexEmotion(4);
-          } else if (msgRes.message == "生气") {
-            setindexEmotion(5);
-          } else if (msgRes.message == "鄙视") {
-            setindexEmotion(6);
-          } else if (msgRes.message == "惊讶") {
-            setindexEmotion(7);
-          } else if (msgRes.message == "冷静") {
-            setindexEmotion(8);
-          } else {
-            console.log(`other emtontion ${msgRes?.message}`);
-          }
+        const { data } = await request({
+          url: `/api/chat/token`,
+          method: "post",
+        });
+        console.log(data);
+        if (data?.status === true) {
+          //
+        } else {
+          jwtHelper.clearToken();
+          router.push("/login");
           return;
         }
-        if (msgRes?.type == "stream_start") {
-          stream_msgs = [];
-          stream_index = 0;
-          setmessageList((pre) => {
-            return [
-              ...pre,
-              {
-                chatId: "",
-                message: "　",
-                msgs: [],
-                role: "cat",
-                time: Math.floor(new Date().getTime() / 1000),
-                msgId: msgRes?.msgId,
-                eventid: msgRes.eventId,
-              },
-            ];
-          });
-        } else if (msgRes?.type == "stream_content") {
-          setshowCatLoading(false);
-          // if (stream_index == 0) {
-          //   //
-          // }else{
-          //   await delay(stream_index * 500);
-          // }
-          // stream_index = stream_index + 1;
-          // await delay(stream_index * 200);
-          if (msgRes?.message.length > 0) {
-            stream_msgs.push(msgRes?.message);
-            setmessageList((pre) => {
-              const tempMsgs = [...pre];
-              const lastAiRes = [...tempMsgs]
-                .reverse()
-                .find((item) => item.role == "cat");
-              if (lastAiRes) {
-                lastAiRes.message = stream_msgs.join("");
-                const tempArr = lastAiRes.message.split(separator);
+
+        socketTemp = new WebSocket(
+          `${process.env.NEXT_PUBLIC_WS_URL}?token=${jwtHelper.getToken()}`
+        );
+        socketTemp.onopen = () => {
+          console.log("socket onopen");
+        };
+        socketTemp.onmessage = async (event: any) => {
+          // event?.type === "message" || event?.type === "ai_event"
+          // Error = "error"; // 聊天次数超限，繁忙
+          // Receive = "receive"; // 接受到消息
+          // StartMsg = "start_msg"; // 每日的启动开场白
+          // FixedEventMsg = "fixed_event"; // 固定推送
+          // AiEventMsg = "ai_event"; // ai推送
+          // FarewellLetter = "farewell_letter"; // 告别信
+
+          if (event?.data !== "pong") {
+            const msgRes = JSON.parse(event?.data);
+            // msgRes = {
+            //   chatCount: 0,
+            //   message:
+            //     "https://unemeta-1322481783.cos.ap-tokyo.myqcloud.com/store-AI/%E4%B8%8A%E4%BC%A0%E8%85%BE%E8%AE%AF%E6%A1%B6%E8%B5%84%E6%BA%90%E5%BA%93/output%20%285%29.png",
+            //   msgId: "68788ca60e70eff78d05c2ef",
+            //   time: 1752730790,
+            //   type: "ai_event",
+            // };
+            // msgRes = {
+            //   chatCount: 0,
+            //   message:
+            //     "嗨，你好呀。\n我是旅行喵喵，一只还没来得及自我介绍，就已经踏上旅程的猫。\n最近我在意大利的街头跟着小吃车跑，装作听得懂人话，好骗一口奶酪披萨。也去过一座会下猫毛雨的小镇，在月台边和一只老猫下了两小时的围棋（我输了，他输了一撮胡须）。\n我睡过花园的屋檐、火车顶的铁皮、甚至是一位流浪画家的背包。但你知道吗？在所有这些地方，我最念念不忘的，是那个“可能会遇见你的未来”。\n等我旅程结束，我会踩着月光跳回来，可能还带着一双偷来的袜子和一首写给你的诗。\n别把我忘了喔。",
+            //   msgId: "68788ca60e70eff78d05c2ef",
+            //   time: 1752730790,
+            //   type: "easter_egg",
+            // };
+            if (
+              msgRes.hasOwnProperty("message") &&
+              msgRes["message"] != "Msg received"
+            ) {
+              //
+            } else {
+              return;
+            }
+            if (msgRes?.type === "error") {
+              toast.warning(
+                "Meow-meow's a bit tangled up... just a little more time, please!"
+              );
+            }
+            if (msgRes?.type == "stream_emotion") {
+              // "/videos/emotion0_wuliao.mp4",
+              // "/videos/emotion1_anwei.mp4",
+              // "/videos/emotion2_kaixin.mp4",
+              // "/videos/emotion3_kongju.mp4",
+              // "/videos/emotion4_shangxin.mp4",
+              // "/videos/emotion5_shengqi.mp4",
+              console.log(msgRes?.message);
+              if (msgRes.message == "无聊") {
+                setindexEmotion(0);
+              } else if (msgRes.message == "安慰") {
+                setindexEmotion(1);
+              } else if (msgRes.message == "开心") {
+                setindexEmotion(2);
+              } else if (msgRes.message == "恐惧") {
+                setindexEmotion(3);
+              } else if (msgRes.message == "伤心") {
+                setindexEmotion(4);
+              } else if (msgRes.message == "生气") {
+                setindexEmotion(5);
+              } else if (msgRes.message == "鄙视") {
+                setindexEmotion(6);
+              } else if (msgRes.message == "惊讶") {
+                setindexEmotion(7);
+              } else if (msgRes.message == "冷静") {
+                setindexEmotion(8);
+              } else {
+                console.log(`other emtontion ${msgRes?.message}`);
+              }
+              return;
+            }
+            if (msgRes?.type == "stream_start") {
+              stream_msgs = [];
+              stream_index = 0;
+              setmessageList((pre) => {
+                return [
+                  ...pre,
+                  {
+                    chatId: "",
+                    message: "　",
+                    msgs: [],
+                    role: "cat",
+                    time: Math.floor(new Date().getTime() / 1000),
+                    msgId: msgRes?.msgId,
+                    eventid: msgRes.eventId,
+                  },
+                ];
+              });
+            } else if (msgRes?.type == "stream_content") {
+              setshowCatLoading(false);
+              // if (stream_index == 0) {
+              //   //
+              // }else{
+              //   await delay(stream_index * 500);
+              // }
+              // stream_index = stream_index + 1;
+              // await delay(stream_index * 200);
+              if (msgRes?.message.length > 0) {
+                stream_msgs.push(msgRes?.message);
+                setmessageList((pre) => {
+                  const tempMsgs = [...pre];
+                  const lastAiRes = [...tempMsgs]
+                    .reverse()
+                    .find((item) => item.role == "cat");
+                  if (lastAiRes) {
+                    lastAiRes.message = stream_msgs.join("");
+                    const tempArr = lastAiRes.message.split(separator);
+                    if (
+                      tempArr.length > 0 &&
+                      (tempArr[tempArr.length - 1] === "" ||
+                        tempArr[tempArr.length - 1] === "" ||
+                        tempArr[tempArr.length - 1]?.length <= 1)
+                    ) {
+                      tempArr.pop();
+                    }
+                    lastAiRes.messageArr = tempArr;
+                  }
+                  return tempMsgs;
+                });
+                sethasSetMessage(true);
+              }
+            } else if (msgRes?.type == "stream_end") {
+              if (msgRes.hasOwnProperty("chatCount")) {
+                setchatCount(String(msgRes.chatCount));
+              }
+              // stream_msgs = [];
+              stream_index = 0;
+            } else {
+              console.log("other type");
+              console.log(msgRes);
+              if (msgRes.type === "easter_egg") {
+                setmessageList((pre) => {
+                  return [
+                    ...pre,
+                    {
+                      ...msgRes,
+                      messageArr: [msgRes.message],
+                      role: "cat",
+                    },
+                  ];
+                });
+              } else {
+                const tempArr = msgRes.message.split(separator);
                 if (
                   tempArr.length > 0 &&
                   (tempArr[tempArr.length - 1] === "" ||
@@ -279,78 +338,51 @@ const ChatView = () => {
                 ) {
                   tempArr.pop();
                 }
-                lastAiRes.messageArr = tempArr;
+                setmessageList((pre) => {
+                  return [
+                    ...pre,
+                    {
+                      ...msgRes,
+                      messageArr: [...tempArr],
+                      role: "cat",
+                    },
+                  ];
+                });
               }
-              return tempMsgs;
-            });
-            sethasSetMessage(true);
-          }
-        } else if (msgRes?.type == "stream_end") {
-          if (msgRes.hasOwnProperty("chatCount")) {
-            setchatCount(String(msgRes.chatCount));
-          }
-          // stream_msgs = [];
-          stream_index = 0;
-        } else {
-          console.log("other type");
-          console.log(msgRes);
-          if (msgRes.type === "easter_egg") {
-            setmessageList((pre) => {
-              return [
-                ...pre,
-                {
-                  ...msgRes,
-                  messageArr: [msgRes.message],
-                  role: "cat",
-                },
-              ];
-            });
-          } else {
-            const tempArr = msgRes.message.split(separator);
-            if (
-              tempArr.length > 0 &&
-              (tempArr[tempArr.length - 1] === "" ||
-                tempArr[tempArr.length - 1] === "" ||
-                tempArr[tempArr.length - 1]?.length <= 1)
-            ) {
-              tempArr.pop();
             }
-            setmessageList((pre) => {
-              return [
-                ...pre,
-                {
-                  ...msgRes,
-                  messageArr: [...tempArr],
-                  role: "cat",
-                },
-              ];
-            });
           }
-        }
+          // setMessages((prevMessages) => [...prevMessages, event.data]);
+        };
+        socketTemp.onclose = (e) => {
+          console.log("socket onclose", e);
+          // if (location.href.indexOf("/chat") > -1) {
+          //   toast.error(
+          //     "The socket has been disconnected,Please check the network"
+          //   );
+          // }
+          socket = null;
+          if (timerReconnect) {
+            clearTimeout(timerReconnect);
+          }
+          timerReconnect = setTimeout(async () => {
+            settoConnect((pre) => !pre);
+          }, 7000);
+        };
+        heartbeatInterval = setInterval(() => {
+          if (socketTemp.readyState === WebSocket.OPEN) {
+            socketTemp.send("ping");
+          }
+        }, 30000);
+        socket = socketTemp;
+      } catch (error) {
+        console.error(error);
       }
-      // setMessages((prevMessages) => [...prevMessages, event.data]);
-    };
-    socketTemp.onclose = (e) => {
-      console.log("socket onclose", e);
-      // if (location.href.indexOf("/chat") > -1) {
-      //   toast.error(
-      //     "The socket has been disconnected,Please check the network"
-      //   );
-      // }
-      socket = null;
-      setTimeout(() => {
-        settoConnect((pre) => !pre);
-      }, 10000);
-    };
-    const heartbeatInterval = setInterval(() => {
-      if (socketTemp.readyState === WebSocket.OPEN) {
-        socketTemp.send("ping");
-      }
-    }, 30000);
-    socket = socketTemp;
+    })();
     return () => {
-      clearInterval(heartbeatInterval);
-      socketTemp.close();
+      if (heartbeatInterval != null) {
+        clearInterval(heartbeatInterval);
+      }
+      socketTemp?.close();
       socket = null;
     };
   }, [toConnect]);
