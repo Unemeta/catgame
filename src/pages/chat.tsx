@@ -353,7 +353,7 @@ const ChatView = () => {
           }
           // setMessages((prevMessages) => [...prevMessages, event.data]);
         };
-        socketTemp.onclose = (e) => {
+        socketTemp.onclose = (e: any) => {
           console.log("socket onclose", e);
           // if (location.href.indexOf("/chat") > -1) {
           //   toast.error(
