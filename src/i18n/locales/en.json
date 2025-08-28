@@ -20,6 +20,7 @@
     "rts": "Release to send",
     "rte": "recording ends in {{sec}} seconds",
     "image_large": "Image exceeds 1.5MB. Please re-upload.",
+    "another_device_msg": "Meow~ I just spotted you logging in on another device. I’ll curl up and log out here… see you soon, nya~",
     "pts": "press and hold to speak"
   },
   "letter": {

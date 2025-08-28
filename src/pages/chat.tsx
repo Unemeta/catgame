@@ -177,7 +177,9 @@ const ChatView = () => {
           //
         } else {
           jwtHelper.clearToken();
+          toast.warning(t("chat.another_device_msg"));
           router.push("/login");
+
           return;
         }
 
@@ -366,7 +368,7 @@ const ChatView = () => {
           }
           timerReconnect = setTimeout(async () => {
             settoConnect((pre) => !pre);
-          }, 7000);
+          }, 5000);
         };
         heartbeatInterval = setInterval(() => {
           if (socketTemp.readyState === WebSocket.OPEN) {
