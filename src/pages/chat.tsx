@@ -173,13 +173,10 @@ const ChatView = () => {
           method: "post",
         });
         console.log(data);
-        if (data?.status === true) {
-          //
-        } else {
+        if (data?.status === false) {
           jwtHelper.clearToken();
           toast.warning(t("chat.another_device_msg"));
           router.push("/login");
-
           return;
         }
 
@@ -357,11 +354,12 @@ const ChatView = () => {
         };
         socketTemp.onclose = (e: any) => {
           console.log("socket onclose", e);
-          // if (location.href.indexOf("/chat") > -1) {
-          //   toast.error(
-          //     "The socket has been disconnected,Please check the network"
-          //   );
-          // }
+          if (e._reason?.indexOf("replaced by new connection") > -1) {
+            console.log("replaced by new connection");
+            toast.warning(t("chat.another_device_msg"));
+            jwtHelper.clearToken();
+            router.push("/login");
+          }
           socket = null;
           if (timerReconnect) {
             clearTimeout(timerReconnect);
