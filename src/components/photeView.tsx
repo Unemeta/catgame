@@ -8,6 +8,7 @@ import * as globalApi from "@/services/global";
 import { useRouter } from "next/router";
 import { useFetchUser } from "@/store";
 import { useTranslation } from "react-i18next";
+import mixpanel from '@/utils/mixpanel'
 
 interface iPhotoView {
   src: string;
@@ -25,19 +26,22 @@ const ImgView = ({ src, eventid, type }: iPhotoView) => {
 
     if (type === "fixed_event") {
       globalApi.eventRecord("fiexed_zoom_in", src);
+      mixpanel.track("fiexed_zoom_in", { src });
     }
     if (type === "ai_event") {
       globalApi.eventRecord("ai_zoom_in", src);
+      mixpanel.track("ai_zoom_in", { src });
     }
     if (type === "farewell_letter") {
       globalApi.eventRecord("farewell_zoom_in", src);
+      mixpanel.track("farewell_zoom_in", { src });
     }
   };
 
   return (
     <DialogImgView
       show={showDialog}
-      cb={() => {}}
+      cb={() => { }}
       setShow={setshowDialog}
       src={src}
       type={type}

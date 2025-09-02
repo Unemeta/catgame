@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import * as globalApi from "@/services/global";
 import ToHomeStepView from "@/components/toHomeSteps";
 import dynamic from "next/dynamic";
+import mixpanel from '@/utils/mixpanel'
 
 // 动态导入禁用 SSR
 const Player = dynamic(
@@ -111,6 +112,7 @@ const PartyView = () => {
                   alt=""
                   onClick={() => {
                     globalApi.eventRecord("soultest_click");
+                    mixpanel.track('soultest_click');
                     setstepIndex(1);
                   }}
                 />

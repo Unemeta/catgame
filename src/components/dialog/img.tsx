@@ -10,6 +10,7 @@ import {
 import { cn } from "@/lib/utils";
 import { downloadMedia } from "@/utils/save";
 import * as globalApi from "@/services/global";
+import mixpanel from '@/utils/mixpanel'
 
 interface iDialogImgView {
   show: boolean;
@@ -32,16 +33,19 @@ const DialogImgView = ({
     downloadMedia(src, "downloaded-image.jpg");
     if (type === "fixed_event") {
       globalApi.eventRecord("fixed_save_img", src);
+      mixpanel.track("fixed_save_img", { src });
     }
     if (type === "ai_event") {
       globalApi.eventRecord("ai_save_img", src);
+      mixpanel.track("ai_save_img", { src });
     }
     if (type === "farewell_letter") {
       globalApi.eventRecord("farewell_save_img", src);
+      mixpanel.track("farewell_save_img", { src });
     }
     console.log("图片已下载");
   };
- 
+
   return (
     <Dialog
       open={show}

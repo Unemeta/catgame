@@ -28,6 +28,7 @@ import DialogAvatarCat from "@/components/dialog/avatar_cat";
 import DialogLetter from "@/components/dialog/letter";
 import * as globalApi from "@/services/global";
 import VideoBackgroundNewLogin from "@/components/VideoBackgroundNewLogin";
+import mixpanel from '@/utils/mixpanel'
 
 let timerHistory: NodeJS.Timeout | null | undefined = null;
 let stream_msgs: string[] = [];
@@ -409,6 +410,7 @@ const ChatView = () => {
           messageList.filter((item) => item.role == "user")?.length === 0
         ) {
           globalApi.eventRecord(`send_mes_1`);
+          mixpanel.track(`send_mes_1`);
           console.log("send_mes_1");
         }
         // 第二次
@@ -417,6 +419,7 @@ const ChatView = () => {
           messageList.filter((item) => item.role == "user")?.length === 1
         ) {
           globalApi.eventRecord(`send_mes_2`);
+          mixpanel.track(`send_mes_2`);
           console.log("send_mes_2");
         }
 
@@ -1002,6 +1005,7 @@ const ChatView = () => {
                         ) {
                           console.log("focus_chat_1");
                           globalApi.eventRecord(`focus_chat_1`);
+                          mixpanel.track(`focus_chat_1`);
                         }
                         if (
                           hasSetMessage &&
@@ -1010,6 +1014,7 @@ const ChatView = () => {
                         ) {
                           console.log("focus_chat_2");
                           globalApi.eventRecord(`focus_chat_2`);
+                          mixpanel.track(`focus_chat_2`);
                         }
                       }}
                       onBlur={handleBlur}

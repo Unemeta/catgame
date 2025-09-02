@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import * as globalApi from "@/services/global";
 
 import dynamic from "next/dynamic";
+import mixpanel from '@/utils/mixpanel'
 
 // 动态导入禁用 SSR
 const Player = dynamic(
@@ -192,6 +193,7 @@ const AnswerView = ({ onClick }: iAnswerView) => {
             onClick={() => {
               // 问卷埋点
               globalApi.eventRecord(`q${stepAnswerIndex + 1}_click`);
+              mixpanel.track(`q${stepAnswerIndex + 1}_click`);
               if (stepAnswerIndex >= 3) {
                 console.log(selectIndexQuestionArr);
                 onClick(selectIndexQuestionArr);

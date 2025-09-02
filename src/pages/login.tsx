@@ -13,6 +13,7 @@ import * as globalApi from "@/services/global";
 import ToHomeStepView from "@/components/toHomeSteps";
 import VideoBackgroundNewLoginStart from "@/components/VideoBackgroundNewLoginStart";
 import type { GetServerSidePropsContext } from "next";
+import mixpanel from '@/utils/mixpanel'
 
 interface ProgressLoaderProps {
   progress: number;
@@ -164,6 +165,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
         // 新用户登陆埋点
         if (isNewUser) {
           globalApi.eventRecord("account_login");
+          mixpanel.track('account_login');
           setShowVideo(true);
         } else {
           getStep();

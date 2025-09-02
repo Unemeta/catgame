@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useRef, useEffect, useState } from "react";
 import * as globalApi from "@/services/global";
+import mixpanel from '@/utils/mixpanel'
 
 const videos = {
   zh: "https://oss.meowster.io/une_cat_world/animate1-zh.mp4",
@@ -31,10 +32,14 @@ export default function VideoBackgroundNewLoginStart({
     console.log("视频加载完成");
     videoRef?.current?.play();
     globalApi.eventRecord("intro_animation_load");
+    mixpanel.track("intro_animation_load");
+
   };
   const handleVideoEnd = () => {
     console.log("视频播放完成");
     globalApi.eventRecord("intro_animation_complete");
+    mixpanel.track("intro_animation_complete");
+
 
     playEnd();
     // 在这里添加播放完成后的逻辑

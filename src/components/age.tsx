@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { useUserBasicInfo } from "@/store/info";
 import { useTranslation } from "react-i18next";
 import * as globalApi from "@/services/global";
+import mixpanel from '@/utils/mixpanel'
 
 const oldList = ["16~19", "20~24", "25~34", "35~49", "50~69", "70~99"];
 const Age = ({ onClick }: iAnswerView) => {
@@ -34,6 +35,7 @@ const Age = ({ onClick }: iAnswerView) => {
                 )}
                 onClick={() => {
                   globalApi.eventRecord("age_input");
+                  mixpanel.track("age_input");
                   setBasicInfo({ ...basicInfo, age: index + 1 });
                 }}
                 style={{

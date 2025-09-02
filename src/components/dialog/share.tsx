@@ -8,6 +8,7 @@ import { shareUtil } from "@/lib/utils";
 import * as globalApi from "@/services/global";
 import html2canvas from "html2canvas";
 import { useTranslation } from "react-i18next";
+import mixpanel from '@/utils/mixpanel'
 
 const DialogShare = ({
   trigger,
@@ -79,6 +80,7 @@ const DialogShare = ({
   };
   const handleDiscord = async () => {
     globalApi.eventRecord("click_discord_link");
+    mixpanel.track("click_discord_link");
     window.open("https://discord.gg/HBm6qxn4dM", "_blank");
   };
   const text = {
@@ -93,6 +95,7 @@ const DialogShare = ({
         setisOpen(val);
         if (val) {
           globalApi.eventRecord("share_popup_show");
+          mixpanel.track("share_popup_show");
         }
       }}
     >

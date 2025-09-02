@@ -10,6 +10,7 @@ import Discord from "@/components/Discord";
 import { useQRCode } from "next-qrcode";
 import * as globalApi from "@/services/global";
 import { useTranslation } from "react-i18next";
+import mixpanel from '@/utils/mixpanel'
 
 function useRemToPx(remValue: number) {
   const [px, setPx] = useState(remValue * 10); // 默认 1rem = 10px
@@ -37,6 +38,7 @@ const LetterView = () => {
 
   const handleShare = async () => {
     globalApi.eventRecord("share_entry_click");
+    mixpanel.track('share_entry_click');
     console.log("share");
   };
 

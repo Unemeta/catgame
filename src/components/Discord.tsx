@@ -2,6 +2,7 @@
 import * as globalApi from "@/services/global";
 
 import { cn } from "@/lib/utils";
+import mixpanel from '@/utils/mixpanel'
 
 interface iDiscord {
   text?: string;
@@ -10,6 +11,7 @@ interface iDiscord {
 export default function Discord({ text, textColor }: iDiscord) {
   const handleDiscord = async () => {
     globalApi.eventRecord("click_discord_link");
+    mixpanel.track("click_discord_link");
     window.open("https://discord.gg/HBm6qxn4dM", "_blank");
   };
   return (

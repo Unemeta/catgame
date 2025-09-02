@@ -16,6 +16,8 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
 import { useFetchUser } from "@/store";
+import mixpanel from '@/utils/mixpanel'
+
 interface iStep3View {
   index: number;
   mbtiRes: {
@@ -41,7 +43,7 @@ const Step3View = ({ mbtiRes }: iStep3View) => {
       setinputMsg(mbtiRes?.meowname);
     }
 
-    return () => {};
+    return () => { };
   }, [mbtiRes]);
 
   useEffect(() => {
@@ -313,6 +315,7 @@ const Step3View = ({ mbtiRes }: iStep3View) => {
                   toast.info("already_filled");
                 } else {
                   globalApi.eventRecord("meetcat_click");
+                  mixpanel.track("meetcat_click");
                 }
                 router.push("/chat");
                 setisLoading(false);

@@ -2,6 +2,7 @@
 import { useRef } from "react";
 import { debounce } from "lodash";
 import * as globalApi from "@/services/global";
+import mixpanel from '@/utils/mixpanel'
 
 // 延迟发送埋点
 const useDebouncelog = (event_type: string, event_comment?: string, time: number = 3000) => {
@@ -9,6 +10,7 @@ const useDebouncelog = (event_type: string, event_comment?: string, time: number
         debounce(() => {
             if (event_type) {
                 globalApi.eventRecord(event_type, event_comment);
+                mixpanel.track(event_type, { event_comment });
             }
             console.log("执行埋点:");
         }, time)
