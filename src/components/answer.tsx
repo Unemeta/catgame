@@ -2,7 +2,7 @@
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import * as globalApi from "@/services/global";
+// import * as globalApi from "@/services/global";
 
 import dynamic from "next/dynamic";
 import mixpanel from '@/utils/mixpanel'
@@ -192,7 +192,7 @@ const AnswerView = ({ onClick }: iAnswerView) => {
             alt=""
             onClick={() => {
               // 问卷埋点
-              globalApi.eventRecord(`q${stepAnswerIndex + 1}_click`);
+              // globalApi.eventRecord(`q${stepAnswerIndex + 1}_click`);
               mixpanel.track(`q${stepAnswerIndex + 1}_click`);
               if (stepAnswerIndex >= 3) {
                 console.log(selectIndexQuestionArr);

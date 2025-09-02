@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef } from "react";
-import * as globalApi from "@/services/global";
+// import * as globalApi from "@/services/global";
 // import { downloadMp4 } from "@/utils/save";
 import mixpanel from '@/utils/mixpanel'
 
@@ -46,7 +46,7 @@ const VideoPlayView = ({ msg_id, msg, eventid, type }: iVideoPlayView) => {
               "%",
           };
           console.log(info);
-          // globalApi.eventRecord("video_exitfullscreen", JSON.stringify(info));
+          // // globalApi.eventRecord("video_exitfullscreen", JSON.stringify(info));
         }
       }
     };
@@ -65,17 +65,17 @@ const VideoPlayView = ({ msg_id, msg, eventid, type }: iVideoPlayView) => {
   const handlePlay = (id: string) => {
     console.log(`视频 ${id} 开始播放`);
     if (type === "fixed_event") {
-      globalApi.eventRecord("fixed_play_video", msg);
+      // globalApi.eventRecord("fixed_play_video", msg);
       mixpanel.track("fixed_play_video", { msg });
 
     }
     if (type === "ai_event") {
-      globalApi.eventRecord("ai_play_video", msg);
+      // globalApi.eventRecord("ai_play_video", msg);
       mixpanel.track("ai_play_video", { msg });
 
     }
     if (type === "farewell_letter") {
-      globalApi.eventRecord("farewell_play_video", msg);
+      // globalApi.eventRecord("farewell_play_video", msg);
       mixpanel.track("farewell_play_video", { msg });
 
     }
@@ -134,17 +134,17 @@ const VideoPlayView = ({ msg_id, msg, eventid, type }: iVideoPlayView) => {
     // downloadMp4(linkdecode, "video.mp4");
 
     if (type === "fixed_event") {
-      globalApi.eventRecord("fixed_save_video", msg);
+      // globalApi.eventRecord("fixed_save_video", msg);
       mixpanel.track("fixed_save_video", { msg });
 
     }
     if (type === "ai_event") {
-      globalApi.eventRecord("ai_save_video", msg);
+      // globalApi.eventRecord("ai_save_video", msg);
       mixpanel.track("ai_save_video", { msg });
 
     }
     if (type === "farewell_letter") {
-      globalApi.eventRecord("farewell_save_video", msg);
+      // globalApi.eventRecord("farewell_save_video", msg);
       mixpanel.track("farewell_save_video", { msg });
 
     }

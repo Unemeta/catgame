@@ -6,7 +6,7 @@ import { request } from "@/utils/request";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
-import * as globalApi from "@/services/global";
+// import * as globalApi from "@/services/global";
 import { cn } from "@/lib/utils";
 import { Mousewheel, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -314,7 +314,7 @@ const Step3View = ({ mbtiRes }: iStep3View) => {
                 if (data?.already_filled === true) {
                   toast.info("already_filled");
                 } else {
-                  globalApi.eventRecord("meetcat_click");
+                  // globalApi.eventRecord("meetcat_click");
                   mixpanel.track("meetcat_click");
                 }
                 router.push("/chat");

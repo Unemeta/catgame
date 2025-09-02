@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { useFetchUser } from "@/store";
 import { useTranslation } from "react-i18next";
-import * as globalApi from "@/services/global";
+// import * as globalApi from "@/services/global";
 import ToHomeStepView from "@/components/toHomeSteps";
 import VideoBackgroundNewLoginStart from "@/components/VideoBackgroundNewLoginStart";
 import type { GetServerSidePropsContext } from "next";
@@ -164,7 +164,7 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
         }
         // 新用户登陆埋点
         if (isNewUser) {
-          globalApi.eventRecord("account_login");
+          // globalApi.eventRecord("account_login");
           mixpanel.track('account_login');
           setShowVideo(true);
         } else {

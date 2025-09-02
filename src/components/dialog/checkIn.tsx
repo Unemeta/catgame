@@ -9,7 +9,7 @@ import LottieView from "@/components/lottie";
 import { FadeComponent } from "@/components/FadeComponent";
 import { useTranslation } from "react-i18next";
 import { useUserData } from "@/store/user";
-import * as globalApi from "@/services/global";
+// import * as globalApi from "@/services/global";
 import mixpanel from '@/utils/mixpanel'
 
 interface iDialogCheckIn {
@@ -315,7 +315,7 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
               <DialogTrigger
                 className="outline-none"
                 onClick={() => {
-                  globalApi.eventRecord("reward_close");
+                  // globalApi.eventRecord("reward_close");
                   mixpanel.track("reward_close");
                 }}
               >

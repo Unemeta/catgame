@@ -5,7 +5,7 @@ import { request } from "@/utils/request";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
-import * as globalApi from "@/services/global";
+// import * as globalApi from "@/services/global";
 import ToHomeStepView from "@/components/toHomeSteps";
 import dynamic from "next/dynamic";
 import mixpanel from '@/utils/mixpanel'
@@ -111,7 +111,7 @@ const PartyView = () => {
                   className="w-[10rem] h-[10rem]"
                   alt=""
                   onClick={() => {
-                    globalApi.eventRecord("soultest_click");
+                    // globalApi.eventRecord("soultest_click");
                     mixpanel.track('soultest_click');
                     setstepIndex(1);
                   }}

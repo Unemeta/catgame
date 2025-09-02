@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useRef, useEffect, useState } from "react";
-import * as globalApi from "@/services/global";
+// import * as globalApi from "@/services/global";
 import mixpanel from '@/utils/mixpanel'
 
 const videos = {
@@ -31,13 +31,13 @@ export default function VideoBackgroundNewLoginStart({
   const handleLoadedData = () => {
     console.log("视频加载完成");
     videoRef?.current?.play();
-    globalApi.eventRecord("intro_animation_load");
+    // globalApi.eventRecord("intro_animation_load");
     mixpanel.track("intro_animation_load");
 
   };
   const handleVideoEnd = () => {
     console.log("视频播放完成");
-    globalApi.eventRecord("intro_animation_complete");
+    // globalApi.eventRecord("intro_animation_complete");
     mixpanel.track("intro_animation_complete");
 
 
