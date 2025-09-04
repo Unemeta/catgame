@@ -80,7 +80,9 @@
     "howold": "Your Age",
     "wgender": "What’s your gender?",
     "female": "Female",
-    "male": "Male"
+    "male": "Male",
+    "notsay": "Not to say",
+    "nonbinary": "Non-binary"
   },
   "login": {
     "login": "Sign Up / Log In",

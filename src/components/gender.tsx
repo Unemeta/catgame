@@ -169,8 +169,7 @@ const Gender = ({ onClick }: iAnswerView) => {
                 }
               )}
             >
-              {/* {t("info.female")} */}
-              Non-binary
+              {t("info.nonbinary")}
             </div>
           </div>
           <div
@@ -215,10 +214,7 @@ const Gender = ({ onClick }: iAnswerView) => {
                 }
               )}
             >
-              {/* {t("info.female")} */}
-              {/* Not to say */}
-              {/* 不愿透露 */}
-              ノンバイナリー
+              {t("info.notsay")}
             </div>
           </div>
         </div>
