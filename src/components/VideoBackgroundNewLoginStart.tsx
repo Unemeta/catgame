@@ -16,6 +16,7 @@ export default function VideoBackgroundNewLoginStart({
 }) {
   const [videoSrc, setVideoSrc] = useState("");
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMuted, setIsMuted] = useState(false); // 初始静音
 
   useEffect(() => {
     // This code runs only on the client side
@@ -50,9 +51,29 @@ export default function VideoBackgroundNewLoginStart({
     // 2. 切换到下一个视频
     // 3. 触发其他组件状态变化
   };
-
+  const toggleMute = () => {
+    setIsMuted((prev) => !prev);
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
+    }
+  };
   return (
     <div className={"fixed top-0 left-0 w-[100vw] wrapHeight  z-[-4]"}>
+      {/* 静音切换按钮 */}
+      <div
+        onClick={toggleMute}
+        className="absolute top-4 right-4 bg-[#33150099] rounded-[50%] z-1000 w-[4rem] h-[4rem] flex justify-center items-center cursor-pointer"
+      >
+        {isMuted ? <img
+          src="/img/jy.png"
+          alt=""
+          className="w-[2rem] h-[2rem] "
+        /> : <img
+          src="/img/yy.png"
+          alt=""
+          className="w-[2rem] h-[2rem] "
+        />}
+      </div>
       <video
         playsInline
         ref={videoRef}
