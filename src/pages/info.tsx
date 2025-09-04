@@ -9,8 +9,9 @@ import { useUserBasicInfo } from "@/store/info";
 import { request } from "@/utils/request";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-import * as globalApi from "@/services/global";
+// import * as globalApi from "@/services/global";
 import ToHomeStepView from "@/components/toHomeSteps";
+import mixpanel from '@/utils/mixpanel'
 
 const InfoView = () => {
   const [stepIndex, setstepIndex] = useState(0);
@@ -100,7 +101,8 @@ const InfoView = () => {
           <Gender
             onClick={() => {
               setstepIndex(1);
-              globalApi.eventRecord("gender_click");
+              // globalApi.eventRecord("gender_click");
+              mixpanel.track('gender_click')
             }}
           ></Gender>
         )}
@@ -108,7 +110,8 @@ const InfoView = () => {
           <NickName
             onClick={() => {
               setstepIndex(2);
-              globalApi.eventRecord("nickname_click");
+              // globalApi.eventRecord("nickname_click");
+              mixpanel.track('nickname_click')
             }}
           ></NickName>
         )}
@@ -117,7 +120,8 @@ const InfoView = () => {
             onClick={async () => {
               try {
                 await postInfo();
-                globalApi.eventRecord("age_click");
+                // globalApi.eventRecord("age_click");
+                mixpanel.track('age_click')
               } catch (error: any) {
                 console.log(error);
               }

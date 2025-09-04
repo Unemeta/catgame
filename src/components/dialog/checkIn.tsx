@@ -9,7 +9,8 @@ import LottieView from "@/components/lottie";
 import { FadeComponent } from "@/components/FadeComponent";
 import { useTranslation } from "react-i18next";
 import { useUserData } from "@/store/user";
-import * as globalApi from "@/services/global";
+// import * as globalApi from "@/services/global";
+import mixpanel from '@/utils/mixpanel'
 
 interface iDialogCheckIn {
   trigger?: ReactNode;
@@ -154,11 +155,11 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
           <div className="w-[30rem] h-[35rem] relative outline-none">
             <div
               className="self-stretch rounded-[3rem] inline-flex flex-col justify-start items-center gap-4 overflow-hidden w-full bg-[linear-gradient(187deg,#B48471_-9.74%,rgba(212,204,195,0.80)_100%)] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.55)] border-[#FFFFF7] border-[0.2rem]"
-              // style={{
-              //   background:
-              //     "linear-gradient(187deg, #B48471 -9.74%, rgba(212, 204, 195, 0.60) 72.93%)",
-              //   border: "2px solid #FFFFF7;",
-              // }}
+            // style={{
+            //   background:
+            //     "linear-gradient(187deg, #B48471 -9.74%, rgba(212, 204, 195, 0.60) 72.93%)",
+            //   border: "2px solid #FFFFF7;",
+            // }}
             >
               {/* 标题 */}
               <div
@@ -314,7 +315,8 @@ export const DialogCheckIn = ({ trigger }: iDialogCheckIn) => {
               <DialogTrigger
                 className="outline-none"
                 onClick={() => {
-                  globalApi.eventRecord("reward_close");
+                  // globalApi.eventRecord("reward_close");
+                  mixpanel.track("reward_close");
                 }}
               >
                 <div className="flex justify-center items-center cursor-pointer select-none">

@@ -5,9 +5,10 @@ import { Dialog, DialogContent, DialogTitle, DialogTrigger } from ".";
 import { toast } from "react-toastify";
 import IconView from "../IconView";
 import { shareUtil } from "@/lib/utils";
-import * as globalApi from "@/services/global";
+// import * as globalApi from "@/services/global";
 import html2canvas from "html2canvas";
 import { useTranslation } from "react-i18next";
+import mixpanel from '@/utils/mixpanel'
 
 const DialogShare = ({
   trigger,
@@ -78,7 +79,8 @@ const DialogShare = ({
     downloadScreenshot();
   };
   const handleDiscord = async () => {
-    globalApi.eventRecord("click_discord_link");
+    // globalApi.eventRecord("click_discord_link");
+    mixpanel.track("click_discord_link");
     window.open("https://discord.gg/HBm6qxn4dM", "_blank");
   };
   const text = {
@@ -92,7 +94,8 @@ const DialogShare = ({
       onOpenChange={(val) => {
         setisOpen(val);
         if (val) {
-          globalApi.eventRecord("share_popup_show");
+          // globalApi.eventRecord("share_popup_show");
+          mixpanel.track("share_popup_show");
         }
       }}
     >

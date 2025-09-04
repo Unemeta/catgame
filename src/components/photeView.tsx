@@ -4,10 +4,11 @@
 import { cn } from "@/lib/utils";
 import DialogImgView from "./dialog/img";
 import { useState } from "react";
-import * as globalApi from "@/services/global";
+// import * as globalApi from "@/services/global";
 import { useRouter } from "next/router";
 import { useFetchUser } from "@/store";
 import { useTranslation } from "react-i18next";
+import mixpanel from '@/utils/mixpanel'
 
 interface iPhotoView {
   src: string;
@@ -24,20 +25,23 @@ const ImgView = ({ src, eventid, type }: iPhotoView) => {
     console.log("图片放大", eventid);
 
     if (type === "fixed_event") {
-      globalApi.eventRecord("fiexed_zoom_in", src);
+      // globalApi.eventRecord("fiexed_zoom_in", src);
+      mixpanel.track("fiexed_zoom_in", { src });
     }
     if (type === "ai_event") {
-      globalApi.eventRecord("ai_zoom_in", src);
+      // globalApi.eventRecord("ai_zoom_in", src);
+      mixpanel.track("ai_zoom_in", { src });
     }
     if (type === "farewell_letter") {
-      globalApi.eventRecord("farewell_zoom_in", src);
+      // globalApi.eventRecord("farewell_zoom_in", src);
+      mixpanel.track("farewell_zoom_in", { src });
     }
   };
 
   return (
     <DialogImgView
       show={showDialog}
-      cb={() => {}}
+      cb={() => { }}
       setShow={setshowDialog}
       src={src}
       type={type}

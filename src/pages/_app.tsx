@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 import "animate.css/animate.min.css"; // 引入压缩版CSS
 import { useFetchUser } from "@/store";
 import { jwtHelper } from "@/utils/jwt";
-import mixpanel from 'mixpanel-browser'
+import '@/utils/mixpanel' // 引入埋点，初始化
 
 // import Router from "next/router";
 // import NProgress from "nprogress";
@@ -32,10 +32,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   // const [isPortrait, setIsPortrait] = useState(false);
   const { t, i18n } = useTranslation();
   useEffect(() => {
-    // 初始化 mixpanel 埋点，执行默认的配置
-    mixpanel.init('4477077ddd41acd976dd4ee5fc19c487', {autocapture: true});
-
-
     function setFullHeight() {
       const vh = window.innerHeight;
       document.documentElement.style.setProperty("--vh", `${vh}px`);

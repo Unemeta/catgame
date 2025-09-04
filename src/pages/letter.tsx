@@ -8,8 +8,9 @@ import { useEffect, useState, useRef } from "react";
 import ScreenshotDownloader from "@/components/ScreenshotDownloader";
 import Discord from "@/components/Discord";
 import { useQRCode } from "next-qrcode";
-import * as globalApi from "@/services/global";
+// import * as globalApi from "@/services/global";
 import { useTranslation } from "react-i18next";
+import mixpanel from '@/utils/mixpanel'
 
 function useRemToPx(remValue: number) {
   const [px, setPx] = useState(remValue * 10); // 默认 1rem = 10px
@@ -36,7 +37,8 @@ const LetterView = () => {
   const { t } = useTranslation();
 
   const handleShare = async () => {
-    globalApi.eventRecord("share_entry_click");
+    // globalApi.eventRecord("share_entry_click");
+    mixpanel.track('share_entry_click');
     console.log("share");
   };
 
