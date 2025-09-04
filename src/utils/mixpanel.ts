@@ -1,5 +1,5 @@
 // analytics/mixpanel.ts
 import mixpanel from 'mixpanel-browser'
-const token = '4477077ddd41acd976dd4ee5fc19c487'
+const token = process.env.NEXT_PUBLIC_MIXPANEL_TOKEN ? process.env.NEXT_PUBLIC_MIXPANEL_TOKEN : '';
 mixpanel.init(token, { autocapture: true });
 export default mixpanel;
