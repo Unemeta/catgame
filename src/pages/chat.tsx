@@ -457,6 +457,7 @@ const ChatView = () => {
     }
   };
   const sendMessage = () => {
+    mixpanel.track('send_mes');
     sendMesCommon(inputMsg);
   };
 
@@ -726,12 +727,15 @@ const ChatView = () => {
                   <div
                     className="relative"
                     onClick={() => {
+                      mixpanel.track('click_letter_icon');
                       if (
                         chatInfo?.farewellLetterStatus == 2 ||
                         chatInfo?.farewellLetterStatus == 3
                       ) {
+                         mixpanel.track('seven_days_letter');
                         router.push(`/letter?id=${userData?.uuid}`);
                       } else {
+                        mixpanel.track('show_countdown_card');
                         setshowDialogLetter(!showDialogLetter);
                       }
                     }}

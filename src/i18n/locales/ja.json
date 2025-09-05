@@ -80,7 +80,9 @@
     "howold": "あなたの年齢は？",
     "wgender": "あなたの性別は？",
     "female": "女性",
-    "male": "男性"
+    "male": "男性",
+    "notsay": "不明",
+    "nonbinary": "非バイナリー"
   },
   "login": {
     "login": "アカウント登録・ログイン",

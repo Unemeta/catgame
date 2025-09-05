@@ -17,7 +17,7 @@ const Gender = ({ onClick }: iAnswerView) => {
         {t("info.wgender")}
       </div>
       <div className="h-[36rem]">
-        <div className="flex gap-[3rem] mt-[6rem]">
+        <div className="flex gap-[3rem] mt-[3rem] flex-wrap justify-center">
           <div
             className={cn(
               "w-[13.5rem] h-[16.6rem] px-[1rem] py-[3.5rem] rounded-[2rem] inline-flex flex-col justify-center items-center gap-[0.8rem]",
@@ -91,14 +91,6 @@ const Gender = ({ onClick }: iAnswerView) => {
               setBasicInfo({ ...basicInfo, gender: 1 });
             }}
           >
-            {/* {basicInfo.gender === 1 ? (
-            <img
-              src="/img/genderbg.png"
-              className="absolute -z-1 w-[16rem] h-[20.6rem]"
-            ></img>
-          ) : (
-            <></>
-          )} */}
             <div
               className={cn(
                 "w-[7rem] h-[7rem] rounded-full flex items-center justify-center",
@@ -131,6 +123,98 @@ const Gender = ({ onClick }: iAnswerView) => {
               )}
             >
               {t("info.female")}
+            </div>
+          </div>
+
+
+
+          <div
+            className={cn(
+              "w-[13.5rem] h-[16.6rem] px-[1rem] py-[3.5rem] rounded-[2rem] inline-flex flex-col justify-center items-center gap-[0.8rem]",
+              {
+                "bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)] rounded-[2rem]":
+                  basicInfo.gender === 2,
+                "bg-[#fff] ": basicInfo.gender !== 2,
+              }
+            )}
+            style={{
+              boxShadow:
+                basicInfo.gender === 2
+                  ? "0px 3px 4px 0px rgba(255, 255, 255, 0.25), 0px 4px 24px 0px #ECA89E"
+                  : "",
+            }}
+            onClick={() => {
+              setBasicInfo({ ...basicInfo, gender: 2 });
+            }}
+          >
+            <div
+              className={cn(
+                "w-[7rem] h-[7rem] rounded-full flex items-center justify-center",
+                {
+                  "bg-[#EA8273] ": basicInfo.gender !== 2,
+                  "bg-[#fff] ": basicInfo.gender === 2,
+                }
+              )}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="32" viewBox="0 0 20 32" fill="none">
+                <path d="M9.90039 0C10.6735 8.56145e-05 11.2998 0.627245 11.2998 1.40039V4.20801L13.9121 2.7002C14.5816 2.31364 15.4385 2.54346 15.8252 3.21289C16.2113 3.88239 15.9819 4.73848 15.3125 5.125L13.0625 6.42285L15.4463 7.7998C16.1159 8.1864 16.3456 9.04328 15.959 9.71289C15.5723 10.382 14.7163 10.611 14.0469 10.2246L11.2998 8.63867V12.0869C16.2084 12.7242 20 16.9178 20 22C20 27.5228 15.5228 32 10 32C4.47715 32 0 27.5228 0 22C0 16.987 3.68878 12.8361 8.5 12.1123V9.05762L5.61328 10.7246C4.94382 11.1108 4.08679 10.8822 3.7002 10.2129C3.31385 9.54344 3.54366 8.68647 4.21289 8.2998L7.46191 6.42285L4.34668 4.625C3.67765 4.23832 3.44879 3.38225 3.83496 2.71289C4.22148 2.04341 5.07752 1.81391 5.74707 2.2002L8.5 3.78906V1.40039C8.5 0.627366 9.12743 0.000283004 9.90039 0ZM10 15C6.13401 15 3 18.134 3 22C3 25.866 6.13401 29 10 29C13.866 29 17 25.866 17 22C17 18.134 13.866 15 10 15Z" fill={basicInfo.gender === 2 ? "#EA8273" : "white"} />
+              </svg>
+            </div>
+            <div
+              className={cn(
+                "text-center justify-start  text-[1.6rem] font-bold font-['SF_Pro_Rounded'] leading-tight",
+                {
+                  "text-[#fff]": basicInfo.gender === 2,
+                  "text-[#826662]": basicInfo.gender !== 2,
+                }
+              )}
+            >
+              {t("info.nonbinary")}
+            </div>
+          </div>
+          <div
+            className={cn(
+              "w-[13.5rem] h-[16.6rem] px-[1rem] py-[3.5rem] rounded-[2rem] inline-flex flex-col justify-center items-center gap-[0.8rem]",
+              {
+                "bg-[linear-gradient(0deg,#EA8273_0%,#ECA89E_100%)] rounded-[2rem]":
+                  basicInfo.gender === 3,
+                "bg-[#fff] ": basicInfo.gender !== 3,
+              }
+            )}
+            style={{
+              boxShadow:
+                basicInfo.gender === 3
+                  ? "0px 3px 4px 0px rgba(255, 255, 255, 0.25), 0px 4px 24px 0px #ECA89E"
+                  : "",
+            }}
+            onClick={() => {
+              setBasicInfo({ ...basicInfo, gender: 3 });
+            }}
+          >
+            <div
+              className={cn(
+                "w-[7rem] h-[7rem] rounded-full flex items-center justify-center",
+                {
+                  "bg-[#EA8273] ": basicInfo.gender !== 3,
+                  "bg-[#fff] ": basicInfo.gender === 3,
+                }
+              )}
+            >
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="31" height="30" viewBox="0 0 31 30" fill="none">
+                <path d="M14.5 5C20.8513 5 26 10.1487 26 16.5C26 22.8513 20.8513 28 14.5 28C8.14873 28 3 22.8513 3 16.5C3 10.1487 8.14873 5 14.5 5ZM14.5 7.875C9.73654 7.875 5.875 11.7365 5.875 16.5C5.875 21.2635 9.73654 25.125 14.5 25.125C19.2635 25.125 23.125 21.2635 23.125 16.5C23.125 11.7365 19.2635 7.875 14.5 7.875ZM15.4014 19.4287C15.638 19.192 16.0221 19.192 16.2588 19.4287C16.4951 19.6653 16.495 20.0485 16.2588 20.2852L15.5439 20.999L16.2588 21.7139C16.4953 21.9505 16.4953 22.3347 16.2588 22.5713C16.0222 22.8079 15.638 22.8078 15.4014 22.5713L14.6865 21.8564L13.9727 22.5713C13.736 22.8075 13.3528 22.8076 13.1162 22.5713C12.8795 22.3346 12.8795 21.9505 13.1162 21.7139L13.8301 20.999L13.1162 20.2852C12.8796 20.0485 12.8796 19.6654 13.1162 19.4287C13.3529 19.1921 13.736 19.1921 13.9727 19.4287L14.6865 20.1426L15.4014 19.4287ZM10.4746 14.2002C11.4272 14.2002 12.2001 14.9722 12.2002 15.9248C12.2002 16.8775 11.4273 17.6504 10.4746 17.6504C9.5221 17.6502 8.75 16.8774 8.75 15.9248C8.75011 14.9723 9.52216 14.2004 10.4746 14.2002ZM18.5254 14.2002C19.4778 14.2004 20.2499 14.9723 20.25 15.9248C20.25 16.8774 19.4779 17.6502 18.5254 17.6504C17.5727 17.6504 16.7998 16.8775 16.7998 15.9248C16.7999 14.9722 17.5728 14.2002 18.5254 14.2002Z" fill={basicInfo.gender === 3 ? "#EA8273" : "white"} />
+              </svg>
+            </div>
+            <div
+              className={cn(
+                "text-center justify-start  text-[1.6rem] font-bold font-['SF_Pro_Rounded'] leading-tight",
+                {
+                  "text-[#fff]": basicInfo.gender === 3,
+                  "text-[#826662]": basicInfo.gender !== 3,
+                }
+              )}
+            >
+              {t("info.notsay")}
             </div>
           </div>
         </div>
