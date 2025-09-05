@@ -115,7 +115,7 @@ const Step3View = ({ mbtiRes }: iStep3View) => {
       <div className="text-[#EA8373] text-[2.2rem] font-[700] text-center leading-[1] mb-[0.4rem] pt-[3rem]">
         {t("Hello")}, {userData?.nickname}
       </div>
-      <div className="text-[#EA8373] text-[2.2rem] font-[700] text-center leading-[1] mb-[2.5rem]">
+      <div className="text-[#EA8373] text-[2.2rem] font-[700] text-center leading-[1] mb-[2.5rem] px-[1rem]">
         {t("qa.meet_cat")}
       </div>
       <div className="px-[3rem]">
