@@ -896,8 +896,6 @@ body {
   }
   #chatWindow {
     mask-image: linear-gradient(
-      #000,
-      #000,
       transparent 0,
       #000 8rem,
       #000 calc(100% - 8rem),
