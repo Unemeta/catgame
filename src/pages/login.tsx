@@ -39,8 +39,6 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
   // ).current;
 
   useEffect(() => {
-    // 清除当前用户 ID & 属性，回到匿名状态
-    mixpanel.reset();
     if (typeof window === "undefined") return;
     const handleOrientation = () => {
       // setIsPortrait(window.innerHeight > window.innerWidth);
@@ -53,7 +51,10 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
 
     handleOrientation(); // 初始检查
     window.addEventListener("resize", handleOrientation);
-
+    // 清除当前用户 ID & 属性，回到匿名状态
+    if (mixpanel) {
+      mixpanel.reset();
+    }
     return () => window.removeEventListener("resize", handleOrientation);
   }, []);
   const getStep = async () => {
