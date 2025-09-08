@@ -39,6 +39,8 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
   // ).current;
 
   useEffect(() => {
+    // 清除当前用户 ID & 属性，回到匿名状态
+    mixpanel.reset();
     if (typeof window === "undefined") return;
     const handleOrientation = () => {
       // setIsPortrait(window.innerHeight > window.innerWidth);
@@ -117,6 +119,9 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
         // }
         const userData = await fetchUser?.();
         if (userData) {
+          // 绑定用户id到mixpanel，方便后续进行用户行为分析
+          mixpanel.identify(userData.loginId);
+
           // 1:中文, 2:英文, 3:日文
           if (userData?.language == 1) {
             i18n.changeLanguage("zh");
@@ -166,6 +171,8 @@ const ProgressLoader: React.FC<ProgressLoaderProps> = () => {
         if (isNewUser) {
           // globalApi.eventRecord("account_login");
           mixpanel.track('account_login');
+          // 仅在第一次注册成功时调用 alias，把匿名历史数据合并
+          mixpanel.alias(userData.loginId);
           setShowVideo(true);
         } else {
           getStep();
