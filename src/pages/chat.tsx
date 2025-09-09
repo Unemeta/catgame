@@ -639,7 +639,7 @@ const ChatView = () => {
   const [isAtBottom, setIsAtBottom] = useState(false);
   const scrollContainerRef = useRef(null);
   const checkScrollPosition = () => {
-    let scrollContainer: any = scrollContainerRef.current;
+    const scrollContainer: any = scrollContainerRef.current;
     if (scrollContainer) {
       //
     } else {
