@@ -28,7 +28,7 @@ import DialogAvatarCat from "@/components/dialog/avatar_cat";
 import DialogLetter from "@/components/dialog/letter";
 // import * as globalApi from "@/services/global";
 import VideoBackgroundNewLogin from "@/components/VideoBackgroundNewLogin";
-import mixpanel from '@/utils/mixpanel'
+import mixpanel from "@/utils/mixpanel";
 
 let timerHistory: NodeJS.Timeout | null | undefined = null;
 let stream_msgs: string[] = [];
@@ -457,7 +457,7 @@ const ChatView = () => {
     }
   };
   const sendMessage = () => {
-    mixpanel.track('send_mes');
+    mixpanel.track("send_mes");
     sendMesCommon(inputMsg);
   };
 
@@ -634,6 +634,37 @@ const ChatView = () => {
     //   setValue(e.target.value);
     // }
   };
+
+  const [isAtTop, setIsAtTop] = useState(false);
+  const [isAtBottom, setIsAtBottom] = useState(false);
+  const scrollContainerRef = useRef(null);
+  const checkScrollPosition = () => {
+    const scrollContainer: any = scrollContainerRef.current;
+    if (scrollContainer) {
+      //
+    } else {
+      return;
+    }
+    const atTop = scrollContainer.scrollTop === 0; // 判断是否在最上面
+    const atBottom =
+      scrollContainer.scrollTop + scrollContainer.clientHeight >=
+      scrollContainer.scrollHeight; // 判断是否在最下面
+
+    setIsAtTop(atTop);
+    setIsAtBottom(atBottom);
+  };
+  useEffect(() => {
+    const scrollContainer: any = scrollContainerRef.current;
+    if (scrollContainer) {
+      //
+    } else {
+      return;
+    }
+    scrollContainer?.addEventListener("scroll", checkScrollPosition);
+    return () => {
+      scrollContainer?.removeEventListener("scroll", checkScrollPosition);
+    };
+  }, [scrollContainerRef]);
   return (
     <>
       {showChat ? (
@@ -727,15 +758,15 @@ const ChatView = () => {
                   <div
                     className="relative"
                     onClick={() => {
-                      mixpanel.track('click_letter_icon');
+                      mixpanel.track("click_letter_icon");
                       if (
                         chatInfo?.farewellLetterStatus == 2 ||
                         chatInfo?.farewellLetterStatus == 3
                       ) {
-                         mixpanel.track('seven_days_letter');
+                        mixpanel.track("seven_days_letter");
                         router.push(`/letter?id=${userData?.uuid}`);
                       } else {
-                        mixpanel.track('show_countdown_card');
+                        mixpanel.track("show_countdown_card");
                         setshowDialogLetter(!showDialogLetter);
                       }
                     }}
@@ -794,7 +825,14 @@ const ChatView = () => {
               <div className="w-[100vw] h-[5rem] bg-black/50 blur-[4rem]"></div>
             </div> */}
             <div
-              className=" flex justify-end items-start dmb40 grow overflow-y-scroll relative"
+              className={cn(
+                "flex justify-end items-start dmb40 grow overflow-y-scroll relative",
+                {
+                  chatWindowTop: isAtTop == true,
+                  chatWindowBottom: isAtBottom == true,
+                }
+              )}
+              ref={scrollContainerRef}
               id="chatWindow"
             >
               <div
