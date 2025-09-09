@@ -16,7 +16,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
 import { useFetchUser } from "@/store";
-import mixpanel from '@/utils/mixpanel'
+import mixpanel from "@/utils/mixpanel";
 
 interface iStep3View {
   index: number;
@@ -34,7 +34,7 @@ const Step3View = ({ mbtiRes }: iStep3View) => {
 
   useEffect(() => {
     if (fetchUser) {
-      fetchUser();;
+      fetchUser();
     }
   }, [fetchUser]);
 
@@ -43,7 +43,7 @@ const Step3View = ({ mbtiRes }: iStep3View) => {
       setinputMsg(mbtiRes?.meowname);
     }
 
-    return () => { };
+    return () => {};
   }, [mbtiRes]);
 
   useEffect(() => {
@@ -76,22 +76,25 @@ const Step3View = ({ mbtiRes }: iStep3View) => {
     //   desc: " ",
     // },
     {
-      type: t("qa.cat_type2"),
+      type: t("qa.cat_type4"),
       name: "",
-      keys: [t("qa.Reserved"), t("qa.Tsundere")],
-      desc: t("qa.cat_desc2"),
+      keys: [t("qa.Spirited"), t("qa.Lively")],
+      desc: t("qa.cat_desc4"),
+      index: 4,
     },
     {
       type: t("qa.cat_type3"),
       name: "",
       keys: [t("qa.Soothing"), t("qa.Tenderness")],
       desc: t("qa.cat_desc3"),
+      index: 3,
     },
     {
-      type: t("qa.cat_type4"),
+      type: t("qa.cat_type2"),
       name: "",
-      keys: [t("qa.Spirited"), t("qa.Lively")],
-      desc: t("qa.cat_desc4"),
+      keys: [t("qa.Reserved"), t("qa.Tsundere")],
+      desc: t("qa.cat_desc2"),
+      index: 2,
     },
   ];
   const router = useRouter();
@@ -302,12 +305,12 @@ const Step3View = ({ mbtiRes }: iStep3View) => {
                 //     name: inputMsg,
                 //   },
                 // });
-                // 2高冷3疗愈4好奇
+                // 4好奇3疗愈2高冷
                 const { data } = await request({
                   url: `/api/user/meow/disposition`,
                   method: "post",
                   data: {
-                    disposition: activeSlide + 2,
+                    disposition: cats[activeSlide]["index"],
                     name: inputMsg,
                   },
                 });
