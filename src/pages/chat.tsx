@@ -645,9 +645,9 @@ const ChatView = () => {
     } else {
       return;
     }
-    const atTop = scrollContainer.scrollTop === 0; // 判断是否在最上面
+    const atTop = scrollContainer.scrollTop < 20; // 判断是否在最上面
     const atBottom =
-      scrollContainer.scrollTop + scrollContainer.clientHeight >=
+      scrollContainer.scrollTop + scrollContainer.clientHeight + 30 >=
       scrollContainer.scrollHeight; // 判断是否在最下面
 
     setIsAtTop(atTop);
@@ -655,7 +655,7 @@ const ChatView = () => {
   };
   useEffect(() => {
     const scrollContainer: any = scrollContainerRef.current;
-    if (scrollContainer) {
+    if (scrollContainer && !!checkScrollPosition) {
       //
     } else {
       return;
@@ -664,7 +664,7 @@ const ChatView = () => {
     return () => {
       scrollContainer?.removeEventListener("scroll", checkScrollPosition);
     };
-  }, [scrollContainerRef.current]);
+  }, [scrollContainerRef.current, checkScrollPosition]);
   return (
     <>
       {showChat ? (
