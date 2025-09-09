@@ -664,7 +664,7 @@ const ChatView = () => {
     return () => {
       scrollContainer?.removeEventListener("scroll", checkScrollPosition);
     };
-  }, [scrollContainerRef]);
+  }, [scrollContainerRef.current]);
   return (
     <>
       {showChat ? (
