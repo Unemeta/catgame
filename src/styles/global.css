@@ -796,6 +796,20 @@ body {
     transparent
   );
 }
+.chatWindowTop {
+  mask-image: linear-gradient(
+    180deg,
+    #000 calc(100% - var(--scroll-shadow-size)),
+    transparent
+  ) !important;
+}
+.chatWindowBottom {
+  mask-image: linear-gradient(
+    0deg,
+    #000 calc(100% - var(--scroll-shadow-size)),
+    transparent
+  ) !important;
+}
 @media screen and (max-width: 1200px) {
   .wrapHeight {
     /* height: 87vh; */
@@ -902,6 +916,21 @@ body {
       transparent
     );
   }
+  .chatWindowTop {
+    mask-image: linear-gradient(
+      180deg,
+      #000 calc(100% - var(--scroll-shadow-size)),
+      transparent
+    ) !important;
+  }
+  .chatWindowBottom {
+    mask-image: linear-gradient(
+      0deg,
+      #000 calc(100% - var(--scroll-shadow-size)),
+      transparent
+    ) !important;
+  }
+
   .chatCtt {
     padding-left: 6rem;
     padding-right: 6rem;
