@@ -70,6 +70,10 @@
     "Soothing": "癒し",
     "Tenderness": "温もり",
     "Spirited": "天性で軽やか",
+    "cat_type5": "生意気ねこ",
+    "cat_type5_key1": "毒舌",
+    "cat_type5_key2": "心が狭い",
+    "cat_desc5": "口が悪くて皮肉ばかり。自分を王様だと思っていて、毎日あれこれ文句を言ってはツンツンしている。あまりのわがままさに、ついイラッとさせられる。",
     "Lively": "活発",
     "test": "test"
   },
@@ -81,8 +85,8 @@
     "wgender": "あなたの性別は？",
     "female": "女性",
     "male": "男性",
-    "notsay": "不明",
-    "nonbinary": "非バイナリー"
+    "notsay": "答えたくない",
+    "nonbinary": "ノンバイナリー"
   },
   "login": {
     "login": "アカウント登録・ログイン",

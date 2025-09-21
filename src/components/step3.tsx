@@ -96,6 +96,13 @@ const Step3View = ({ mbtiRes }: iStep3View) => {
       desc: t("qa.cat_desc2"),
       index: 2,
     },
+    {
+      type: t("qa.cat_type5"),
+      name: "",
+      keys: [t("qa.cat_type5_key1"), t("qa.cat_type5_key2")],
+      desc: t("qa.cat_desc5"),
+      index: 5,
+    },
   ];
   const router = useRouter();
 
@@ -107,8 +114,6 @@ const Step3View = ({ mbtiRes }: iStep3View) => {
       swiperRef.current != null ? swiperRef.current!.swiper : null;
     if (curSwip) {
       curSwip.on("slideChange", () => {
-        console.log("slideChange");
-        console.log(curSwip.realIndex);
         setActiveSlide(curSwip.realIndex);
       });
     }
