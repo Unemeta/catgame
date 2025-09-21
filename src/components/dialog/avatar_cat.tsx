@@ -40,6 +40,12 @@ const DialogAvatarCat = ({ trigger, indexXingGe, catName }: iDialogSetting) => {
       keys: [t("qa.Spirited"), t("qa.Lively")],
       desc: t("qa.cat_desc4"),
     },
+    {
+      type: t("qa.cat_type5"),
+      name: "",
+      keys: [t("qa.cat_type5_key1"), t("qa.cat_type5_key2")],
+      desc: t("qa.cat_desc5"),
+    },
   ];
   return (
     <Dialog
