@@ -29,6 +29,7 @@ import DialogLetter from "@/components/dialog/letter";
 // import * as globalApi from "@/services/global";
 import VideoBackgroundNewLogin from "@/components/VideoBackgroundNewLogin";
 import mixpanel from "@/utils/mixpanel";
+import FishView from "@/components/fishView";
 
 let timerHistory: NodeJS.Timeout | null | undefined = null;
 let stream_msgs: string[] = [];
@@ -609,6 +610,15 @@ const ChatView = () => {
         return <div className="">{`${msg}`}</div>;
       }
     } else {
+      if (msg.indexOf("componentId") > -1) {
+        var msgObj = JSON.parse(msg);
+        return (
+          <FishView
+            text={msgObj?.text}
+            rewardCount={msgObj?.rewardCount}
+          ></FishView>
+        );
+      }
       return <div className="">{`${msg}`}</div>;
     }
   };
@@ -942,7 +952,15 @@ const ChatView = () => {
                                     />
                                   )}
 
-                                  <div className="receive bg-[rgba(32,_35,_42,_0.50)] flex justify-start items-start msgWrap">
+                                  <div
+                                    className={cn(
+                                      "receive bg-[rgba(32,_35,_42,_0.50)] flex justify-start items-start msgWrap",
+                                      {
+                                        "border-[1px] border-[#FF9524]!":
+                                          itemSub?.indexOf("componentId") > -1,
+                                      }
+                                    )}
+                                  >
                                     <div className="dmaxW460 lmdWfull">
                                       <div className="msgText line-clamp-[20] dtext28 font-[500] text-[#F5F2FF] text-wrap whitespace-normal lmdMsgSpan break-words">
                                         {mediaSwitch(
