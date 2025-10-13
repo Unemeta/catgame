@@ -616,6 +616,7 @@ const ChatView = () => {
           <FishView
             text={msgObj?.text}
             rewardCount={msgObj?.rewardCount}
+            componentId={msgObj?.componentId}
           ></FishView>
         );
       }
@@ -954,7 +955,7 @@ const ChatView = () => {
 
                                   <div
                                     className={cn(
-                                      "receive bg-[rgba(32,_35,_42,_0.50)] flex justify-start items-start msgWrap",
+                                      "receive bg-[rgba(32,_35,_42,_0.6)] flex justify-start items-start msgWrap",
                                       {
                                         "border-[1px] border-[#FF9524]!":
                                           itemSub?.indexOf("componentId") > -1,
